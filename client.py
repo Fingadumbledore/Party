@@ -20,20 +20,12 @@ verlauf = open('verlauf.txt', 'r')
 tverlauf = verlauf.read()
 ip = "http://192.168.178.56:8000"
 
-
-    
-
-  
-    
-
 def create_session():
     print("erstelle session")
     qr = qrcode.make(ip)
     qr.save('session.png')
     subprocess.run(["./session.sh" ])
     return
-    
-
 
 def load_session():
     print("Lade Session")
@@ -45,10 +37,6 @@ def load_session():
                                                         "*.txt*"), 
                                                        ("all files", 
                                                         "*.*"))) 
-       
-        
-    
-    
  
 def action_get_erstellen_dialog():
     if verbunden_status:
@@ -59,7 +47,6 @@ def action_get_erstellen_dialog():
     else:
         q_text = "Du bist bereits in einer Session willst du diese Verlassen?"
         messagebox.showinfo(message=q_text, title = "Warnung")
-        
 
 def action_get_verlauf_dialog():
     #get_verlauf()
@@ -67,7 +54,6 @@ def action_get_verlauf_dialog():
     print("öffne Verlauf")
     messagebox.showinfo(message=t_text, title = "Verlauf")
     #server()
-    
         
 def action_get_info_dialog():
 	m_text = "\
@@ -83,9 +69,7 @@ def build_window():
     fenster.title("Party Controll ")
     fenster.geometry("450x400")
     fenster.tk.call('wm', 'iconphoto', fenster._w, tk.PhotoImage(file='party.png'))
-
-
-
+    
     if server_on :
         info_text = Label(fenster, text = "Guten Tag")
         info_text.pack()
@@ -93,12 +77,9 @@ def build_window():
         info_text = Label(fenster, text = "Guten Tag\n\
         Bitte verbinde dich mit einer Session oder erstelle eine.")
         info_text.pack()
-    
-            
 
     # Menüleiste erstellen 
     menuleiste = Menu(fenster)
-   
 
     # Menü Datei und Help erstellen
     datei_menu = Menu(menuleiste, tearoff=0)
