@@ -59,6 +59,7 @@ def action_get_info_dialog():
 	m_text = "\
 ************************\n\
 Autor: fingadumbledore\n\
+Autor: enym\n\
 Copyright: 2022\n\
 Version: 0.1\n\
 ************************"
