@@ -12,10 +12,10 @@ import qrcode
 from session import session
 from tkinter import filedialog 
 #https://www.python-kurs.eu/tkinter_entry_widgets.php
-server_on = FALSE
-session_status = FALSE
-verbunden_status = FALSE
-sessionload = FALSE
+server_on = False
+session_status = False
+verbunden_status = False
+sessionload = False
 verlauf = open('verlauf.txt', 'r')
 tverlauf = verlauf.read()
 ip = "http://192.168.178.56:8000"
@@ -30,7 +30,7 @@ def create_session():
 def load_session():
     print("Lade Session")
     
-    verbunden_status = "yes"
+    verbunden_status = True
     filename = filedialog.askopenfilename(initialdir = "/", 
                                           title = "Select a File", 
                                           filetypes = (("Text files", 
@@ -94,10 +94,10 @@ def build_window():
     
     #datei_menu.add_separator() # Fügt eine Trennlinie hinzu
     if verbunden_status:
-     datei_menu.add_command(label="Erstellen", command=action_get_erstellen_dialog)
-     datei_menu.add_command(label="Laden", command=load_session)
      datei_menu.add_command(label="Exit", command=fenster.quit)
     else: 
+        datei_menu.add_command(label="Erstellen", command=action_get_erstellen_dialog)
+        datei_menu.add_command(label="Laden", command=load_session)
         info_text = Label(fenster, text = "Sie befinden sich im Moment noch in einer Session")
 
     help_menu.add_command(label="Info!", command=action_get_info_dialog)
