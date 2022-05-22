@@ -4,7 +4,7 @@ from server import server
 import threading
 import pyqrcode
 #https://www.python-kurs.eu/tkinter_entry_widgets.php
-server_on = "no"
+server_on = False
 fields = ('Session name', 'Anzahl Teilnehmer', 'Anwendung')
 
 def button_action():
@@ -46,7 +46,7 @@ def build_window():
     info_text = Label(fenster, text = "Guten Tag\n\
     Bitte verbinde dich mit einer Session oder erstelle eine.")
     info_text.pack()
-    if server_on == "yes":
+    if server_on:
         info_text = Label(fenster, text = "Server ist bereit\n\
     Bitte verbinde dich endweder mit localhost, oder mit der ip deines rechners.")
     info_text.pack()
