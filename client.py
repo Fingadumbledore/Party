@@ -39,7 +39,7 @@ def load_session():
                                                         "*.*"))) 
  
 def action_get_erstellen_dialog():
-    if verbunden_status:
+    if not verbunden_status:
         t_text = "Session erstellen"
         messagebox.showinfo(message=t_text, title = "erstellen")
         create_session()
