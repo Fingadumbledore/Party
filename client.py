@@ -1,59 +1,104 @@
 from tkinter import *
+import tkinter as tk
 from tkinter import messagebox
 from server import server
 import threading
 import pyqrcode
+import os, sys
+from pathlib import Path
+import subprocess
+import time
+import qrcode
+from session import session
+from tkinter import filedialog 
 #https://www.python-kurs.eu/tkinter_entry_widgets.php
-server_on = "no"
-fields = ('Session name', 'Anzahl Teilnehmer', 'Anwendung')
+server_on = FALSE
+session_status = "no"
+verbunden_status = "no"
+sessionload = "no"
+verlauf = open('verlauf.txt', 'r')
+tverlauf = verlauf.read()
+ip = "http://192.168.178.56:8000"
 
-def button_action():
-        print("Ich wurde über das Menü ausgeführt.")
 
+    
+
+  
+    
+
+def create_session():
+    print("erstelle session")
+    qr = qrcode.make(ip)
+    qr.save('session.png')
+    subprocess.run(["./session.sh" ])
+    return
+    
+
+
+def load_session():
+    print("Lade Session")
+    
+    verbunden_status = "yes"
+    filename = filedialog.askopenfilename(initialdir = "/", 
+                                          title = "Select a File", 
+                                          filetypes = (("Text files", 
+                                                        "*.txt*"), 
+                                                       ("all files", 
+                                                        "*.*"))) 
+       
+        
+    
+    
+ 
 def action_get_erstellen_dialog():
-    t_text = "Session erstellen"
-    messagebox.showinfo(message=t_text, title = "erstellen")
-    #server()
+    if verbunden_status == "no":
+        t_text = "Session erstellen"
+        messagebox.showinfo(message=t_text, title = "erstellen")
+        create_session()
+        #server()
+    elif verbunden_status == "yes":
+        q_text = "Du bist bereits in einer Session willst du diese Verlassen?"
+        messagebox.showinfo(message=q_text, title = "Warnung")
+        
 
 def action_get_verlauf_dialog():
-    t_text = "Verlauf"
+    #get_verlauf()
+    t_text = tverlauf
+    print("öffne Verlauf")
     messagebox.showinfo(message=t_text, title = "Verlauf")
     #server()
-
-
-def action_get_verbinden_dialog():
-    f_text = "Mit Session verbinden"
-    messagebox.showinfo(message=f_text, title = "verbinden")
-
     
         
 def action_get_info_dialog():
 	m_text = "\
 ************************\n\
 Autor: fingadumbledore\n\
-Date: 2022\n\
+Copyright: 2022\n\
 Version: 0.1\n\
 ************************"
 	messagebox.showinfo(message=m_text, title = "Infos")
 
 def build_window():       
-    fenster = Tk()
-    fenster.title("Party Controll")
+    fenster = tk.Tk()
+    fenster.title("Party Controll ")
     fenster.geometry("450x400")
+    fenster.tk.call('wm', 'iconphoto', fenster._w, tk.PhotoImage(file='party.png'))
 
 
 
-    info_text = Label(fenster, text = "Guten Tag\n\
-    Bitte verbinde dich mit einer Session oder erstelle eine.")
-    info_text.pack()
-    if server_on == "yes":
-        info_text = Label(fenster, text = "Server ist bereit\n\
-    Bitte verbinde dich endweder mit localhost, oder mit der ip deines rechners.")
-    info_text.pack()
+    if server_on :
+        info_text = Label(fenster, text = "Guten Tag")
+        info_text.pack()
+    else:
+        info_text = Label(fenster, text = "Guten Tag\n\
+        Bitte verbinde dich mit einer Session oder erstelle eine.")
+        info_text.pack()
+    
             
 
     # Menüleiste erstellen 
     menuleiste = Menu(fenster)
+   
 
     # Menü Datei und Help erstellen
     datei_menu = Menu(menuleiste, tearoff=0)
@@ -61,13 +106,18 @@ def build_window():
 
     # Beim Klick auf Datei oder auf Help sollen nun weitere Einträge erscheinen.
     # Diese werden also zu "datei_menu" und "help_menu" hinzugefügt
-    datei_menu.add_command(label="Erstellen", command=action_get_erstellen_dialog)
+    
     #datei_menu.add_separator() # Fügt eine Trennlinie hinzu
-    datei_menu.add_command(label="Verbinden", command=action_get_verbinden_dialog)
     #datei_menu.add_separator() # Fügt eine Trennlinie hinzu
     datei_menu.add_command(label="Verlauf", command=action_get_verlauf_dialog)
+    
     #datei_menu.add_separator() # Fügt eine Trennlinie hinzu
-    datei_menu.add_command(label="Exit", command=fenster.quit)
+    if verbunden_status == "no":
+     datei_menu.add_command(label="Erstellen", command=action_get_erstellen_dialog)
+     datei_menu.add_command(label="Laden", command=load_session)
+     datei_menu.add_command(label="Exit", command=fenster.quit)
+    elif verbunden_status == "yes": 
+        info_text = Label(fenster, text = "Sie befinden sich im Moment noch in einer Session")
 
     help_menu.add_command(label="Info!", command=action_get_info_dialog)
 
@@ -81,3 +131,7 @@ def build_window():
         
 
     fenster.mainloop()
+
+
+def terminal():
+    subprocess.run(["./session.sh" ])
