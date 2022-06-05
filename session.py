@@ -24,15 +24,12 @@ Version: 0.1\n\
 	messagebox.showinfo(message=m_text, title = "Infos")
 
 def session():
-	
 	fenster = Tk()
 	fenster.title("Session")
 	fenster.geometry("450x400")
 
 	info_text = Label(fenster, text = "Session")
 	info_text.pack()
-
-
 
 	# Menüleiste erstellen 
 	menuleiste = Menu(fenster)
