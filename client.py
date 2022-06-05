@@ -59,7 +59,7 @@ def action_get_info_dialog():
 	m_text = "\
 ************************\n\
 Autor: fingadumbledore\n\
-Autor: enym\n\
+Autor: hyperbel\n\
 Copyright: 2022\n\
 Version: 0.1\n\
 ************************"
@@ -67,7 +67,7 @@ Version: 0.1\n\
 
 def build_window():       
     fenster = tk.Tk()
-    fenster.title("Party Controll ")
+    fenster.title("Party Control")
     fenster.geometry("450x400")
     fenster.tk.call('wm', 'iconphoto', fenster._w, tk.PhotoImage(file='party.png'))
     
