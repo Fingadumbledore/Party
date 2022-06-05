@@ -1,3 +1,4 @@
+import socket
 from tkinter import *
 import tkinter as tk
 from tkinter import messagebox
@@ -18,11 +19,16 @@ verbunden_status = False
 sessionload = False
 verlauf = open('verlauf.txt', 'r')
 tverlauf = verlauf.read()
-ip = "http://192.168.178.56:8000"
 
 def create_session():
+    
+    host_name = socket.gethostname()
+    host_ip = socket.gethostbyname(host_name)
+    print("Hostname :  ",host_name)
+    print("IP : ",host_ip)
+
     print("erstelle session")
-    qr = qrcode.make(ip)
+    qr = qrcode.make(host_ip)
     qr.save('session.png')
     subprocess.run(["./session.sh" ])
     return
