@@ -36,7 +36,7 @@ def validateLogin(username, password):
 #username label and text entry box
 
 
-class Checkbar(Frame):
+class CheckBoxBar(Frame):
    def __init__(self, parent=None, picks=[], side=LEFT, anchor=W):
       Frame.__init__(self, parent)
       self.vars = []
