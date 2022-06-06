@@ -3,3 +3,4 @@ __pycache__/*
 past_sessions/*
 *.db
 .idea/
+Sessions_Menu.ui
