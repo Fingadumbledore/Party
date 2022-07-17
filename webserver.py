@@ -19,6 +19,9 @@ sessionConfig = "F"
 
 class Serve(BaseHTTPRequestHandler):
 
+    def led_controll():
+        print("in development")
+
     def restore_session(sessionConfig):
         print("Restoring Session")
 
