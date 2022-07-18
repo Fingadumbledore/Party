@@ -107,7 +107,8 @@ class Serve(BaseHTTPRequestHandler):
                 #print("POST error")
    
 def main(name):   
-    ordner = '/' + name     
+    ordner = '/sammlung/' + name     
+    name2 = '2' + name
     create_DB()   
    
     try:
@@ -121,5 +122,8 @@ def main(name):
     httpd.server_close()
     print("Server stopped.")
     shutil.move('party.db', name)
-    shutil.move(name, 'sammlung')
-
+    if not os.path.exists(ordner):
+        shutil.move(name, 'sammlung')
+    else:
+        shutil.copy(name, name2)
+        shutil.move(name2, 'sammlung')
