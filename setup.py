@@ -7,7 +7,8 @@ sessionname = "Test Session"
 def create_session():
     if not os.path.exists(sessionname):
         os.makedirs(sessionname)
-        
+    if not os.path.exists('sammlung'):
+        os.makedirs('sammlung')
 
 
 
