@@ -4,3 +4,4 @@ past_sessions/*
 *.db
 .idea/
 Sessions_Menu.ui
+*.log
