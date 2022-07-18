@@ -17,6 +17,7 @@ sessionID = "/S1"
 dbstatus = "Null"
 sessionConfig = "F"
 name = "f"
+sessionart = " "
  
 def create_DB():
         if os.path.exists("party.db"):
@@ -50,13 +51,6 @@ class Serve(BaseHTTPRequestHandler):
     def led_controll():
         print("in development")
 
-    def restore_session(sessionConfig):
-        print("Restoring Session")
-
-  
-       
-
-
     def log_server(self, log):
         datei = open('server.log','a')
         datei.write('\n' + " " + log )
@@ -65,13 +59,13 @@ class Serve(BaseHTTPRequestHandler):
 # Endpoints 
     def do_GET(self):
         if self.path == '/':
-            self.path = '/index.html'
+            self.path = '/web/index.html'
         if self.path == '/signin':
-            self.path == '/create_user.html'
+            self.path == '/web/create_user.html'
         if self.path == '/login':
-            self.path == '/login.html'
+            self.path == '/web/login.html'
         if self.path == sessionID:
-            self.path == '/session.html'
+            self.path == '/web/session.html'
         
         
 
@@ -106,24 +100,42 @@ class Serve(BaseHTTPRequestHandler):
                 self.send_response(400)
                 #print("POST error")
    
-def general(name):   
-    ordner = '/sammlung/' + name     
-    name2 = '2' + name
-    create_DB()   
-   
-    try:
-         httpd = HTTPServer(('0.0.0.0', PORT), Serve)
-         print("server is now running on http://127.0.0.1:" + str(PORT))
-         httpd.serve_forever()
-    except KeyboardInterrupt:
-        pass
-#Server beenden, und Datein speichern/in Sammlung schieben
-    httpd.server_close()
-    print("Server stopped.")
-    shutil.move('party.db', name)
-    shutil.move('server.log', name)
-    if not os.path.exists(ordner):
-        shutil.move(name, 'sammlung')
+def general(name, sessionart):   
+    if (sessionart == "n"):
+        ordner = '/sammlung/' + name     
+        name2 = '2' + name
+        create_DB()   
+    
+        try:
+            httpd = HTTPServer(('0.0.0.0', PORT), Serve)
+            print("server is now running on http://127.0.0.1:" + str(PORT))
+            httpd.serve_forever()
+        except KeyboardInterrupt:
+            pass
+    #Server beenden, und Datein speichern/in Sammlung schieben
+        httpd.server_close()
+        print("\nServer stopped.")
+        print("saving files")
+        shutil.move('party.db', name)
+        if os.path.exists('server.log'):
+            shutil.move('server.log', name)
+        if not os.path.exists(ordner):
+            shutil.move(name, 'sammlung')
+        else:
+            shutil.copy(name, name2)
+            shutil.move(name2, 'sammlung')
     else:
-        shutil.copy(name, name2)
-        shutil.move(name2, 'sammlung')
+        try:
+            httpd = HTTPServer(('0.0.0.0', PORT), Serve)
+            print("server is now running on http://127.0.0.1:" + str(PORT))
+            httpd.serve_forever()
+        except KeyboardInterrupt:
+            pass
+    #Server beenden, und Datein speichern/in Sammlung schieben
+        httpd.server_close()
+        print("\nServer stopped.")
+        print("removing files")
+        os.remove('server.log')
+        os.remove('party.db')
+      
+

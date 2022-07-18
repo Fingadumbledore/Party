@@ -3,8 +3,10 @@ import argparse
 import os
 import shutil
 from webserver import general
-sessionname = "Test Session"
+sessionname = " "
 qinput = " "
+typ = " "
+
 
 # Session erstellen
 def create_session():
@@ -14,11 +16,8 @@ def create_session():
         
     if not os.path.exists('sammlung'): 
         os.makedirs('sammlung')   
-    general(sessionname)
+    general(sessionname, typ)
 # Bereits bestehende Session laden
-def load_session():
-    print("Lade Session")
-
 
 def main():
      parser = argparse.ArgumentParser()
@@ -26,13 +25,15 @@ def main():
      args = parser.parse_args()
 
 if __name__ == "__main__":
-    print("[L]oad Session [C]reate Session")
+    print("[T]emp Session [C]reate Session")
     qinput = input("Modus: ")
     sessionname = input("Session Name: ")
-    if (qinput == "L" or qinput == "l"):
-        load_session()()
+    if (qinput == "T" or qinput == "t"):
+        typ = "t"
+        general(sessionname, typ)
 
     if (qinput == "C" or qinput == "c"):
+        typ = "n"
         create_session()
         
     
