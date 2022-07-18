@@ -8,6 +8,7 @@ import os, sys, sqlite3
 from urllib import parse
 import json
 import requests
+import shutil
 
 PORT = 8000
 date = time.strftime("%d-%m-%Y %H:%M:%S", time.localtime(time.time()))
@@ -15,17 +16,9 @@ log = date
 sessionID = "/S1"
 dbstatus = "Null"
 sessionConfig = "F"
+name = "f"
  
-
-class Serve(BaseHTTPRequestHandler):
-
-    def led_controll():
-        print("in development")
-
-    def restore_session(sessionConfig):
-        print("Restoring Session")
-
-    def create_DB():
+def create_DB():
         if os.path.exists("party.db"):
             print("Datei bereits vorhanden")
             sys.exit(0)
@@ -50,9 +43,18 @@ class Serve(BaseHTTPRequestHandler):
             "Datum TEXT, " \
             "info TEXT)"
         cursor.execute(sql)
-        dbstatus = "db erstellt"
-        log = log + dbstatus
-        self.log_server(log)
+        
+
+class Serve(BaseHTTPRequestHandler):
+
+    def led_controll():
+        print("in development")
+
+    def restore_session(sessionConfig):
+        print("Restoring Session")
+
+  
+       
 
 
     def log_server(self, log):
@@ -104,10 +106,18 @@ class Serve(BaseHTTPRequestHandler):
                 self.send_response(400)
                 #print("POST error")
    
-        
-    
-httpd = HTTPServer(('0.0.0.0', PORT), Serve)
-log = log + "server is now running on" + str(PORT)
-print("server is now running on http://127.0.0.1:" + str(PORT))
-httpd.serve_forever()
+def main(name):        
+    create_DB()   
+   
+    try:
+         httpd = HTTPServer(('0.0.0.0', PORT), Serve)
+         #log = log + "server is now running on" + str(PORT)
+         print("server is now running on http://127.0.0.1:" + str(PORT))
+         httpd.serve_forever()
+    except KeyboardInterrupt:
+        pass
+
+    httpd.server_close()
+    print("Server stopped.")
+    shutil.move('party.db', name)
 

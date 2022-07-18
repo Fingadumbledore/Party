@@ -1,13 +1,14 @@
 from argparse import ArgumentParser
 import os
 import shutil
+from webserver import main
 sessionname = "Test Session"
-dateiname = sessionname + '.py'
+
 def create_session():
     if not os.path.exists(sessionname):
         os.makedirs(sessionname)
-        shutil.copy('webserver.py', dateiname)
-        shutil.move(dateiname, sessionname)
+        
+
 
 
 
@@ -21,3 +22,4 @@ def main():
 if __name__ == "__main__":
     sessionname = input("Session Name: ")
     create_session()
+    main(sessionname)
