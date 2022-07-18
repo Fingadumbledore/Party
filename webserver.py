@@ -106,7 +106,8 @@ class Serve(BaseHTTPRequestHandler):
                 self.send_response(400)
                 #print("POST error")
    
-def main(name):        
+def main(name):   
+    ordner = '/' + name     
     create_DB()   
    
     try:
@@ -120,4 +121,5 @@ def main(name):
     httpd.server_close()
     print("Server stopped.")
     shutil.move('party.db', name)
+    shutil.move(name, 'sammlung')
 
