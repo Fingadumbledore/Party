@@ -46,7 +46,7 @@ def create_DB():
         
 
 class Serve(BaseHTTPRequestHandler):
-
+# In Zukunft soll es hier möglich sein, RGB Stripes zu steuern 
     def led_controll():
         print("in development")
 
@@ -62,7 +62,7 @@ class Serve(BaseHTTPRequestHandler):
         datei.write('\n' + " " + log )
         log = date
         datei.close()
-
+# Endpoints 
     def do_GET(self):
         if self.path == '/':
             self.path = '/index.html'
@@ -106,19 +106,18 @@ class Serve(BaseHTTPRequestHandler):
                 self.send_response(400)
                 #print("POST error")
    
-def main(name):   
+def general(name):   
     ordner = '/sammlung/' + name     
     name2 = '2' + name
     create_DB()   
    
     try:
          httpd = HTTPServer(('0.0.0.0', PORT), Serve)
-         #log = log + "server is now running on" + str(PORT)
          print("server is now running on http://127.0.0.1:" + str(PORT))
          httpd.serve_forever()
     except KeyboardInterrupt:
         pass
-
+#Server beenden, und Datein speichern/in Sammlung schieben
     httpd.server_close()
     print("Server stopped.")
     shutil.move('party.db', name)
