@@ -121,6 +121,7 @@ def general(name):
     httpd.server_close()
     print("Server stopped.")
     shutil.move('party.db', name)
+    shutil.move('server.log', name)
     if not os.path.exists(ordner):
         shutil.move(name, 'sammlung')
     else:
