@@ -25,6 +25,28 @@ def chat():
     log_server("called /chat")
     return render_template("chat.html")
 
+@app.route("/get_chat", methods=['POST'])
+def get_chat():
+    log_server("called /get_chat")
+    con = sqlite3.connect("party.db")
+    cur = con.cursor()
+    log_server("called /get_creat_session with POST")
+
+    userID = request.form['userid']
+    sessionID = request.form['sessionid']
+    message = request.form['message']
+    zeit = date
+    l = f"INSERT INTO session VALUES(  \'{sessionID}\', \'{userID}\',\'{message}\', \'{zeit}\');"
+
+    cur.execute(l)
+    account = cur.fetchone()
+    return render_template("chat.html")
+
+@app.route("/get_new_message")
+def get_new_message():
+    log_server("called /get_new_message")
+    return render_template("chat.html")    
+
 @app.route("/planer")
 def planer():
     log_server("called /planer")
