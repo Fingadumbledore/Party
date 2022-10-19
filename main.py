@@ -38,7 +38,7 @@ def get_chat():
     message = request.form['message']
     zeit = date
     l = f"INSERT INTO session VALUES(  \'{sessionID}\', \'{userID}\',\'{message}\', \'{zeit}\');"
-    log("neue Nachricht")
+    log_server(log)("neue Nachricht")
 
     cur.execute(l)
     account = cur.fetchone()
@@ -66,7 +66,7 @@ def get_planer():
     sessionID = request.form['sessionid']
     zeit = request.form['zeit']
     l = f"INSERT INTO session VALUES(  \'{event}\', \'{zeit}\',\'{sessionID}\');"
-    log("neues Event")
+    log_server(log)("neues Event")
     cur.execute(l)
     account = cur.fetchone()
     return render_template("chat.html")
@@ -105,7 +105,7 @@ def get_creat_session():
     sessionname = request.form['sessionname']
     sessionID = request.form['sessionid']
     l = f"INSERT INTO session VALUES(  \'{sessionID}\', \'{sessionname}\');"
-    log("neue Session")
+    log_server(log)("neue Session")
     cur.execute(l)
     account = cur.fetchone()
     return redirect('/session')
