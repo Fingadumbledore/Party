@@ -154,6 +154,10 @@ def willkommen():
     log_server("called /willkommen")
     return render_template("willkommen.html")
 
+@app.route("/session")
+def session():
+    log_server("called /session")
+    return render_template("seession.html")
 
 @app.route("/rgb")
 def rgb():
