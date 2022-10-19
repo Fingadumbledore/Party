@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <style>
+        Body {  
+ 
+ background-image: linear-gradient(to right,  rgb(89, 89, 175), rgb(38, 134, 62))
+ 
+}  
+a {
+  text-decoration: none;
+}
+body {font-family: Arial, Helvetica, sans-serif;
+     background-image: linear-gradient(to right, rgb(38, 134, 62), rgb(89, 89, 175))
+}
+
+/* Full-width input fields */
+
+/* Set a style for all buttons */
+button {
+  background-color: #6d4087;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+/
+
+$orange: #ffa600;
+$grey:#f3f3f3;
+$white: #fff;
+$base-color:$orange ;
+
+
+/* Mixin's */  
+@mixin transition {
+-webkit-transition: all 0.5s ease-in-out;
+-moz-transition: all 0.5s ease-in-out;
+transition: all 0.5s ease-in-out;
+}
+@mixin corners ($radius) {
+-moz-border-radius: $radius;
+-webkit-border-radius: $radius;
+border-radius: $radius; 
+-khtml-border-radius: $radius; 
+}
+
+body {
+background:$base-color;
+font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+height:100%;
+}
+
+.wrapper {
+width: 800px;
+margin: 30px auto;
+color:$white;
+text-align:center;
+float:left;
+
+}
+
+h1, h2, h3 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+  font-size: 2.6em;
+  text-transform: uppercase;
+}
+
+#seconds, #tens{
+  font-size:2em;
+}
+
+button{
+@include corners (5px);
+background:$base-color;
+color:$white;
+border: solid 1px $white;
+border-radius: 8px;
+text-decoration:none;
+cursor:pointer;
+font-size:1.2em;
+padding:18px 10px;
+width:80px;
+margin: 10px;
+ outline: none;
+  &:hover{
+	@include transition;
+	background:$white;
+	border: solid 1px $white;
+	color:$base-color;
+	}
+}
+
+
+input[type=text], input[type=password] {   
+        width: 30%;   
+        margin: 8px 0;  
+        padding: 12px 20px;   
+        display: inline-block;   
+        border: 2px solid green;   
+        box-sizing: border-box;   
+        border-radius: 12px;
+        color: #839c87;
+    }  
+
+   </style>
+</head>
+<body>
+
+    <script>
+        var modal = document.getElementById('id01');
+        
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        
+        window.onload = function () {
+          
+          var seconds = 00; 
+          var tens = 00; 
+          var appendTens = document.getElementById("tens")
+          var appendSeconds = document.getElementById("seconds")
+          var buttonStart = document.getElementById('button-start');
+          var buttonStop = document.getElementById('button-stop');
+          var buttonReset = document.getElementById('button-reset');
+          var Interval ;
+        
+          buttonStart.onclick = function() {
+            
+            clearInterval(Interval);
+             Interval = setInterval(startTimer, 10);
+          }
+          
+            buttonStop.onclick = function() {
+               clearInterval(Interval);
+          }
+          
+        
+          buttonReset.onclick = function() {
+             clearInterval(Interval);
+            tens = "00";
+              seconds = "00";
+            appendTens.innerHTML = tens;
+              appendSeconds.innerHTML = seconds;
+          }
+          
+           
+          
+          function startTimer () {
+            tens++; 
+            
+            if(tens <= 9){
+              appendTens.innerHTML = "0" + tens;
+            }
+            
+            if (tens > 9){
+              appendTens.innerHTML = tens;
+              
+            } 
+            
+            if (tens > 99) {
+              console.log("seconds");
+              seconds++;
+              appendSeconds.innerHTML = "0" + seconds;
+              tens = 0;
+              appendTens.innerHTML = "0" + 0;
+            }
+            
+            if (seconds > 9){
+              appendSeconds.innerHTML = seconds;
+            }
+          
+          }
+          
+        
+          
+        
+        }
+        </script>
+    <center><h1>Games</h1></center>
+
+
+    <div class="wrapper">
+        <h3>Stopuhr</h3>
+<p><span id="seconds">00</span>:<span id="tens">00</span></p>
+<label>Enter Game name:</label>
+<input type="text" name="name">
+<button id="button-start">Start</button>
+<button id="button-stop">Stop</button>
+<button id="button-reset">Reset</button>
+
+
+</div> 
+    
+</body>
+</html>

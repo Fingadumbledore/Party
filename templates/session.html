@@ -8,79 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 </head>
-<script>
-var modal = document.getElementById('id01');
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-
-window.onload = function () {
-  
-  var seconds = 00; 
-  var tens = 00; 
-  var appendTens = document.getElementById("tens")
-  var appendSeconds = document.getElementById("seconds")
-  var buttonStart = document.getElementById('button-start');
-  var buttonStop = document.getElementById('button-stop');
-  var buttonReset = document.getElementById('button-reset');
-  var Interval ;
-
-  buttonStart.onclick = function() {
-    
-    clearInterval(Interval);
-     Interval = setInterval(startTimer, 10);
-  }
-  
-    buttonStop.onclick = function() {
-       clearInterval(Interval);
-  }
-  
-
-  buttonReset.onclick = function() {
-     clearInterval(Interval);
-    tens = "00";
-  	seconds = "00";
-    appendTens.innerHTML = tens;
-  	appendSeconds.innerHTML = seconds;
-  }
-  
-   
-  
-  function startTimer () {
-    tens++; 
-    
-    if(tens <= 9){
-      appendTens.innerHTML = "0" + tens;
-    }
-    
-    if (tens > 9){
-      appendTens.innerHTML = tens;
-      
-    } 
-    
-    if (tens > 99) {
-      console.log("seconds");
-      seconds++;
-      appendSeconds.innerHTML = "0" + seconds;
-      tens = 0;
-      appendTens.innerHTML = "0" + 0;
-    }
-    
-    if (seconds > 9){
-      appendSeconds.innerHTML = seconds;
-    }
-  
-  }
-  
-
-  
-
-}
-</script>
 <style>
 
 a {
@@ -172,30 +100,6 @@ margin: 10px;
 }
 
 
-#customers {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-#customers td, #customers th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-#customers tr:nth-child(even){background-color: }
-
-#customers tr:hover {background-color: rgb(104, 72, 101);}
-
-#customers th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color:#6d4087;
-  color: white;
-}
-
-
 input[type=text], input[type=password] {   
         width: 30%;   
         margin: 8px 0;  
@@ -214,56 +118,34 @@ input[type=text], input[type=password] {
   <a href="http://127.0.0.1:5000/logout">
           <button class="btn btn-primary btn-lg">Logout</button>
        </a>
-       <a href="http://127.0.0.1:5000/controll">&#x2699;</a>
+       <center>
+       <a href="http://127.0.0.1:5000/planer">
+          <button class="btn btn-primary btn-lg">Planer</button>
+       </a>
+       <a href="http://127.0.0.1:5000/game">
+          <button class="btn btn-primary btn-lg">Game</button>
+       </a>
+       <a href="http://127.0.0.1:5000/chat">
+          <button class="btn btn-primary btn-lg">Chat</button>
+       </a>
+       <a href="http://127.0.0.1:5000/controll">
+          <button class="btn btn-primary btn-lg">Settings</button>
+       </a>
+      </center>
        
       
-        <center><h1>Party</h1></center>
-      <center>  <div id="current_date"></p>
-<script>
-date = new Date();
-year = date.getFullYear();
-month = date.getMonth() + 1;
-day = date.getDate();
-document.getElementById("current_date").innerHTML = month + "/" + day + "/" + year;
-</script></div><center>
-        <div class="wrapper">
-            <h3>Stopuhr</h3>
-<p><span id="seconds">00</span>:<span id="tens">00</span></p>
-<label>Enter Game name:</label>
-<input type="text" name="name">
-<button id="button-start">Start</button>
-<button id="button-stop">Stop</button>
-<button id="button-reset">Reset</button>
-<center><h3>Spiele Statistiken</h3></center>
+    <center><iframe id="ifr" src="/willkommen" width="750" height="500" frameBorder="0" src= pfad></iframe></center>
+    <script>
+          function change_Iframe(pfad)
+          {
+              var  pfad;
+              var i = document.getElementById("ifr").src = pfad;
+              var el = document.getElementById('ifr');
+              el.scrollIntoView(true);
+          }
 
-</div> 
-
-<iframe id="ifr" src="/chat" width="750" height="500" frameBorder="0" src= pfad></iframe>
+      </script>
 
 
-<table id="customers">
-
-  <tr>
-    <th>Spiel</th>
-    <th>Spieler*innen</th>
-    <th>Zeit</th>
-  </tr>
-  <tr>
-    <td>Test1</td>
-    <td>Test User 1</td>
-    <td>12</td>
-  </tr>
-  <tr>
-    <td>Test 2</td>
-    <td>Test User 2</td>
-    <td>20</td>
-  </tr>
-  <tr>
-    <td>Test 3</td>
-    <td>Test User 3</td>
-    <td>5</td>
-  </tr>
-  <tr>
-  
 </body>
 </html>

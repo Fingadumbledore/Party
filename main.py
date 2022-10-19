@@ -144,6 +144,17 @@ def controll():
     log_server("called /login")
     return render_template("controll.html")
 
+@app.route("/game")
+def game():
+    log_server("called /game")
+    return render_template("game.html")
+
+@app.route("/willkommen")
+def willkommen():
+    log_server("called /willkommen")
+    return render_template("willkommen.html")
+
+
 @app.route("/rgb")
 def rgb():
     log_server("called /rgb")
