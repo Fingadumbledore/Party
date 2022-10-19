@@ -84,7 +84,7 @@ def stopuhr():
     zeit = request.form['zeit']
     userId = request.form['userid']
     sessionId = request.form['sessionid']
-    l = f"INSERT INTO game VALUES(  \'{sessionID}\', \'{sessionname}\');"
+    l = f"INSERT INTO game VALUES(  \'{sessionID}\', \'{userId}\',\'{spielName}\', \'{zeit}\');"
     return render_template("login.html")
 
 @app.route("/get_event", methods=['POST'])
@@ -95,7 +95,7 @@ def get_event():
     event = request.form['event']
     zeit = request.form['zeit']
     sessionId = request.form['sessionid']
-    l = f"INSERT INTO game VALUES(  \'{sessionID}\', \'{sessionname}\');"
+    l = f"INSERT INTO game VALUES(  \'{event}\', \'{zeit}\', \'{sessionId}\');"
     return render_template("login.html")
 
 @app.route("/controll")
