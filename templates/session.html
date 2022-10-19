@@ -74,9 +74,7 @@ h1, h2, h3 {
   text-transform: uppercase;
 }
 
-#seconds, #tens{
-  font-size:2em;
-}
+
 
 button{
 @include corners (5px);
@@ -119,25 +117,25 @@ input[type=text], input[type=password] {
           <button class="btn btn-primary btn-lg">Logout</button>
        </a>
        <center>
-       <a href="http://127.0.0.1:5000/planer">
+       <a onclick= "change_Iframe('/planer')">
           <button class="btn btn-primary btn-lg">Planer</button>
        </a>
-       <a href="http://127.0.0.1:5000/game">
+       <a onclick= "change_Iframe('/game')">
           <button class="btn btn-primary btn-lg">Game</button>
        </a>
-       <a href="http://127.0.0.1:5000/chat">
+       <a onclick= "change_Iframe('/chat')">
           <button class="btn btn-primary btn-lg">Chat</button>
        </a>
-       <a href="http://127.0.0.1:5000/seession">
+       <a onclick= "change_Iframe('/seession')">
           <button class="btn btn-primary btn-lg">Session</button>
        </a>
-       <a href="http://127.0.0.1:5000/controll">
+       <a onclick= "change_Iframe('/controll')">
           <button class="btn btn-primary btn-lg">Settings</button>
        </a>
       </center>
        
       
-    <center><iframe id="ifr" src="/willkommen" width="750" height="500" frameBorder="0" src= pfad></iframe></center>
+    <center><iframe id="ifr" src="/willkommen" width="2000" height="800" frameBorder="0" src= pfad></iframe></center>
     <script>
           function change_Iframe(pfad)
           {
