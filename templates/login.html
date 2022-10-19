@@ -1,0 +1,84 @@
+<html>
+    <head>
+        <title>Join Session</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <style>
+            Body {  
+  
+                background-image: linear-gradient(to right, rgb(38, 134, 62), rgb(89, 89, 175))
+                
+}  
+button {   
+       background-color: #4CAF50;   
+       width: 100%;  
+        color: orange;   
+        padding: 15px;   
+        margin: 10px 0px;   
+        border: none;   
+        cursor: pointer;   
+        border-radius: 12px;
+         }   
+   
+ input[type=text], input[type=password] {   
+        width: 100%;   
+        margin: 8px 0;  
+        padding: 12px 20px;   
+        display: inline-block;   
+        border: 2px solid green;   
+        box-sizing: border-box;   
+        border-radius: 12px;
+        color: #839c87;
+    }  
+ button:hover {   
+        opacity: 0.7;   
+    }   
+  .cancelbtn {   
+        width: auto;   
+        padding: 10px 18px;  
+        margin: 10px 5px;  
+    }   
+        
+     
+ .container {   
+        padding: 25px;   
+        
+                background-image: linear-gradient(to right, rgb(38, 134, 62), rgb(89, 89, 175))
+    }   
+        </style>
+    </head>
+    <body>
+       <center><h1>Join Session</h1></center> 
+<form class="modal-content animate" action="http://127.0.0.1:5000/get_login" method="POST">  
+    <div class="container">   
+        <label>SessionId : </label>   
+        <input type="text" placeholder="Enter Username" name="username" required>  
+        <label>Session Id : </label>   
+        <input type="text" placeholder="Session Id" name="id" required>  
+        <button type="submit">Login</button>        
+        <a href="javascript:history.back()">
+            <button type="button" class="cancelbtn"> Cancel</button>  
+    </div>   
+</form>     
+
+<script src="html5-qrcode.min.js"></script>
+<div style="width: 500px" id="reader"></div>
+<script>
+
+var html5QrcodeScanner = new Html5QrcodeScanner(
+    "reader", { fps: 10, qrbox: 250 });
+        
+function onScanSuccess(decodedText, decodedResult) {
+    // Handle on success condition with the decoded text or result.
+    console.log(`Scan result: ${decodedText}`, decodedResult);
+    // ...
+    html5QrcodeScanner.clear();
+    // ^ this will stop the scanner (video feed) and clear the scan area.
+}
+
+html5QrcodeScanner.render(onScanSuccess);
+
+</script>
+</body>     
+</html>  

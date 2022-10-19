@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
 </head>
 <script>
 var modal = document.getElementById('id01');
@@ -81,6 +82,10 @@ window.onload = function () {
 }
 </script>
 <style>
+
+a {
+  text-decoration: none;
+}
 body {font-family: Arial, Helvetica, sans-serif;
      background-image: linear-gradient(to right, rgb(38, 134, 62), rgb(89, 89, 175))
 }
@@ -155,7 +160,7 @@ text-decoration:none;
 cursor:pointer;
 font-size:1.2em;
 padding:18px 10px;
-width:180px;
+width:80px;
 margin: 10px;
  outline: none;
   &:hover{
@@ -190,21 +195,50 @@ margin: 10px;
   color: white;
 }
 
+
+input[type=text], input[type=password] {   
+        width: 30%;   
+        margin: 8px 0;  
+        padding: 12px 20px;   
+        display: inline-block;   
+        border: 2px solid green;   
+        box-sizing: border-box;   
+        border-radius: 12px;
+        color: #839c87;
+    }  
+
 </style>
 <body>
   
-        
+  
+  <a href="http://127.0.0.1:5000/logout">
+          <button class="btn btn-primary btn-lg">Logout</button>
+       </a>
+       <a href="http://127.0.0.1:5000/controll">&#x2699;</a>
+       
       
         <center><h1>Party</h1></center>
+      <center>  <div id="current_date"></p>
+<script>
+date = new Date();
+year = date.getFullYear();
+month = date.getMonth() + 1;
+day = date.getDate();
+document.getElementById("current_date").innerHTML = month + "/" + day + "/" + year;
+</script></div><center>
         <div class="wrapper">
             <h3>Stopuhr</h3>
 <p><span id="seconds">00</span>:<span id="tens">00</span></p>
+<label>Enter Game name:</label>
+<input type="text" name="name">
 <button id="button-start">Start</button>
 <button id="button-stop">Stop</button>
 <button id="button-reset">Reset</button>
 <center><h3>Spiele Statistiken</h3></center>
 
 </div> 
+
+<iframe id="ifr" src="/chat" width="750" height="500" frameBorder="0" src= pfad></iframe>
 
 
 <table id="customers">
