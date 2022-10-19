@@ -154,10 +154,10 @@ def willkommen():
     log_server("called /willkommen")
     return render_template("willkommen.html")
 
-@app.route("/session")
-def session():
+@app.route("/seession")
+def seession():
     log_server("called /session")
-    return render_template("seession.html")
+    return render_template("seesion.html")
 
 @app.route("/rgb")
 def rgb():
