@@ -23,8 +23,8 @@ cursor.execute(sql)
 
 sql = "CREATE TABLE chat(" \
       "sessionID TEXT " \
-      "userID TEXT " \
-      "Chatmessage TEXT, " \
+      "userid TEXT " \
+      "chatmessage TEXT, " \
       "Zeit TEXT);"
 cursor.execute(sql)
 
