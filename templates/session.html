@@ -16,6 +16,16 @@
   <a href="http://127.0.0.1:5000/logout">
           <button class="btn btn-primary btn-lg">Logout</button>
        </a>
+       <label class="switch">
+         <input type="checkbox" onclick="myFunction()">
+         <span class="slider round"></span>
+       </label>
+       <script>
+         function myFunction() {
+            var element = document.body;
+            element.classList.toggle("dark-mode");
+         }
+         </script>
        <center>
        <a onclick= "change_Iframe('/planer')">
           <button class="btn btn-primary btn-lg">Planer</button>
