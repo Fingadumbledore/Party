@@ -10,35 +10,35 @@ connection = sqlite3.connect("party.db")
 cursor = connection.cursor()
 
 sql = "CREATE TABLE user(" \
-      "userID INTEGER NOT NULL UNIQUE PRIMARY KEY, " \
+      "userID INTEGER UNIQUE PRIMARY KEY, " \
       "username TEXT, " \
       "sessionID INTEGER, " \
       "info TEXT);"
 cursor.execute(sql)
 
 sql = "CREATE TABLE session(" \
-      "sessionID INTEGER NOT NULL UNIQUE PRIMARY KEY, " \
+      "sessionID INTEGER UNIQUE PRIMARY KEY, " \
       "sessionname TEXT);"
 cursor.execute(sql)
 
 sql = "CREATE TABLE chat(" \
-      "sessionID INTEGER " \
-      "userID INTEGER " \
+      "sessionID TEXT " \
+      "userID TEXT " \
       "Chatmessage TEXT, " \
       "Zeit TEXT);"
 cursor.execute(sql)
 
 sql = "CREATE TABLE game(" \
-      "sessionID INTEGER " \
-      "userID INTEGER " \
+      "sessionID TEXT " \
+      "userID TEXT " \
       "Spielname TEXT, " \
       "Zeit TEXT);"
 cursor.execute(sql)
 
 sql = "CREATE TABLE planer(" \
       "event TEXT " \
-      "zeit INTEGER " \
-      "sessionID INTEGER);"
+      "zeit TEXT " \
+      "sessionID TEXT);"
 cursor.execute(sql)
 
 
