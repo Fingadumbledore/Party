@@ -7,12 +7,18 @@ import shutil
 
 
 
-
+starttime = 0
 user_count = 0
 app = Flask(__name__, template_folder='templates/')
 date = time.strftime("%d-%m-%Y %H:%M:%S", time.localtime(time.time()))
+zeit = time.strftime("%H%M", time.localtime(time.time()))
 log = date
 app.config['SECRET_KEY'] = 'party'
+
+def uptime():
+    time = int(zeit)
+    uptime = time = starttime
+    return uptime
 
 #log system
 def log_server(log):
@@ -78,7 +84,10 @@ def get_chat():
     zeit = date
     l = f"INSERT INTO session VALUES(  \'{sessionID}\', \'{userID}\',\'{message}\', \'{zeit}\');"
     log_server("neue Nachricht")
-    cur.execute(l)
+    try:
+        cur.execute(l)
+    except:
+        error_log("unable to get new Messages")
     account = cur.fetchone()
     return render_template("chat.html")
 
@@ -114,7 +123,10 @@ def get_planer():
     zeit = request.form['zeit']
     l = f"INSERT INTO session VALUES(  \'{event}\', \'{zeit}\',\'{sessionID}\');"
     log_server("neues Event")
-    cur.execute(l)
+    try:
+        cur.execute(l)
+    except:
+        error_log("unable to insert event")
     account = cur.fetchone()
     return render_template("chat.html")
 
@@ -149,14 +161,17 @@ def get_creat_session():
     con = sqlite3.connect("party.db")
     cur = con.cursor()
     log_server("called /get_creat_session with POST")
-
     sessionname = request.form['sessionname']
     sessionID = request.form['sessionid']
     l = f"INSERT INTO session VALUES(  \'{sessionID}\', \'{sessionname}\');"
     log_server("neue Session")
-    cur.execute(l)
+    try:
+        cur.execute(l)
+    except:
+        error_log("unable to create Session")
     account = cur.fetchone()
     user_count = +1
+    starttime = int(zeit)
     return redirect('/session')
     
 
@@ -219,7 +234,7 @@ def seession():
     cur.close()
 
     log_server("called /session")
-    return render_template("seesion.html", das=user_count, er=creator)
+    return render_template("seesion.html", das=user_count, er=creator, der=uptime())
 
 @app.route("/rgb")
 def rgb():
