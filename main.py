@@ -1,6 +1,18 @@
 from flask import Flask, render_template, jsonify, request, session, redirect
 import sqlite3
+import os
 import time
+import qrcode
+import shutil
+
+if not os.path.exists("./static/img/qr.png"):
+    img = qrcode.make('127.0.0.1:5000')
+    type(img)
+    img.save("qr.png")
+    ort = "./static/img"
+    shutil.move("qr.png", ort)
+
+
 
 app = Flask(__name__, template_folder='templates/')
 date = time.strftime("%d-%m-%Y %H:%M:%S", time.localtime(time.time()))
