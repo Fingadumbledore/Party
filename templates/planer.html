@@ -13,10 +13,9 @@
         <h1>{% block title %} Planer{% endblock %}</h1>
         
         {% for post in asd %}
-        <a href="#">
-            <h2>{{ asd['event'] }}</h2>
-        </a>
-        <span class="badge badge-primary">{{ asd['evemt'] }}</span>
+
+            <p>{{ asd }}</p>
+  
         <hr>
     {% endfor %}
     {% endblock %}
