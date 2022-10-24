@@ -8,13 +8,15 @@
     <title>Planer</title>
 </head>
 <body>
-    <center><h1>Planer</h1>
+    <center>
         {% block content %}
-        {% for post in l %}
+        <h1>{% block title %} Planer{% endblock %}</h1>
+        
+        {% for post in asd %}
         <a href="#">
-            <h2>{{ l['event'] }}</h2>
+            <h2>{{ asd['event'] }}</h2>
         </a>
-        <span class="badge badge-primary">{{ l['evemt'] }}</span>
+        <span class="badge badge-primary">{{ asd['evemt'] }}</span>
         <hr>
     {% endfor %}
     {% endblock %}

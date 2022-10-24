@@ -8,11 +8,17 @@
     <title>Session</title>
 </head>
 <body>
-    <center><h1>Session Informationen</h1>
-    <p>User-Anzahl: </p>
+    <center>
+        {% block content %}
+        <h1>{% block title %} Session Information {% endblock %}</h1>
+    <label>User Anzahl, Uptime, Creator:</label>
+        <p>{{das}}</p>
     <p>Uptime: </p>
-    <p>Creator: </p>
+ 
+         <p>{{er}}</p>
     <h1>QR-Code</h1>
+    {% endblock %}
+
     <img src="../static/img/qr.png"
     
 </center>

@@ -70,7 +70,7 @@ def get_chat():
     log_server("called /get_chat")
     con = sqlite3.connect("party.db")
     cur = con.cursor()
-    log_server("called /get_creat_session with POST")
+    log_server("called /get_chat with POST")
 
     userID = request.form['userid']
     sessionID = request.form['sessionid']
@@ -92,10 +92,10 @@ def get_new_message():
 def planer():
     con = sqlite3.connect("party.db")
     cur = con.cursor()
-    l = cur.execute('SELECT * FROM planer').fetchall()
+    asd = cur.execute('SELECT * FROM planer').fetchall()
     cur.close()
     log_server("called /planer")
-    return render_template("planer.html", l=l)
+    return render_template("planer.html", asd=asd)
 
 @app.route("/get_planer", methods=['POST'])
 def get_planer():
@@ -151,6 +151,7 @@ def get_creat_session():
     log_server("neue Session")
     cur.execute(l)
     account = cur.fetchone()
+    user_count = +1
     return redirect('/session')
     
 
@@ -200,8 +201,13 @@ def willkommen():
 
 @app.route("/seession")
 def seession():
+    con = sqlite3.connect("party.db")
+    cur = con.cursor()
+    creator = cur.execute("SELECT username FROM user WHERE info = 'creator'").fetchall()
+    cur.close()
+
     log_server("called /session")
-    return render_template("seesion.html")
+    return render_template("seesion.html", das=user_count, er=creator)
 
 @app.route("/rgb")
 def rgb():
