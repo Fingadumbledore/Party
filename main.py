@@ -22,6 +22,13 @@ def error_log(error):
     log = date
     datei.close()  
 
+def problem_log(problem):
+    problem = date + "[PROBLEM]"+ problem
+    datei = open('server.log', 'a')
+    datei.write('\n' + " " + problem)
+    log = date
+    datei.close()  
+
 #Hauptseite
 @app.route("/")
 def index():
@@ -47,7 +54,6 @@ def get_chat():
     zeit = date
     l = f"INSERT INTO session VALUES(  \'{sessionID}\', \'{userID}\',\'{message}\', \'{zeit}\');"
     log_server("neue Nachricht")
-
     cur.execute(l)
     account = cur.fetchone()
     return render_template("chat.html")
@@ -134,6 +140,7 @@ def stopuhr():
     userId = request.form['userid']
     sessionId = request.form['sessionid']
     l = f"INSERT INTO game VALUES(  \'{sessionID}\', \'{userId}\',\'{spielName}\', \'{zeit}\');"
+    cur.execute(l)
     return render_template("login.html")
 
 @app.route("/get_event", methods=['POST'])
