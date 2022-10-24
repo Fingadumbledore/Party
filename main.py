@@ -87,6 +87,11 @@ def get_new_message():
     log_server("called /get_new_message")
     return render_template("chat.html")    
 
+@app.route("/message")
+def message():
+    log_server("called /message")
+    return render_template("message.html")
+
 #planer
 @app.route("/planer")
 def planer():
@@ -220,6 +225,7 @@ def seession():
 def rgb():
     log_server("called /rgb")
     return render_template("404.html")
+
 
 
 @app.route("/get_login", methods=['POST'])
