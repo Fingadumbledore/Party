@@ -7,7 +7,7 @@ date = time.strftime("%d-%m-%Y %H:%M:%S", time.localtime(time.time()))
 log = date
 app.config['SECRET_KEY'] = 'party'
 
-
+#log system
 def log_server(log):
     log = date + log
     datei = open('server.log', 'a')
@@ -15,6 +15,14 @@ def log_server(log):
     log = date
     datei.close()
 
+def error_log(error):
+    error = date + "[ERROR]"+ error
+    datei = open('server.log', 'a')
+    datei.write('\n' + " " + error)
+    log = date
+    datei.close()  
+
+#Hauptseite
 @app.route("/")
 def index():
     log_server("called /")
@@ -25,7 +33,7 @@ def index():
 def chat():
     log_server("called /chat")
     return render_template("chat.html")
-
+#Neue Nachrichten
 @app.route("/get_chat", methods=['POST'])
 def get_chat():
     log_server("called /get_chat")
