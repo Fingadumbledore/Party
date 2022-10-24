@@ -196,7 +196,7 @@ def get_login():
 
 @app.errorhandler(404)
 def page_not_found(e):
-    log_server("called non-existing page")
+    error_server("called non-existing page")
     # note that we set the 404 status explicitly
     return render_template('404.html'), 404
 
