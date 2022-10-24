@@ -5,12 +5,7 @@ import time
 import qrcode
 import shutil
 
-if not os.path.exists("./static/img/qr.png"):
-    img = qrcode.make('127.0.0.1:5000')
-    type(img)
-    img.save("qr.png")
-    ort = "./static/img"
-    shutil.move("qr.png", ort)
+
 
 
 
@@ -39,7 +34,24 @@ def problem_log(problem):
     datei = open('server.log', 'a')
     datei.write('\n' + " " + problem)
     log = date
+    datei.close() 
+
+def warning_log(warning):
+    warning = date + "[WARNING]"+ warning
+    datei = open('server.log', 'a')
+    datei.write('\n' + " " + warning)
+    log = date
     datei.close()  
+
+# Qr-code generator
+if not os.path.exists("./static/img/qr.png"):
+    img = qrcode.make('127.0.0.1:5000')
+    type(img)
+    img.save("qr.png")
+    ort = "./static/img"
+    shutil.move("qr.png", ort)
+else:
+    warning_log("QR-Code ist bereits vorhanden")
 
 #Hauptseite
 @app.route("/")
