@@ -170,7 +170,10 @@ def stopuhr():
     userId = request.form['userid']
     sessionId = request.form['sessionid']
     l = f"INSERT INTO game VALUES(  \'{sessionID}\', \'{userId}\',\'{spielName}\', \'{zeit}\');"
-    cur.execute(l)
+    try:
+        cur.execute(l)
+    except:
+        error_log("unable to run sql /stopuhr")
     return render_template("login.html")
 
 @app.route("/get_event", methods=['POST'])
@@ -182,6 +185,10 @@ def get_event():
     zeit = request.form['zeit']
     sessionId = request.form['sessionid']
     l = f"INSERT INTO game VALUES(  \'{event}\', \'{zeit}\', \'{sessionId}\');"
+    try:
+        cur.execute(l)
+    except:
+        error_log("unable to run sql /get_event")
     return render_template("login.html")
 
 @app.route("/controll")
