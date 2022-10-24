@@ -8,7 +8,7 @@ import shutil
 
 
 
-
+user_count = 0
 app = Flask(__name__, template_folder='templates/')
 date = time.strftime("%d-%m-%Y %H:%M:%S", time.localtime(time.time()))
 log = date
@@ -90,8 +90,12 @@ def get_new_message():
 #planer
 @app.route("/planer")
 def planer():
+    con = sqlite3.connect("party.db")
+    cur = con.cursor()
+    l = cur.execute('SELECT * FROM planer').fetchall()
+    cur.close()
     log_server("called /planer")
-    return render_template("planer.html")
+    return render_template("planer.html", l=l)
 
 @app.route("/get_planer", methods=['POST'])
 def get_planer():
@@ -117,6 +121,7 @@ def session():
 @app.route("/logout")
 def logout():
     log_server("called /logout")
+    user_count = -1
     return render_template("logout.html")
 
 @app.route("/signin")
@@ -219,6 +224,7 @@ def get_login():
 
     if account:
         session['loggedin'] = True
+        user_count = +1
         # session['username'] = account['username']
         return redirect('/session')
     else:

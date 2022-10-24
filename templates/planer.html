@@ -9,6 +9,15 @@
 </head>
 <body>
     <center><h1>Planer</h1>
+        {% block content %}
+        {% for post in l %}
+        <a href="#">
+            <h2>{{ l['event'] }}</h2>
+        </a>
+        <span class="badge badge-primary">{{ l['evemt'] }}</span>
+        <hr>
+    {% endfor %}
+    {% endblock %}
     <p>Füge ein Event ein</p>
             <form class="modal-content animate" action="http://127.0.0.1:5000/get_event" method="POST">  
                 <div class="container">   
