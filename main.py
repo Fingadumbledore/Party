@@ -29,21 +29,21 @@ def log_server(log):
     datei.close()
 
 def error_log(error):
-    error = date + "[ERROR]"+ error
+    error = date + " [ERROR]"+ error
     datei = open('server.log', 'a')
     datei.write('\n' + " " + error)
     log = date
     datei.close()  
 
 def problem_log(problem):
-    problem = date + "[PROBLEM]"+ problem
+    problem = date + " [PROBLEM]"+ problem
     datei = open('server.log', 'a')
     datei.write('\n' + " " + problem)
     log = date
     datei.close() 
 
 def warning_log(warning):
-    warning = date + "[WARNING]"+ warning
+    warning = date + " [WARNING]"+ warning
     datei = open('server.log', 'a')
     datei.write('\n' + " " + warning)
     log = date
@@ -167,6 +167,7 @@ def get_creat_session():
     log_server("neue Session")
     try:
         cur.execute(l)
+        
     except:
         error_log("unable to create Session")
     account = cur.fetchone()
@@ -194,7 +195,7 @@ def stopuhr():
         cur.execute(l)
     except:
         error_log("unable to run sql /stopuhr")
-    return render_template("login.html")
+    return render_template()
 
 @app.route("/get_event", methods=['POST'])
 def get_event():

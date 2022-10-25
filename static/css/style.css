@@ -85,7 +85,7 @@ a {
   }
   
   
-  input[type=text], input[type=password] {   
+  input[type=text], input[type=password] input[type=time] input[type=date]{   
           width: 30%;   
           margin: 8px 0;  
           padding: 12px 20px;   
