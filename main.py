@@ -13,6 +13,12 @@ zeit = time.strftime("%H%M", time.localtime(time.time()))
 log = date
 app.config['SECRET_KEY'] = 'party'
 
+def dbcon(sql):
+    con = sqlite3.connect("party.db")
+    cur = con.cursor()
+    cur.execute(sql)
+    return sql.fetchall()
+
 def uptime():
     time = int(zeit)
     uptime = time = starttime
@@ -72,8 +78,6 @@ def chat():
 @app.route("/get_chat", methods=['POST'])
 def get_chat():
     log_server("called /get_chat")
-    con = sqlite3.connect("party.db")
-    cur = con.cursor()
     log_server("called /get_chat with POST")
     userID = request.form['userid']
     sessionID = request.form['sessionid']
@@ -82,7 +86,7 @@ def get_chat():
     l = f"INSERT INTO session VALUES(  \'{sessionID}\', \'{userID}\',\'{message}\', \'{zeit}\');"
     log_server("neue Nachricht")
     try:
-        cur.execute(l)
+        dbcon(l)
     except:
         error_log("unable to get new Messages")
     account = cur.fetchone()
@@ -111,8 +115,6 @@ def planer():
 @app.route("/get_planer", methods=['POST'])
 def get_planer():
     log_server("called /get_planer")
-    con = sqlite3.connect("party.db")
-    cur = con.cursor()
     log_server("called /get_planer with POST")
     event = request.form['event']
     sessionID = request.form['sessionid']
@@ -120,7 +122,7 @@ def get_planer():
     l = f"INSERT INTO session VALUES(  \'{event}\', \'{zeit}\',\'{sessionID}\');"
     log_server("neues Event")
     try:
-        cur.execute(l)
+        dbcon(l)
     except:
         error_log("unable to insert event")
     account = cur.fetchone()
@@ -157,18 +159,15 @@ def create_session():
 
 @app.route("/get_creat_session", methods=['POST'])
 def get_creat_session():
-    con = sqlite3.connect("party.db")
-    cur = con.cursor()
     log_server("called /get_creat_session with POST")
     sessionname = request.form['sessionname']
     sessionID = request.form['sessionid']
     l = f"INSERT INTO session VALUES(  \'{sessionID}\', \'{sessionname}\');"
     log_server("neue Session")
     try:
-        cur.execute(l)     
+          account = dbcon(l)   
     except:
         error_log("unable to create Session")
-    account = cur.fetchone()
     user_count = +1
     starttime = int(zeit)
     return redirect('/session')
@@ -180,8 +179,6 @@ def login():
 
 @app.route("/stopuhr", methods=['POST'])
 def stopuhr():
-    con = sqlite3.connect("party.db")
-    cur = con.cursor()
     log_server("called /stopuhr")
     spielName = request.form['spielname']
     zeit = request.form['zeit']
@@ -189,22 +186,20 @@ def stopuhr():
     sessionId = request.form['sessionid']
     l = f"INSERT INTO game VALUES(  \'{sessionID}\', \'{userId}\',\'{spielName}\', \'{zeit}\');"
     try:
-        cur.execute(l)
+        dbcon(l)
     except:
         error_log("unable to run sql /stopuhr")
     return render_template()
 
 @app.route("/get_event", methods=['POST'])
 def get_event():
-    con = sqlite3.connect("party.db")
-    cur = con.cursor()
     log_server("called /get_event")
     event = request.form['event']
     zeit = request.form['zeit']
     sessionId = request.form['sessionid']
     l = f"INSERT INTO game VALUES(  \'{event}\', \'{zeit}\', \'{sessionId}\');"
     try:
-        cur.execute(l)
+        dbcon(l)
     except:
         error_log("unable to run sql /get_event")
     return render_template("login.html")
@@ -240,14 +235,11 @@ def rgb():
 
 @app.route("/get_login", methods=['POST'])
 def get_login():
-    con = sqlite3.connect("login.db")
-    cur = con.cursor()
     log_server("called /get_login with POST")
     username = request.form['uname']
     sessionId = request.form['id']
     l = f"select * from user where username = \'{username}\' and id=\'{sessionId}\';"
-    cur.execute(l)
-    account = cur.fetchone()
+    account = dbcon(l)
     if account:
         session['loggedin'] = True
         user_count = +1
