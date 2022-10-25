@@ -5,8 +5,6 @@ import time
 import qrcode
 import shutil
 
-
-
 starttime = 0
 user_count = 0
 app = Flask(__name__, template_folder='templates/')
@@ -77,7 +75,6 @@ def get_chat():
     con = sqlite3.connect("party.db")
     cur = con.cursor()
     log_server("called /get_chat with POST")
-
     userID = request.form['userid']
     sessionID = request.form['sessionid']
     message = request.form['message']
@@ -117,7 +114,6 @@ def get_planer():
     con = sqlite3.connect("party.db")
     cur = con.cursor()
     log_server("called /get_planer with POST")
-
     event = request.form['event']
     sessionID = request.form['sessionid']
     zeit = request.form['zeit']
@@ -166,8 +162,7 @@ def get_creat_session():
     l = f"INSERT INTO session VALUES(  \'{sessionID}\', \'{sessionname}\');"
     log_server("neue Session")
     try:
-        cur.execute(l)
-        
+        cur.execute(l)     
     except:
         error_log("unable to create Session")
     account = cur.fetchone()
@@ -175,7 +170,6 @@ def get_creat_session():
     starttime = int(zeit)
     return redirect('/session')
     
-
 @app.route("/login")
 def login():
     log_server("called /login")
@@ -233,7 +227,6 @@ def seession():
     cur = con.cursor()
     creator = cur.execute("SELECT username FROM user WHERE info = 'creator'").fetchall()
     cur.close()
-
     log_server("called /session")
     return render_template("seesion.html", das=user_count, er=creator, der=uptime())
 
@@ -242,21 +235,16 @@ def rgb():
     log_server("called /rgb")
     return render_template("404.html")
 
-
-
 @app.route("/get_login", methods=['POST'])
 def get_login():
     con = sqlite3.connect("login.db")
     cur = con.cursor()
     log_server("called /get_login with POST")
-
     username = request.form['uname']
     sessionId = request.form['id']
     l = f"select * from user where username = \'{username}\' and id=\'{sessionId}\';"
-
     cur.execute(l)
     account = cur.fetchone()
-
     if account:
         session['loggedin'] = True
         user_count = +1
@@ -271,7 +259,6 @@ def page_not_found(e):
     error_log("called non-existing page")
     # note that we set the 404 status explicitly
     return render_template('404.html'), 404
-
 
 def create_app(config_filename):
     app.register_error_handler(404, page_not_found)
