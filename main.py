@@ -21,7 +21,7 @@ def dbcon(sql):
 
 def uptime():
     time = int(zeit)
-    uptime = time = starttime
+    uptime = time - starttime
     return uptime
 
 #log system
