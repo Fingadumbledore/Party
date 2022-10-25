@@ -128,8 +128,11 @@ def get_planer():
 
 @app.route("/session")
 def session():
+    con = sqlite3.connect("party.db")
+    cur = con.cursor()
+    die = cur.execute("SELECT sessionname FROM session").fetchall()
     log_server("called /session")
-    return render_template("session.html")
+    return render_template("session.html", die=die)
 
 @app.route("/logout")
 def logout():
