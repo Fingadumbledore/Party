@@ -156,7 +156,7 @@ def get_planer():
 def session():
     if session:
         log_server("called /session")
-        return render_template("session.html", die=die)
+        return render_template("session.html")
     else:
          warning_log(" called /session without being logged in")
          return render_template('passwd.html')
@@ -204,62 +204,90 @@ def login():
 
 @app.route("/stopuhr", methods=['POST'])
 def stopuhr():
-    log_server("called /stopuhr")
-    spielName = request.form['spielname']
-    zeit = request.form['zeit']
-    userId = request.form['userid']
-    sessionId = request.form['sessionid']
-    l = f"INSERT INTO game VALUES(  \'{sessionID}\', \'{userId}\',\'{spielName}\', \'{zeit}\');"
-    try:
-        dbcon(l)
-    except:
-        error_log("unable to run sql /stopuhr")
-    return render_template()
+    if session:
+        log_server("called /stopuhr")
+        spielName = request.form['spielname']
+        zeit = request.form['zeit']
+        userId = request.form['userid']
+        sessionId = request.form['sessionid']
+        l = f"INSERT INTO game VALUES(  \'{sessionID}\', \'{userId}\',\'{spielName}\', \'{zeit}\');"
+        try:
+            dbcon(l)
+        except:
+            error_log("unable to run sql /stopuhr")
+        return render_template()
+    else:
+         warning_log(" called /stopuhr without being logged in")
+         return render_template('passwd.html')
 
 @app.route("/get_event", methods=['POST'])
 def get_event():
-    log_server("called /get_event")
-    event = request.form['event']
-    zeit = request.form['zeit']
-    sessionId = request.form['sessionid']
-    l = f"INSERT INTO game VALUES(  \'{event}\', \'{zeit}\', \'{sessionId}\');"
-    try:
-        dbcon(l)
-    except:
-        error_log("unable to run sql /get_event")
-    return render_template("login.html")
+    if session:
+        log_server("called /get_event")
+        event = request.form['event']
+        zeit = request.form['zeit']
+        sessionId = request.form['sessionid']
+        l = f"INSERT INTO game VALUES(  \'{event}\', \'{zeit}\', \'{sessionId}\');"
+        try:
+            dbcon(l)
+        except:
+            error_log("unable to run sql /get_event")
+        return render_template("login.html")
+    else:
+         warning_log(" called /get_event without being logged in")
+         return render_template('passwd.html')
 
 @app.route("/controll")
 def controll():
-    log_server("called /login")
-    return render_template("controll.html")
+    if session:
+        log_server("called /controll")
+        return render_template("controll.html")
+    else:
+         warning_log(" called /controll without being logged in")
+         return render_template('passwd.html')
 
 @app.route("/game")
 def game():
-    log_server("called /game")
-    return render_template("game.html")
+    if session:
+        log_server("called /game")
+        return render_template("game.html")
+    else:
+         warning_log(" called /game without being logged in")
+         return render_template('passwd.html')
 
 @app.route("/willkommen")
 def willkommen():
+    if session:
       con = sqlite3.connect("party.db")
       cur = con.cursor()
       die = cur.execute("SELECT sessionname FROM session").fetchall()
       log_server("called /willkommen")
       return render_template("willkommen.html", die=die)
+    else:
+         warning_log(" called /willkommen without being logged in")
+         return render_template('passwd.html')
 
 @app.route("/seession")
 def seession():
-    con = sqlite3.connect("party.db")
-    cur = con.cursor()
-    creator = cur.execute("SELECT username FROM user WHERE info = 'creator'").fetchall()
-    cur.close()
-    log_server("called /session")
-    return render_template("seesion.html", das=user_count, er=creator, der=uptime())
+    if session:
+        con = sqlite3.connect("party.db")
+        cur = con.cursor()
+        creator = cur.execute("SELECT username FROM user WHERE info = 'creator'").fetchall()
+        cur.close()
+        log_server("called /seession")
+        return render_template("seesion.html", das=user_count, er=creator, der=uptime())
+    else:
+         warning_log(" called /seession without being logged in")
+         return render_template('passwd.html')
 
 @app.route("/rgb")
 def rgb():
-    log_server("called /rgb")
-    return render_template("404.html")
+    if session:
+        log_server("called /rgb")
+        return render_template("404.html")
+    else:
+         warning_log(" called /rgb without being logged in")
+         return render_template('passwd.html')
 
 @app.route("/get_login", methods=['POST'])
 def get_login():
