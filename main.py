@@ -72,69 +72,94 @@ def index():
 #Chat
 @app.route("/chat")
 def chat():
-    log_server("called /chat")
-    return render_template("chat.html")
+    if session:
+        log_server("called /chat")
+        return render_template("chat.html")
+    else:
+         warning_log(" called /chat without being logged in")
+         return render_template('passwd.html')
 #Neue Nachrichten
 @app.route("/get_chat", methods=['POST'])
 def get_chat():
-    log_server("called /get_chat")
-    log_server("called /get_chat with POST")
-    userID = request.form['userid']
-    sessionID = request.form['sessionid']
-    message = request.form['message']
-    zeit = date
-    l = f"INSERT INTO session VALUES(  \'{sessionID}\', \'{userID}\',\'{message}\', \'{zeit}\');"
-    log_server("neue Nachricht")
-    try:
-        dbcon(l)
-    except:
-        error_log("unable to get new Messages")
-    account = cur.fetchone()
-    return render_template("chat.html")
+    if session:
+        log_server("called /get_chat")
+        log_server("called /get_chat with POST")
+        userID = request.form['userid']
+        sessionID = request.form['sessionid']
+        message = request.form['message']
+        zeit = date
+        l = f"INSERT INTO session VALUES(  \'{sessionID}\', \'{userID}\',\'{message}\', \'{zeit}\');"
+        log_server("neue Nachricht")
+        try:
+            dbcon(l)
+        except:
+            error_log("unable to get new Messages")
+        account = cur.fetchone()
+        return render_template("chat.html")
+    else:
+         warning_log(" called /get_chat without being logged in")
+         return render_template('passwd.html')
 
 @app.route("/get_new_message")
 def get_new_message():
-    log_server("called /get_new_message")
-    return render_template("chat.html")    
+    if session:
+        log_server("called /get_new_message")
+        return render_template("chat.html")   
+    else:
+         warning_log(" called /get_new_message without being logged in")
+         return render_template('passwd.html') 
 
 @app.route("/message")
 def message():
-    log_server("called /message")
-    return render_template("message.html")
+    if session:
+        log_server("called /message")
+        return render_template("message.html")
+    else:
+         warning_log(" called /message without being logged in")
+         return render_template('passwd.html')
 
 #planer
 @app.route("/planer")
 def planer():
-    con = sqlite3.connect("party.db")
-    cur = con.cursor()
-    asd = cur.execute('SELECT * FROM planer').fetchall()
-    cur.close()
-    log_server("called /planer")
-    return render_template("planer.html", asd=asd)
+    if session:
+        con = sqlite3.connect("party.db")
+        cur = con.cursor()
+        asd = cur.execute('SELECT * FROM planer').fetchall()
+        cur.close()
+        log_server("called /planer")
+        return render_template("planer.html", asd=asd)
+    else:
+         warning_log(" called /planer without being logged in")
+         return render_template('passwd.html')
 
 @app.route("/get_planer", methods=['POST'])
 def get_planer():
-    log_server("called /get_planer")
-    log_server("called /get_planer with POST")
-    event = request.form['event']
-    sessionID = request.form['sessionid']
-    zeit = request.form['zeit']
-    l = f"INSERT INTO session VALUES(  \'{event}\', \'{zeit}\',\'{sessionID}\');"
-    log_server("neues Event")
-    try:
-        dbcon(l)
-    except:
-        error_log("unable to insert event")
-    account = cur.fetchone()
-    return render_template("chat.html")
+    if session:
+        log_server("called /get_planer")
+        log_server("called /get_planer with POST")
+        event = request.form['event']
+        sessionID = request.form['sessionid']
+        zeit = request.form['zeit']
+        l = f"INSERT INTO session VALUES(  \'{event}\', \'{zeit}\',\'{sessionID}\');"
+        log_server("neues Event")
+        try:
+            dbcon(l)
+        except:
+            error_log("unable to insert event")
+        account = cur.fetchone()
+        return render_template("chat.html")
+    else:
+         warning_log(" called /get_planer without being logged in")
+         return render_template('passwd.html')
 
 @app.route("/session")
 def session():
-    con = sqlite3.connect("party.db")
-    cur = con.cursor()
-    die = cur.execute("SELECT sessionname FROM session").fetchall()
-    log_server("called /session")
-    return render_template("session.html", die=die)
+    if session:
+        log_server("called /session")
+        return render_template("session.html", die=die)
+    else:
+         warning_log(" called /session without being logged in")
+         return render_template('passwd.html')
 
 @app.route("/logout")
 def logout():
@@ -216,8 +241,11 @@ def game():
 
 @app.route("/willkommen")
 def willkommen():
-    log_server("called /willkommen")
-    return render_template("willkommen.html")
+      con = sqlite3.connect("party.db")
+      cur = con.cursor()
+      die = cur.execute("SELECT sessionname FROM session").fetchall()
+      log_server("called /willkommen")
+      return render_template("willkommen.html", die=die)
 
 @app.route("/seession")
 def seession():

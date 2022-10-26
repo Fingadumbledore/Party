@@ -29,6 +29,7 @@
           var buttonStop = document.getElementById('button-stop');
           var buttonReset = document.getElementById('button-reset');
           var Interval ;
+          var time = seconds + tens;
         
           buttonStart.onclick = function() {
             
@@ -94,7 +95,6 @@
         <button id="button-reset">Reset</button>
       <form class="modal-content animate" action="http://127.0.0.1:5000/stopuhr" method="POST">  
                 <div class="container">   
-                
                 </br>
                     <input type="text" placeholder="Tomb Raider" name="spiel" required>  
                     <input type="text" placeholder="parcour" name="art" required> 
