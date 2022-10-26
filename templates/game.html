@@ -87,23 +87,22 @@
 
     <div class="wrapper">
         <h3>Stopuhr</h3>
-<p><span id="seconds">00</span>:<span id="tens">00</span></p>
-<label>Enter Game name:</label>
-<input type="text" name="name">
-<label>Enter Game Event:</label>
-<input type="text" event="event">
-<button id="button-start">Start</button>
-<button id="button-stop">Stop</button>
-<button id="button-reset">Reset</button>
-<button id="button-senden">Senden</button>
-
-<script>
-  function senden(){
 
 
+      <form class="modal-content animate" action="http://127.0.0.1:5000/stopuhr" method="POST">  
+                <div class="container">   
+                  <p><span id="seconds">00</span>:<span id="tens">00</span></p>
+                  <button id="button-start">Start</button>
+                  <button id="button-stop">Stop</button>
+                  <button id="button-reset">Reset</button>
+                    <input type="text" placeholder="Tomb Raider" name="spiel" required>  
+                    <input type="text" placeholder="parcour" name="art" required> 
+                    
+                    <button type="submit">&#10133;</button>        
+                </div>  
+            </form> 
 
-  }
-</script>
+
 
 </div> 
 <div id="statistik" style="text-align:right;">
