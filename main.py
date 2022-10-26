@@ -316,7 +316,9 @@ def new():
     log_server("called /new with POST")
     username = request.form['uname']
     sessionId = request.form['id']
-    l = f"INSERT INTO user VALUES \'{username}\',\'{sessionId}\';"
+    userid = user_count +1
+    userstatus = "normal"
+    l = f"INSERT INTO user VALUES \'{userid}\',\'{username}\',\'{sessionId}\',\'{userstatus}\';"
     account = dbcon(l)
     if account:
         session['loggedin'] = True
