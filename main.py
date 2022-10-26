@@ -69,6 +69,12 @@ def index():
     log_server("called /")
     return render_template("index.html")
 
+@app.route("/passwd")
+def passwd():
+    log_server("called /passwd")
+    return render_template("passwd.html")
+
+
 #Chat
 @app.route("/chat")
 def chat():
@@ -77,7 +83,7 @@ def chat():
         return render_template("chat.html")
     else:
          warning_log(" called /chat without being logged in")
-         return render_template('passwd.html')
+         return render_template('/passwd')
 #Neue Nachrichten
 @app.route("/get_chat", methods=['POST'])
 def get_chat():
@@ -98,7 +104,7 @@ def get_chat():
         return render_template("chat.html")
     else:
          warning_log(" called /get_chat without being logged in")
-         return render_template('passwd.html')
+         return render_template('/passwd')
 
 @app.route("/get_new_message")
 def get_new_message():
@@ -116,7 +122,7 @@ def message():
         return render_template("message.html")
     else:
          warning_log(" called /message without being logged in")
-         return render_template('passwd.html')
+         return render_template('/passwd')
 
 #planer
 @app.route("/planer")
@@ -130,7 +136,7 @@ def planer():
         return render_template("planer.html", asd=asd)
     else:
          warning_log(" called /planer without being logged in")
-         return render_template('passwd.html')
+         return render_template('/passwd')
 
 @app.route("/get_planer", methods=['POST'])
 def get_planer():
@@ -150,7 +156,7 @@ def get_planer():
         return render_template("chat.html")
     else:
          warning_log(" called /get_planer without being logged in")
-         return render_template('passwd.html')
+         return render_template('/passwd')
 
 @app.route("/session")
 def session():
@@ -159,7 +165,7 @@ def session():
         return render_template("session.html")
     else:
          warning_log(" called /session without being logged in")
-         return render_template('passwd.html')
+         return render_template('/passwd')
 
 @app.route("/logout")
 def logout():
@@ -218,7 +224,7 @@ def stopuhr():
         return render_template()
     else:
          warning_log(" called /stopuhr without being logged in")
-         return render_template('passwd.html')
+         return render_template('/passwd')
 
 @app.route("/get_event", methods=['POST'])
 def get_event():
@@ -235,7 +241,7 @@ def get_event():
         return render_template("login.html")
     else:
          warning_log(" called /get_event without being logged in")
-         return render_template('passwd.html')
+         return render_template('/passwd')
 
 @app.route("/controll")
 def controll():
@@ -244,7 +250,7 @@ def controll():
         return render_template("controll.html")
     else:
          warning_log(" called /controll without being logged in")
-         return render_template('passwd.html')
+         return render_template('/passwd')
 
 @app.route("/game")
 def game():
@@ -253,7 +259,7 @@ def game():
         return render_template("game.html")
     else:
          warning_log(" called /game without being logged in")
-         return render_template('passwd.html')
+         return render_template('/passwd')
 
 @app.route("/willkommen")
 def willkommen():
@@ -265,7 +271,7 @@ def willkommen():
       return render_template("willkommen.html", die=die)
     else:
          warning_log(" called /willkommen without being logged in")
-         return render_template('passwd.html')
+         return render_template('/passwd')
 
 @app.route("/seession")
 def seession():
@@ -278,7 +284,7 @@ def seession():
         return render_template("seesion.html", das=user_count, er=creator, der=uptime())
     else:
          warning_log(" called /seession without being logged in")
-         return render_template('passwd.html')
+         return render_template('/passwd')
 
 @app.route("/rgb")
 def rgb():
@@ -287,7 +293,7 @@ def rgb():
         return render_template("404.html")
     else:
          warning_log(" called /rgb without being logged in")
-         return render_template('passwd.html')
+         return render_template('/passwd')
 
 @app.route("/get_login", methods=['POST'])
 def get_login():
@@ -295,6 +301,22 @@ def get_login():
     username = request.form['uname']
     sessionId = request.form['id']
     l = f"select * from user where username = \'{username}\' and id=\'{sessionId}\';"
+    account = dbcon(l)
+    if account:
+        session['loggedin'] = True
+        user_count = +1
+        # session['username'] = account['username']
+        return redirect('/session')
+    else:
+        return "{ \"message\": \"Login failed\"'}"
+    con.close()
+
+@app.route("/new", methods=['POST'])
+def new():
+    log_server("called /new with POST")
+    username = request.form['uname']
+    sessionId = request.form['id']
+    l = f"INSERT INTO user VALUES \'{username}\',\'{sessionId}\';"
     account = dbcon(l)
     if account:
         session['loggedin'] = True

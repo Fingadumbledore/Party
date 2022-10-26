@@ -8,17 +8,35 @@
     </head>
     <body>
        <center><h1>Join Session</h1></center> 
+       <center><h4>Login</h4>
 <form class="modal-content animate" action="http://127.0.0.1:5000/get_login" method="POST">  
     <div class="container">   
-        <label>SessionId : </label>   
+        <label>Username : </label>   
         <input type="text" placeholder="Enter Username" name="username" required>  
+    </br>
         <label>Session Id : </label>   
         <input type="text" placeholder="Session Id" name="id" required>  
+</br>
+        <button type="submit">Login</button>     
+    </center>   
+    </div>   
+</form>     
+
+<center><h4>User erstellen</h4>
+<form class="modal-content animate" action="http://127.0.0.1:5000/new" method="POST">  
+    <div class="container">   
+        <label>Username : </label>   
+        <input type="text" placeholder="Enter Username" name="username" required>  
+    </br>
+        <label>Session Id : </label>   
+        <input type="text" placeholder="Session Id" name="id" required>  
+    </br>
         <button type="submit">Login</button>        
         <a href="javascript:history.back()">
             <button type="button" class="cancelbtn"> Cancel</button>  
+        </center>
     </div>   
-</form>     
+</form>   
 
 <script src="html5-qrcode.min.js"></script>
 <div style="width: 500px" id="reader"></div>
