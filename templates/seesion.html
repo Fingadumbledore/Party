@@ -11,7 +11,10 @@
     <center>
         {% block content %}
         <h1>{% block title %} Session Information {% endblock %}</h1>
+        {% endblock %}
     <label>User Anzahl, Uptime, Creator:</label>
+    <img src="/static/img/user.png" width="60" height="60">
+    {% block content %}
         <p>{{das}}</p>
         <p>{{der}}</p>
  
