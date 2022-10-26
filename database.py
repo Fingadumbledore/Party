@@ -1,17 +1,16 @@
 import os, sys, sqlite3
 
-def create_database():
       # Existenz feststellen
-      if os.path.exists("party.db"):
-            print("Datei bereits vorhanden")
-            sys.exit(0)
+if os.path.exists("party.db"):
+      print("Datei bereits vorhanden")
+      sys.exit(0)
 
       # Verbindung zur Datenbank erzeugen
       connection = sqlite3.connect("party.db")
       cursor = connection.cursor()
 
       sql = "CREATE TABLE user(" \
-            "userID INTEGER UNIQUE PRIMARY KEY, " \
+            "userID INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT," \
             "username TEXT, " \
             "sessionID INTEGER, " \
             "info TEXT);"

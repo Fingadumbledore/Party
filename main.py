@@ -7,6 +7,7 @@ import shutil
 
 starttime = 0
 user_count = 0
+userid = 0
 app = Flask(__name__, template_folder='templates/')
 date = time.strftime("%d-%m-%Y %H:%M:%S", time.localtime(time.time()))
 zeit = time.strftime("%H%M", time.localtime(time.time()))
@@ -18,6 +19,11 @@ def dbcon(sql):
     cur = con.cursor()
     cur.execute(sql)
     return sql.fetchall()
+
+def dbcon1(sql):
+    con = sqlite3.connect("party.db")
+    cur = con.cursor()
+    return cur.execute(sql)
 
 def uptime():
     time = int(zeit)
@@ -298,7 +304,7 @@ def rgb():
 @app.route("/get_login", methods=['POST'])
 def get_login():
     log_server("called /get_login with POST")
-    username = request.form['uname']
+    username = request.form['username']
     sessionId = request.form['id']
     l = f"select * from user where username = \'{username}\' and id=\'{sessionId}\';"
     account = dbcon(l)
@@ -314,11 +320,10 @@ def get_login():
 @app.route("/new", methods=['POST'])
 def new():
     log_server("called /new with POST")
-    username = request.form['uname']
+    username = request.form['username']
     sessionId = request.form['id']
-    userid = user_count +1
     userstatus = "normal"
-    l = f"INSERT INTO user VALUES \'{userid}\',\'{username}\',\'{sessionId}\',\'{userstatus}\';"
+    l = f"INSERT INTO user VALUES \'{username}\',\'{sessionId}\',\'{userstatus}\';"
     account = dbcon(l)
     if account:
         session['loggedin'] = True
