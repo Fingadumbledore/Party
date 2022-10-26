@@ -16,6 +16,7 @@ app.config['SECRET_KEY'] = 'party'
 
 def dbcon(sql):
     con = sqlite3.connect("party.db")
+    warning_log("verbindung mit db wurde aufgenommen")
     cur = con.cursor()
     cur.execute(sql)
     return sql.fetchall()
