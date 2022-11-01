@@ -1,4 +1,5 @@
 from flask import Flask, render_template, jsonify, request, session, redirect
+from picker import picker as pick
 import sqlite3
 import os
 import time
@@ -112,6 +113,10 @@ def get_chat():
     else:
          warning_log(" called /get_chat without being logged in")
          return render_template('/passwd')
+
+@app.route("/get_game_file", methods=['POST'])
+def get_game_file():
+        pick()
 
 @app.route("/get_new_message")
 def get_new_message():
