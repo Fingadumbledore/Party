@@ -102,7 +102,7 @@ def get_chat():
         sessionID = request.form['sessionid']
         message = request.form['message']
         zeit = date
-        l = f"INSERT INTO session VALUES(  \'{sessionID}\', \'{userID}\',\'{message}\', \'{zeit}\');"
+        l = f"INSERT INTO seession VALUES(  \'{sessionID}\', \'{userID}\',\'{message}\', \'{zeit}\');"
         log_server("neue Nachricht")
         try:
             dbcon(l)
@@ -158,7 +158,7 @@ def get_planer():
         event = request.form['event']
         sessionID = request.form['sessionid']
         zeit = request.form['zeit']
-        l = f"INSERT INTO session VALUES(  \'{event}\', \'{zeit}\',\'{sessionID}\');"
+        l = f"INSERT INTO seession VALUES(  \'{event}\', \'{zeit}\',\'{sessionID}\');"
         log_server("neues Event")
         try:
             dbcon(l)
@@ -205,7 +205,7 @@ def get_creat_session():
     log_server("called /get_creat_session with POST")
     sessionname = request.form['sessionname']
     sessionID = request.form['sessionid']
-    l = f"INSERT INTO session VALUES(  \'{sessionID}\', \'{sessionname}\');"
+    l = f"INSERT INTO seession VALUES(  \'{sessionID}\', \'{sessionname}\');"
     log_server("neue Session")
     try:
           account = dbcon(l)   
@@ -278,7 +278,7 @@ def willkommen():
     if session:
       con = sqlite3.connect("party.db")
       cur = con.cursor()
-      die = cur.execute("SELECT sessionname FROM session").fetchall()
+      die = cur.execute("SELECT sessionname FROM seession").fetchall()
       log_server("called /willkommen")
       return render_template("willkommen.html", die=die)
     else:
