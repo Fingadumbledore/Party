@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/style.css') }}">
-    <title>Chat</title>
-</head>
-<body>
-    <center><h1>Chat</h1>
-    <iframe id="ifr" src="/message" width="800" height="450" frameBorder="0"></iframe>
-    <form class="modal-content animate" action="http://127.0.0.1:5000/chat" method="POST">  
-        <div class="container">     
-            <input type="text" placeholder="Hallo Welt" name="message" required>  
-            <button type="submit"> 	
-                &#10148;</button>         
-        </div>   
-    </form>
-</center>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/style.css') }}">
+        <title>Chat</title>
+    </head>
+    <body>
+        <center>
+            <h1>Chat</h1>
+            <iframe id="ifr" src="/message" width="800" height="450" frameBorder="0"></iframe>
+            <form class="modal-content animate" action="http://127.0.0.1:5000/chat" method="POST">  
+                <div class="container">     
+                    <input type="text" placeholder="Hallo Welt" name="message" required>  
+                    <button type="submit"> 	
+                        &#10148;
+                    </button>         
+                </div>   
+            </form>
+        </center>
+    </body>
 </html>
