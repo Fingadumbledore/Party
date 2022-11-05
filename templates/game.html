@@ -8,6 +8,7 @@
     <title>Game</title>
 </head>
 <body>
+  <center>
 
     <script>
         var modal = document.getElementById('id01');
@@ -85,9 +86,9 @@
         </script>
     <center><h1>Games</h1></center>
 
-
+  
     <div class="wrapper">
-        <h3>Stopuhr</h3>
+      <center>
 
         <p><span id="seconds">00</span>:<span id="tens">00</span></p>
         <button id="button-start">Start</button>
@@ -99,17 +100,20 @@
                     <input type="text" placeholder="Tomb Raider" name="spiel" required>  
                     <input type="text" placeholder="parcour" name="art" required> 
                     
-                    <button type="submit">&#10133;</button>        
+                    <button type="submit">&#10133;</button>   
+                    <button type="submit">&#128193;</button>  
+                   
                 </div>  
             </form> 
 
 
-
+          </center>
 </div> 
-<div id="statistik" style="text-align:right;">
+<div id="statistik">
+
 <h1>Spiele-Statistiken</h1>
 {% block content %}
-<h1>{% block title %} Planer{% endblock %}</h1>
+
 
 {% for post in asd %}
 
@@ -120,8 +124,7 @@
 {% endblock %}
 </div>
 
-<div id="upload">
-  <h3>Spiele Datei hochladen</h3>
-</div>
+
+</center>
 </body>
 </html>
