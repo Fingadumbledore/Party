@@ -154,16 +154,14 @@ def get_planer():
         log_server("called /get_planer")
         log_server("called /get_planer with POST")
         event = request.form['event']
-        sessionID = request.form['sessionid']
         zeit = request.form['zeit']
-        l = f"INSERT INTO seession VALUES(  \'{event}\', \'{zeit}\',\'{sessionID}\');"
+        l = f"INSERT INTO planer VALUES(  \'{event}\', \'{zeit}\');"
         log_server("neues Event")
         try:
             dbcon(l)
         except:
             error_log("unable to insert event")
-        account = cur.fetchone()
-        return render_template("chat.html")
+        return render_template("planer.html")
     else:
          warning_log(" called /get_planer without being logged in")
          return render_template('/passwd')
