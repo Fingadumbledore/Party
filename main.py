@@ -206,12 +206,17 @@ def get_creat_session():
     l = f"INSERT INTO seession VALUES(  \'{sessionID}\', \'{sessionname}\');"
     log_server("neue Session")
     try:
-          account = dbcon(l)   
+         con = sqlite3.connect("party.db")
+         warning_log("verbindung mit db wurde aufgenommen")
+         cur = con.cursor()
+         cur.execute(l) 
+         user_count = +1
+         starttime = int(zeit)
+         return redirect('/session')  
     except:
         error_log("unable to create Session")
-    user_count = +1
-    starttime = int(zeit)
-    return redirect('/session')
+        return "{ \"message\": \"Login failed\"'}"
+   
     
 @app.route("/login")
 def login():
@@ -309,8 +314,9 @@ def rgb():
 def get_login():
     log_server("called /get_login with POST")
     username = request.form['username']
-    sessionId = request.form['id']
-    l = f"select * from user where username = \'{username}\' and id=\'{sessionId}\';"
+    sessionId = request.form['sessionID']
+    userid = request.form['userID']
+    l = f"select * from user where userID = \'{userid}\' and username=\'{username}\' and sessionID=\'{sessionId}\';"
     account = dbcon(l)
     if account:
         session['loggedin'] = True
@@ -325,9 +331,10 @@ def get_login():
 def new():
     log_server("called /new with POST")
     username = request.form['username']
-    sessionId = request.form['id']
+    sessionId = request.form['sessionID']
+    userId = request.form['sessionID']
     userstatus = "normal"
-    l = f"INSERT INTO user VALUES \'{username}\',\'{sessionId}\',\'{userstatus}\';"
+    l = f"INSERT INTO user VALUES \'{userid}\',\'{username}\',\'{sessionId}\';"
     account = dbcon(l)
     if account:
         session['loggedin'] = True
