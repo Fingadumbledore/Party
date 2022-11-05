@@ -65,9 +65,7 @@ def warning_log(warning):
 if not os.path.exists("./static/img/qr.png"):
     img = qrcode.make('127.0.0.1:5000')
     type(img)
-    img.save("qr.png")
-    ort = "./static/img"
-    shutil.move("qr.png", ort)
+    img.save("./static/img/qr.png")
 else:
     warning_log("QR-Code ist bereits vorhanden")
 
