@@ -5,12 +5,10 @@ ws.addEventListener('open', (e) => {
     'user': 'test'
   }))
 })
-console.log(sessionStorage.getItem('sessionID'))
 
 function join_chat() {
   ws.send(JSON.stringify({
     'msg_type': 'user_join',
-    'username': username,
-    'sessionID': 123
+    'username': username
   }))
 }

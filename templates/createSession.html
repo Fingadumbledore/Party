@@ -13,12 +13,19 @@
         <label>Session name : </label>   
         <input type="text" placeholder="Enter Session name" name="sessionname" required>  
         <label>Session Id : </label>   
-        <input type="text" placeholder="Session Id" name="sessionid" required>  
-        <button type="submit">create</button>   
+        <input id="idIn" type="text" placeholder="Session Id" name="sessionid" required>  
+        <button type="submit" onclick="setID()">create</button>   
         <a href="javascript:history.back()">
              <button type="button" class="cancelbtn"> Cancel</button>   
         </a>
     </div>   
 </form>     
+<script>
+    function setID() {
+            const sessID = document.getElementById('IdIn').innerHTML;
+            console.log(sessID)
+            sessionStorage.setItem("sessionID", sessID)
+        }
+</script>
 </body>     
 </html>  

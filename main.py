@@ -168,10 +168,10 @@ def get_planer():
          warning_log(" called /get_planer without being logged in")
          return render_template('/passwd')
 
-@app.route("/session")
-def session():
+@app.route("/session/<id>")
+def session(id):
     if session:
-        log_server("called /session")
+        log_server(f"called /session/{id}")
         return render_template("session.html")
     else:
          warning_log(" called /session without being logged in")
@@ -212,7 +212,7 @@ def get_creat_session():
          cur.execute(l) 
          user_count = +1
          starttime = int(zeit)
-         return redirect('/session')  
+         return redirect(f'/session/{sessionID}')  
     except:
         error_log("unable to create Session")
         return "{ \"message\": \"Login failed\"'}"
@@ -322,7 +322,7 @@ def get_login():
         session['loggedin'] = True
         user_count = +1
         # session['username'] = account['username']
-        return redirect('/session')
+        return redirect(f'/session/{sessionId}')
     else:
         return "{ \"message\": \"Login failed\"'}"
     con.close()
@@ -340,7 +340,7 @@ def new():
         session['loggedin'] = True
         user_count = +1
         # session['username'] = account['username']
-        return redirect('/session')
+        return redirect(f'/session/{sessionId}')
     else:
         return "{ \"message\": \"Login failed\"'}"
     con.close()
