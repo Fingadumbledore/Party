@@ -1,154 +1,154 @@
 <!DOCTYPE html>
 <html lang="de">
 <html>
-<head>
-<title>&#127881; Party</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<link rel="stylesheet" href="{{ url_for('static', filename='../static/css/style.css') }}">
+	<head>
+	<title>&#127881; Party</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="stylesheet" href="{{ url_for('static', filename='../static/css/style.css') }}">
 
-</head>
-<body>
-  <a href="http://127.0.0.1:5000/logout">
-    <button class="btn btn-primary btn-lg">Logout</button>
-   </a>
-      <template id="_planer">
-         <h1>Planer</h1>
-         {% block content %}
-         {% for post in asd %}
-         <p>{{ asd }}</p>
-         <hr>
-         {% endfor %}
-         {% endblock %}
-         <p>Füge ein Event ein</p>
-         <form class="modal-content animate" action="/get_planer" method="POST">  
-            <div class="container">   
-               <input type="text" placeholder="Tomb Raider spielen" name="event" required>  
-               <input type="time" placeholder="15:30" name="zeit" required>  
-               <button type="submit">&#10133;</button>        
-            </div>  
-         </form> 
-      </template>
-      <template id="_game">
-         <center><h1>Games</h1></center>
-         <div class="wrapper">
-            <center>
-               <p><span id="seconds">00</span>:<span id="tens">00</span></p>
-               <button id="button-start">Start</button>
-               <button id="button-stop">Stop</button>
-               <button id="button-reset">Reset</button>
-               <form class="modal-content animate" action="http://127.0.0.1:5000/stopuhr" method="POST">  
-                  <div class="container">   
-                     </br>
-                     <input type="text" placeholder="Tomb Raider" name="spiel" required>  
-                     <input type="text" placeholder="parcour" name="art" required> 
+	</head>
+	<body>
+	  <a href="http://127.0.0.1:5000/logout">
+	    <button class="btn btn-primary btn-lg">Logout</button>
+	   </a>
+	      <template id="_planer">
+		 <h1>Planer</h1>
+		 {% block content %}
+		 {% for post in asd %}
+		 <p>{{ asd }}</p>
+		 <hr>
+		 {% endfor %}
+		 {% endblock %}
+		 <p>Füge ein Event ein</p>
+		 <form class="modal-content animate" action="/get_planer" method="POST">  
+		    <div class="container">   
+		       <input type="text" placeholder="Tomb Raider spielen" name="event" required>  
+		       <input type="time" placeholder="15:30" name="zeit" required>  
+		       <button type="submit">&#10133;</button>        
+		    </div>  
+		 </form> 
+	      </template>
+	      <template id="_game">
+		 <center><h1>Games</h1></center>
+		 <div class="wrapper">
+		    <center>
+		       <p><span id="seconds">00</span>:<span id="tens">00</span></p>
+		       <button id="button-start">Start</button>
+		       <button id="button-stop">Stop</button>
+		       <button id="button-reset">Reset</button>
+		       <form class="modal-content animate" action="http://127.0.0.1:5000/stopuhr" method="POST">  
+			  <div class="container">   
+			     </br>
+			     <input type="text" placeholder="Tomb Raider" name="spiel" required>  
+			     <input type="text" placeholder="parcour" name="art" required> 
 
-                     <button type="submit">&#10133;</button>   
-                     <button type="submit">&#128193;</button>  
-                  </div>  
-               </form> 
-            </center>
-         </div> 
-         <div id="statistik">
-            <h1>Spiele-Statistiken</h1>
-            {% block content %}
-            {% for post in asd %}
-            <p>{{ asd }}</p>
-            <hr>
-            {% endfor %}
-            {% endblock %}
-         </div>
-      </template>
-      <template id="_chat">
-         <h1>Chat</h1>
-         <iframe id="ifr" src="/message" width="800" height="450" frameBorder="0"></iframe>
-         <div id="userNameEntryDiv">
-             <input type="text" placeholder="Username..." id="userNameEntry">
-             <button id="chatUsernameButton" onclick="join_chat()">Join chat</button>
-         </div>
-         <form class="modal-content animate" action="http://127.0.0.1:5000/chat" method="POST">  
-            <div class="container">     
-               <input type="text" placeholder="Hallo Welt" name="message" required>  
-               <button type="submit"> 	
-                  &#10148;
-               </button>         
-            </div>   
-         </form>
-      </template>
-      <template id="_session">
-         <h1> Session Information</h1>
-         <label>User Anzahl, Uptime, Creator:</label>
-         <img src="/static/img/user.png" width="60" height="60">
-         {% block content %}
-            <p>{{das}}</p>
-            <p>{{der}}</p>
+			     <button type="submit">&#10133;</button>   
+			     <button type="submit">&#128193;</button>  
+			  </div>  
+		       </form> 
+		    </center>
+		 </div> 
+		 <div id="statistik">
+		    <h1>Spiele-Statistiken</h1>
+		    {% block content %}
+		    {% for post in asd %}
+		    <p>{{ asd }}</p>
+		    <hr>
+		    {% endfor %}
+		    {% endblock %}
+		 </div>
+	      </template>
+	      <template id="_chat">
+		 <h1>Chat</h1>
+		 <iframe id="ifr" src="/message" width="800" height="450" frameBorder="0"></iframe>
+		 <div id="userNameEntryDiv">
+		     <input type="text" placeholder="Username..." id="userNameEntry">
+		     <button id="chatUsernameButton" onclick="join_chat()">Join chat</button>
+		 </div>
+		 <form class="modal-content animate" action="http://127.0.0.1:5000/chat" method="POST">  
+		    <div class="container">     
+		       <input type="text" placeholder="Hallo Welt" name="message" required>  
+		       <button type="submit"> 	
+			  &#10148;
+		       </button>         
+		    </div>   
+		 </form>
+	      </template>
+	      <template id="_session">
+		 <h1> Session Information</h1>
+		 <label>User Anzahl, Uptime, Creator:</label>
+		 <img src="/static/img/user.png" width="60" height="60">
+		 {% block content %}
+		    <p>{{das}}</p>
+		    <p>{{der}}</p>
 
-            <p>{{er}}</p>
-            <h1>QR-Code</h1>
-         {% endblock %}
+		    <p>{{er}}</p>
+		    <h1>QR-Code</h1>
+		 {% endblock %}
 
-         <img src="../static/img/qr.png"
-      </template>
-      <template id="_control">
-         <h1>Einstellungen</h1>
-         <div id="LED">
-            <h3>Setze eine Fabe für die LEDs</h3>
-            <label for="colorpicker">Led Streifen:</label>
-            <input type="color" id="colorpicker" value="#0000ff">
-         </div>
-         <div id="userVerwaltung">
-            <h3>User Verwaltung</h3>
-            <p>An dieser Stelle sollen später die User angezeigt werden, und der Session Admin kann diese dann verwalten</p>
-         </div>
+		 <img src="../static/img/qr.png">
+	      </template>
+	      <template id="_control">
+		 <h1>Einstellungen</h1>
+		 <div id="LED">
+		    <h3>Setze eine Fabe für die LEDs</h3>
+		    <label for="colorpicker">Led Streifen:</label>
+		    <input type="color" id="colorpicker" value="#0000ff">
+		 </div>
+		 <div id="userVerwaltung">
+		    <h3>User Verwaltung</h3>
+		    <p>An dieser Stelle sollen später die User angezeigt werden, und der Session Admin kann diese dann verwalten</p>
+		 </div>
 
-         <button onclick="save()">&#x1F4BE;</button>
-      </template>
+		 <button onclick="save()">&#x1F4BE;</button>
+	      </template>
 
-       <label class="switch">
-         <input type="checkbox" onclick="myFunction()">
-         <span class="slider round"></span>
-       </label>
-       <script>
-         function myFunction() {
-            var element = document.body;
-            element.classList.toggle("dark-mode");
-         }
-         </script>
-       <center>
-       <a onclick= "change_Iframe('/planer')">
-          <button class="btn btn-primary btn-lg">Planer</button>
-       </a>
-       <a onclick= "change_Iframe('/game')">
-          <button class="btn btn-primary btn-lg">Game</button>
-       </a>
-       <a onclick= "change_Iframe('/chat')">
-          <button class="btn btn-primary btn-lg">Chat</button>
-       </a>
-       <a onclick= "change_Iframe('/seession')">
-          <button class="btn btn-primary btn-lg">Session</button>
-       </a>
-       <a onclick= "change_Iframe('/controll')">
-          <button class="btn btn-primary btn-lg">Settings</button>
-       </a>
-      </center>
-       
-      
-    <center><iframe id="ifr" src="/willkommen" width="900" height="800" frameBorder="0" src= pfad></iframe></center>
-    <script>
-          function change_Iframe(pfad)
-          {
-              var  pfad;
-              var i = document.getElementById("ifr").src = pfad;
-              var el = document.getElementById('ifr');
-              el.scrollIntoView(true);
-          }
+	       <label class="switch">
+		 <input type="checkbox" onclick="myFunction()">
+		 <span class="slider round"></span>
+	       </label>
+	       <script>
+		 function myFunction() {
+		    var element = document.body;
+		    element.classList.toggle("dark-mode");
+		 }
+		 </script>
+	       <center>
+	       <a onclick= "change_template('/planer')">
+		  <button class="btn btn-primary btn-lg">Planer</button>
+	       </a>
+	       <a onclick= "change_template('/game')">
+		  <button class="btn btn-primary btn-lg">Game</button>
+	       </a>
+	       <a onclick= "change_template('/chat')">
+		  <button class="btn btn-primary btn-lg">Chat</button>
+	       </a>
+	       <a onclick= "change_template('/seession')">
+		  <button class="btn btn-primary btn-lg">Session</button>
+	       </a>
+	       <a onclick= "change_template('/controll')">
+		  <button class="btn btn-primary btn-lg">Settings</button>
+	       </a>
+	      </center>
+	       
+	      
+	    <center><iframe id="ifr" src="/willkommen" width="900" height="800" frameBorder="0" src= pfad></iframe></center>
+	    <script>
+		  function change_template(pfad)
+		  {
+		      var  pfad;
+		      var i = document.getElementById("ifr").src = pfad;
+		      var el = document.getElementById('ifr');
+		      el.scrollIntoView(true);
+		  }
 
-      </script>
+	      </script>
 
 
-<script src="{{url_for('static', filename='js/control.js')}}"></script>
-<script src="{{url_for('static', filename='js/chat.js')}}"></script>
-<script src="{{url_for('static', filename='js/game.js')}}"></script>
-</body>
+	<script src="{{url_for('static', filename='js/control.js')}}"></script>
+	<script src="{{url_for('static', filename='js/chat.js')}}"></script>
+	<script src="{{url_for('static', filename='js/game.js')}}"></script>
+	</body>
 </html>
