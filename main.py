@@ -143,7 +143,8 @@ def planer():
         con = sqlite3.connect("party.db")
         cur = con.cursor()
         l = f"SELECT * FROM planer;"
-        asd = dbcon(l)
+        asd = cur.execute(l)
+        con.commit()
        # asd = cur.execute('SELECT * FROM planer').fetchall()
        # cur.commit()
        # cur.close()
