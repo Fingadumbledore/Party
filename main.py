@@ -20,6 +20,7 @@ def dbcon(sql):
     warning_log("verbindung mit db wurde aufgenommen")
     cur = con.cursor()
     cur.execute(sql)
+    cur.commit()
     return sql.fetchall()
 
 def dbcon1(sql):
@@ -104,6 +105,7 @@ def get_chat():
         log_server("neue Nachricht")
         try:
             dbcon(l)
+
         except:
             error_log("unable to get new Messages")
         account = cur.fetchone()
@@ -140,8 +142,11 @@ def planer():
     if session:
         con = sqlite3.connect("party.db")
         cur = con.cursor()
-        asd = cur.execute('SELECT * FROM planer').fetchall()
-        cur.close()
+        l = f"SELECT * FROM planer;"
+        asd = dbcon(l)
+       # asd = cur.execute('SELECT * FROM planer').fetchall()
+       # cur.commit()
+       # cur.close()
         log_server("called /planer")
         return render_template("planer.html", asd=asd)
     else:
@@ -208,6 +213,8 @@ def get_creat_session():
          warning_log("verbindung mit db wurde aufgenommen")
          cur = con.cursor()
          cur.execute(l) 
+         con.commit()
+         con.close()
          user_count = +1
          starttime = int(zeit)
          return redirect(f'/session/{sessionID}')  
