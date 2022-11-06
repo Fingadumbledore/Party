@@ -164,7 +164,12 @@ def get_planer():
         l = f"INSERT INTO planer VALUES(  \'{event}\', \'{zeit}\');"
         log_server("neues Event")
         try:
-            dbcon(l)
+            con = sqlite3.connect("party.db")
+            warning_log("verbindung mit db wurde aufgenommen")
+            cur = con.cursor()
+            cur.execute(l) 
+            con.commit()
+            con.close()
         except:
             error_log("unable to insert event")
         return render_template("planer.html")
@@ -256,7 +261,12 @@ def get_event():
         sessionId = request.form['sessionid']
         l = f"INSERT INTO game VALUES(  \'{event}\', \'{zeit}\', \'{sessionId}\');"
         try:
-            dbcon(l)
+            con = sqlite3.connect("party.db")
+            warning_log("verbindung mit db wurde aufgenommen")
+            cur = con.cursor()
+            cur.execute(l) 
+            con.commit()
+            con.close()
         except:
             error_log("unable to run sql /get_event")
         return render_template("login.html")
