@@ -20,7 +20,7 @@ def dbcon(sql):
     warning_log("verbindung mit db wurde aufgenommen")
     cur = con.cursor()
     cur.execute(sql)
-    cur.commit()
+    con.commit()
     return sql.fetchall()
 
 def dbcon1(sql):
