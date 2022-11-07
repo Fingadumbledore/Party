@@ -20,7 +20,7 @@
 		 <p>{{ asd }}</p>
 		 <hr>
 		 {% endfor %}
-		 {% endblock %}
+		
 		 <p>Füge ein Event ein</p>
 		 <form class="modal-content animate" action="/get_planer" method="POST">  
 		    <div class="container">   
@@ -52,12 +52,12 @@
 		 </div> 
 		 <div id="statistik">
 		    <h1>Spiele-Statistiken</h1>
-		    {% block content %}
+		    
 		    {% for post in asd %}
 		    <p>{{ asd }}</p>
 		    <hr>
 		    {% endfor %}
-		    {% endblock %}
+		  
 		 </div>
 	      </template>
 	      <template id="_chat">
@@ -80,7 +80,7 @@
 		 <h1> Session Information</h1>
 		 <label>User Anzahl, Uptime, Creator:</label>
 		 <img src="/static/img/user.png" width="60" height="60">
-		 {% block content %}
+		
 		    <p>{{das}}</p>
 		    <p>{{der}}</p>
 
