@@ -15,7 +15,7 @@ var modal = document.getElementById('id01');
    var Interval ;
    var time = seconds + tens;
 
-   buttonStart.onclick = () => {
+   function onclckfn() {
       clearInterval(Interval);
       Interval = setInterval(startTimer, 10);
    }
