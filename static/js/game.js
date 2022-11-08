@@ -1,8 +1,8 @@
 var modal = document.getElementById('id01');
   // When the user clicks anywhere outside of the modal, close it
   window.onclick = (event) => 
-   if (event.target == modal)
-      modal.style.display = "none";
+   event.target == modal ? 
+      modal.style.display = "none" : undefined;
 
   window.onload = function () {
    var seconds = 00; 
