@@ -116,19 +116,19 @@
 		 }
 		 </script>
 	       <center>
-	       <a onclick= "change_template('/planer')">
+	       <a onclick= "change_template('_planer')">
 		  <button class="btn btn-primary btn-lg">Planer</button>
 	       </a>
-	       <a onclick= "change_template('/game')">
+	       <a onclick= "change_template('_game')">
 		  <button class="btn btn-primary btn-lg">Game</button>
 	       </a>
-	       <a onclick= "change_template('/chat')">
+	       <a onclick= "change_template('_chat')">
 		  <button class="btn btn-primary btn-lg">Chat</button>
 	       </a>
-	       <a onclick= "change_template('/seession')">
+	       <a onclick= "change_template('_seession')">
 		  <button class="btn btn-primary btn-lg">Session</button>
 	       </a>
-	       <a onclick= "change_template('/controll')">
+	       <a onclick= "change_template('_controll')">
 		  <button class="btn btn-primary btn-lg">Settings</button>
 	       </a>
 	      </center>
@@ -138,9 +138,9 @@
 	    <script>
 		  function change_template(pfad)
 		  {
-		      var  pfad;
-		      var i = document.getElementById("ifr").src = pfad;
-		      var el = document.getElementById('ifr');
+					document.getElementsByTagName("template").hidden = true;
+		      var el = document.getElementById(pfad);
+					el.hidden = false;
 		      el.scrollIntoView(true);
 		  }
 
