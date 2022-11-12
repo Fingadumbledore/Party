@@ -14,7 +14,7 @@
 	    <button class="btn btn-primary btn-lg">Logout</button>
 	   </a>
 	      <template id="_planer">
-		 <h1>Planer</h1>
+		 
 		 {% block content %}
 		 {% for post in asd %}
 		 <p>{{ asd }}</p>
@@ -31,7 +31,7 @@
 		 </form> 
 	      </template>
 	      <template id="_game">
-		 <center><h1>Games</h1></center>
+		
 		 <div class="wrapper">
 		    <center>
 		       <p><span id="seconds">00</span>:<span id="tens">00</span></p>
@@ -51,7 +51,7 @@
 		    </center>
 		 </div> 
 		 <div id="statistik">
-		    <h1>Spiele-Statistiken</h1>
+		
 		    
 		    {% for post in asd %}
 		    <p>{{ asd }}</p>
@@ -61,7 +61,7 @@
 		 </div>
 	      </template>
 	      <template id="_chat">
-		 <h1>Chat</h1>
+		
 		 <iframe id="ifr" src="/message" width="800" height="450" frameBorder="0"></iframe>
 		 <div id="userNameEntryDiv">
 		     <input type="text" placeholder="Username..." id="userNameEntry">
@@ -91,7 +91,7 @@
 		 <img src="../static/img/qr.png">
 	      </template>
 	      <template id="_control">
-		 <h1>Einstellungen</h1>
+
 		 <div id="LED">
 		    <h3>Setze eine Fabe für die LEDs</h3>
 		    <label for="colorpicker">Led Streifen:</label>
