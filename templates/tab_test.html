@@ -1,15 +1,33 @@
 <html>
   <head>
+    <script>
+      function clck(s) {
+        for (var i = 0; i < document.getElementsByClassName("aa").length; i++)
+          document.getElementsByClassName("aa")[i].hidden = true;
+        document.getElementById(s).hidden = false;
+      }
+    </script>
   </head>
   <body>
-    <div class="aa" id="a">
+
+    <button onclick="clck('a')">
       <p>aaa</p>
-    </div>
-    <div class="aa" id="b">
+    </button>
+    <button onclick="clck('b')">
       </p>aab</p>
-    </div>
-    <div class="aa" id="c">
+    </button>
+    <button onclick="clck('c')">
       <p>aac</p>
+    </button>
+    
+    <div id="a" class="aa">
+      <p>a</p>
+    </div>
+    <div id="b" class="aa">
+      <p>b</p>
+    </div>
+    <div id="c" class="aa">
+      <p>c</p>
     </div>
   </body>
 </html>
