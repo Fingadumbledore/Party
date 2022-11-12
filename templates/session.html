@@ -13,6 +13,34 @@
 	  <a href="http://127.0.0.1:5000/logout">
 	    <button class="btn btn-primary btn-lg">Logout</button>
 	   </a>
+	      </div>
+
+	       <label class="switch">
+		 <input type="checkbox" onclick="myFunction()">
+		 <span class="slider round"></span>
+	       </label>
+	       <script>
+		 function myFunction() {
+		    var element = document.body;
+		    element.classList.toggle("dark-mode");
+		 }
+		 </script>
+	       <center>
+	       <a onclick= "change_div('_planer')">
+		  <button class="btn btn-primary btn-lg">Planer</button>
+	       </a>
+	       <a onclick= "change_div('_game')">
+		  <button class="btn btn-primary btn-lg">Game</button>
+	       </a>
+	       <a onclick= "change_div('_chat')">
+		  <button class="btn btn-primary btn-lg">Chat</button>
+	       </a>
+	       <a onclick= "change_div('_seession')">
+		  <button class="btn btn-primary btn-lg">Session</button>
+	       </a>
+	       <a onclick= "change_div('_controll')">
+		  <button class="btn btn-primary btn-lg">Settings</button>
+	       </a>
 	      <div hidden class="tmplt_tab" id="_planer">
 		 
 				 {% block content %}
@@ -103,34 +131,6 @@
 		 </div>
 
 		 <button onclick="save()">&#x1F4BE;</button>
-	      </div>
-
-	       <label class="switch">
-		 <input type="checkbox" onclick="myFunction()">
-		 <span class="slider round"></span>
-	       </label>
-	       <script>
-		 function myFunction() {
-		    var element = document.body;
-		    element.classList.toggle("dark-mode");
-		 }
-		 </script>
-	       <center>
-	       <a onclick= "change_div('_planer')">
-		  <button class="btn btn-primary btn-lg">Planer</button>
-	       </a>
-	       <a onclick= "change_div('_game')">
-		  <button class="btn btn-primary btn-lg">Game</button>
-	       </a>
-	       <a onclick= "change_div('_chat')">
-		  <button class="btn btn-primary btn-lg">Chat</button>
-	       </a>
-	       <a onclick= "change_div('_seession')">
-		  <button class="btn btn-primary btn-lg">Session</button>
-	       </a>
-	       <a onclick= "change_div('_controll')">
-		  <button class="btn btn-primary btn-lg">Settings</button>
-	       </a>
 	      </center>
 	       
 	      
