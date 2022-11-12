@@ -371,3 +371,7 @@ def create_app(config_filename):
     app.register_error_handler(404, page_not_found)
     log_server("created app")
     return app
+    
+@app.route("/tabtest")
+    log_server("testing tab page opened")
+    return render_template("tab_test.html")
