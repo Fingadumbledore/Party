@@ -372,6 +372,7 @@ def create_app(config_filename):
     log_server("created app")
     return app
     
-@app.route("/tabtest")
+@app.route("/tabtest", methods=["GET"])
+def tabtest():
     log_server("testing tab page opened")
     return render_template("tab_test.html")
