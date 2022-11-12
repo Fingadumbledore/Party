@@ -13,24 +13,24 @@
 	  <a href="http://127.0.0.1:5000/logout">
 	    <button class="btn btn-primary btn-lg">Logout</button>
 	   </a>
-	      <template id="_planer">
+	      <template class="tmplt_tab" id="_planer">
 		 
-		 {% block content %}
-		 {% for post in asd %}
-		 <p>{{ asd }}</p>
-		 <hr>
-		 {% endfor %}
+				 {% block content %}
+				 {% for post in asd %}
+				 <p>{{ asd }}</p>
+				 <hr>
+				 {% endfor %}
 		
-		 <p>Füge ein Event ein</p>
-		 <form class="modal-content animate" action="/get_planer" method="POST">  
-		    <div class="container">   
-		       <input type="text" placeholder="Tomb Raider spielen" name="event" required>  
-		       <input type="time" placeholder="15:30" name="zeit" required>  
-		       <button type="submit">&#10133;</button>        
-		    </div>  
-		 </form> 
+				 <p>Füge ein Event ein</p>
+				 <form class="modal-content animate" action="/get_planer" method="POST">  
+				    <div class="container">   
+				       <input type="text" placeholder="Tomb Raider spielen" name="event" required>  
+				       <input type="time" placeholder="15:30" name="zeit" required>  
+				       <button type="submit">&#10133;</button>        
+				    </div>  
+				 </form> 
 	      </template>
-	      <template id="_game">
+	      <template class="tmplt_tab" id="_game">
 		
 		 <div class="wrapper">
 		    <center>
@@ -60,7 +60,7 @@
 		  
 		 </div>
 	      </template>
-	      <template id="_chat">
+	      <template class="tmplt_tab" id="_chat">
 		
 		 <iframe id="ifr" src="/message" width="800" height="450" frameBorder="0"></iframe>
 		 <div id="userNameEntryDiv">
@@ -76,7 +76,7 @@
 		    </div>   
 		 </form>
 	      </template>
-	      <template id="_session">
+	      <template class="tmplt_tab" id="_session">
 		 <h1> Session Information</h1>
 		 <label>User Anzahl, Uptime, Creator:</label>
 		 <img src="/static/img/user.png" width="60" height="60">
@@ -90,7 +90,7 @@
 
 		 <img src="../static/img/qr.png">
 	      </template>
-	      <template id="_control">
+	      <template class="tmplt_tab" id="_control">
 
 		 <div id="LED">
 		    <h3>Setze eine Fabe für die LEDs</h3>
@@ -140,10 +140,10 @@
 		  {
 					document.getElementsByTagName("template").hidden = true;
 		      let el = document.getElementById(pfad);
-			  let content = el.content;
-			  document.body.appendChild(content);
-			  document.body.appendChild(document.getElementById(pfad));
+				  let content = el.content;
+				  document.body.appendChild(content);
 		      //el.scrollIntoView(true);
+		  
 		  }
 
 	      </script>
