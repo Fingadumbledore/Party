@@ -13,7 +13,7 @@
 	  <a href="http://127.0.0.1:5000/logout">
 	    <button class="btn btn-primary btn-lg">Logout</button>
 	   </a>
-	      <template class="tmplt_tab" id="_planer">
+	      <div hidden class="tmplt_tab" id="_planer">
 		 
 				 {% block content %}
 				 {% for post in asd %}
@@ -29,8 +29,8 @@
 				       <button type="submit">&#10133;</button>        
 				    </div>  
 				 </form> 
-	      </template>
-	      <template class="tmplt_tab" id="_game">
+	      </div>
+	      <div hidden class="tmplt_tab" id="_game">
 		
 		 <div class="wrapper">
 		    <center>
@@ -59,8 +59,8 @@
 		    {% endfor %}
 		  
 		 </div>
-	      </template>
-	      <template class="tmplt_tab" id="_chat">
+	      </div>
+	      <div hidden class="tmplt_tab" id="_chat">
 		
 		 <iframe id="ifr" src="/message" width="800" height="450" frameBorder="0"></iframe>
 		 <div id="userNameEntryDiv">
@@ -75,8 +75,8 @@
 		       </button>         
 		    </div>   
 		 </form>
-	      </template>
-	      <template class="tmplt_tab" id="_session">
+	      </div>
+	      <div hidden class="tmplt_tab" id="_session">
 		 <h1> Session Information</h1>
 		 <label>User Anzahl, Uptime, Creator:</label>
 		 <img src="/static/img/user.png" width="60" height="60">
@@ -89,8 +89,8 @@
 		 {% endblock %}
 
 		 <img src="../static/img/qr.png">
-	      </template>
-	      <template class="tmplt_tab" id="_control">
+	      </div>
+	      <div hidden class="tmplt_tab" id="_control">
 
 		 <div id="LED">
 		    <h3>Setze eine Fabe für die LEDs</h3>
@@ -103,7 +103,7 @@
 		 </div>
 
 		 <button onclick="save()">&#x1F4BE;</button>
-	      </template>
+	      </div>
 
 	       <label class="switch">
 		 <input type="checkbox" onclick="myFunction()">
@@ -116,19 +116,19 @@
 		 }
 		 </script>
 	       <center>
-	       <a onclick= "change_template('_planer')">
+	       <a onclick= "change_div('_planer')">
 		  <button class="btn btn-primary btn-lg">Planer</button>
 	       </a>
-	       <a onclick= "change_template('_game')">
+	       <a onclick= "change_div('_game')">
 		  <button class="btn btn-primary btn-lg">Game</button>
 	       </a>
-	       <a onclick= "change_template('_chat')">
+	       <a onclick= "change_div('_chat')">
 		  <button class="btn btn-primary btn-lg">Chat</button>
 	       </a>
-	       <a onclick= "change_template('_seession')">
+	       <a onclick= "change_div('_seession')">
 		  <button class="btn btn-primary btn-lg">Session</button>
 	       </a>
-	       <a onclick= "change_template('_controll')">
+	       <a onclick= "change_div('_controll')">
 		  <button class="btn btn-primary btn-lg">Settings</button>
 	       </a>
 	      </center>
@@ -136,12 +136,14 @@
 	      
 	  <!--  <center><iframe id="ifr" src="/willkommen" width="900" height="800" frameBorder="0" src= pfad></iframe></center>-->
 	    <script>
-		  function change_template(pfad)
+		  function change_div(pfad)
 		  {
-					document.getElementsByTagName("template").hidden = true;
-		      let el = document.getElementById(pfad);
-				  let content = el.content;
-				  document.body.appendChild(content);
+					for (var i = 0; i < document.getElementsByClassName("tmplt_tab").length; i++) document.getElementsByClassName("tmplt_tab")[i].hidden = true;
+					console.log(pfad)
+					document.getElementById(pfad).hidden = false;
+		      //let el = document.getElementById(pfad);
+				  //let content = el.content;
+				  //document.body.appendChild(content);
 		      //el.scrollIntoView(true);
 		  }
 
