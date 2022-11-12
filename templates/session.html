@@ -35,7 +35,7 @@
 		 <div class="wrapper">
 		    <center>
 		       <p><span id="seconds">00</span>:<span id="tens">00</span></p>
-		       <button id="button-start" onclick="onclckfn()">Start</button>
+		       <button id="button-start">Start</button>
 		       <button id="button-stop">Stop</button>
 		       <button id="button-reset">Reset</button>
 		       <form class="modal-content animate" action="http://127.0.0.1:5000/stopuhr" method="POST">  
@@ -135,15 +135,20 @@
 	       
 	      
 	  <!--  <center><iframe id="ifr" src="/willkommen" width="900" height="800" frameBorder="0" src= pfad></iframe></center>-->
-    <script>
+	    <script>
 		  function change_template(pfad)
 		  {
 					document.getElementsByTagName("template").hidden = true;
-		      var el = document.getElementById(pfad);
-					el.hidden = false;
-		      el.scrollIntoView(true);
+		      let el = document.getElementById(pfad);
+			  let content = el.content;
+			  document.body.appendChild(content);
+			  document.body.appendChild(document.getElementById(pfad));
+		      //el.scrollIntoView(true);
 		  }
-  </script>
+
+	      </script>
+
+
 	<script src="{{url_for('static', filename='js/control.js')}}"></script>
 	<script src="{{url_for('static', filename='js/chat.js')}}"></script>
 	<script src="{{url_for('static', filename='js/game.js')}}"></script>
