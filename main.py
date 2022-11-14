@@ -105,6 +105,7 @@ def get_chat():
         log_server("neue Nachricht")
         try:
             dbcon(l)
+            log_server("message entered successfully")
 
         except:
             error_log("unable to get new Messages")
@@ -116,6 +117,7 @@ def get_chat():
 
 @app.route("/get_game_file", methods=['POST'])
 def get_game_file():
+        log_server("called /get_game_file")
         pick()
 
 @app.route("/get_new_message")
@@ -140,14 +142,15 @@ def message():
 @app.route("/planer")
 def planer():
     if session:
-        con = sqlite3.connect("party.db")
-        cur = con.cursor()
-        l = f"SELECT * FROM planer;"
-        asd = cur.execute(l)
-        con.commit()
-       # asd = cur.execute('SELECT * FROM planer').fetchall()
-       # cur.commit()
-       # cur.close()
+        try:
+            con = sqlite3.connect("party.db")
+            cur = con.cursor()
+            l = f"SELECT * FROM planer;"
+            asd = cur.execute(l)
+            con.commit()
+            log_server("sql run successfully /planer")
+        except:
+            error_log("unabel to execute sql in /planer")
         log_server("called /planer")
         return render_template("planer.html", asd=asd)
     else:
@@ -170,6 +173,7 @@ def get_planer():
             cur.execute(l) 
             con.commit()
             con.close()
+            log_server("event entered successfully /get_planer")
         except:
             error_log("unable to insert event")
         return render_template("planer.html")
@@ -224,6 +228,7 @@ def get_creat_session():
          user_count = +1
          starttime = int(zeit)
          return redirect(f'/session/{sessionID}')  
+         log_server("session successfully started")
     except:
         error_log("unable to create Session")
         return "{ \"message\": \"Login failed\"'}"
@@ -244,7 +249,9 @@ def stopuhr():
         sessionId = request.form['sessionid']
         l = f"INSERT INTO game VALUES(  \'{sessionID}\', \'{userId}\',\'{spielName}\', \'{zeit}\');"
         try:
+            warning_log("verbindung mit Datenbank wurde aufgenommen")
             dbcon(l)
+            log_server("time entered successfully /stopuhr")
         except:
             error_log("unable to run sql /stopuhr")
         return render_template()
@@ -267,6 +274,7 @@ def get_event():
             cur.execute(l) 
             con.commit()
             con.close()
+            log_server("event entered successfully /get_event")
         except:
             error_log("unable to run sql /get_event")
         return render_template("login.html")
@@ -292,22 +300,11 @@ def game():
          warning_log(" called /game without being logged in")
          return render_template('/passwd')
 
-@app.route("/willkommen")
-def willkommen():
-    if session:
-      con = sqlite3.connect("party.db")
-      cur = con.cursor()
-      die = cur.execute("SELECT sessionname FROM seession").fetchall()
-      log_server("called /willkommen")
-      return render_template("willkommen.html", die=die)
-    else:
-         warning_log(" called /willkommen without being logged in")
-         return render_template('/passwd')
-
 @app.route("/seession")
 def seession():
     if session:
         con = sqlite3.connect("party.db")
+        warning_log("Verbindung mit Datenbank wurde aufgenommen /seession")
         cur = con.cursor()
         creator = cur.execute("SELECT username FROM user WHERE info = 'creator'").fetchall()
         cur.close()
@@ -338,9 +335,11 @@ def get_login():
         session['loggedin'] = True
         user_count = +1
         # session['username'] = account['username']
+        log_server("loggedin successfully")
         return redirect(f'/session/{sessionId}')
     else:
         return "{ \"message\": \"Login failed\"'}"
+        warning_log("unable to create new user /get_login")
     con.close()
 
 @app.route("/new", methods=['POST'])
@@ -356,9 +355,11 @@ def new():
         session['loggedin'] = True
         user_count = +1
         # session['username'] = account['username']
+        log_server("created new user successfully")
         return redirect(f'/session/{sessionId}')
     else:
         return "{ \"message\": \"Login failed\"'}"
+        warning_log("unable to create new user /new")
     con.close()
 
 @app.errorhandler(404)
