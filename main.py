@@ -190,6 +190,15 @@ def session(id):
          warning_log(" called /session without being logged in")
          return render_template('/passwd')
 
+@app.route("/mate", methods=['POST'])
+def mate():
+    if session:
+        log_server("called /mate")
+        return render_template("404.html")
+    else:
+         warning_log(" called /mate without being logged in")
+         return render_template('/passwd')
+
 @app.route("/logout")
 def logout():
     log_server("called /logout")
