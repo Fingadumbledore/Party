@@ -62,13 +62,14 @@ def warning_log(warning):
     log = date
     datei.close()  
 
-# Qr-code generator
-if not os.path.exists("./static/img/qr.png"):
-    img = qrcode.make('127.0.0.1:5000')
-    type(img)
-    img.save("./static/img/qr.png")
-else:
-    warning_log("QR-Code ist bereits vorhanden")
+# Qr-code generator#
+def create_qr(id):
+    if not os.path.exists("./static/img/qr.png"):
+        img = qrcode.make(f'127.0.0.1:5000/session/{id}')
+        type(img)
+        img.save("./static/img/qr.png")
+    else:
+        warning_log("QR-Code ist bereits vorhanden")
 
 #Hauptseite
 @app.route("/")
@@ -235,6 +236,7 @@ def get_creat_session():
        
          user_count = +1
          starttime = int(zeit)
+         create_qr(sessionID)
          return redirect(f'/session/{sessionID}')  
     except:
         error_log("unable to create Session")
