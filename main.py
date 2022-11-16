@@ -62,13 +62,14 @@ def warning_log(warning):
     log = date
     datei.close()  
 
-# Qr-code generator
-if not os.path.exists("./static/img/qr.png"):
-    img = qrcode.make('127.0.0.1:5000')
-    type(img)
-    img.save("./static/img/qr.png")
-else:
-    warning_log("QR-Code ist bereits vorhanden")
+# Qr-code generator#
+def create_qr(id):
+    if not os.path.exists("./static/img/qr.png"):
+        img = qrcode.make(f'127.0.0.1:5000/session/{id}')
+        type(img)
+        img.save("./static/img/qr.png")
+    else:
+        warning_log("QR-Code ist bereits vorhanden")
 
 #Hauptseite
 @app.route("/")
@@ -225,7 +226,7 @@ def get_creat_session():
     log_server("called /get_creat_session with POST")
     sessionname = request.form['sessionname']
     sessionID = request.form['sessionid']
-    l = f"INSERT INTO seession VALUES(  \'{sessionID}\', \'{sessionname}\');"
+    l = f"INSERT INTO seession VALUES(  \'{sessionID}\', \'{sessionname}\', '0', '0', 'online','public');"
     log_server("neue Session")
     try:
          con = sqlite3.connect("party.db")
@@ -234,8 +235,21 @@ def get_creat_session():
          cur.execute(l) 
          con.commit()
          con.close()
+         
+         try:
+            con = sqlite3.connect("party.db")
+            warning_log("verbindung mit db wurde aufgenommen")
+            cur = con.cursor()
+            l = f"INSERT INTO user VALUES ('admin', \'{sessionID}\', 'admin');"
+            cur.execute(l) 
+            con.commit()
+            con.close()
+         except:
+            warning_log("user admin konnte nicht angelegt werden")
+       
          user_count = +1
          starttime = int(zeit)
+         create_qr(sessionID)
          return redirect(f'/session/{sessionID}')  
          log_server("session successfully started")
     except:
