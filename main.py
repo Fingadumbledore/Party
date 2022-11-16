@@ -226,7 +226,7 @@ def get_creat_session():
             con = sqlite3.connect("party.db")
             warning_log("verbindung mit db wurde aufgenommen")
             cur = con.cursor()
-            l = f"INSERT INTO user VALUES ('1', 'admin', \'{sessionID}\', 'admin');"
+            l = f"INSERT INTO user VALUES ('admin', \'{sessionID}\', 'admin');"
             cur.execute(l) 
             con.commit()
             con.close()
