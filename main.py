@@ -223,7 +223,10 @@ def get_creat_session():
             con = sqlite3.connect("party.db")
             warning_log("verbindung mit db wurde aufgenommen")
             cur = con.cursor()
-            l = f"INSERT INTO user VALUES ('admin', \'{sessionID}\', 'admin');"
+            username = "Host"
+            usertype = "admin"
+            userId = 1
+            l = f"INSERT INTO user VALUES (\'{userId}\', \'{username}\', \'{sessionID}\', \'{usertype}\');"
             cur.execute(l) 
             con.commit()
             con.close()
@@ -347,8 +350,9 @@ def new():
     username = request.form['username']
     sessionId = request.form['sessionID']
     userId = request.form['sessionID']
+    info = "normal"
     userstatus = "normal"
-    l = f"INSERT INTO user VALUES \'{userid}\',\'{username}\',\'{sessionId}\';"
+    l = f"INSERT INTO user VALUES \'{userid}\',\'{username}\',\'{sessionId}\',\'{info}\';"
     account = dbcon(l)
     if account:
         session['loggedin'] = True
