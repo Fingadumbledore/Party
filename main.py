@@ -77,12 +77,6 @@ def index():
     log_server("called /")
     return render_template("index.html")
 
-@app.route("/passwd")
-def passwd():
-    log_server("called /passwd")
-    return render_template("passwd.html")
-
-
 #Chat
 @app.route("/chat")
 def chat():
@@ -91,7 +85,7 @@ def chat():
         return render_template("chat.html")
     else:
          warning_log(" called /chat without being logged in")
-         return render_template('/passwd')
+         return render_template("passwd.html")
 #Neue Nachrichten
 @app.route("/get_chat", methods=['POST'])
 def get_chat():
@@ -113,7 +107,7 @@ def get_chat():
         return render_template("chat.html")
     else:
          warning_log(" called /get_chat without being logged in")
-         return render_template('/passwd')
+         return "{ \"message\": \"you need to login\"'}"
 
 @app.route("/get_game_file", methods=['POST'])
 def get_game_file():
@@ -135,7 +129,7 @@ def message():
         return render_template("message.html")
     else:
          warning_log(" called /message without being logged in")
-         return render_template('/passwd')
+         return render_template('passwd.html')
 
 #planer
 @app.route("/planer")
@@ -153,7 +147,7 @@ def planer():
         return render_template("planer.html", asd=asd)
     else:
          warning_log(" called /planer without being logged in")
-         return render_template('/passwd')
+         return render_template('passwd.html')
 
 @app.route("/get_planer", methods=['POST'])
 def get_planer():
@@ -187,7 +181,7 @@ def session(id):
         return render_template("session.html")
     else:
          warning_log(" called /session without being logged in")
-         return render_template('/passwd')
+         return render_template('passwd.html')
 
 @app.route("/logout")
 def logout():
@@ -266,7 +260,7 @@ def stopuhr():
         return render_template()
     else:
          warning_log(" called /stopuhr without being logged in")
-         return render_template('/passwd')
+         return render_template('passwd.html')
 
 @app.route("/get_event", methods=['POST'])
 def get_event():
@@ -288,7 +282,7 @@ def get_event():
         return render_template("login.html")
     else:
          warning_log(" called /get_event without being logged in")
-         return render_template('/passwd')
+         return render_template('passwd.html')
 
 @app.route("/controll")
 def controll():
@@ -297,7 +291,7 @@ def controll():
         return render_template("controll.html")
     else:
          warning_log(" called /controll without being logged in")
-         return render_template('/passwd')
+         return render_template('passwd.html')
 
 @app.route("/game")
 def game():
@@ -306,7 +300,7 @@ def game():
         return render_template("game.html")
     else:
          warning_log(" called /game without being logged in")
-         return render_template('/passwd')
+         return render_template('passwd.html')
 
 @app.route("/willkommen")
 def willkommen():
@@ -318,7 +312,7 @@ def willkommen():
       return render_template("willkommen.html", die=die)
     else:
          warning_log(" called /willkommen without being logged in")
-         return render_template('/passwd')
+         return render_template('passwd.html')
 
 @app.route("/seession")
 def seession():
@@ -331,7 +325,7 @@ def seession():
         return render_template("seesion.html", das=user_count, er=creator, der=uptime())
     else:
          warning_log(" called /seession without being logged in")
-         return render_template('/passwd')
+         return render_template('passwd.html')
 
 @app.route("/rgb")
 def rgb():
@@ -340,7 +334,7 @@ def rgb():
         return render_template("404.html")
     else:
          warning_log(" called /rgb without being logged in")
-         return render_template('/passwd')
+         return render_template('passwd.html')
 
 @app.route("/get_login", methods=['POST'])
 def get_login():
