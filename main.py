@@ -77,12 +77,6 @@ def index():
     log_server("called /")
     return render_template("index.html")
 
-@app.route("/passwd")
-def passwd():
-    log_server("called /passwd")
-    return render_template("passwd.html")
-
-
 #Chat
 @app.route("/chat")
 def chat():
@@ -91,7 +85,7 @@ def chat():
         return render_template("chat.html")
     else:
          warning_log(" called /chat without being logged in")
-         return render_template('/passwd')
+         return render_template("passwd.html")
 #Neue Nachrichten
 @app.route("/get_chat", methods=['POST'])
 def get_chat():
@@ -114,7 +108,7 @@ def get_chat():
         return render_template("chat.html")
     else:
          warning_log(" called /get_chat without being logged in")
-         return render_template('/passwd')
+         return "{ \"message\": \"you need to login\"'}"
 
 @app.route("/get_game_file", methods=['POST'])
 def get_game_file():
@@ -137,7 +131,7 @@ def message():
         return render_template("message.html")
     else:
          warning_log(" called /message without being logged in")
-         return render_template('/passwd')
+         return render_template('passwd.html')
 
 #planer
 @app.route("/planer")
@@ -156,7 +150,7 @@ def planer():
         return render_template("planer.html", asd=asd)
     else:
          warning_log(" called /planer without being logged in")
-         return render_template('/passwd')
+         return render_template('passwd.html')
 
 @app.route("/get_planer", methods=['POST'])
 def get_planer():
@@ -164,8 +158,10 @@ def get_planer():
         log_server("called /get_planer")
         log_server("called /get_planer with POST")
         event = request.form['event']
+        sessionID = request.form['sessionID']
         zeit = request.form['zeit']
-        l = f"INSERT INTO planer VALUES(  \'{event}\', \'{zeit}\');"
+        pfad = "/session/" + sessionID
+        l = f"INSERT INTO planer VALUES(  \'{event}\', \'{zeit}\', \'{sessionID}\');"
         log_server("neues Event")
         try:
             con = sqlite3.connect("party.db")
@@ -177,10 +173,10 @@ def get_planer():
             log_server("event entered successfully /get_planer")
         except:
             error_log("unable to insert event")
-        return render_template("planer.html")
+        return "{ \"message\": \"planer\"'}"
     else:
          warning_log(" called /get_planer without being logged in")
-         return render_template('/passwd')
+         return render_template('404.html')
 
 @app.route("/session/<id>")
 def session(id):
@@ -189,7 +185,7 @@ def session(id):
         return render_template("session.html")
     else:
          warning_log(" called /session without being logged in")
-         return render_template('/passwd')
+         return render_template('passwd.html')
 
 @app.route("/mate", methods=['POST'])
 def mate():
@@ -240,7 +236,10 @@ def get_creat_session():
             con = sqlite3.connect("party.db")
             warning_log("verbindung mit db wurde aufgenommen")
             cur = con.cursor()
-            l = f"INSERT INTO user VALUES ('admin', \'{sessionID}\', 'admin');"
+            username = "Host"
+            usertype = "admin"
+            userId = 1
+            l = f"INSERT INTO user VALUES (\'{userId}\', \'{username}\', \'{sessionID}\', \'{usertype}\');"
             cur.execute(l) 
             con.commit()
             con.close()
@@ -280,7 +279,7 @@ def stopuhr():
         return render_template()
     else:
          warning_log(" called /stopuhr without being logged in")
-         return render_template('/passwd')
+         return render_template('passwd.html')
 
 @app.route("/get_event", methods=['POST'])
 def get_event():
@@ -303,7 +302,7 @@ def get_event():
         return render_template("login.html")
     else:
          warning_log(" called /get_event without being logged in")
-         return render_template('/passwd')
+         return render_template('passwd.html')
 
 @app.route("/controll")
 def controll():
@@ -312,7 +311,7 @@ def controll():
         return render_template("controll.html")
     else:
          warning_log(" called /controll without being logged in")
-         return render_template('/passwd')
+         return render_template('passwd.html')
 
 @app.route("/game")
 def game():
@@ -321,7 +320,9 @@ def game():
         return render_template("game.html")
     else:
          warning_log(" called /game without being logged in")
-         return render_template('/passwd')
+
+         return render_template('passwd.html')
+
 
 @app.route("/seession")
 def seession():
@@ -335,7 +336,7 @@ def seession():
         return render_template("seesion.html", das=user_count, er=creator, der=uptime())
     else:
          warning_log(" called /seession without being logged in")
-         return render_template('/passwd')
+         return render_template('passwd.html')
 
 @app.route("/rgb")
 def rgb():
@@ -344,7 +345,7 @@ def rgb():
         return render_template("404.html")
     else:
          warning_log(" called /rgb without being logged in")
-         return render_template('/passwd')
+         return render_template('passwd.html')
 
 @app.route("/get_login", methods=['POST'])
 def get_login():
@@ -371,8 +372,9 @@ def new():
     username = request.form['username']
     sessionId = request.form['sessionID']
     userId = request.form['sessionID']
+    info = "normal"
     userstatus = "normal"
-    l = f"INSERT INTO user VALUES \'{userid}\',\'{username}\',\'{sessionId}\';"
+    l = f"INSERT INTO user VALUES \'{userid}\',\'{username}\',\'{sessionId}\',\'{info}\';"
     account = dbcon(l)
     if account:
         session['loggedin'] = True
