@@ -302,18 +302,6 @@ def game():
          warning_log(" called /game without being logged in")
          return render_template('passwd.html')
 
-@app.route("/willkommen")
-def willkommen():
-    if session:
-      con = sqlite3.connect("party.db")
-      cur = con.cursor()
-      die = cur.execute("SELECT sessionname FROM seession").fetchall()
-      log_server("called /willkommen")
-      return render_template("willkommen.html", die=die)
-    else:
-         warning_log(" called /willkommen without being logged in")
-         return render_template('passwd.html')
-
 @app.route("/seession")
 def seession():
     if session:
