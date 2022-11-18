@@ -5,3 +5,4 @@ CREATE TABLE chat (sessionID INTEGER, userID INTEGER, chatmessage TEXT, ZEIT TEX
 CREATE TABLE game (sessionID INTEGER, userID INTEGER, Spielname TEXT, Spielaktivität TEXT, ZEIT TEXT);
 CREATE TABLE uploadgame (sessionID INTEGER, userID INTEGER, Spielname TEXT, Spielstand TEXT);
 CREATE TABLE planer (eventname TEXT, eventzeit TEXT, sessionID INTEGER);
+CREATE TABLE mate (matename TEXT, mateanzahl INTEGER, sessionID INTEGER);
