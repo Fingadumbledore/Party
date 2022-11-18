@@ -161,8 +161,10 @@ def get_planer():
         log_server("called /get_planer")
         log_server("called /get_planer with POST")
         event = request.form['event']
+        sessionID = request.form['sessionID']
         zeit = request.form['zeit']
-        l = f"INSERT INTO planer VALUES(  \'{event}\', \'{zeit}\');"
+        pfad = "/session/" + sessionID
+        l = f"INSERT INTO planer VALUES(  \'{event}\', \'{zeit}\', \'{sessionID}\');"
         log_server("neues Event")
         try:
             con = sqlite3.connect("party.db")
@@ -173,10 +175,10 @@ def get_planer():
             con.close()
         except:
             error_log("unable to insert event")
-        return render_template("planer.html")
+        return "{ \"message\": \"planer\"'}"
     else:
          warning_log(" called /get_planer without being logged in")
-         return render_template('/passwd')
+         return render_template('404.html')
 
 @app.route("/session/<id>")
 def session(id):
