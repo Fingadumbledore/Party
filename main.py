@@ -77,7 +77,6 @@ def index():
     log_server("called /")
     return render_template("index.html")
 
-
 #Neue Nachrichten
 @app.route("/get_chat", methods=['POST'])
 def get_chat():
@@ -126,24 +125,6 @@ def message():
          return render_template('passwd.html')
 
 #planer
-@app.route("/planer")
-def planer():
-    if session:
-        try:
-            con = sqlite3.connect("party.db")
-            cur = con.cursor()
-            l = f"SELECT * FROM planer;"
-            asd = cur.execute(l)
-            con.commit()
-            log_server("sql run successfully /planer")
-        except:
-            error_log("unabel to execute sql in /planer")
-        log_server("called /planer")
-        return render_template("planer.html", asd=asd)
-    else:
-         warning_log(" called /planer without being logged in")
-         return render_template('passwd.html')
-
 @app.route("/get_planer", methods=['POST'])
 def get_planer():
     if session:
@@ -327,20 +308,6 @@ def game():
 
          return render_template('passwd.html')
 
-
-@app.route("/seession")
-def seession():
-    if session:
-        con = sqlite3.connect("party.db")
-        warning_log("Verbindung mit Datenbank wurde aufgenommen /seession")
-        cur = con.cursor()
-        creator = cur.execute("SELECT username FROM user WHERE info = 'creator'").fetchall()
-        cur.close()
-        log_server("called /seession")
-        return render_template("seesion.html", das=user_count, er=creator, der=uptime())
-    else:
-         warning_log(" called /seession without being logged in")
-         return render_template('passwd.html')
 
 @app.route("/rgb")
 def rgb():
