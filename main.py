@@ -77,15 +77,6 @@ def index():
     log_server("called /")
     return render_template("index.html")
 
-#Chat
-@app.route("/chat")
-def chat():
-    if session:
-        log_server("called /chat")
-        return render_template("chat.html")
-    else:
-         warning_log(" called /chat without being logged in")
-         return render_template("passwd.html")
 #Neue Nachrichten
 @app.route("/get_chat", methods=['POST'])
 def get_chat():
@@ -134,24 +125,6 @@ def message():
          return render_template('passwd.html')
 
 #planer
-@app.route("/planer")
-def planer():
-    if session:
-        try:
-            con = sqlite3.connect("party.db")
-            cur = con.cursor()
-            l = f"SELECT * FROM planer;"
-            asd = cur.execute(l)
-            con.commit()
-            log_server("sql run successfully /planer")
-        except:
-            error_log("unabel to execute sql in /planer")
-        log_server("called /planer")
-        return render_template("planer.html", asd=asd)
-    else:
-         warning_log(" called /planer without being logged in")
-         return render_template('passwd.html')
-
 @app.route("/get_planer", methods=['POST'])
 def get_planer():
     if session:
@@ -182,7 +155,19 @@ def get_planer():
 def session(id):
     if session:
         log_server(f"called /session/{id}")
-        return render_template("session.html")
+        con = sqlite3.connect("party.db")
+        cur = con.cursor()
+        l = f"SELECT eventname, eventzeit FROM planer WHERE sessionID = \'{id}\' ORDER BY eventzeit;"
+        asd = cur.execute(l)
+        con.commit()
+
+        con = sqlite3.connect("party.db")
+        warning_log("Verbindung mit Datenbank wurde aufgenommen /seession")
+        cur = con.cursor()
+        creator = cur.execute("SELECT username FROM user WHERE info = 'creator'").fetchall()
+        cur.close()
+
+        return render_template("session.html", asd=asd, das=user_count, er=creator, der=uptime())
     else:
          warning_log(" called /session without being logged in")
          return render_template('passwd.html')
@@ -324,20 +309,6 @@ def game():
          return render_template('passwd.html')
 
 
-@app.route("/seession")
-def seession():
-    if session:
-        con = sqlite3.connect("party.db")
-        warning_log("Verbindung mit Datenbank wurde aufgenommen /seession")
-        cur = con.cursor()
-        creator = cur.execute("SELECT username FROM user WHERE info = 'creator'").fetchall()
-        cur.close()
-        log_server("called /seession")
-        return render_template("seesion.html", das=user_count, er=creator, der=uptime())
-    else:
-         warning_log(" called /seession without being logged in")
-         return render_template('passwd.html')
-
 @app.route("/rgb")
 def rgb():
     if session:
@@ -397,4 +368,6 @@ def create_app(config_filename):
     app.register_error_handler(404, page_not_found)
     log_server("created app")
     return app
-   
+
+# Use this line to run it localy
+#app.run(host="ip", port=80)  
