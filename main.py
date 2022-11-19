@@ -157,7 +157,7 @@ def session(id):
         log_server(f"called /session/{id}")
         con = sqlite3.connect("party.db")
         cur = con.cursor()
-        l = f"SELECT * FROM planer WHERE sessionID = \'{id}\' ORDER BY eventzeit;"
+        l = f"SELECT eventname, eventzeit FROM planer WHERE sessionID = \'{id}\' ORDER BY eventzeit;"
         asd = cur.execute(l)
         con.commit()
 
