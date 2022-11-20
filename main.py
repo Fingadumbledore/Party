@@ -167,7 +167,13 @@ def session(id):
         creator = cur.execute("SELECT username FROM user WHERE info = 'creator'").fetchall()
         cur.close()
 
-        return render_template("session.html", asd=asd, das=user_count, er=creator, der=uptime())
+        con = sqlite3.connect("party.db")
+        cur = con.cursor()
+        l = f"SELECT userID, Spielname, Spielaktivität, ZEIT FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
+        dsa = cur.execute(l).fetchall()
+        con.commit()
+
+        return render_template("session.html", asd=asd, das=user_count, er=creator, der=uptime(), dsa=dsa)
     else:
          warning_log(" called /session without being logged in")
          return render_template('passwd.html')
