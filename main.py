@@ -160,6 +160,7 @@ def session(id):
         l = f"SELECT eventname, eventzeit FROM planer WHERE sessionID = \'{id}\' ORDER BY eventzeit;"
         asd = cur.execute(l).fetchall()
         con.commit()
+        cur.close()
 
         con = sqlite3.connect("party.db")
         warning_log("Verbindung mit Datenbank wurde aufgenommen /seession")
@@ -170,10 +171,11 @@ def session(id):
         con = sqlite3.connect("party.db")
         cur = con.cursor()
         l = f"SELECT userID, Spielname, Spielaktivität, ZEIT FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
-        dsa = cur.execute(l).fetchall()
+        game = cur.execute(l).fetchall()
         con.commit()
+        cur.close()
 
-        return render_template("session.html", asd=asd, das=user_count, er=creator, der=uptime(), dsa=dsa)
+        return render_template("session.html", asd=asd, game=game, das=user_count, er=creator, der=uptime())
     else:
          warning_log(" called /session without being logged in")
          return render_template('passwd.html')
