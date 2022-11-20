@@ -158,7 +158,7 @@ def session(id):
         con = sqlite3.connect("party.db")
         cur = con.cursor()
         l = f"SELECT eventname, eventzeit FROM planer WHERE sessionID = \'{id}\' ORDER BY eventzeit;"
-        asd = cur.execute(l)
+        asd = cur.execute(l).fetchall()
         con.commit()
 
         con = sqlite3.connect("party.db")
