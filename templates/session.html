@@ -41,13 +41,14 @@
 	       <a onclick= "change_div('_controll')">
 		  <button class="btn btn-primary btn-lg">Settings</button>
 	       </a>
+		   <a onclick= "change_div('_mate')">
+			<button class="btn btn-primary btn-lg">Mate</button>
+			</a>
 	      <div hidden class="tmplt_tab" id="_planer">
 		 
 				 {% block content %}
-				 {% for post in asd %}
 				 <p>{{ asd }}</p>
 				 <hr>
-				 {% endfor %}
 		
 				 <p>Füge ein Event ein</p>
 				 <form class="modal-content animate" action="/get_planer" method="POST">  
@@ -105,6 +106,17 @@
 		    </div>   
 		 </form>
 	      </div>
+		  <div hidden class="tmplt_tab" id="_mate">
+			<form class="modal-content animate" action="http://127.0.0.1:5000/mate" method="POST">  
+			   <div class="container" style="margin-top: 2em" >
+				  <input type="text" placeholder="Mate Flaschen Anzahl" name="mateFlaschen" required>
+				  <input type="text" placeholder="Mate Marke" name="mateSorte" required> 
+				  <button type="submit"> 	
+				 &#10148;
+				  </button>         
+			   </div>   
+			</form>
+			 </div>
 	      <div hidden class="tmplt_tab" id="_seession">
 		 <h1> Session Information</h1>
 		 <label>User Anzahl, Uptime, Creator & Anzahl Mateflaschen:</label>
@@ -132,7 +144,7 @@
 		 </div>
 
 		 <button onclick="save()">&#x1F4BE;</button>
-	      </center>
+	    </center>
 	       
 	      
 	  <!--  <center><iframe id="ifr" src="/willkommen" width="900" height="800" frameBorder="0" src= pfad></iframe></center>-->

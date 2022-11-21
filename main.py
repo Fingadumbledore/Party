@@ -183,7 +183,19 @@ def session(id):
 @app.route("/mate", methods=['POST'])
 def mate():
     if session:
+        mateFlaschen =  request.form['mateFlaschen']
+        mateSorte = request.form['mateSorte']
+        mateSql = f"INSERT INTO mate VALUES (\"{mateSorte}\", {mateFlaschen}, {session});"
+        try:
+            con = sqlite3.connect("party.db")
+            cur = con.cursor()
+            cur.execute(mateSql)
+            con.commit()
+            con.close()
+        except sqlite3.Error as e:
+            error_log(f"error while executing sql: {e}")
         log_server("called /mate")
+        
         return render_template("404.html")
     else:
          warning_log(" called /mate without being logged in")
