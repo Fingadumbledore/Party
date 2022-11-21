@@ -184,6 +184,7 @@ def session(id):
 def mate():
     if session:
         log_server("called /mate")
+        
         return render_template("404.html")
     else:
          warning_log(" called /mate without being logged in")
