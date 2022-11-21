@@ -186,6 +186,14 @@ def mate():
         mateFlaschen =  request.form['mateFlaschen']
         mateSorte = request.form['mateSorte']
         mateSql = f"INSERT INTO mate VALUES (\"{mateSorte}\", {mateFlaschen}, {session});"
+        try:
+            con = sqlite3.connect("party.db")
+            cur = con.cursor()
+            cur.execute(mateSql)
+            con.commit()
+            con.close()
+        except e:
+            log_server(f"error while executing sql: {e}")
         log_server("called /mate")
         
         return render_template("404.html")
