@@ -182,6 +182,7 @@ def session(id):
 
 @app.route("/mate", methods=['POST'])
 def mate():
+    log_server("called /mate")
     if session:
         mateFlaschen =  request.form['mateFlaschen']
         mateSorte = request.form['mateSorte']
@@ -194,7 +195,7 @@ def mate():
             con.close()
         except sqlite3.Error as e:
             error_log(f"error while executing sql: {e}")
-        log_server("called /mate")
+        
         
         return render_template("404.html")
     else:
