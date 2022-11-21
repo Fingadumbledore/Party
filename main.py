@@ -192,8 +192,8 @@ def mate():
             cur.execute(mateSql)
             con.commit()
             con.close()
-        except e:
-            log_server(f"error while executing sql: {e}")
+        except:
+            log_server(f"error while executing sql")
         log_server("called /mate")
         
         return render_template("404.html")
