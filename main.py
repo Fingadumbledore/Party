@@ -183,6 +183,7 @@ def session(id):
 @app.route("/mate", methods=['POST'])
 def mate():
     if session:
+        mateFlasche =  request.form['mateFlaschen']
         log_server("called /mate")
         
         return render_template("404.html")
