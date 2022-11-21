@@ -183,7 +183,9 @@ def session(id):
 @app.route("/mate", methods=['POST'])
 def mate():
     if session:
-        mateFlasche =  request.form['mateFlaschen']
+        mateFlaschen =  request.form['mateFlaschen']
+        mateSorte = request.form['mateSorte']
+        mateSql = f"INSERT INTO mate VALUES (\"{mateSorte}\", {mateFlaschen}, {session});"
         log_server("called /mate")
         
         return render_template("404.html")
