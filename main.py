@@ -190,10 +190,12 @@ def mate():
         mateSql = f"INSERT INTO mate VALUES (\"{mateSorte}\", \'{mateFlaschen}\', \'{session}\');"
         try:
             con = sqlite3.connect("party.db")
+            warning_log("Verbindung mit Datenbank wurde aufgenommen /mate")
             cur = con.cursor()
             cur.execute(mateSql)
             con.commit()
             con.close()
+            log_server("mate wurde in Datenbank eingefügt")
         except sqlite3.Error as e:
             error_log(f"error while executing sql: {e}")
         return render_template("404.html")
