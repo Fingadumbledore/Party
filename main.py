@@ -146,7 +146,8 @@ def get_planer():
             log_server("event entered successfully /get_planer")
         except:
             error_log("unable to insert event")
-        return "{ \"message\": \"planer\"'}"
+        return redirect(f'/session/{sessionID}')
+
     else:
          warning_log(" called /get_planer without being logged in")
          return render_template('404.html')
@@ -229,7 +230,7 @@ def get_creat_session():
     log_server("called /get_creat_session with POST")
     sessionname = request.form['sessionname']
     sessionID = request.form['sessionid']
-    l = f"INSERT INTO seession VALUES(  \'{sessionID}\', \'{sessionname}\', '0', '0', 'online','public');"
+    l = f"INSERT INTO seession VALUES(  \'{sessionID}\', \'{sessionname}\', 'online','public');"
     log_server("neue Session")
     try:
          con = sqlite3.connect("party.db")
@@ -366,9 +367,14 @@ def new():
     sessionId = request.form['sessionID']
     userId = request.form['sessionID']
     info = "normal"
-    userstatus = "normal"
     l = f"INSERT INTO user VALUES \'{userid}\',\'{username}\',\'{sessionId}\',\'{info}\';"
-    account = dbcon(l)
+    con = sqlite3.connect("party.db")
+    warning_log("verbindung mit db wurde aufgenommen")
+    cur = con.cursor()
+    cur.execute(l) 
+    con.commit()
+    con.close()
+    account = True
     if account:
         session['loggedin'] = True
         user_count = +1
