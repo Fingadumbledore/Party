@@ -35,15 +35,16 @@
 	       <a onclick= "change_div('_chat')">
 		  <button class="btn btn-primary btn-lg">Chat</button>
 	       </a>
+		   <a onclick= "change_div('_mate')">
+			<button class="btn btn-primary btn-lg">Mate</button>
+			</a>
 	       <a onclick= "change_div('_seession')">
 		  <button class="btn btn-primary btn-lg">Session</button>
 	       </a>
 	       <a onclick= "change_div('_controll')">
 		  <button class="btn btn-primary btn-lg">Settings</button>
 	       </a>
-		   <a onclick= "change_div('_mate')">
-			<button class="btn btn-primary btn-lg">Mate</button>
-			</a>
+		  
 	      <div hidden class="tmplt_tab" id="_planer">
 		 
 				 {% block content %}
@@ -75,7 +76,8 @@
 			     <input type="text" placeholder="parcour" name="art" required> 
 
 			     <button type="submit">&#10133;</button>   
-			     <button type="submit">&#128193;</button>  
+			  
+				<input type="file" name="file">    
 			  </div>  
 		       </form> 
 		    </center>
