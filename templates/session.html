@@ -12,57 +12,55 @@
 	<body>
 	  <a href="http://127.0.0.1:5000/logout">
 	    <button class="btn btn-primary btn-lg">Logout</button>
-	   </a>
-	      </div>
-
-	       <label class="switch">
-		 <input type="checkbox" onclick="myFunction()">
-		 <span class="slider round"></span>
-	       </label>
-	       <script>
-		 function myFunction() {
+	  </a>
+    </div>
+		<label class="switch">
+			<input type="checkbox" onclick="myFunction()">
+			<span class="slider round"></span>
+	  </label>
+	  <script>
+			function myFunction() {
 		    var element = document.body;
 		    element.classList.toggle("dark-mode");
-		 }
+			}
 		 </script>
-	       <center>
-	       <a onclick= "change_div('_planer')">
-		  <button class="btn btn-primary btn-lg">Planer</button>
-	       </a>
-	       <a onclick= "change_div('_game')">
-		  <button class="btn btn-primary btn-lg">Game</button>
-	       </a>
-	       <a onclick= "change_div('_chat')">
-		  <button class="btn btn-primary btn-lg">Chat</button>
-	       </a>
-	       <a onclick= "change_div('_seession')">
-		  <button class="btn btn-primary btn-lg">Session</button>
-	       </a>
-	       <a onclick= "change_div('_controll')">
-		  <button class="btn btn-primary btn-lg">Settings</button>
-	       </a>
-		   <a onclick= "change_div('_mate')">
-			<button class="btn btn-primary btn-lg">Mate</button>
+     <center>
+	    <a onclick= "change_div('_planer')">
+			  <button class="btn btn-primary btn-lg">Planer</button>
 			</a>
-	      <div hidden class="tmplt_tab" id="_planer">
-		 
-				 {% block content %}
-				 <p>{{ asd }}</p>
-				 <hr>
+	    <a onclick= "change_div('_game')">
+			  <button class="btn btn-primary btn-lg">Game</button>
+	    </a>
+	    <a onclick= "change_div('_chat')">
+			  <button class="btn btn-primary btn-lg">Chat</button>
+	    </a>
+			<a onclick= "change_div('_seession')">
+			  <button class="btn btn-primary btn-lg">Session</button>
+			</a>
+			<a onclick= "change_div('_controll')">
+				<button class="btn btn-primary btn-lg">Settings</button>
+			</a>
+			<a onclick= "change_div('_mate')">
+				<button class="btn btn-primary btn-lg">Mate</button>
+			</a>
+      <div hidden class="tmplt_tab" id="_planer">
+				{% block content %}
+				<p>{{ asd }}</p>
+				<hr>
 		
-				 <p>Füge ein Event ein</p>
-				 <form class="modal-content animate" action="/get_planer" method="POST">  
-				    <div class="container">   
-				       <input type="text" placeholder="Tomb Raider spielen" name="event" required> 
-					   <input type="text" placeholder="sessionID" name="sessionID" required>  
-				       <input type="time" placeholder="15:30" name="zeit" required>  
-				       <button type="submit">&#10133;</button>        
-				    </div>  
+				<p>Füge ein Event ein</p>
+				<form class="modal-content animate" action="/get_planer" method="POST">  
+				  <div class="container">   
+				    <input type="text" placeholder="Tomb Raider spielen" name="event" required> 
+					  <input type="text" placeholder="sessionID" name="sessionID" required>  
+				    <input type="time" placeholder="15:30" name="zeit" required>  
+				    <button type="submit">&#10133;</button>        
+				   </div>  
 				 </form> 
-	      </div>
-	      <div hidden class="tmplt_tab" id="_game">
+      </div>
+      <div hidden class="tmplt_tab" id="_game">
 		
-		 <div class="wrapper">
+		  <div class="wrapper">
 		    <center>
 		       <p><span id="seconds">00</span>:<span id="tens">00</span></p>
 		       <button id="button-start">Start</button>
@@ -73,40 +71,35 @@
 			     </br>
 			     <input type="text" placeholder="Tomb Raider" name="spiel" required>  
 			     <input type="text" placeholder="parcour" name="art" required> 
-
 			     <button type="submit">&#10133;</button>   
 			     <button type="submit">&#128193;</button>  
 			  </div>  
-		       </form> 
-		    </center>
-		 </div> 
-		 <div id="statistik">
-		
-		    
-			{% for post in game %}
+      </form> 
+    </center>
+	</div> 
+	<div id="statistik">
+		{% for post in game %}
 			<p>{{ game }}</p>
 			<hr>
-			{% endfor %}
-		  
-		 </div>
-	      </div>
-	      <div hidden class="tmplt_tab" id="_chat">
-		
-		 <iframe id="ifr" src="/message" width="800" height="450" frameBorder="0"></iframe>
-		 <div id="userNameEntryDiv">
-		     <input type="text" placeholder="Username..." id="userNameEntry">
-		     <button id="chatUsernameButton" onclick="join_chat()">Join chat</button>
-		 </div>
-		 <form class="modal-content animate" action="http://127.0.0.1:5000/chat" method="POST">  
-		    <div class="container">     
-		       <input type="text" placeholder="Hallo Welt" name="message" required>  
-		       <button type="submit"> 	
-			  &#10148;
-		       </button>         
-		    </div>   
-		 </form>
-	      </div>
-		  <div hidden class="tmplt_tab" id="_mate">
+		{% endfor %}
+ 	  </div>
+	</div>
+	<div hidden class="tmplt_tab" id="_chat">
+	  <iframe id="ifr" src="/message" width="800" height="450" frameBorder="0"></iframe>
+	  <div id="userNameEntryDiv">
+	    <input type="text" placeholder="Username..." id="userNameEntry">
+	    <button id="chatUsernameButton" onclick="join_chat()">Join chat</button>
+	  </div>
+ 	  <form class="modal-content animate" action="http://127.0.0.1:5000/chat" method="POST">  
+	    <div class="container">     
+		    <input type="text" placeholder="Hallo Welt" name="message" required>  
+		    <button type="submit"> 	
+				  &#10148;
+		    </button>         
+		  </div>   
+		</form>
+  </div>
+  <div hidden class="tmplt_tab" id="_mate">
 			<form class="modal-content animate" action="http://127.0.0.1:5000/mate" method="POST">  
 			   <div class="container" style="margin-top: 2em" >
 				  <input type="text" placeholder="Mate Flaschen Anzahl" name="mateFlaschen" required>
@@ -141,30 +134,21 @@
 		 <div id="userVerwaltung">
 		    <h3>User Verwaltung</h3>
 		    <p>An dieser Stelle sollen später die User angezeigt werden, und der Session Admin kann diese dann verwalten</p>
-		 </div>
+				</div>
 
-		 <button onclick="save()">&#x1F4BE;</button>
+				<button onclick="save()">&#x1F4BE;</button>
 	    </center>
-	       
-	      
-	  <!--  <center><iframe id="ifr" src="/willkommen" width="900" height="800" frameBorder="0" src= pfad></iframe></center>-->
+
 	    <script>
 		  function change_div(pfad)
 		  {
 					for (var i = 0; i < document.getElementsByClassName("tmplt_tab").length; i++) document.getElementsByClassName("tmplt_tab")[i].hidden = true;
 					console.log(pfad)
 					document.getElementById(pfad).hidden = false;
-		      //let el = document.getElementById(pfad);
-				  //let content = el.content;
-				  //document.body.appendChild(content);
-		      //el.scrollIntoView(true);
 		  }
-
-	      </script>
-
-
-	<script src="{{url_for('static', filename='js/control.js')}}"></script>
-	<script src="{{url_for('static', filename='js/chat.js')}}"></script>
-	<script src="{{url_for('static', filename='js/game.js')}}"></script>
+    </script>
+		<script src="{{url_for('static', filename='js/control.js')}}"></script>
+		<script src="{{url_for('static', filename='js/chat.js')}}"></script>
+		<script src="{{url_for('static', filename='js/game.js')}}"></script>
 	</body>
 </html>
