@@ -87,7 +87,7 @@ def get_chat():
         sessionID = request.form['sessionid']
         message = request.form['message']
         zeit = date
-        l = f"INSERT INTO seession VALUES(  \'{sessionID}\', \'{userID}\',\'{message}\', \'{zeit}\');"
+        l = f"INSERT INTO seession (sessionname, sesionstatus, seessiontyp) VALUES(  \'{sessionID}\', \'{userID}\',\'{message}\', \'{zeit}\');"
         log_server("neue Nachricht")
         try:
             dbcon(l)
@@ -230,7 +230,7 @@ def get_creat_session():
     log_server("called /get_creat_session with POST")
     sessionname = request.form['sessionname']
     sessionID = request.form['sessionid']
-    l = f"INSERT INTO seession VALUES(  \'{sessionID}\', \'{sessionname}\', 'online','public');"
+    l = f"INSERT INTO seession (sessionname, sessionstatus, seessiontyp) VALUES(  \'{sessionname}\', 'online','public');"
     log_server("neue Session")
     try:
          con = sqlite3.connect("party.db")
@@ -247,7 +247,7 @@ def get_creat_session():
             username = "Host"
             usertype = "admin"
             userId = 1
-            l = f"INSERT INTO user VALUES (\'{userId}\', \'{username}\', \'{sessionID}\', \'{usertype}\');"
+            l = f"INSERT INTO user (username, sessionID, info) VALUES (\'{username}\', {sessionID}, \'{usertype}\');"
             cur.execute(l) 
             con.commit()
             con.close()
@@ -367,7 +367,7 @@ def new():
     sessionId = request.form['sessionID']
     userId = request.form['sessionID']
     info = "normal"
-    l = f"INSERT INTO user VALUES \'{userid}\',\'{username}\',\'{sessionId}\',\'{info}\';"
+    l = f"INSERT INTO user(username, sessionID, info) VALUES (\'{username}\',\'{sessionId}\',\'{info}\');"
     con = sqlite3.connect("party.db")
     warning_log("verbindung mit db wurde aufgenommen")
     cur = con.cursor()
