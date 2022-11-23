@@ -181,6 +181,14 @@ def session(id):
          warning_log(" called /session without being logged in")
          return render_template('passwd.html')
 
+def mate_logik(sorte, anzahl):
+    anzahl = anzahl + 1
+    koffeingehalt = 0
+    match sorte:
+        case "Mio Mio":
+            koffeingehalt = 
+
+
 @app.route("/mate", methods=['POST'])
 def mate():
     log_server("called /mate")
@@ -196,6 +204,8 @@ def mate():
             cur.execute(mateSql)
             con.commit()
             con.close()
+
+            mate_logik(mateSorte, mateFlaschen)
             log_server("mate wurde in Datenbank eingefügt")
         except sqlite3.Error as e:
             error_log(f"error while executing sql: {e}")
