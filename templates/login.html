@@ -8,20 +8,20 @@
 
         <style>
             summary::-webkit-details-marker,	
-summary::marker {
-  content:  ""; /* Verwendung des "Pfeil"-Symbols anstelle des Dreiecks */
-  color: rgb(0, 0, 0);
-  font-size: 2em;
-  font-weight: bold;
-  transition: all 0.5s;  
-}	
+            summary::marker {
+              content:  ""; /* Verwendung des "Pfeil"-Symbols anstelle des Dreiecks */
+              color: rgb(0, 0, 0);
+              font-size: 2em;
+              font-weight: bold;
+              transition: all 0.5s;  
+            }	
 
 
-details[open] summary::-webkit-details-marker,
-details[open] summary::marker {
-  content:  "  ";
+            details[open] summary::-webkit-details-marker,
+            details[open] summary::marker {
+              content:  "  ";
 
-}
+            }
         </style>
     </head>
     <body>
@@ -29,70 +29,62 @@ details[open] summary::marker {
         <center>
         <details>
 
-       <summary>
-       <h4>Login</h4>
-    </summary>
+        <summary>
+           <h4>Login</h4>
+        </summary>
      
-<form class="modal-content animate" action="http://127.0.0.1:5000/get_login" method="POST">  
-    <div class="container">   
-        <label>Username : </label>   
-        <input type="text" placeholder="Enter Username" name="username" required>  
-    </br>
-    <label>UserId : </label>   
-    <input type="text" placeholder="Session Id" name="userID" required>  
-    </br>
-        <label>Session Id : </label>   
-        <input type="text" placeholder="Session Id" name="id" required>  
-</br>
-        <button type="submit">Login</button>     
-    </center>   
-    </div>   
-</form>  
-</details>   
+        <form class="modal-content animate" action="http://127.0.0.1:5000/get_login" method="POST">  
+            <div class="container">   
+                <label>Username : </label>   
+                <input type="text" placeholder="Enter Username" name="username" required>  
+            </br>
+            <label>UserId : </label>   
+            <input type="text" placeholder="Session Id" name="userID" required>  
+            </br>
+                <label>Session Id : </label>   
+                <input type="text" placeholder="Session Id" name="id" required>  
+        </br>
+                <button type="submit">Login</button>     
+            </center>   
+            </div>   
+        </form>  
+        </details>   
 
-<center>
-<details>
-    <summary id="test"><h4>User erstellen</h4></summary>
+        <center>
+        <details>
+            <summary id="test"><h4>User erstellen</h4></summary>
 
-<form class="modal-content animate" action="http://127.0.0.1:5000/new" method="POST">  
-    <div class="container">   
-        <label>Username : </label>   
-        <input type="text" placeholder="Enter Username" name="username" required>  
-    </br>
-        <label>UserId : </label>   
-        <input type="text" placeholder="Session Id" name="userID" required>  
-    </br>
-        <label>Session Id : </label>   
-        <input type="text" placeholder="Session Id" name="sessionID" required>  
-    </br>
-    <button type="submit">Login</button>   
+            <form class="modal-content animate" action="http://127.0.0.1:5000/new" method="POST">  
+                <div class="container">   
+                    <label>Username : </label>   
+                    <input type="text" placeholder="Enter Username" name="username" required>  
+                </br>
+                    <label>UserId : </label>   
+                    <input type="text" placeholder="Session Id" name="userID" required>  
+                </br>
+                    <label>Session Id : </label>   
+                    <input type="text" placeholder="Session Id" name="sessionID" required>  
+                </br>
+                <button type="submit">Login</button>   
+                    </center>
+                </div>   
+            </form>   
+        </details>
+        <center>
+            <a href="javascript:history.back()">
+            <button type="button" class="cancelbtn"> Cancel</button>  
         </center>
-    </div>   
-</form>   
-</details>
-<center>
-     
-<a href="javascript:history.back()">
-    <button type="button" class="cancelbtn"> Cancel</button>  
 
-</center>
-<script src="html5-qrcode.min.js"></script>
-<div style="width: 500px" id="reader"></div>
-<script>
-
-var html5QrcodeScanner = new Html5QrcodeScanner(
-    "reader", { fps: 10, qrbox: 250 });
-        
-function onScanSuccess(decodedText, decodedResult) {
-    // Handle on success condition with the decoded text or result.
-    console.log(`Scan result: ${decodedText}`, decodedResult);
-    // ...
-    html5QrcodeScanner.clear();
-    // ^ this will stop the scanner (video feed) and clear the scan area.
-}
-
-html5QrcodeScanner.render(onScanSuccess);
-
-</script>
-</body>     
+        <div style="width: 500px" id="reader"></div>
+        <script src="html5-qrcode.min.js"></script>
+        <script>
+            var html5QrcodeScanner = new Html5QrcodeScanner(
+                "reader", { fps: 10, qrbox: 250 });
+            function onScanSuccess(decodedText, decodedResult) {
+                console.log(`Scan result: ${decodedText}`, decodedResult);
+                html5QrcodeScanner.clear();
+            }
+            html5QrcodeScanner.render(onScanSuccess);
+        </script>
+    </body>     
 </html>  
