@@ -172,7 +172,7 @@ def session(id):
         con = sqlite3.connect("party.db")
         warning_log("Verbindung mit Datenbank wurde aufgenommen /seession")
         cur = con.cursor()
-        mate = cur.execute("SELECT matename, mateanzahl FROM mate WHERE sessionID = \'{id}\'").fetchall()
+        mate = cur.execute("SELECT matename, mateanzahl FROM mate WHERE sessionID = \'{id}\';").fetchall()
         cur.close()
 
         con = sqlite3.connect("party.db")
@@ -206,7 +206,7 @@ def mate():
             log_server("mate wurde in Datenbank eingefügt")
         except sqlite3.Error as e:
             error_log(f"error while executing sql: {e}")
-        return render_template("404.html")
+        return redirect(f'/session/{sessionId}')
     else:
          warning_log(" called /mate without being logged in")
          return render_template('/passwd')
