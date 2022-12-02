@@ -62,6 +62,15 @@ def warning_log(warning):
     log = date
     datei.close()  
 
+# Materechner Logic 
+''''
+def mate_logik(sorte, anzahl):
+    anzahl = anzahl + 1
+    koffeingehalt = 0
+    match sorte:
+        case "Mio Mio":
+            koffeingehalt = '''
+
 # Qr-code generator#
 def create_qr(id):
     if not os.path.exists("./static/img/qr.png"):
