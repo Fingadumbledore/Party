@@ -6,3 +6,4 @@ past_sessions/*
 Sessions_Menu.ui
 *.log
 qr.png
+.sums
