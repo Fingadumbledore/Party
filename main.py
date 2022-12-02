@@ -170,13 +170,19 @@ def session(id):
         cur.close()
 
         con = sqlite3.connect("party.db")
+        warning_log("Verbindung mit Datenbank wurde aufgenommen /seession")
+        cur = con.cursor()
+        mate = cur.execute("SELECT matename, mateanzahl FROM mate WHERE sessionID = \'{id}\';").fetchall()
+        cur.close()
+
+        con = sqlite3.connect("party.db")
         cur = con.cursor()
         l = f"SELECT userID, Spielname, Spielaktivität, ZEIT FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
         game = cur.execute(l).fetchall()
         con.commit()
         cur.close()
 
-        return render_template("session.html", asd=asd, game=game, das=user_count, er=creator, der=uptime())
+        return render_template("session.html", asd=asd, game=game, das=user_count, er=creator, mate=mate, der=uptime())
     else:
          warning_log(" called /session without being logged in")
          return render_template('passwd.html')
@@ -195,8 +201,9 @@ def mate():
 
     if session:
         mateFlaschen =  request.form['mateFlaschen']
+        sessionId =  request.form['sessionID']
         mateSorte = request.form['mateSorte']
-        mateSql = f"INSERT INTO mate VALUES (\"{mateSorte}\", \'{mateFlaschen}\', \'{session}\');"
+        mateSql = f"INSERT INTO mate VALUES (\"{mateSorte}\", \'{mateFlaschen}\', \'{sessionId}\');"
         try:
             con = sqlite3.connect("party.db")
             warning_log("Verbindung mit Datenbank wurde aufgenommen /mate")
@@ -209,7 +216,7 @@ def mate():
             log_server("mate wurde in Datenbank eingefügt")
         except sqlite3.Error as e:
             error_log(f"error while executing sql: {e}")
-        return render_template("404.html")
+        return redirect(f'/session/{sessionId}')
     else:
          warning_log(" called /mate without being logged in")
          return render_template('/passwd')

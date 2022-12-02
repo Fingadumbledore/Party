@@ -47,7 +47,7 @@
       <div hidden class="tmplt_tab" id="_planer">
 				{% block content %}
 				<p>{{ asd }}</p>
-				<hr>
+				
 				<p>Füge ein Event ein</p>
 				<form class="modal-content animate" action="/get_planer" method="POST">  
 				  <div class="container">   
@@ -102,9 +102,11 @@
   </div>
   <div hidden class="tmplt_tab" id="_mate">
 			<form class="modal-content animate" action="http://127.0.0.1:5000/mate" method="POST">  
+				<p>folgende Mateflaschen sind auf Lager {{ game }} </p>
 			   <div class="container" style="margin-top: 2em" >
 				  <input type="text" placeholder="Mate Flaschen Anzahl" name="mateFlaschen" required>
 				  <input type="text" placeholder="Mate Marke" name="mateSorte" required> 
+				  <input type="text" placeholder="SessionID" name="sessionID" required> 
 				  <button type="submit"> 	
 				 &#10148;
 				  </button>         
@@ -113,13 +115,12 @@
 			 </div>
 	      <div hidden class="tmplt_tab" id="_seession">
 		 <h1> Session Information</h1>
-		 <label>User Anzahl, Uptime, Creator & Anzahl Mateflaschen:</label>
 		 <img src="/static/img/user.png" width="60" height="60">
 		
-		    <p>{{das}}</p>
-		    <p>{{der}}</p>
+		    <p>Useranzahl: {{das}}</p>
+		    <p>Uptime: {{der}}</p>
 
-		    <p>{{er}}</p>
+		    <p>Creator: {{er}}</p>
 		    <h1>QR-Code</h1>
 		 {% endblock %}
 
