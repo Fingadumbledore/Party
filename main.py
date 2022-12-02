@@ -193,8 +193,9 @@ def mate():
 
     if session:
         mateFlaschen =  request.form['mateFlaschen']
+        sessionId =  request.form['sessionID']
         mateSorte = request.form['mateSorte']
-        mateSql = f"INSERT INTO mate VALUES (\"{mateSorte}\", \'{mateFlaschen}\', \'{session}\');"
+        mateSql = f"INSERT INTO mate VALUES (\"{mateSorte}\", \'{mateFlaschen}\', \'{sessionId}\');"
         try:
             con = sqlite3.connect("party.db")
             warning_log("Verbindung mit Datenbank wurde aufgenommen /mate")
