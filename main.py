@@ -35,28 +35,28 @@ def uptime():
 
 #log system
 def log_server(log):
-    log = date + log
+    log = date + " " + log
     datei = open('server.log', 'a')
     datei.write('\n' + " " + log)
     log = date
     datei.close()
 
 def error_log(error):
-    error = date + " [ERROR]"+ error
+    error = date + " [ERROR] " + error
     datei = open('server.log', 'a')
     datei.write('\n' + " " + error)
     log = date
     datei.close()  
 
 def problem_log(problem):
-    problem = date + " [PROBLEM]"+ problem
+    problem = date + " [PROBLEM] "+ problem
     datei = open('server.log', 'a')
     datei.write('\n' + " " + problem)
     log = date
     datei.close() 
 
 def warning_log(warning):
-    warning = date + " [WARNING]"+ warning
+    warning = date + " [WARNING] "+ warning
     datei = open('server.log', 'a')
     datei.write('\n' + " " + warning)
     log = date
@@ -172,7 +172,9 @@ def session(id):
         con = sqlite3.connect("party.db")
         warning_log("Verbindung mit Datenbank wurde aufgenommen /seession")
         cur = con.cursor()
-        mate = cur.execute("SELECT matename, mateanzahl FROM mate WHERE sessionID = \'{id}\';").fetchall()
+        l = f"SELECT matename, mateanzahl FROM mate WHERE sessionID = \'{id}\' ORDER BY mateanzahl;"
+        mate = cur.execute(l).fetchall()
+        con.commit()
         cur.close()
 
         con = sqlite3.connect("party.db")
