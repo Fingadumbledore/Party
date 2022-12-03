@@ -63,13 +63,42 @@ def warning_log(warning):
     datei.close()  
 
 # Materechner Logic 
-''''
+
 def mate_logik(sorte, anzahl):
+
+    if  sorte == "Club Mate":
+        koffeingehalt = 100
+
+    if  sorte == "Mio Mate":
+        koffeingehalt = 100
+
+    if  sorte == "Flora Mate":
+        koffeingehalt = 90
+
+    if  sorte == "Mate Mate":
+        koffeingehalt = 150
+
+    if  sorte == "Buenos Mate":
+        koffeingehalt = 100
+
+    if  sorte == "1337 Mate":
+        koffeingehalt = 145
+
+    if  sorte == "Charitea Mate":
+        koffeingehalt = 15
+
+    if  sorte == "Bionade Mate":
+        koffeingehalt = 20
+    '''
     anzahl = anzahl + 1
     koffeingehalt = 0
     match sorte:
         case "Mio Mio":
             koffeingehalt = '''
+
+# mws = mate wirtschafts system
+def mws():
+    return mate
 
 # Qr-code generator#
 def create_qr(id):
@@ -301,18 +330,19 @@ def login():
 def stopuhr():
     if session:
         log_server("called /stopuhr")
-        spielName = request.form['spielname']
+        spielName = request.form['spiel']
+        art = request.form['art']
         zeit = request.form['zeit']
         userId = request.form['userid']
-        sessionId = request.form['sessionid']
-        l = f"INSERT INTO game VALUES(  \'{sessionID}\', \'{userId}\',\'{spielName}\', \'{zeit}\');"
+        sessionId = request.form['sessionID']
+        l = f"INSERT INTO game VALUES(  \'{sessionId}\', \'{userId}\',\'{spielName}\',\'{art}\', \'{zeit}\');"
         try:
             warning_log("verbindung mit Datenbank wurde aufgenommen")
             dbcon(l)
             log_server("time entered successfully /stopuhr")
         except:
             error_log("unable to run sql /stopuhr")
-        return render_template()
+        return redirect(f'/session/{sessionId}')
     else:
          warning_log(" called /stopuhr without being logged in")
          return render_template('passwd.html')

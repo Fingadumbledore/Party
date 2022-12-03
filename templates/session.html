@@ -62,27 +62,31 @@
 		
 		  <div class="wrapper">
 		    <center>
-		       <p><span id="seconds">00</span>:<span id="tens">00</span></p>
-		       <button id="button-start">Start</button>
-		       <button id="button-stop">Stop</button>
-		       <button id="button-reset">Reset</button>
+				<h1><time>00:00:00</time></h1>
+				<button id="strt">start</button>
+				<button id="stp">stop</button>
+				<button id="rst">reset</button>
+				
 		       <form class="modal-content animate" action="http://127.0.0.1:5000/stopuhr" method="POST">  
 			  <div class="container">   
 			     </br>
 			     <input type="text" placeholder="Tomb Raider" name="spiel" required>  
 			     <input type="text" placeholder="parcour" name="art" required> 
+				 <input type="text" placeholder="00:00:40" name="zeit" required> 
+				 <input type="text" placeholder="Session ID" name="sessionID" required> 
+				 <input type="text" placeholder="UserID" name="userid" required> 
+				</br>
 			     <button type="submit">&#10133;</button>   
-			  
+			</br>
 				<input type="file" name="file">    
 			  </div>  
       </form> 
     </center>
 	</div> 
 	<div id="statistik">
-		{% for post in game %}
+	
 			<p>{{ game }}</p>
-			<hr>
-		{% endfor %}
+		
  	  </div>
 	</div>
 	<div hidden class="tmplt_tab" id="_chat">
@@ -101,17 +105,25 @@
 		</form>
   </div>
   <div hidden class="tmplt_tab" id="_mate">
+	<p>folgende Mateflaschen sind auf Lager {{ mate }} </p>
+				<p>Bitte Beachte: Erhöhter Koffeingehalt. Für Kinder und schwangere oder stillende Frauen nicht empfolen</p>
+		<details>
+			<summary id="mate"><h4>Mate hinzufügen</h4></summary>
 			<form class="modal-content animate" action="http://127.0.0.1:5000/mate" method="POST">  
-				<p>folgende Mateflaschen sind auf Lager {{ game }} </p>
+				
 			   <div class="container" style="margin-top: 2em" >
 				  <input type="text" placeholder="Mate Flaschen Anzahl" name="mateFlaschen" required>
+				  </br>
 				  <input type="text" placeholder="Mate Marke" name="mateSorte" required> 
+				</br>
 				  <input type="text" placeholder="SessionID" name="sessionID" required> 
+				</br>
 				  <button type="submit"> 	
-				 &#10148;
+					&#10133;
 				  </button>         
 			   </div>   
 			</form>
+		</details>
 			 </div>
 	      <div hidden class="tmplt_tab" id="_seession">
 		 <h1> Session Information</h1>
