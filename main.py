@@ -71,6 +71,10 @@ def mate_logik(sorte, anzahl):
         case "Mio Mio":
             koffeingehalt = '''
 
+# mws = mate wirtschafts system
+def mws():
+    return mate
+
 # Qr-code generator#
 def create_qr(id):
     if not os.path.exists("./static/img/qr.png"):
@@ -291,18 +295,19 @@ def login():
 def stopuhr():
     if session:
         log_server("called /stopuhr")
-        spielName = request.form['spielname']
+        spielName = request.form['spiel']
+        art = request.form['art']
         zeit = request.form['zeit']
         userId = request.form['userid']
-        sessionId = request.form['sessionid']
-        l = f"INSERT INTO game VALUES(  \'{sessionID}\', \'{userId}\',\'{spielName}\', \'{zeit}\');"
+        sessionId = request.form['sessionID']
+        l = f"INSERT INTO game VALUES(  \'{sessionId}\', \'{userId}\',\'{spielName}\',\'{art}\', \'{zeit}\');"
         try:
             warning_log("verbindung mit Datenbank wurde aufgenommen")
             dbcon(l)
             log_server("time entered successfully /stopuhr")
         except:
             error_log("unable to run sql /stopuhr")
-        return render_template()
+        return redirect(f'/session/{sessionId}')
     else:
          warning_log(" called /stopuhr without being logged in")
          return render_template('passwd.html')

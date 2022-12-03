@@ -62,15 +62,19 @@
 		
 		  <div class="wrapper">
 		    <center>
-		       <p><span id="seconds">00</span>:<span id="tens">00</span></p>
-		       <button id="button-start">Start</button>
-		       <button id="button-stop">Stop</button>
-		       <button id="button-reset">Reset</button>
+				<h1><time>00:00:00</time></h1>
+				<button id="strt">start</button>
+				<button id="stp">stop</button>
+				<button id="rst">reset</button>
+				
 		       <form class="modal-content animate" action="http://127.0.0.1:5000/stopuhr" method="POST">  
 			  <div class="container">   
 			     </br>
 			     <input type="text" placeholder="Tomb Raider" name="spiel" required>  
 			     <input type="text" placeholder="parcour" name="art" required> 
+				 <input type="text" placeholder="00:00:40" name="zeit" required> 
+				 <input type="text" placeholder="Session ID" name="sessionID" required> 
+				 <input type="text" placeholder="UserID" name="userid" required> 
 			     <button type="submit">&#10133;</button>   
 			  
 				<input type="file" name="file">    
