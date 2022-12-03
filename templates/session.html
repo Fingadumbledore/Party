@@ -104,9 +104,12 @@
 		</form>
   </div>
   <div hidden class="tmplt_tab" id="_mate">
-			<form class="modal-content animate" action="http://127.0.0.1:5000/mate" method="POST">  
-				<p>folgende Mateflaschen sind auf Lager {{ mate }} </p>
+	<p>folgende Mateflaschen sind auf Lager {{ mate }} </p>
 				<p>Bitte Beachte: Erhöhter Koffeingehalt. Für Kinder und schwangere oder stillende Frauen nicht empfolen</p>
+		<details>
+			<summary id="mate"><h4>Mate hinzufügen</h4></summary>
+			<form class="modal-content animate" action="http://127.0.0.1:5000/mate" method="POST">  
+				
 			   <div class="container" style="margin-top: 2em" >
 				  <input type="text" placeholder="Mate Flaschen Anzahl" name="mateFlaschen" required>
 				  </br>
@@ -119,6 +122,7 @@
 				  </button>         
 			   </div>   
 			</form>
+		</details>
 			 </div>
 	      <div hidden class="tmplt_tab" id="_seession">
 		 <h1> Session Information</h1>
