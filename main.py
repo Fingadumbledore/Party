@@ -63,8 +63,33 @@ def warning_log(warning):
     datei.close()  
 
 # Materechner Logic 
-''''
+
 def mate_logik(sorte, anzahl):
+
+    if  sorte == "Club Mate":
+        koffeingehalt = 100
+
+    if  sorte == "Mio Mate":
+        koffeingehalt = 100
+
+    if  sorte == "Flora Mate":
+        koffeingehalt = 90
+
+    if  sorte == "Mate Mate":
+        koffeingehalt = 150
+
+    if  sorte == "Buenos Mate":
+        koffeingehalt = 100
+
+    if  sorte == "1337 Mate":
+        koffeingehalt = 145
+
+    if  sorte == "Charitea Mate":
+        koffeingehalt = 15
+
+    if  sorte == "Bionade Mate":
+        koffeingehalt = 20
+    '''
     anzahl = anzahl + 1
     koffeingehalt = 0
     match sorte:
