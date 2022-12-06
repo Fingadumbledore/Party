@@ -172,7 +172,8 @@ def get_planer():
         sessionID = request.form['sessionID']
         zeit = request.form['zeit']
         pfad = "/session/" + sessionID
-        l = f"INSERT INTO planer VALUES(  \'{event}\', \'{zeit}\', \'{sessionID}\');"
+        status = "running"
+        l = f"INSERT INTO planer VALUES(  \'{event}\', \'{zeit}\', \'{sessionID}\',\'{status}\');"
         log_server("neues Event")
         try:
             con = sqlite3.connect("party.db")
