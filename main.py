@@ -398,15 +398,10 @@ def get_login():
     userid = request.form['userID']
     l = f"select * from user where userID = \'{userid}\' and username=\'{username}\' and sessionID=\'{sessionId}\';"
     account = dbcon(l)
-    if account:
-        session['loggedin'] = True
-        user_count = +1
         # session['username'] = account['username']
-        log_server("loggedin successfully")
-        return redirect(f'/session/{sessionId}')
-    else:
-        return "{ \"message\": \"Login failed\"'}"
-        warning_log("unable to create new user /get_login")
+    log_server("loggedin successfully")
+    return redirect(f'/session/{sessionId}')
+   
     con.close()
 
 @app.route("/new", methods=['POST'])
@@ -424,15 +419,11 @@ def new():
     con.commit()
     con.close()
     account = True
-    if account:
-        session['loggedin'] = True
-        user_count = +1
+ 
         # session['username'] = account['username']
-        log_server("created new user successfully")
-        return redirect(f'/session/{sessionId}')
-    else:
-        return "{ \"message\": \"Login failed\"'}"
-        warning_log("unable to create new user /new")
+    log_server("created new user successfully")
+    return redirect(f'/session/{sessionId}')
+  
     con.close()
 
 @app.errorhandler(404)
