@@ -89,6 +89,8 @@ def mate_logik(sorte, anzahl):
 
     if  sorte == "Bionade Mate":
         koffeingehalt = 20
+
+    return koffeingehalt * anzahl
     '''
     anzahl = anzahl + 1
     koffeingehalt = 0
@@ -98,6 +100,7 @@ def mate_logik(sorte, anzahl):
 
 # mws = mate wirtschafts system
 def mws():
+    
     return mate
 
 # Qr-code generator#
