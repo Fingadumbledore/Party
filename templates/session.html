@@ -46,8 +46,19 @@
 			
       <div hidden class="tmplt_tab" id="_planer">
 				{% block content %}
-				<p>{{ asd }}</p>
-				
+
+				<table>
+					<tr>
+					  <th>Event</th>
+					  <th>Zeit</th>
+					  <th>Status</th>
+					</tr>
+					<tr>
+					  <td>{{ eventname }}</td>
+					  <td>{{ eventzeit }}</td>
+					  <td>Status</td>
+					 </tr>
+				</table>
 				<p>Füge ein Event ein</p>
 				<form class="modal-content animate" action="/get_planer" method="POST">  
 				  <div class="container">   
@@ -85,7 +96,20 @@
 	</div> 
 	<div id="statistik">
 	
-			<p>{{ game }}</p>
+			<table>
+				<tr>
+				  <th>Spieler</th>
+				  <th>Game</th>
+				  <th>Aktivität</th>
+				  <th>Zeit</th>
+				</tr>
+				<tr>
+				  <td>{{ user }}</td>
+				  <td>{{ game }}</td>
+				  <td>{{ aktivitaet }}</td>
+				  <td>{{ zeit }}</td>
+				 </tr>
+			</table>
 		
  	  </div>
 	</div>

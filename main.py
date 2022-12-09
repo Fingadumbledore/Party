@@ -89,6 +89,8 @@ def mate_logik(sorte, anzahl):
 
     if  sorte == "Bionade Mate":
         koffeingehalt = 20
+
+    return koffeingehalt * anzahl
     '''
     anzahl = anzahl + 1
     koffeingehalt = 0
@@ -98,6 +100,7 @@ def mate_logik(sorte, anzahl):
 
 # mws = mate wirtschafts system
 def mws():
+    
     return mate
 
 # Qr-code generator#
@@ -197,15 +200,22 @@ def session(id):
         log_server(f"called /session/{id}")
         con = sqlite3.connect("party.db")
         cur = con.cursor()
-        l = f"SELECT eventname, eventzeit FROM planer WHERE sessionID = \'{id}\' ORDER BY eventzeit;"
-        asd = cur.execute(l).fetchall()
+        l = f"SELECT eventname FROM planer WHERE sessionID = \'{id}\' ORDER BY eventzeit;"
+        eventname = cur.execute(l).fetchall()
+        con.commit()
+        cur.close()
+
+        con = sqlite3.connect("party.db")
+        cur = con.cursor()
+        l = f"SELECT eventzeit FROM planer WHERE sessionID = \'{id}\' ORDER BY eventzeit;"
+        eventzeit = cur.execute(l).fetchall()
         con.commit()
         cur.close()
 
         con = sqlite3.connect("party.db")
         warning_log("Verbindung mit Datenbank wurde aufgenommen /seession")
         cur = con.cursor()
-        creator = cur.execute("SELECT username FROM user WHERE info = 'creator'").fetchall()
+        creator = cur.execute("SELECT username FROM user WHERE info = 'Host'").fetchall()
         cur.close()
 
         con = sqlite3.connect("party.db")
@@ -218,12 +228,33 @@ def session(id):
 
         con = sqlite3.connect("party.db")
         cur = con.cursor()
-        l = f"SELECT userID, Spielname, Spielaktivität, ZEIT FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
+        l = f"SELECT  Spielname FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
         game = cur.execute(l).fetchall()
         con.commit()
         cur.close()
 
-        return render_template("session.html", asd=asd, game=game, das=user_count, er=creator, mate=mate, der=uptime())
+        con = sqlite3.connect("party.db")
+        cur = con.cursor()
+        l = f"SELECT userID FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
+        user = cur.execute(l).fetchall()
+        con.commit()
+        cur.close()
+
+        con = sqlite3.connect("party.db")
+        cur = con.cursor()
+        l = f"SELECT Spielaktivität FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
+        aktivitaet = cur.execute(l).fetchall()
+        con.commit()
+        cur.close()
+
+        con = sqlite3.connect("party.db")
+        cur = con.cursor()
+        l = f"SELECT ZEIT FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
+        zeit = cur.execute(l).fetchall()
+        con.commit()
+        cur.close()
+
+        return render_template("session.html", zeit=zeit, aktivitaet=aktivitaet, user=user, eventname=eventname, eventzeit=eventzeit, game=game, das=user_count, creator=creator, mate=mate, der=uptime())
     else:
          warning_log(" called /session without being logged in")
          return render_template('passwd.html')
@@ -407,16 +438,16 @@ def get_login():
     sessionId = request.form['sessionID']
     userid = request.form['userID']
     l = f"select * from user where userID = \'{userid}\' and username=\'{username}\' and sessionID=\'{sessionId}\';"
-    account = dbcon(l)
-    if account:
-        session['loggedin'] = True
-        user_count = +1
+    con = sqlite3.connect("party.db")
+    warning_log("verbindung mit db wurde aufgenommen")
+    cur = con.cursor()
+    cur.execute(l) 
+    con.commit()
+    con.close()
         # session['username'] = account['username']
-        log_server("loggedin successfully")
-        return redirect(f'/session/{sessionId}')
-    else:
-        return "{ \"message\": \"Login failed\"'}"
-        warning_log("unable to create new user /get_login")
+    log_server("loggedin successfully")
+    return redirect(f'/session/{sessionId}')
+   
     con.close()
 
 @app.route("/new", methods=['POST'])
@@ -434,15 +465,11 @@ def new():
     con.commit()
     con.close()
     account = True
-    if account:
-        session['loggedin'] = True
-        user_count = +1
+ 
         # session['username'] = account['username']
-        log_server("created new user successfully")
-        return redirect(f'/session/{sessionId}')
-    else:
-        return "{ \"message\": \"Login failed\"'}"
-        warning_log("unable to create new user /new")
+    log_server("created new user successfully")
+    return redirect(f'/session/{sessionId}')
+  
     con.close()
 
 @app.errorhandler(404)

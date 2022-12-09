@@ -177,4 +177,9 @@ a {
             details[open] summary::marker {
               content:  "  ";
 
+            }table, th, td, caption {
+              border: thick solid #33363d;
+              border-collapse: collapse; 
             }
+            
+        
