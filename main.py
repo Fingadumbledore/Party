@@ -200,8 +200,15 @@ def session(id):
         log_server(f"called /session/{id}")
         con = sqlite3.connect("party.db")
         cur = con.cursor()
-        l = f"SELECT eventname, eventzeit FROM planer WHERE sessionID = \'{id}\' ORDER BY eventzeit;"
-        asd = cur.execute(l).fetchall()
+        l = f"SELECT eventname FROM planer WHERE sessionID = \'{id}\' ORDER BY eventzeit;"
+        eventname = cur.execute(l).fetchall()
+        con.commit()
+        cur.close()
+
+        con = sqlite3.connect("party.db")
+        cur = con.cursor()
+        l = f"SELECT eventzeit FROM planer WHERE sessionID = \'{id}\' ORDER BY eventzeit;"
+        eventzeit = cur.execute(l).fetchall()
         con.commit()
         cur.close()
 
@@ -226,7 +233,7 @@ def session(id):
         con.commit()
         cur.close()
 
-        return render_template("session.html", asd=asd, game=game, das=user_count, er=creator, mate=mate, der=uptime())
+        return render_template("session.html", eventname=eventname, eventzeit=eventzeit, game=game, das=user_count, er=creator, mate=mate, der=uptime())
     else:
          warning_log(" called /session without being logged in")
          return render_template('passwd.html')
