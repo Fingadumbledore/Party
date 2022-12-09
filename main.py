@@ -400,7 +400,12 @@ def get_login():
     sessionId = request.form['sessionID']
     userid = request.form['userID']
     l = f"select * from user where userID = \'{userid}\' and username=\'{username}\' and sessionID=\'{sessionId}\';"
-    account = dbcon(l)
+    con = sqlite3.connect("party.db")
+    warning_log("verbindung mit db wurde aufgenommen")
+    cur = con.cursor()
+    cur.execute(l) 
+    con.commit()
+    con.close()
         # session['username'] = account['username']
     log_server("loggedin successfully")
     return redirect(f'/session/{sessionId}')
