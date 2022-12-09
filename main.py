@@ -215,7 +215,7 @@ def session(id):
         con = sqlite3.connect("party.db")
         warning_log("Verbindung mit Datenbank wurde aufgenommen /seession")
         cur = con.cursor()
-        creator = cur.execute("SELECT username FROM user WHERE info = 'creator'").fetchall()
+        creator = cur.execute("SELECT username FROM user WHERE info = 'Host'").fetchall()
         cur.close()
 
         con = sqlite3.connect("party.db")
@@ -254,7 +254,7 @@ def session(id):
         con.commit()
         cur.close()
 
-        return render_template("session.html", zeit=zeit, aktivitaet=aktivitaet, user=user, eventname=eventname, eventzeit=eventzeit, game=game, das=user_count, er=creator, mate=mate, der=uptime())
+        return render_template("session.html", zeit=zeit, aktivitaet=aktivitaet, user=user, eventname=eventname, eventzeit=eventzeit, game=game, das=user_count, creator=creator, mate=mate, der=uptime())
     else:
          warning_log(" called /session without being logged in")
          return render_template('passwd.html')
