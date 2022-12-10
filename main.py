@@ -210,7 +210,8 @@ def session(id):
         cur = con.cursor()
         l = f"SELECT eventzeit FROM planer WHERE sessionID = \'{id}\' ORDER BY eventzeit;"
         eventzeit = cur.execute(l).fetchall()
-        #eventtime = re.split(",", eventzeit)
+        print (eventzeit)
+        #eventtime = re.split(',', eventzeit)
         con.commit()
         cur.close()
 
