@@ -6,3 +6,4 @@ CREATE TABLE game (sessionID INTEGER, userID INTEGER, Spielname TEXT, Spielaktiv
 CREATE TABLE uploadgame (sessionID INTEGER, userID INTEGER, Spielname TEXT, Spielstand TEXT);
 CREATE TABLE planer (eventname TEXT, eventzeit TEXT, sessionID INTEGER, eventstatus TEXT);
 CREATE TABLE mate (matename TEXT, mateanzahl INTEGER, sessionID INTEGER);
+CREATE TABLE mws (matekisten INTEGER, sessionID INTEGER NOT NULL)
