@@ -281,6 +281,21 @@ def mate():
         if mateSorte == "Flora Mate" & mateFlaschen == 20:
             matekiste +1
             mws(matekiste)
+        if mateSorte == "Mate Mate" & mateFlaschen == 20:
+            martekiste + 1
+            mws(martekiste)
+        if mateSorte == "Buenos Mate" & mateFlaschen == 20:
+            matekiste +1
+            mws(matekiste)
+        if mateSorte == "Charitea Mate" & mateFlaschen == 12:
+            matekiste + 1
+            mws(matekiste)
+        if mateSorte == "1337 Mate" & mateFlaschen == 20:
+            matekiste +1
+            mws(matekiste)
+        if mateSorte == "Bionade Mate" & mateFlaschen == 20:
+            martekiste + 1
+            mws(martekiste)
 
         mateSql = f"INSERT INTO mate VALUES (\"{mateSorte}\", \'{mateFlaschen}\', \'{sessionId}\');"
         try:
