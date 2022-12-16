@@ -15,6 +15,7 @@ date = time.strftime("%d-%m-%Y %H:%M:%S", time.localtime(time.time()))
 zeit = time.strftime("%H%M", time.localtime(time.time()))
 log = date
 app.config['SECRET_KEY'] = 'party'
+matekiste = 0
 
 def dbcon(sql):
     con = sqlite3.connect("party.db")
@@ -100,7 +101,7 @@ def mate_logik(sorte, anzahl):
             koffeingehalt = '''
 
 # mws = mate wirtschafts system
-def mws():
+def mws(kisten):
     
     return mate
 
@@ -270,6 +271,17 @@ def mate():
         mateFlaschen =  request.form['mateFlaschen']
         sessionId =  request.form['sessionID']
         mateSorte = request.form['mateSorte']
+
+        if mateSorte == "Club Mate" & mateFlaschen == 20:
+            matekiste +1
+            mws(matekiste)
+        if mateSorte == "Mio Mio" & mateFlaschen == 12:
+            matekiste + 1
+            mws(matekiste)
+        if mateSorte == "Flora Mate" & mateFlaschen == 20:
+            matekiste +1
+            mws(matekiste)
+
         mateSql = f"INSERT INTO mate VALUES (\"{mateSorte}\", \'{mateFlaschen}\', \'{sessionId}\');"
         try:
             con = sqlite3.connect("party.db")
