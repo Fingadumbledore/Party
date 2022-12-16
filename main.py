@@ -103,6 +103,7 @@ def mate_logik(sorte, anzahl):
 # mws = mate wirtschafts system
 def mws(kisten):
     
+    log_server("mws wurde angefragt")
     return mate
 
 # Qr-code generator#
@@ -275,18 +276,23 @@ def mate():
         if mateSorte == "Club Mate" & mateFlaschen == 20:
             matekiste +1
             mws(matekiste)
+            log_server("mws wurde angefragt")
         if mateSorte == "Mio Mio" & mateFlaschen == 12:
             matekiste + 1
             mws(matekiste)
+            log_server("mws wurde angefragt")
         if mateSorte == "Flora Mate" & mateFlaschen == 20:
             matekiste +1
             mws(matekiste)
+            log_server("mws wurde angefragt")
         if mateSorte == "Mate Mate" & mateFlaschen == 20:
             martekiste + 1
             mws(martekiste)
+            log_server("mws wurde angefragt")
         if mateSorte == "Buenos Mate" & mateFlaschen == 20:
             matekiste +1
             mws(matekiste)
+            log_server("mws wurde angefragt")
         if mateSorte == "Charitea Mate" & mateFlaschen == 12:
             matekiste + 1
             mws(matekiste)
