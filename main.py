@@ -103,6 +103,7 @@ def mate_logik(sorte, anzahl):
 # mws = mate wirtschafts system
 def mws(kisten):
     
+    log_server("mws wurde angefragt")
     return mate
 
 # Qr-code generator#
@@ -280,28 +281,28 @@ def mate():
         sessionId =  request.form['sessionID']
         mateSorte = request.form['mateSorte']
 
-        if mateSorte == "Club Mate" & mateFlaschen == 20:
+        if mateSorte == "Club Mate" and mateFlaschen == 20:
             matekiste +1
             mws(matekiste)
-        if mateSorte == "Mio Mio" & mateFlaschen == 12:
+        if mateSorte == "Mio Mio" and mateFlaschen == 12:
             matekiste + 1
             mws(matekiste)
-        if mateSorte == "Flora Mate" & mateFlaschen == 20:
+        if mateSorte == "Flora Mate" and mateFlaschen == 20:
             matekiste +1
             mws(matekiste)
-        if mateSorte == "Mate Mate" & mateFlaschen == 20:
+        if mateSorte == "Mate Mate" and mateFlaschen == 20:
             martekiste + 1
             mws(martekiste)
-        if mateSorte == "Buenos Mate" & mateFlaschen == 20:
+        if mateSorte == "Buenos Mate" and mateFlaschen == 20:
             matekiste +1
             mws(matekiste)
-        if mateSorte == "Charitea Mate" & mateFlaschen == 12:
+        if mateSorte == "Charitea Mate" and mateFlaschen == 12:
             matekiste + 1
             mws(matekiste)
-        if mateSorte == "1337 Mate" & mateFlaschen == 20:
+        if mateSorte == "1337 Mate" and mateFlaschen == 20:
             matekiste +1
             mws(matekiste)
-        if mateSorte == "Bionade Mate" & mateFlaschen == 20:
+        if mateSorte == "Bionade Mate" and mateFlaschen == 20:
             martekiste + 1
             mws(martekiste)
 
