@@ -44,7 +44,7 @@
                 <label>Session Id : </label>   
                 <input id="id1"type="text" placeholder="Session Id" name="sessionID" required>  
         </br>
-                <button type="submit" onclick="setUID()">Login</button>     
+                <button type="submit" onclick="setUID() & setID1()">Login</button>     
             </center>   
             </div>   
         </form>  
@@ -65,7 +65,7 @@
                     <label>Session Id : </label>   
                     <input id="id2"type="text" placeholder="Session Id" name="sessionID" required>  
                 </br>
-                <button type="submit" onclick="setUID1()">Login</button>   
+                <button type="submit" onclick="setUID1() & setID2()">Login</button>   
                     </center>
                 </div>   
             </form>   
@@ -91,7 +91,7 @@
             }
 
             function setID2() {
-                let sessID = document.getElementById("id1").value
+                let sessID = document.getElementById("id2").value
                 window.sessionStorage.setItem("sessionID", sessID)
             }
         </script>
