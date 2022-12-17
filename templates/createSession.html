@@ -22,9 +22,9 @@
     </form>
         <script>
             function setID() {
-                const sessID = document.getElementById('IdIn').innerHTML;
+                let sessID = document.getElementById("idIn").value
                 console.log(sessID)
-                sessionStorage.setItem("sessionID", sessID)
+                window.sessionStorage.setItem("sessionID", sessID)
             }
         </script>
     </body>
