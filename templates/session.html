@@ -178,6 +178,10 @@
 	    </center>
 
 	    <script>
+			var s = sessionStorage.getItem("sessionID")
+			if (s == null) {
+            window.location.replace("http://127.0.0.1:5000/passwd")
+        }
 		  function change_div(pfad)
 		  {
 					for (var i = 0; i < document.getElementsByClassName("tmplt_tab").length; i++) document.getElementsByClassName("tmplt_tab")[i].hidden = true;

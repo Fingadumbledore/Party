@@ -330,6 +330,11 @@ def password():
     log_server("called /password")
     return render_template("passwort_ver.html")
 
+@app.route("/passwd")
+def passwd():
+    log_server("called /passwd")
+    return render_template("passwd.html")
+
 @app.route("/create_session")
 def create_session():
     log_server("called /create_session")
