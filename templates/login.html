@@ -36,7 +36,7 @@
         <form class="modal-content animate" action="http://127.0.0.1:5000/get_login" method="POST">  
             <div class="container">   
                 <label>Username : </label>   
-                <input type="text" placeholder="Enter Username" name="username" required>  
+                <input id="name2" type="text" placeholder="Enter Username" name="username" required>  
             </br>
             <label>UserId : </label>   
             <input id="Uid" type="text" placeholder="UserID" name="userID" required>  
@@ -44,7 +44,7 @@
                 <label>Session Id : </label>   
                 <input id="id1"type="text" placeholder="Session Id" name="sessionID" required>  
         </br>
-                <button type="submit" onclick="setUID() & setID1()">Login</button>     
+                <button type="submit" onclick="setUID() & setID1() & setname2()">Login</button>     
             </center>   
             </div>   
         </form>  
@@ -57,7 +57,7 @@
             <form class="modal-content animate" action="http://127.0.0.1:5000/new" method="POST">  
                 <div class="container">   
                     <label>Username : </label>   
-                    <input type="text" placeholder="Enter Username" name="username" required>  
+                    <input id="name3" type="text" placeholder="Enter Username" name="username" required>  
                 </br>
                     <label>UserId : </label>   
                     <input id="Uid1" type="text" placeholder="UserID" name="userID" required>  
@@ -65,7 +65,7 @@
                     <label>Session Id : </label>   
                     <input id="id2"type="text" placeholder="Session Id" name="sessionID" required>  
                 </br>
-                <button type="submit" onclick="setUID1() & setID2()">Login</button>   
+                <button type="submit" onclick="setUID1() & setID2() & setname3()">Login</button>   
                     </center>
                 </div>   
             </form>   
@@ -93,6 +93,16 @@
             function setID2() {
                 let sessID = document.getElementById("id2").value
                 window.sessionStorage.setItem("sessionID", sessID)
+            }
+
+            function setname2() {
+                let sessID = document.getElementById("name2").value
+                window.sessionStorage.setItem("name", sessID)
+            }
+
+            function setname3() {
+                let sessID = document.getElementById("name3").value
+                window.sessionStorage.setItem("name", sessID)
             }
         </script>
     </body>     
