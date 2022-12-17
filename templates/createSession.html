@@ -14,7 +14,7 @@
             <input type="text" placeholder="Enter Session name" name="sessionname" required>  
             <label>Session Id : </label>   
             <input id="idIn" type="text" placeholder="Session Id" name="sessionid" required>  
-            <button type="submit" onclick="setID()">create</button>   
+            <button type="submit" onclick="setID() & setUID3()">create</button>   
             <a href="javascript:history.back()">
                  <button type="button" class="cancelbtn"> Cancel</button>   
             </a>
@@ -28,9 +28,11 @@
             }
 
             function setUID3() {
-                let sessID = document.getElementById("Uid1").value
                 window.sessionStorage.setItem("userID", "1")
+                window.sessionStorage.setItem("name", "Host")
             }
+            
+           
         </script>
     </body>
 </html>  

@@ -152,6 +152,7 @@
 	      <div hidden class="tmplt_tab" id="_seession">
 		 <h1> Session Information</h1>
 		 <img src="/static/img/user.png" width="60" height="60">
+		 <p id="user"></p>
 		
 		    <p>Useranzahl: {{das}}</p>
 		    <p>Uptime: {{der}}</p>
@@ -183,18 +184,8 @@
 				<button onclick="save()">&#x1F4BE;</button>
 	    </center>
 
-	    <script>
-			var s = sessionStorage.getItem("sessionID")
-			if (s == null) {
-            window.location.replace("http://127.0.0.1:5000/passwd")
-        }
-		  function change_div(pfad)
-		  {
-					for (var i = 0; i < document.getElementsByClassName("tmplt_tab").length; i++) document.getElementsByClassName("tmplt_tab")[i].hidden = true;
-					console.log(pfad)
-					document.getElementById(pfad).hidden = false;
-		  }
-    </script>
+
+		<script src="{{url_for('static', filename='js/general.js')}}"></script>
 		<script src="{{url_for('static', filename='js/control.js')}}"></script>
 		<script src="{{url_for('static', filename='js/chat.js')}}"></script>
 		<script src="{{url_for('static', filename='js/game.js')}}"></script>
