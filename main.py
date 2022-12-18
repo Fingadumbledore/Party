@@ -226,6 +226,13 @@ def session(id):
         con = sqlite3.connect("party.db")
         warning_log("Verbindung mit Datenbank wurde aufgenommen /seession")
         cur = con.cursor()
+        l = f"SELECT count(username) FROM user WHERE sessionID = \'{id}\';"
+        useranzahl = cur.execute(l).fetchall()
+        cur.close()
+
+        con = sqlite3.connect("party.db")
+        warning_log("Verbindung mit Datenbank wurde aufgenommen /seession")
+        cur = con.cursor()
         l = f"SELECT matename, mateanzahl FROM mate WHERE sessionID = \'{id}\' ORDER BY mateanzahl;"
         mate = cur.execute(l).fetchall()
         con.commit()
@@ -259,7 +266,7 @@ def session(id):
         con.commit()
         cur.close()
 
-        return render_template("session.html", zeit=zeit, aktivitaet=aktivitaet, user=user, eventname=eventname, eventzeit=eventzeit, game=game, das=user_count, creator=creator, mate=mate, der=uptime())
+        return render_template("session.html", zeit=zeit, aktivitaet=aktivitaet, user=user, eventname=eventname, eventzeit=eventzeit, game=game, useranzahl=useranzahl, creator=creator, mate=mate, der=uptime())
     else:
          warning_log(" called /session without being logged in")
          return render_template('passwd.html')
