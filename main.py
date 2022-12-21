@@ -15,6 +15,7 @@ zeit = time.strftime("%H%M", time.localtime(time.time()))
 log = date
 app.config['SECRET_KEY'] = 'party'
 
+
 def dbcon(sql):
     con = sqlite3.connect("party.db")
     warning_log("verbindung mit db wurde aufgenommen")
@@ -23,17 +24,20 @@ def dbcon(sql):
     con.commit()
     return sql.fetchall()
 
+
 def dbcon1(sql):
     con = sqlite3.connect("party.db")
     cur = con.cursor()
     return cur.execute(sql)
+
 
 def uptime():
     time = int(zeit)
     uptime = time - starttime
     return uptime
 
-#log system
+
+# log system
 def log_server(log):
     log = date + log
     datei = open('server.log', 'a')
@@ -41,26 +45,30 @@ def log_server(log):
     log = date
     datei.close()
 
+
 def error_log(error):
-    error = date + " [ERROR]"+ error
+    error = date + " [ERROR]" + error
     datei = open('server.log', 'a')
     datei.write('\n' + " " + error)
     log = date
-    datei.close()  
+    datei.close()
+
 
 def problem_log(problem):
-    problem = date + " [PROBLEM]"+ problem
+    problem = date + " [PROBLEM]" + problem
     datei = open('server.log', 'a')
     datei.write('\n' + " " + problem)
     log = date
-    datei.close() 
+    datei.close()
+
 
 def warning_log(warning):
-    warning = date + " [WARNING]"+ warning
+    warning = date + " [WARNING]" + warning
     datei = open('server.log', 'a')
     datei.write('\n' + " " + warning)
     log = date
-    datei.close()  
+    datei.close()
+
 
 # Qr-code generator#
 def create_qr(id):
@@ -71,13 +79,15 @@ def create_qr(id):
     else:
         warning_log("QR-Code ist bereits vorhanden")
 
-#Hauptseite
+
+# Hauptseite
 @app.route("/")
 def index():
     log_server("called /")
     return render_template("index.html")
 
-#Neue Nachrichten
+
+# Neue Nachrichten
 @app.route("/get_chat", methods=['POST'])
 def get_chat():
     if session:
@@ -93,27 +103,30 @@ def get_chat():
             dbcon(l)
             log_server("message entered successfully")
 
-        except:
+        except e:
             error_log("unable to get new Messages")
         account = cur.fetchone()
         return render_template("chat.html")
     else:
-         warning_log(" called /get_chat without being logged in")
-         return "{ \"message\": \"you need to login\"'}"
+        warning_log(" called /get_chat without being logged in")
+        return "{ \"message\": \"you need to login\"'}"
+
 
 @app.route("/get_game_file", methods=['POST'])
 def get_game_file():
-        log_server("called /get_game_file")
-        pick()
+    log_server("called /get_game_file")
+    pick()
+
 
 @app.route("/get_new_message")
 def get_new_message():
     if session:
         log_server("called /get_new_message")
-        return render_template("chat.html")   
+        return render_template("chat.html")
     else:
-         warning_log(" called /get_new_message without being logged in")
-         return render_template('passwd.html') 
+        warning_log(" called /get_new_message without being logged in")
+        return render_template('passwd.html')
+
 
 @app.route("/message")
 def message():
@@ -121,10 +134,11 @@ def message():
         log_server("called /message")
         return render_template("message.html")
     else:
-         warning_log(" called /message without being logged in")
-         return render_template('passwd.html')
+        warning_log(" called /message without being logged in")
+        return render_template('passwd.html')
 
-#planer
+
+# planer
 @app.route("/get_planer", methods=['POST'])
 def get_planer():
     if session:
@@ -140,17 +154,18 @@ def get_planer():
             con = sqlite3.connect("party.db")
             warning_log("verbindung mit db wurde aufgenommen")
             cur = con.cursor()
-            cur.execute(l) 
+            cur.execute(l)
             con.commit()
             con.close()
             log_server("event entered successfully /get_planer")
-        except:
+        except e:
             error_log("unable to insert event")
         return redirect(f'/session/{sessionID}')
 
     else:
-         warning_log(" called /get_planer without being logged in")
-         return render_template('404.html')
+        warning_log(" called /get_planer without being logged in")
+        return render_template('404.html')
+
 
 @app.route("/session/<id>")
 def session(id):
@@ -182,10 +197,13 @@ def session(id):
         con.commit()
         cur.close()
 
-        return render_template("session.html", asd=asd, game=game, das=user_count, er=creator, mate=mate, der=uptime())
+        return render_template("session.html", asd=asd, game=game,
+                               das=user_count, er=creator, mate=mate,
+                               der=uptime())
     else:
-         warning_log(" called /session without being logged in")
-         return render_template('passwd.html')
+        warning_log(" called /session without being logged in")
+        return render_template('passwd.html')
+
 
 def mate_logik(sorte, anzahl):
     anzahl = anzahl + 1
@@ -200,8 +218,8 @@ def mate():
     log_server("called /mate")
 
     if session:
-        mateFlaschen =  request.form['mateFlaschen']
-        sessionId =  request.form['sessionID']
+        mateFlaschen = request.form['mateFlaschen']
+        sessionId = request.form['sessionID']
         mateSorte = request.form['mateSorte']
         mateSql = f"INSERT INTO mate VALUES (\"{mateSorte}\", \'{mateFlaschen}\', \'{sessionId}\');"
         try:
