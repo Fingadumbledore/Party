@@ -9,6 +9,12 @@
     <body>
         <center>
             <h1>Adios &#x1F44B;</h1>
+            <p id="name"></p>
+
+            <script>
+                let session = sessionStorage.getItem("name");
+                document.getElementById("name").innerHTML = session;	
+            </script>
             <p>Wollen Sie die Session verlassen?</p>
             <a href="http://127.0.0.1:5000/">
                 <button class="btn btn-primary btn-lg">Home</button>
