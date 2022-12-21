@@ -352,6 +352,11 @@ def passwd():
     log_server("called /passwd")
     return render_template("passwd.html")
 
+@app.route("/change")
+def change():
+    log_server("called /change")
+    return render_template("changeSession.html")
+
 @app.route("/create_session")
 def create_session():
     log_server("called /create_session")

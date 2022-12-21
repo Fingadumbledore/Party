@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/style.css') }}">
+    <title>Change Session</title>
+</head>
+<body>
+    <center>
+    <h1>Du bist bereits in Session: </h1>
+    <p id="Session"></p>
+    <h1>Möchtest du diese Verlassen, und in eine andere Session?</h1>
+
+    <button type="submit">verlassen</button>   
+    <a href="javascript:history.back()">
+        <button type="button" class="cancelbtn"> bleiben</button>   
+   </a>
+
+    <script>
+        let session = sessionStorage.getItem("sessionID");
+        document.getElementById("Session").innerHTML = session;	
+    </script>
+    </center>
+</body>
+</html>
