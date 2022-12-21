@@ -192,7 +192,7 @@ def mate_logik(sorte, anzahl):
     koffeingehalt = 0
     match sorte:
         case "Mio Mio":
-            koffeingehalt = 
+            koffeingehalt =  
 
 
 @app.route("/mate", methods=['POST'])
@@ -415,4 +415,4 @@ def create_app(config_filename):
     return app
 
 # Use this line to run it localy
-#app.run(host="ip", port=80)  
+#app.run(host="<ip>", port=80)  
