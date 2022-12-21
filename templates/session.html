@@ -63,7 +63,11 @@
 				<form class="modal-content animate" action="/get_planer" method="POST">  
 				  <div class="container">   
 				    <input type="text" placeholder="Tomb Raider spielen" name="event" required> 
-					  <input type="text" placeholder="sessionID" name="sessionID" required>  
+					  <input id="planerSID" type="hidden" placeholder="sessionID" name="sessionID" required>  
+					  <script type="text/javascript">
+						var sid = sessionStorage.getItem("sessionID")
+						document.getElementById('planerSID').value=sid ; 				
+					  </script>
 				    <input type="time" placeholder="15:30" name="zeit" required>  
 				    <button type="submit">&#10133;</button>        
 				   </div>  
@@ -84,8 +88,16 @@
 			     <input type="text" placeholder="Tomb Raider" name="spiel" required>  
 			     <input type="text" placeholder="parcour" name="art" required> 
 				 <input type="text" placeholder="00:00:40" name="zeit" required> 
-				 <input type="text" placeholder="Session ID" name="sessionID" required> 
-				 <input type="text" placeholder="UserID" name="userid" required> 
+				 <input id="gameSID" type="hidden" placeholder="Session ID" name="sessionID" required> 
+				 <script type="text/javascript">
+					var sid = sessionStorage.getItem("sessionID")
+					document.getElementById('gameSID').value=sid ; 				
+				  </script>
+				 <input id="gameUID" type="hidden" placeholder="UserID" name="userid" required> 
+				 <script type="text/javascript">
+					var sid = sessionStorage.getItem("sessionID")
+					document.getElementById('gameUID').value=sid ; 				
+				  </script>
 				</br>
 			     <button type="submit">&#10133;</button>   
 			</br>
@@ -126,6 +138,7 @@
 				  &#10148;
 		    </button>         
 		  </div>   
+	
 		</form>
   </div>
   <div hidden class="tmplt_tab" id="_mate">
@@ -140,11 +153,16 @@
 				  </br>
 				  <input type="text" placeholder="Mate Marke" name="mateSorte" required> 
 				</br>
-				  <input type="text" placeholder="SessionID" name="sessionID" required> 
+				  <input id="mate_sID" type="hidden" placeholder="SessionID" name="sessionID" required> 
+				  <script type="text/javascript">
+					var sid = sessionStorage.getItem("sessionID")
+					document.getElementById('mate_sID').value=sid ; 				
+				  </script>
 				</br>
 				  <button type="submit"> 	
 					&#10133;
 				  </button>         
+				
 			   </div>   
 			</form>
 		</details>
