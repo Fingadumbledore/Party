@@ -142,7 +142,7 @@
   </div>
   <div hidden class="tmplt_tab" id="_mate">
 	<p>folgende Mateflaschen sind auf Lager {{ mate }} </p>
-				<p>Bitte Beachte: Erhöhter Koffeingehalt. Für Kinder und schwangere oder stillende Frauen nicht empfolen</p>
+				<p>Bitte Beachte: <b>Erhöhter Koffeingehalt. Für Kinder und schwangere oder stillende Frauen nicht empfolen</b></p>
 		<details>
 			<summary id="mate"><h4>Mate hinzufügen</h4></summary>
 			<form class="modal-content animate" action="http://127.0.0.1:5000/mate" method="POST">  
@@ -160,6 +160,28 @@
 				</br>
 				  <button type="submit"> 	
 					&#10133;
+				  </button>         
+				
+			   </div>   
+			</form>
+		</details>
+		<details>
+			<summary id="mate"><h4>Mate trinken</h4></summary>
+			<form class="modal-content animate" action="http://127.0.0.1:5000/mate" method="POST">  
+				
+			   <div class="container" style="margin-top: 2em" >
+				  <input type="text" placeholder="Mate Flaschen Anzahl" name="mateFlaschen" required>
+				  </br>
+				  <input type="text" placeholder="Mate Marke" name="mateSorte" required> 
+				</br>
+				  <input id="mate_sID" type="hidden" placeholder="SessionID" name="sessionID" required> 
+				  <script type="text/javascript">
+					var sid = sessionStorage.getItem("sessionID")
+					document.getElementById('mate_sID').value=sid ; 				
+				  </script>
+				</br>
+				  <button type="submit"> 	
+					&#x1F379;
 				  </button>         
 				
 			   </div>   
@@ -195,7 +217,19 @@
 		 </div>
 		 <div id="userVerwaltung">
 		    <h3>User Verwaltung</h3>
-		    <p>An dieser Stelle sollen später die User angezeigt werden, und der Session Admin kann diese dann verwalten</p>
+		    <table>
+				<tr>
+				  <th>UserID</th>
+				  <th>User</th>
+				  <th>Status</th>
+				</tr>
+				<tr>
+				  <td>{{ uids }}</td>
+				  <td>{{ unames }}</td>
+				  <td>Online</td>
+
+				 </tr>
+			</table>
 				</div>
 
 				<button onclick="save()">&#x1F4BE;</button>
