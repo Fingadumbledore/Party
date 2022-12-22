@@ -261,12 +261,26 @@ def session(id):
 
         con = sqlite3.connect("party.db")
         cur = con.cursor()
+        l = f"SELECT username FROM user WHERE sessionID = \'{id}\';"
+        unames = cur.execute(l).fetchall()
+        con.commit()
+        cur.close()
+
+        con = sqlite3.connect("party.db")
+        cur = con.cursor()
+        l = f"SELECT userID FROM user WHERE sessionID = \'{id}\';"
+        uids = cur.execute(l).fetchall()
+        con.commit()
+        cur.close()
+
+        con = sqlite3.connect("party.db")
+        cur = con.cursor()
         l = f"SELECT ZEIT FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
         zeit = cur.execute(l).fetchall()
         con.commit()
         cur.close()
 
-        return render_template("session.html", zeit=zeit, aktivitaet=aktivitaet, user=user, eventname=eventname, eventzeit=eventzeit, game=game, useranzahl=useranzahl, creator=creator, mate=mate, der=uptime())
+        return render_template("session.html", uids=uids, unames=unames, zeit=zeit, aktivitaet=aktivitaet, user=user, eventname=eventname, eventzeit=eventzeit, game=game, useranzahl=useranzahl, creator=creator, mate=mate, der=uptime())
     else:
          warning_log(" called /session without being logged in")
          return render_template('passwd.html')
