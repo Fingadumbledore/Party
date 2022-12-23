@@ -56,9 +56,11 @@
 					<th>Status</th>
 				</tr>
 				<tr>
-					<td>{{ eventname }}</td>
-					<td>{{ eventzeit }}</td>
+					{% for event in eventdata }
+					<td>{{ event.eventname }}</td>
+					<td>{{ event.eventzeit }}</td>
 					<td>Status</td>
+					{% endfor }
 				</tr>
 			</table>
 			<p>Füge ein Event ein</p>

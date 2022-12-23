@@ -252,34 +252,25 @@ def _session(id):
     con.commit()
     cur.close()
 
-    if len(eventzeit) > 0 and len(eventname) > 0:
-        return render_template("session.html",
-                               zeit=zeit,
-                               aktivitaet=aktivitaet,
-                               user=user,
-                               eventname=eventname[0],
-                               eventzeit=eventzeit[0],
-                               game=game,
-                               useranzahl=useranzahl,
-                               creator=creator,
-                               mate=mate,
-                               uids=uids,
-                               unames=unames,
-                               der=uptime())
-    elif len(eventzeit) == 0 and len(eventname) == 0:
-        return render_template("session.html",
-                               zeit=zeit,
-                               aktivitaet=aktivitaet,
-                               user=user,
-                               eventname=eventname,
-                               eventzeit=eventzeit,
-                               game=game,
-                               useranzahl=useranzahl,
-                               creator=creator,
-                               mate=mate,
-                               uids=uids,
-                               unames=unames,
-                               der=uptime())
+    class eventData:
+        def __init__(self, evn, evz):
+            self.eventname = evn
+            self.eventzeit = evz
+
+    eventdata = eventData(eventname, eventzeit)
+
+    return render_template("session.html",
+                           zeit=zeit,
+                           aktivitaet=aktivitaet,
+                           user=user,
+                           eventdata=eventdata,
+                           game=game,
+                           useranzahl=useranzahl,
+                           creator=creator,
+                           mate=mate,
+                           uids=uids,
+                           unames=unames,
+                           der=uptime())
 
 
 @app.route("/mate", methods=['POST'])
