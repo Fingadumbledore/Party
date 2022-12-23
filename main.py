@@ -147,13 +147,10 @@ def get_chat():
         # account = cursor.fetchone()
         return render_template("chat.html")
   
-
-
 @app.route("/get_game_file", methods=['POST'])
 def get_game_file():
     log_server("called /get_game_file")
     pick()
-
 
 @app.route("/get_new_message")
 def get_new_message():
@@ -167,8 +164,6 @@ def message():
         log_server("called /message")
         return render_template("message.html")
    
-
-
 # planer
 @app.route("/get_planer", methods=['POST'])
 def get_planer():
