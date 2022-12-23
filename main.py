@@ -130,7 +130,7 @@ def index():
 # Neue Nachrichten
 @app.route("/get_chat", methods=['POST'])
 def get_chat():
-    if session:
+    
         log_server("called /get_chat")
         log_server("called /get_chat with POST")
         userID = request.form['userid']
@@ -146,9 +146,7 @@ def get_chat():
             error_log("unable to get new Messages")
         # account = cursor.fetchone()
         return render_template("chat.html")
-    else:
-        warning_log(" called /get_chat without being logged in")
-        return "{ \"message\": \"you need to login\"'}"
+  
 
 
 @app.route("/get_game_file", methods=['POST'])
@@ -159,22 +157,16 @@ def get_game_file():
 
 @app.route("/get_new_message")
 def get_new_message():
-    if session:
+
         log_server("called /get_new_message")
         return render_template("chat.html")
-    else:
-        warning_log(" called /get_new_message without being logged in")
-        return render_template('passwd.html')
-
-
+   
 @app.route("/message")
 def message():
-    if session:
+
         log_server("called /message")
         return render_template("message.html")
-    else:
-        warning_log(" called /message without being logged in")
-        return render_template('passwd.html')
+   
 
 
 # planer
@@ -255,7 +247,16 @@ def _session(id):
         def __init__(self, evn, evz):
             self.eventname = evn
             self.eventzeit = evz
+    
+    class gameData:
+        def __init__(self, ga, akt, usr, ze):
+            self.game = ga
+            self.aktivitaet = akt
+            self.user = usr
+            self.zeit = ze
 
+
+    gameda = gameData(game, aktivitaet, user, zeit)
     eventdata = eventData(eventname, eventzeit)
 
     return render_template("session.html",
@@ -263,6 +264,7 @@ def _session(id):
                            aktivitaet=aktivitaet,
                            user=user,
                            eventdata=eventdata,
+                           gameda=gameda,
                            game=game,
                            useranzahl=useranzahl,
                            creator=creator,
@@ -274,9 +276,9 @@ def _session(id):
 
 @app.route("/mate", methods=['POST'])
 def mate():
-    log_server("called /mate")
+        log_server("called /mate")
 
-    if session:
+   
         mateFlaschen = request.form['mateFlaschen']
         sessionId = request.form['sessionID']
         mateSorte = request.form['mateSorte']
@@ -320,15 +322,13 @@ def mate():
         except sqlite3.Error as e:
             error_log(f"error while executing sql: {e}")
         return redirect(f'/session/{sessionId}')
-    else:
-        warning_log(" called /mate without being logged in")
-        return render_template('/passwd')
+    
 
 @app.route("/drink", methods=['POST'])
 def drink():
-    log_server("called /drink")
+        log_server("called /drink")
 
-    if session:
+    
         mateFlaschen = request.form['mateFlaschen']
         sessionId = request.form['sessionID']
         mateSorte = request.form['mateSorte']
@@ -347,9 +347,7 @@ def drink():
         except sqlite3.Error as e:
             error_log(f"error while executing sql: {e}")
         return redirect(f'/session/{sessionId}')
-    else:
-        warning_log(" called /mate without being logged in")
-        return render_template('/passwd')
+    
 
 
 @app.route("/logout")
@@ -436,7 +434,7 @@ def login():
 
 @app.route("/stopuhr", methods=['POST'])
 def stopuhr():
-    if session:
+ 
         log_server("called /stopuhr")
         spielName = request.form['spiel']
         art = request.form['art']
@@ -451,14 +449,12 @@ def stopuhr():
         except Exception:
             error_log("unable to run sql /stopuhr")
         return redirect(f'/session/{sessionId}')
-    else:
-        warning_log(" called /stopuhr without being logged in")
-        return render_template('passwd.html')
+  
 
 
 @app.route("/get_event", methods=['POST'])
 def get_event():
-    if session:
+
         log_server("called /get_event")
         event = request.form['event']
         zeit = request.form['zeit']
@@ -475,40 +471,29 @@ def get_event():
         except e:
             error_log("unable to run sql /get_event")
         return render_template("login.html")
-    else:
-        warning_log(" called /get_event without being logged in")
-        return render_template('passwd.html')
+    
 
 
 @app.route("/controll")
 def controll():
-    if session:
+    
         log_server("called /controll")
         return render_template("controll.html")
-    else:
-        warning_log(" called /controll without being logged in")
-        return render_template('passwd.html')
-
+  
 
 @app.route("/game")
 def game():
-    if session:
+   
         log_server("called /game")
         return render_template("game.html")
-    else:
-        warning_log(" called /game without being logged in")
 
-        return render_template('passwd.html')
 
 
 @app.route("/rgb")
 def rgb():
-    if session:
+    
         log_server("called /rgb")
         return render_template("404.html")
-    else:
-        warning_log(" called /rgb without being logged in")
-        return render_template('passwd.html')
 
 
 @app.route("/get_login", methods=['POST'])

@@ -118,12 +118,14 @@
 						<th>Aktivität</th>
 						<th>Zeit</th>
 					</tr>
+					{% for i in range(eventdata.eventname|length) %}
 					<tr>
-						<td>{{ user }}</td>
-						<td>{{ game }}</td>
-						<td>{{ aktivitaet }}</td>
-						<td>{{ zeit }}</td>
+						<td>{{ gameda.user[i] }}</td>
+						<td>{{ gameda.game[i] }}</td>
+						<td>{{ gameda.aktivitaet[i] }}</td>
+						<td>{{ gameda.zeit[i] }}</td>
 					</tr>
+					{% endfor %}
 				</table>
 
 			</div>
