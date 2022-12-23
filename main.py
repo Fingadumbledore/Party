@@ -272,7 +272,7 @@ def _session(id):
                                    uids=uids,
                                    unames=unames,
                                    der=uptime())
-        else if len(eventzeit) == 0 and len(eventname) == 0:
+        elif len(eventzeit) == 0 and len(eventname) == 0:
             return render_template("session.html",
                                    zeit=zeit,
                                    aktivitaet=aktivitaet,
