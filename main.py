@@ -208,12 +208,11 @@ def _session(id):
     con = sqlite3.connect("party.db")
     cur = con.cursor()
     l = f"SELECT eventname FROM planer WHERE sessionID = \'{id}\' ORDER BY eventzeit;"
-    eventname = cur.execute(l).fetchall()
+    eventname = [i[0] for i in cur.execute(l).fetchall()]
     con.commit()
 
     l = f"SELECT eventzeit FROM planer WHERE sessionID = \'{id}\' ORDER BY eventzeit;"
-    eventzeit = cur.execute(l).fetchall()
-    print (eventzeit)
+    eventzeit = [i[0] for i in cur.execute(l).fetchall()]
     #eventtime = re.split(',', eventzeit)
     con.commit()
 
