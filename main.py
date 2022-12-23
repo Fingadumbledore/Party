@@ -365,6 +365,33 @@ def mate():
         warning_log(" called /mate without being logged in")
         return render_template('/passwd')
 
+@app.route("/drink", methods=['POST'])
+def drink():
+    log_server("called /drink")
+
+    if session:
+        mateFlaschen = request.form['mateFlaschen']
+        sessionId = request.form['sessionID']
+        mateSorte = request.form['mateSorte']
+
+        mateSql = f"INSERT INTO mate VALUES (\"{mateSorte}\", \'{mateFlaschen}\', \'{sessionId}\');"
+        try:
+            con = sqlite3.connect("party.db")
+            warning_log("Verbindung mit Datenbank wurde aufgenommen /drink")
+            cur = con.cursor()
+            cur.execute(mateSql)
+            con.commit()
+            con.close()
+
+            mate_logik(mateSorte, mateFlaschen)
+            log_server("mate wurde in Datenbank eingefügt")
+        except sqlite3.Error as e:
+            error_log(f"error while executing sql: {e}")
+        return redirect(f'/session/{sessionId}')
+    else:
+        warning_log(" called /mate without being logged in")
+        return render_template('/passwd')
+
 
 @app.route("/logout")
 def logout():
