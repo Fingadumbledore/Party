@@ -219,75 +219,45 @@ def session(id):
         l = f"SELECT eventname FROM planer WHERE sessionID = \'{id}\' ORDER BY eventzeit;"
         eventname = cur.execute(l).fetchall()
         con.commit()
-        cur.close()
+       
 
-        con = sqlite3.connect("party.db")
-        cur = con.cursor()
+     
         l = f"SELECT eventzeit FROM planer WHERE sessionID = \'{id}\' ORDER BY eventzeit;"
         eventzeit = cur.execute(l).fetchall()
         print (eventzeit)
         #eventtime = re.split(',', eventzeit)
         con.commit()
-        cur.close()
-
-        con = sqlite3.connect("party.db")
-        warning_log("Verbindung mit Datenbank wurde aufgenommen /seession")
-        cur = con.cursor()
+    
         creator = cur.execute("SELECT username FROM user WHERE info = 'Host'").fetchall()
-        cur.close()
+        con.commit()
 
-        con = sqlite3.connect("party.db")
-        warning_log("Verbindung mit Datenbank wurde aufgenommen /seession")
-        cur = con.cursor()
         l = f"SELECT count(username) FROM user WHERE sessionID = \'{id}\';"
         useranzahl = cur.execute(l).fetchall()
-        cur.close()
 
-        con = sqlite3.connect("party.db")
-        warning_log("Verbindung mit Datenbank wurde aufgenommen /seession")
-        cur = con.cursor()
         l = f"SELECT matename, mateanzahl FROM mate WHERE sessionID = \'{id}\' ORDER BY mateanzahl;"
         mate = cur.execute(l).fetchall()
         con.commit()
-        cur.close()
 
-        con = sqlite3.connect("party.db")
-        cur = con.cursor()
         l = f"SELECT  Spielname FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
         game = cur.execute(l).fetchall()
         con.commit()
-        cur.close()
 
-        con = sqlite3.connect("party.db")
-        cur = con.cursor()
         l = f"SELECT userID FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
         user = cur.execute(l).fetchall()
         con.commit()
-        cur.close()
 
-        con = sqlite3.connect("party.db")
-        cur = con.cursor()
         l = f"SELECT Spielaktivität FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
         aktivitaet = cur.execute(l).fetchall()
         con.commit()
-        cur.close()
 
-        con = sqlite3.connect("party.db")
-        cur = con.cursor()
         l = f"SELECT username FROM user WHERE sessionID = \'{id}\';"
         unames = cur.execute(l).fetchall()
         con.commit()
-        cur.close()
 
-        con = sqlite3.connect("party.db")
-        cur = con.cursor()
         l = f"SELECT userID FROM user WHERE sessionID = \'{id}\';"
         uids = cur.execute(l).fetchall()
         con.commit()
-        cur.close()
 
-        con = sqlite3.connect("party.db")
-        cur = con.cursor()
         l = f"SELECT ZEIT FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
         zeit = cur.execute(l).fetchall()
         con.commit()
