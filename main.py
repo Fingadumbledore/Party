@@ -304,6 +304,8 @@ def session(id):
                                useranzahl=useranzahl,
                                creator=creator,
                                mate=mate,
+                               uids=uids,
+                               unames=unames,
                                der=uptime())
 
     else:
