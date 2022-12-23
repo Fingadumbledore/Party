@@ -8,12 +8,9 @@ import shutil
 import re
 
 starttime = 0
-user_count = 0
-userid = 0
 app = Flask(__name__, template_folder='templates/')
 date = time.strftime("%d-%m-%Y %H:%M:%S", time.localtime(time.time()))
 zeit = time.strftime("%H%M", time.localtime(time.time()))
-log = date
 app.config['SECRET_KEY'] = 'party'
 matekiste = 0
 
