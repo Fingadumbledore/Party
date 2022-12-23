@@ -272,6 +272,20 @@ def _session(id):
                                    uids=uids,
                                    unames=unames,
                                    der=uptime())
+        else if len(eventzeit) == 0 and len(eventname) == 0:
+            return render_template("session.html",
+                                   zeit=zeit,
+                                   aktivitaet=aktivitaet,
+                                   user=user,
+                                   eventname=eventname,
+                                   eventzeit=eventzeit,
+                                   game=game,
+                                   useranzahl=useranzahl,
+                                   creator=creator,
+                                   mate=mate,
+                                   uids=uids,
+                                   unames=unames,
+                                   der=uptime())
 
     else:
         warning_log(" called /session without being logged in")
