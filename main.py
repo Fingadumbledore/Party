@@ -219,15 +219,15 @@ def _session(id):
     con.commit()
 
     l = f"SELECT  Spielname FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
-    game = cur.execute(l).fetchall()
+    game = [i[0] for i in cur.execute(l).fetchall()]
     con.commit()
 
     l = f"SELECT userID FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
-    user = cur.execute(l).fetchall()
+    user = [i[0] for i in cur.execute(l).fetchall()]
     con.commit()
 
     l = f"SELECT Spielaktivität FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
-    aktivitaet = cur.execute(l).fetchall()
+    aktivitaet = [i[0] for i in cur.execute(l).fetchall()]
     con.commit()
 
     l = f"SELECT username FROM user WHERE sessionID = \'{id}\';"
@@ -239,7 +239,7 @@ def _session(id):
     con.commit()
 
     l = f"SELECT ZEIT FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
-    zeit = cur.execute(l).fetchall()
+    zeit =  [i[0] for i in cur.execute(l).fetchall()]
     con.commit()
     cur.close()
 
