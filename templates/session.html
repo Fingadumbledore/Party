@@ -56,9 +56,9 @@
 					<th>Status</th>
 				</tr>
 				<tr>
-					{% for event in eventdata %}
-					<td>{{ event.eventname }}</td>
-					<td>{{ event.eventzeit }}</td>
+					{% for i in range(eventdata.eventname|length) %}
+					<td>{{ eventdata.eventname[i] }}
+					<td>{{ eventdata.eventzeit[i] }}</td>
 					<td>Status</td>
 					{% endfor %}
 				</tr>
