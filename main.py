@@ -208,7 +208,7 @@ def get_planer():
 
 
 @app.route("/session/<id>")
-def session(id):
+def _session(id):
     if session:
         log_server(f"called /session/{id}")
         con = sqlite3.connect("party.db")
