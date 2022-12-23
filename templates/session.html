@@ -55,13 +55,13 @@
 					<th>Zeit</th>
 					<th>Status</th>
 				</tr>
+				{% for i in range(eventdata.eventname|length) %}
 				<tr>
-					{% for i in range(eventdata.eventname|length) %}
 					<td>{{ eventdata.eventname[i] }}
 					<td>{{ eventdata.eventzeit[i] }}</td>
 					<td>Status</td>
-					{% endfor %}
 				</tr>
+				{% endfor %}
 			</table>
 			<p>Füge ein Event ein</p>
 			<form class="modal-content animate" action="/get_planer" method="POST">
