@@ -180,31 +180,26 @@ def message():
 # planer
 @app.route("/get_planer", methods=['POST'])
 def get_planer():
-    if session:
-        log_server("called /get_planer")
-        log_server("called /get_planer with POST")
-        event = request.form['event']
-        sessionID = request.form['sessionID']
-        zeit = request.form['zeit']
-        pfad = "/session/" + sessionID
-        status = "running"
-        l = f"INSERT INTO planer VALUES(  \'{event}\', \'{zeit}\', \'{sessionID}\',\'{status}\');"
-        log_server("neues Event")
-        try:
-            con = sqlite3.connect("party.db")
-            warning_log("verbindung mit db wurde aufgenommen")
-            cur = con.cursor()
-            cur.execute(l)
-            con.commit()
-            con.close()
-            log_server("event entered successfully /get_planer")
-        except Exception:
-            error_log("unable to insert event")
-        return redirect(f'/session/{sessionID}')
-
-    else:
-        warning_log(" called /get_planer without being logged in")
-        return render_template('404.html')
+    log_server("called /get_planer")
+    log_server("called /get_planer with POST")
+    event = request.form['event']
+    sessionID = request.form['sessionID']
+    zeit = request.form['zeit']
+    pfad = "/session/" + sessionID
+    status = "running"
+    l = f"INSERT INTO planer VALUES(  \'{event}\', \'{zeit}\', \'{sessionID}\',\'{status}\');"
+    log_server("neues Event")
+    try:
+        con = sqlite3.connect("party.db")
+        warning_log("verbindung mit db wurde aufgenommen")
+        cur = con.cursor()
+        cur.execute(l)
+        con.commit()
+        con.close()
+        log_server("event entered successfully /get_planer")
+    except Exception:
+        error_log("unable to insert event")
+    return redirect(f'/session/{sessionID}')
 
 
 @app.route("/session/<id>")
