@@ -209,87 +209,82 @@ def get_planer():
 
 @app.route("/session/<id>")
 def _session(id):
-    if session:
-        log_server(f"called /session/{id}")
-        con = sqlite3.connect("party.db")
-        cur = con.cursor()
-        l = f"SELECT eventname FROM planer WHERE sessionID = \'{id}\' ORDER BY eventzeit;"
-        eventname = cur.execute(l).fetchall()
-        con.commit()
+    log_server(f"called /session/{id}")
+    con = sqlite3.connect("party.db")
+    cur = con.cursor()
+    l = f"SELECT eventname FROM planer WHERE sessionID = \'{id}\' ORDER BY eventzeit;"
+    eventname = cur.execute(l).fetchall()
+    con.commit()
 
-        l = f"SELECT eventzeit FROM planer WHERE sessionID = \'{id}\' ORDER BY eventzeit;"
-        eventzeit = cur.execute(l).fetchall()
-        print (eventzeit)
-        #eventtime = re.split(',', eventzeit)
-        con.commit()
-    
-        creator = cur.execute("SELECT username FROM user WHERE info = 'Host'").fetchall()
-        con.commit()
+    l = f"SELECT eventzeit FROM planer WHERE sessionID = \'{id}\' ORDER BY eventzeit;"
+    eventzeit = cur.execute(l).fetchall()
+    print (eventzeit)
+    #eventtime = re.split(',', eventzeit)
+    con.commit()
 
-        l = f"SELECT count(username) FROM user WHERE sessionID = \'{id}\';"
-        useranzahl = cur.execute(l).fetchall()
+    creator = cur.execute("SELECT username FROM user WHERE info = 'Host'").fetchall()
+    con.commit()
 
-        l = f"SELECT matename, mateanzahl FROM mate WHERE sessionID = \'{id}\' ORDER BY mateanzahl;"
-        mate = cur.execute(l).fetchall()
-        con.commit()
+    l = f"SELECT count(username) FROM user WHERE sessionID = \'{id}\';"
+    useranzahl = cur.execute(l).fetchall()
 
-        l = f"SELECT  Spielname FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
-        game = cur.execute(l).fetchall()
-        con.commit()
+    l = f"SELECT matename, mateanzahl FROM mate WHERE sessionID = \'{id}\' ORDER BY mateanzahl;"
+    mate = cur.execute(l).fetchall()
+    con.commit()
 
-        l = f"SELECT userID FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
-        user = cur.execute(l).fetchall()
-        con.commit()
+    l = f"SELECT  Spielname FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
+    game = cur.execute(l).fetchall()
+    con.commit()
 
-        l = f"SELECT Spielaktivität FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
-        aktivitaet = cur.execute(l).fetchall()
-        con.commit()
+    l = f"SELECT userID FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
+    user = cur.execute(l).fetchall()
+    con.commit()
 
-        l = f"SELECT username FROM user WHERE sessionID = \'{id}\';"
-        unames = cur.execute(l).fetchall()
-        con.commit()
+    l = f"SELECT Spielaktivität FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
+    aktivitaet = cur.execute(l).fetchall()
+    con.commit()
 
-        l = f"SELECT userID FROM user WHERE sessionID = \'{id}\';"
-        uids = cur.execute(l).fetchall()
-        con.commit()
+    l = f"SELECT username FROM user WHERE sessionID = \'{id}\';"
+    unames = cur.execute(l).fetchall()
+    con.commit()
 
-        l = f"SELECT ZEIT FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
-        zeit = cur.execute(l).fetchall()
-        con.commit()
-        cur.close()
+    l = f"SELECT userID FROM user WHERE sessionID = \'{id}\';"
+    uids = cur.execute(l).fetchall()
+    con.commit()
 
-        if len(eventzeit) > 0 and len(eventname) > 0:
-            return render_template("session.html",
-                                   zeit=zeit,
-                                   aktivitaet=aktivitaet,
-                                   user=user,
-                                   eventname=eventname[0],
-                                   eventzeit=eventzeit[0],
-                                   game=game,
-                                   useranzahl=useranzahl,
-                                   creator=creator,
-                                   mate=mate,
-                                   uids=uids,
-                                   unames=unames,
-                                   der=uptime())
-        elif len(eventzeit) == 0 and len(eventname) == 0:
-            return render_template("session.html",
-                                   zeit=zeit,
-                                   aktivitaet=aktivitaet,
-                                   user=user,
-                                   eventname=eventname,
-                                   eventzeit=eventzeit,
-                                   game=game,
-                                   useranzahl=useranzahl,
-                                   creator=creator,
-                                   mate=mate,
-                                   uids=uids,
-                                   unames=unames,
-                                   der=uptime())
+    l = f"SELECT ZEIT FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
+    zeit = cur.execute(l).fetchall()
+    con.commit()
+    cur.close()
 
-    else:
-        warning_log(" called /session without being logged in")
-        return render_template('passwd.html')
+    if len(eventzeit) > 0 and len(eventname) > 0:
+        return render_template("session.html",
+                               zeit=zeit,
+                               aktivitaet=aktivitaet,
+                               user=user,
+                               eventname=eventname[0],
+                               eventzeit=eventzeit[0],
+                               game=game,
+                               useranzahl=useranzahl,
+                               creator=creator,
+                               mate=mate,
+                               uids=uids,
+                               unames=unames,
+                               der=uptime())
+    elif len(eventzeit) == 0 and len(eventname) == 0:
+        return render_template("session.html",
+                               zeit=zeit,
+                               aktivitaet=aktivitaet,
+                               user=user,
+                               eventname=eventname,
+                               eventzeit=eventzeit,
+                               game=game,
+                               useranzahl=useranzahl,
+                               creator=creator,
+                               mate=mate,
+                               uids=uids,
+                               unames=unames,
+                               der=uptime())
 
 
 @app.route("/mate", methods=['POST'])
