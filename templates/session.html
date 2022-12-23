@@ -234,12 +234,14 @@
 						<th>User</th>
 						<th>Status</th>
 					</tr>
+					{% for i in range(userdat.unames|length) %}
 					<tr>
-						<td>{{ uids }}</td>
-						<td>{{ unames }}</td>
+						<td>{{ userdat.unames[i] }}</td>
+						<td>{{ userdat.uids[i] }}</td>
 						<td>Online</td>
 
 					</tr>
+					{% endfor %}
 				</table>
 			</div>
 

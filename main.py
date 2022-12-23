@@ -203,14 +203,14 @@ def _session(id):
     #eventtime = re.split(',', eventzeit)
     con.commit()
 
-    creator = cur.execute("SELECT username FROM user WHERE info = 'Host'").fetchall()
+    creator =  [i[0] for i in cur.execute("SELECT username FROM user WHERE info = 'Host'").fetchall()]
     con.commit()
 
     l = f"SELECT count(username) FROM user WHERE sessionID = \'{id}\';"
     useranzahl = cur.execute(l).fetchall()
 
     l = f"SELECT matename, mateanzahl FROM mate WHERE sessionID = \'{id}\' ORDER BY mateanzahl;"
-    mate = cur.execute(l).fetchall()
+    mate =  [i[0] for i in cur.execute(l).fetchall()]
     con.commit()
 
     l = f"SELECT  Spielname FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
@@ -226,11 +226,11 @@ def _session(id):
     con.commit()
 
     l = f"SELECT username FROM user WHERE sessionID = \'{id}\';"
-    unames = cur.execute(l).fetchall()
+    unames =  [i[0] for i in cur.execute(l).fetchall()]
     con.commit()
 
     l = f"SELECT userID FROM user WHERE sessionID = \'{id}\';"
-    uids = cur.execute(l).fetchall()
+    uids =  [i[0] for i in cur.execute(l).fetchall()]
     con.commit()
 
     l = f"SELECT ZEIT FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
@@ -242,6 +242,11 @@ def _session(id):
         def __init__(self, evn, evz):
             self.eventname = evn
             self.eventzeit = evz
+
+    class userData:
+        def __init__(self, us, usid):
+            self.unames = us
+            self.uids = usid
     
     class gameData:
         def __init__(self, ga, akt, usr, ze):
@@ -253,6 +258,7 @@ def _session(id):
 
     gameda = gameData(game, aktivitaet, user, zeit)
     eventdata = eventData(eventname, eventzeit)
+    userdat = eventData(unames, uids)
 
     return render_template("session.html",
                            zeit=zeit,
@@ -260,6 +266,7 @@ def _session(id):
                            user=user,
                            eventdata=eventdata,
                            gameda=gameda,
+                           userdat=userdat,
                            game=game,
                            useranzahl=useranzahl,
                            creator=creator,
