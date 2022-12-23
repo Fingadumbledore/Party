@@ -216,9 +216,7 @@ def session(id):
         l = f"SELECT eventname FROM planer WHERE sessionID = \'{id}\' ORDER BY eventzeit;"
         eventname = cur.execute(l).fetchall()
         con.commit()
-       
 
-     
         l = f"SELECT eventzeit FROM planer WHERE sessionID = \'{id}\' ORDER BY eventzeit;"
         eventzeit = cur.execute(l).fetchall()
         print (eventzeit)
@@ -265,8 +263,8 @@ def session(id):
                                zeit=zeit,
                                aktivitaet=aktivitaet,
                                user=user,
-                               eventname=eventname,
-                               eventzeit=eventzeit,
+                               eventname=eventname[0],
+                               eventzeit=eventzeit[0],
                                game=game,
                                useranzahl=useranzahl,
                                creator=creator,
@@ -456,7 +454,7 @@ def stopuhr():
             warning_log("verbindung mit Datenbank wurde aufgenommen")
             dbcon(l)
             log_server("time entered successfully /stopuhr")
-        except e:
+        except Exception:
             error_log("unable to run sql /stopuhr")
         return redirect(f'/session/{sessionId}')
     else:
