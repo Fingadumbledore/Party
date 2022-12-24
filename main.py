@@ -423,8 +423,7 @@ def get_creat_session():
         create_qr(sessionID)
         return redirect(f'/session/{sessionID}')
         log_server("session successfully started")
-    except e:
-        error_log("unable to create Session")
+    except:
         return "{ \"message\": \"Login failed\"'}"
 
 

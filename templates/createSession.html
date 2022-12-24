@@ -12,9 +12,8 @@
         <div class="container">   
             <label>Session name : </label>   
             <input id="sessionName" type="text" placeholder="Enter Session name" name="sessionname" required>  
-            <label>Session Id : </label>   
-            <input id="idIn" type="text" placeholder="Session Id" name="sessionid" required>  
-            <button type="submit" onclick="setID() & setUID3() & setSname()">create</button>   
+            <input id="idIn" type="hidden" placeholder="Session Id" name="sessionid" required>  
+            <button type="submit" onclick="setID() & setUID3() & setSname() &  randomnumber1(1, 42) ">create</button>   
             <a href="javascript:history.back()">
                  <button type="button" class="cancelbtn"> Cancel</button>   
             </a>
@@ -35,6 +34,11 @@
             function setSname() {
                 let sessionname = document.getElementById("sessionName").value
                 window.sessionStorage.setItem("session", sessionname)
+            }
+
+            function randomnumber1() { 
+                rnumber =  Math.floor(Math.random() * (max - min + 1) ) + min
+                document.getElementById("idIn").innerHTML = rnumber	
             }
             
            
