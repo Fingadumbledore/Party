@@ -450,6 +450,25 @@ def stopuhr():
         except Exception:
             error_log("unable to run sql /stopuhr")
         return redirect(f'/session/{sessionId}')
+
+
+@app.route("/pointGame", methods=['POST'])
+def pointgame():
+ 
+        log_server("called /pointGame")
+        spielName = request.form['spiel']
+        art = request.form['art']
+        punkte = request.form['punkte']
+        userId = request.form['userid']
+        sessionId = request.form['sessionID']
+        l = f"INSERT INTO pointgame VALUES(  \'{sessionId}\', \'{userId}\',\'{spielName}\',\'{art}\', \'{punkte}\');"
+        try:
+            warning_log("verbindung mit Datenbank wurde aufgenommen")
+            dbcon(l)
+            log_server("time entered successfully /pointGame")
+        except Exception:
+            error_log("unable to run sql /pointGame")
+        return redirect(f'/session/{sessionId}')
   
 
 
