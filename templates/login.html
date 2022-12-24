@@ -65,7 +65,7 @@
                     <label>Session Id : </label>   
                     <input id="id2"type="text" placeholder="Session Id" name="sessionID" required>  
                 </br>
-                <button type="submit" onclick="setUID1() & setID2() & setname3() & setname2() & setname3() & randomnumber(1 , 42)">Create</button>   
+                <button type="submit" onclick="setID2() & setname3() & setname2() & setname3() & randomnumber(1 , 42)">Create</button>   
                     </center>
                 </div>   
             </form>   
@@ -77,11 +77,6 @@
         <script>
             function setUID() {
                 let sessID = document.getElementById("Uid").value
-                window.sessionStorage.setItem("userID", sessID)
-            }
-
-            function setUID1() {
-                let sessID = document.getElementById("Uid1").value
                 window.sessionStorage.setItem("userID", sessID)
             }
 
@@ -108,6 +103,7 @@
             function randomnumber(min, max) { 
                     rnumber =  Math.floor(Math.random() * (max - min + 1) ) + min
                     document.getElementById("Uid1").innerHTML = rnumber	
+                    window.sessionStorage.setItem("userID", rnumber)
                 }
         </script>
     </body>     

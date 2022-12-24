@@ -13,19 +13,14 @@
             <label>Session name : </label>   
             <input id="sessionName" type="text" placeholder="Enter Session name" name="sessionname" required>  
             <input id="idIn" type="hidden" placeholder="Session Id" name="sessionid" required>  
-            <button type="submit" onclick="setID() & setUID3() & setSname() &  randomnumber1(1, 42) ">create</button>   
+            <button type="submit" onclick="setUID3() & setSname() &  randomnumber1(1, 42) ">create</button>   
             <a href="javascript:history.back()">
                  <button type="button" class="cancelbtn"> Cancel</button>   
             </a>
         </div>   
     </form>
         <script>
-            function setID() {
-                let sessID = document.getElementById("idIn").value
-                console.log(sessID)
-                window.sessionStorage.setItem("sessionID", sessID)
-            }
-
+            
             function setUID3() {
                 window.sessionStorage.setItem("userID", "1")
                 window.sessionStorage.setItem("name", "Host")
@@ -36,9 +31,10 @@
                 window.sessionStorage.setItem("session", sessionname)
             }
 
-            function randomnumber1() { 
-                rnumber =  Math.floor(Math.random() * (max - min + 1) ) + min
-                document.getElementById("idIn").innerHTML = rnumber	
+            function randomnumber1(min, max) { 
+                rnumber1 =  Math.floor(Math.random() * (max - min + 1) ) + min
+                document.getElementById("idIn").innerHTML = rnumber1	
+                window.sessionStorage.setItem("sessionID", rnumber1)
             }
             
            
