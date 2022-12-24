@@ -117,12 +117,12 @@
 							<input id="gameSID" type="hidden" placeholder="Session ID" name="sessionID" required>
 							<script type="text/javascript">
 								var sid = sessionStorage.getItem("sessionID")
-								document.getElementById('gameSID').value = sid; 				
+								document.getElementById('pointgameSID').value = sid; 				
 							</script>
 							<input id="gameUID" type="hidden" placeholder="UserID" name="userid" required>
 							<script type="text/javascript">
 								var sid = sessionStorage.getItem("sessionID")
-								document.getElementById('gameUID').value = sid; 				
+								document.getElementById('pointgameUID').value = sid; 				
 							</script>
 							</br>
 							<button type="submit">&#10133;</button>
@@ -161,12 +161,12 @@
 						<th>Aktivität</th>
 						<th>Punkte</th>
 					</tr>
-					{% for i in range(gameda.user|length) %}
+					{% for i in range(pointgameda.p_user|length) %}
 					<tr>
-						<td>{{ gameda.user[i] }}</td>
-						<td>{{ gameda.game[i] }}</td>
-						<td>{{ gameda.aktivitaet[i] }}</td>
-						<td>{{ gameda.zeit[i] }}</td>
+						<td>{{ pointgameda.p_user[i] }}</td>
+						<td>{{ pointgameda.p_game[i] }}</td>
+						<td>{{ pointgameda.p_aktivitaet[i] }}</td>
+						<td>{{ pointgameda.p_zeit[i] }}</td>
 					</tr>
 					{% endfor %}
 				</table>

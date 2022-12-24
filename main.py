@@ -236,7 +236,25 @@ def _session(id):
     l = f"SELECT ZEIT FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
     zeit =  [i[0] for i in cur.execute(l).fetchall()]
     con.commit()
+
+
+    l = f"SELECT Punkte FROM pointgame WHERE sessionID = \'{id}\' ORDER BY Punkte;"
+    p_punkte =  [i[0] for i in cur.execute(l).fetchall()]
+    con.commit()
+
+    l = f"SELECT Spielname FROM pointgame WHERE sessionID = \'{id}\' ORDER BY Punkte;"
+    p_game =  [i[0] for i in cur.execute(l).fetchall()]
+    con.commit()
+
+    l = f"SELECT Spielaktivität FROM pointgame WHERE sessionID = \'{id}\' ORDER BY Punkte;"
+    p_aktivitaet =  [i[0] for i in cur.execute(l).fetchall()]
+    con.commit()
+
+    l = f"SELECT userID FROM pointgame WHERE sessionID = \'{id}\'ORDER BY Punkte;"
+    p_user =  [i[0] for i in cur.execute(l).fetchall()]
+    con.commit()
     cur.close()
+
 
     class eventData:
         def __init__(self, evn, evz):
@@ -255,8 +273,16 @@ def _session(id):
             self.user = usr
             self.zeit = ze
 
+    class pointgameData:
+        def __init__(self, ga, akt, usr, pu):
+            self.p_game = ga
+            self.p_aktivitaet = akt
+            self.p_user = usr
+            self.p_punkte = pu
+
 
     gameda = gameData(game, aktivitaet, user, zeit)
+    pointgameda = pointgameData(p_game, p_aktivitaet, p_user, p_punkte)
     eventdata = eventData(eventname, eventzeit)
     userdat = eventData(unames, uids)
 
@@ -266,6 +292,7 @@ def _session(id):
                            user=user,
                            eventdata=eventdata,
                            gameda=gameda,
+                           pointgameda=pointgameda,
                            userdat=userdat,
                            game=game,
                            useranzahl=useranzahl,
