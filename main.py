@@ -421,7 +421,7 @@ def get_creat_session():
     log_server("called /get_creat_session with POST")
     sessionname = request.form['sessionname']
     sessionID = request.form['sessionid']
-    l = f"INSERT INTO seession (sessionname, sessionstatus, seessiontyp) VALUES(  \'{sessionname}\', 'online','public');"
+    l = f"INSERT INTO seession VALUES( \'{sessionID}\', \'{sessionname}\', 'online','public');"
     log_server("neue Session")
     try:
         con = sqlite3.connect("party.db")
@@ -429,21 +429,17 @@ def get_creat_session():
         cur = con.cursor()
         cur.execute(l)
         con.commit()
-        con.close()
+    
 
-        try:
-            con = sqlite3.connect("party.db")
-            warning_log("verbindung mit db wurde aufgenommen")
-            cur = con.cursor()
-            username = "Host"
-            usertype = "admin"
-            userId = 1
-            l = f"INSERT INTO user (username, sessionID, info) VALUES (\'{username}\', {sessionID}, \'{usertype}\');"
-            cur.execute(l)
-            con.commit()
-            con.close()
-        except e:
-            warning_log("user admin konnte nicht angelegt werden")
+            
+        username = "Host"
+        usertype = "admin"
+        userId = 1
+        l = f"INSERT INTO user VALUES (\'{userId}\',\'{username}\', {sessionID}, \'{usertype}\');"            
+        cur.execute(l)
+        con.commit()
+        con.close()
+      
 
         user_count = +1
         starttime = int(zeit)
