@@ -418,7 +418,6 @@ def create_session():
 
 @app.route("/get_creat_session", methods=['POST'])
 def get_creat_session():
-    import pdb; pdb.set_trace()
     log_server("called /get_creat_session with POST")
     Gsessionname = request.form['sessionname']
     GsessionID = request.form['sessionid']
