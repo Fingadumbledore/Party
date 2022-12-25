@@ -420,12 +420,13 @@ def create_session():
 def get_creat_session():
     log_server("called /get_creat_session with POST")
     Gsessionname = request.form['sessionname']
-    GsessionID = request.form['sessionid']
+    GsessionID = request.form['sessionID']
     Gusername = "Host"
     Gusertype = "admin"  
     GuserId = 1
     Gstatus = "online"
-    l1 = f"INSERT INTO seession VALUES({GsessionID}, \'{Gsessionname}\', 'online', 'public');"         
+    l1 = f"INSERT INTO seession VALUES({GsessionID}, '{Gsessionname}', 'online', 'public');"         
+    print(l1)
     log_server("neue Session")
     
     con = sqlite3.connect("party.db")
