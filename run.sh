@@ -1,10 +1,7 @@
 #!/bin/sh
-
-python -c "import qrcode"
 if [ $? -eq 1 ]; then
 	pip install qrcode
 fi
-
 
 cat party.sql | sqlite3 party.db
 
