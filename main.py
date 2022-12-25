@@ -420,13 +420,13 @@ def create_session():
 def get_creat_session():
     import pdb; pdb.set_trace()
     log_server("called /get_creat_session with POST")
-    Gsessionname = session['session']
-    GsessionID = session['sessionID']
+    Gsessionname = request.form['sessionname']
+    GsessionID = request.form['sessionid']
     Gusername = "Host"
     Gusertype = "admin"  
     GuserId = 1
     Gstatus = "online"
-    l1 = f"INSERT INTO seession VALUES({GsessionID}, '{Gsessionname}', 'online', 'public');"         
+    l1 = f'INSERT INTO seession VALUES({GsessionID}, \'{Gsessionname}\', \'online\', \'public\');'
     print(l1)
     log_server("neue Session")
     
@@ -447,7 +447,7 @@ def get_creat_session():
             username = "Host"
             usertype = "admin"
             userId = 1
-            l = f"INSERT INTO user (username, sessionID, info) VALUES ('{username}', {sessionID}, '{usertype}');"
+            l = f'INSERT INTO user (username, sessionID, info) VALUES (\'{username}\', {sessionID}, \'{usertype}\');'
             cur.execute(l)
             con.commit()
             con.close()
