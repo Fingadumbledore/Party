@@ -418,9 +418,10 @@ def create_session():
 
 @app.route("/get_creat_session", methods=['POST'])
 def get_creat_session():
+    import pdb; pdb.set_trace()
     log_server("called /get_creat_session with POST")
-    Gsessionname = request.form['session']
-    GsessionID = request.form['sessionID']
+    Gsessionname = session['session']
+    GsessionID = session['sessionID']
     Gusername = "Host"
     Gusertype = "admin"  
     GuserId = 1
@@ -446,7 +447,7 @@ def get_creat_session():
             username = "Host"
             usertype = "admin"
             userId = 1
-            l = f"INSERT INTO user (username, sessionID, info) VALUES (\'{username}\', {sessionID}, \'{usertype}\');"
+            l = f"INSERT INTO user (username, sessionID, info) VALUES ('{username}', {sessionID}, '{usertype}');"
             cur.execute(l)
             con.commit()
             con.close()
