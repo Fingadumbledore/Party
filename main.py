@@ -425,20 +425,20 @@ def get_creat_session():
     Gusertype = "admin"  
     GuserId = 1
     Gstatus = "online"
-    l1 = f"INSERT INTO seession VALUES( \'{GsessionID}\', \'{Gsessionname}\', 'online','public');"         
+    l1 = f"INSERT INTO seession VALUES({GsessionID}, \'{Gsessionname}\', 'online','public');"         
     log_server("neue Session")
-    try:
-        con = sqlite3.connect("party.db")
-        warning_log("verbindung mit db wurde aufgenommen")
-        cur = con.cursor()
-        log_server("a")
-        cur.execute(l1)
+    
+    con = sqlite3.connect("party.db")
+    warning_log("verbindung mit db wurde aufgenommen")
+    cur = con.cursor()
+    log_server("a")
+    cur.execute(l1)
       
-        log_server("f")
-        user_count = +1
-        starttime = int(zeit)
-        create_qr(sessionID)
-        try:
+    log_server("f")
+    user_count = +1
+    starttime = int(zeit)
+    create_qr(sessionID)
+    try:
             con = sqlite3.connect("party.db")
             warning_log("verbindung mit db wurde aufgenommen")
             cur = con.cursor()
@@ -449,14 +449,12 @@ def get_creat_session():
             cur.execute(l)
             con.commit()
             con.close()
-        except e:
+    except e:
             warning_log("user admin konnte nicht angelegt werden")
-        return redirect(f'/session/{sessionID}')
-        log_server("session successfully started")
+    return redirect(f'/session/{sessionID}')
+    log_server("session successfully started")
 
-    except:
-        return "{ \"message\": \"Login failed\"'}"
-
+    
 
 @app.route("/login")
 def login():
