@@ -438,7 +438,7 @@ def get_creat_session():
     log_server("f")
     user_count = +1
     starttime = int(zeit)
-    create_qr(sessionID)
+    create_qr(GsessionID)
     try:
             con = sqlite3.connect("party.db")
             warning_log("verbindung mit db wurde aufgenommen")
@@ -446,13 +446,13 @@ def get_creat_session():
             username = "Host"
             usertype = "admin"
             userId = 1
-            l = f'INSERT INTO user (username, sessionID, info) VALUES (\'{username}\', {sessionID}, \'{usertype}\');'
+            l = f'INSERT INTO user (username, sessionID, info) VALUES (\'{username}\', {GsessionID}, \'{usertype}\');'
             cur.execute(l)
             con.commit()
             con.close()
     except e:
             warning_log("user admin konnte nicht angelegt werden")
-    return redirect(f'/session/{sessionID}')
+    return redirect(f'/session/{GsessionID}')
     log_server("session successfully started")
 
     
