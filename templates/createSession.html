@@ -12,7 +12,7 @@
         <div class="container">   
             <label>Session name : </label>   
             <input id="sessionName" type="text" placeholder="Enter Session name" name="sessionname" required>  
-            <input id="idIn" type="hidden" name="sessionid" required>  
+            <input id="idIn" name="sessionid" type="number" value="test" required hidden>  
             <button type="submit" onclick="randomnumber1(1, 42) ">create</button>   
             <a href="javascript:history.back()">
                  <button type="button" class="cancelbtn"> Cancel</button> 
@@ -23,7 +23,7 @@
 
             function randomnumber1(min, max) { 
                 rnumber1 =  Math.floor(Math.random() * (max - min + 1) ) + min
-                document.getElementById("idIn").innerHTML = rnumber1	
+                document.getElementById("idIn").value = rnumber1	
                 
                 window.sessionStorage.setItem("sessionID", rnumber1)
 
