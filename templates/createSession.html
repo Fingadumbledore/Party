@@ -8,14 +8,14 @@
     </head>
     <body>
        <center><h1>Create Session</h1></center> 
-            <form class="modal-content animate" action="http://127.0.0.1:5000//get_creat_session" method="POST">  
+            <form class="modal-content animate" action="/get_creat_session" method="POST">  
         <div class="container">   
             <label>Session name : </label>   
             <input id="sessionName" type="text" placeholder="Enter Session name" name="sessionname" required>  
             <input id="idIn" type="hidden" name="sessionid" required>  
             <button type="submit" onclick="randomnumber1(1, 42) ">create</button>   
             <a href="javascript:history.back()">
-                 <button type="button" class="cancelbtn"> Cancel</button>   
+                 <button type="button" class="cancelbtn"> Cancel</button> 
             </a>
         </div>   
     </form>

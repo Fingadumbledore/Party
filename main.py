@@ -425,7 +425,7 @@ def get_creat_session():
     Gusertype = "admin"  
     GuserId = 1
     Gstatus = "online"
-    l1 = f"INSERT INTO seession VALUES({GsessionID}, \'{Gsessionname}\', 'online','public');"         
+    l1 = f"INSERT INTO seession VALUES({GsessionID}, \'{Gsessionname}\', 'online', 'public');"         
     log_server("neue Session")
     
     con = sqlite3.connect("party.db")
@@ -483,11 +483,6 @@ def stopuhr():
 
 @app.route("/pointGame", methods=['POST'])
 def pointgame():
- 
-        log_server("called /pointGame")
-        spielName = request.form['spiel']
-        art = request.form['art']
-        punkte = request.form['punkte']
         userId = request.form['userid']
         sessionId = request.form['sessionID']
         l = f"INSERT INTO pointgame VALUES(  \'{sessionId}\', \'{userId}\',\'{spielName}\',\'{art}\', \'{punkte}\');"
