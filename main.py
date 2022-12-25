@@ -419,24 +419,22 @@ def create_session():
 @app.route("/get_creat_session", methods=['POST'])
 def get_creat_session():
     log_server("called /get_creat_session with POST")
-    sessionname = request.form['sessionname']
-    sessionID = request.form['sessionid']
-    l = f"INSERT INTO seession VALUES( \'{sessionID}\', \'{sessionname}\', 'online','public');"
+    Gsessionname = request.form['sessionname']
+    GsessionID = request.form['sessionid']
+    Gusername = "Host"
+    Gusertype = "admin"  
+    GuserId = 1
+    l1 = f"INSERT INTO seession VALUES( \'{GsessionID}\', \'{Gsessionname}\', 'online','public');"
+    l2 = f"INSERT INTO user VALUES (\'{GuserId}\',\'{Gusername}\', {GsessionID}, \'{Gusertype}\');"            
     log_server("neue Session")
     try:
         con = sqlite3.connect("party.db")
         warning_log("verbindung mit db wurde aufgenommen")
         cur = con.cursor()
-        cur.execute(l)
+        cur.execute(l1)
         con.commit()
     
-
-            
-        username = "Host"
-        usertype = "admin"
-        userId = 1
-        l = f"INSERT INTO user VALUES (\'{userId}\',\'{username}\', {sessionID}, \'{usertype}\');"            
-        cur.execute(l)
+        cur.execute(l2)
         con.commit()
         con.close()
       
