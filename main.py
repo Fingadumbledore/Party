@@ -424,21 +424,24 @@ def get_creat_session():
     Gusername = "Host"
     Gusertype = "admin"  
     GuserId = 1
-    l1 = f"INSERT INTO seession VALUES( \'{GsessionID}\', \'{Gsessionname}\', 'online','public');"
+    Gstatus = "online"
+    l1 = f"INSERT INTO seession VALUES( \'{GsessionID}\', \'{Gsessionname}\', \'{Gstatus}\', \'{Gstatus}\');"
     l2 = f"INSERT INTO user VALUES (\'{GuserId}\',\'{Gusername}\', {GsessionID}, \'{Gusertype}\');"            
     log_server("neue Session")
     try:
         con = sqlite3.connect("party.db")
         warning_log("verbindung mit db wurde aufgenommen")
         cur = con.cursor()
+        log_server("a")
         cur.execute(l1)
+        log_server("k")
         con.commit()
-    
+        log_server("test")
         cur.execute(l2)
         con.commit()
         con.close()
       
-
+        log_server("f")
         user_count = +1
         starttime = int(zeit)
         create_qr(sessionID)
