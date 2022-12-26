@@ -375,7 +375,7 @@ def drink():
         k = substracted
      
 
-        mateSql = f"INSERT INTO mate VALUES (\"{mateSorte}\", \'{k}\', \'{sessionId}\');"
+        mateSql = f"UPDATE mate SET mateanzahl = \'{k}\' WHERE sessionID = \'{sessionId}\' AND matename = \'{mateSorte}\');"
         try:
             con = sqlite3.connect("party.db")
             warning_log("Verbindung mit Datenbank wurde aufgenommen /drink")
