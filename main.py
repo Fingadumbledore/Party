@@ -6,6 +6,7 @@ import time
 import qrcode
 import shutil
 import re
+import numpy
 
 starttime = 0
 app = Flask(__name__, template_folder='templates/')
@@ -95,7 +96,7 @@ def mate_logik(sorte, anzahl):
     if sorte == "Bionade Mate":
         koffeingehalt = 20
 
-    return koffeingehalt * anzahl
+   
     '''
     anzahl = anzahl + 1
     koffeingehalt = 0
@@ -357,12 +358,24 @@ def mate():
 def drink():
         log_server("called /drink")
 
-    
+        con = sqlite3.connect("party.db")
+        warning_log("Verbindung mit Datenbank wurde aufgenommen /drink")
+        cur = con.cursor()
         mateFlaschen = request.form['mateFlaschen']
         sessionId = request.form['sessionID']
         mateSorte = request.form['mateSorte']
 
-        mateSql = f"INSERT INTO mate VALUES (\"{mateSorte}\", \'{mateFlaschen}\', \'{sessionId}\');"
+        l3 = f"SELECT mateanzahl FROM mate WHERE sessionID = \'{sessionId}\' AND matename = \'{mateSorte}\';"
+        manzahl = [i[0] for i in cur.execute(l3).fetchall()]
+        f = [mateFlaschen]
+        substracted = list()
+        for intem1, item2 in zip(manzahl, f):
+            substracted.append(intem1 - item2)
+
+        k = substracted
+     
+
+        mateSql = f"INSERT INTO mate VALUES (\"{mateSorte}\", \'{k}\', \'{sessionId}\');"
         try:
             con = sqlite3.connect("party.db")
             warning_log("Verbindung mit Datenbank wurde aufgenommen /drink")
