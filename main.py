@@ -119,7 +119,7 @@ def mws(kisten):
 def create_qr(id):
     if not os.path.exists("./static/img/qr.png"):
         qip = ipfin()
-        img = qrcode.make(f'{qip}:5000/session/{id}')
+        img = qrcode.make(f'{qip}:80/session/{id}')
         type(img)
         img.save("./static/img/qr.png")
     else:
