@@ -211,7 +211,7 @@ def _session(id):
     useranzahl = cur.execute(l).fetchall()
 
     l = f"SELECT matename, mateanzahl FROM mate WHERE sessionID = \'{id}\' ORDER BY mateanzahl;"
-    mate =   cur.execute(l).fetchall()
+    mate = cur.execute(l).fetchall()
     con.commit()
 
     l = f"SELECT  Spielname FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
