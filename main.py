@@ -24,6 +24,10 @@ def dbcon(sql):
     con.commit()
     return sql.fetchall()
 
+def ipfin():
+    datei = open('ip.txt', 'r')
+    print (datei.read())
+    return datei.read()
 
 def dbcon1(sql):
     con = sqlite3.connect("party.db")
@@ -114,7 +118,8 @@ def mws(kisten):
 # Qr-code generator#
 def create_qr(id):
     if not os.path.exists("./static/img/qr.png"):
-        img = qrcode.make(f'127.0.0.1:5000/session/{id}')
+        qip = ipfin()
+        img = qrcode.make(f'{qip}:5000/session/{id}')
         type(img)
         img.save("./static/img/qr.png")
     else:
@@ -541,7 +546,7 @@ def controll():
 
 @app.route("/game")
 def game():
-   
+    
         log_server("called /game")
         return render_template("game.html")
 
@@ -611,4 +616,6 @@ def create_app(config_filename):
 
 
 # Use this line to run it localy
-# app.run(host="<ip>", port=80)
+
+runip = ipfin()
+app.run(host=runip, port=80)
