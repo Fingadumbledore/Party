@@ -4,6 +4,7 @@ pkgs.mkShell {
     (pkgs.python3.withPackages (ps: [
       ps.flask
       ps.qrcode
+      ps.numpy
     ]))
 
     pkgs.curl
