@@ -477,7 +477,17 @@ def get_creat_session():
     return redirect(f'/session/{GsessionID}')
     log_server("session successfully started")
 
-    
+@app.route("/charts")
+def charts():
+    log_server("called /charts")
+    csessionID = request.form['sessionID']
+    con = sqlite3.connect("party.db")
+    warning_log("verbindung mit db wurde aufgenommen")
+    cur = con.cursor()
+    k = f"SELCT COUNT(DISTINCT 'Spielname') FROM game WHERE sessionID = \'{csessionID}\';"
+    cur.execute(k)
+
+    return redirect(f'/session/{csessionID}')  
 
 @app.route("/login")
 def login():

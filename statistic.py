@@ -20,7 +20,7 @@ def createChart(sessionID,Spielname):
 
 
 
-    colors = ['green','blue','purple','brown','teal']
+    colors = ['green','blue','purple','brown','teal', 'yellow', 'black', 'orange']
     plt.bar(user, zeit, color=colors)
     plt.title(Spielname, fontsize=14)
     plt.xlabel('User', fontsize=14)
