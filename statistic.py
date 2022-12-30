@@ -2,8 +2,8 @@ import matplotlib.pyplot as plt
 import sqlite3
 import os
 
-def createChart(sessionID,Spielname):   
 
+def createChart(sessionID,Spielname):   
     con = sqlite3.connect("party.db")
     cur = con.cursor()
     dateiname = sessionID + Spielname + ".png"
@@ -17,8 +17,6 @@ def createChart(sessionID,Spielname):
         zeit = [i[0] for i in cur.execute(l).fetchall()]
     except:
         print("Fehler beim Ausführen von:" + l)  
-
-
 
     colors = ['green','blue','purple','brown','teal', 'yellow', 'black', 'orange']
     plt.bar(user, zeit, color=colors)
