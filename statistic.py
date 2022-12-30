@@ -22,7 +22,7 @@ def createChart(sessionID,Spielname):
 
     colors = ['green','blue','purple','brown','teal']
     plt.bar(user, zeit, color=colors)
-    plt.title('NFSU2', fontsize=14)
+    plt.title(Spielname, fontsize=14)
     plt.xlabel('User', fontsize=14)
     plt.ylabel('Zeit in Sekunden', fontsize=14)
     plt.grid(False)
