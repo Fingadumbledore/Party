@@ -116,6 +116,9 @@ def mws(kisten):
     return mate
 
 
+def sessionBeenden(sessionID):
+    os.makedirs(sessionID)
+
 # Qr-code generator#
 def create_qr(id):
     if not os.path.exists("./static/img/qr.png"):
@@ -170,7 +173,7 @@ def message():
 
         log_server("called /message")
         return render_template("message.html")
-   
+
 # planer
 @app.route("/get_planer", methods=['POST'])
 def get_planer():
@@ -198,6 +201,7 @@ def get_planer():
 
 @app.route("/session/<id>")
 def _session(id):
+    #createChart("41", "NFSU2")
     log_server(f"called /session/{id}")
     con = sqlite3.connect("party.db")
     cur = con.cursor()
