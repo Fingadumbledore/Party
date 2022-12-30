@@ -5,6 +5,7 @@ pkgs.mkShell {
       ps.flask
       ps.qrcode
       ps.numpy
+      ps.matplotlib
     ]))
 
     pkgs.curl
