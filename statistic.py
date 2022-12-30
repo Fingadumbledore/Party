@@ -8,7 +8,7 @@ def createChart(sessionID,Spielname):
     cur = con.cursor()
     dateiname = sessionID + Spielname + ".png"
     try:
-        l = f"SELECT userID FROM game WHERE sessionID = \'{sessionID}\' AND Spielname = \'{Spielname}\';"
+        l = f"SELECT 'username' FROM user INNER JOIN game ON game.userID = user.userID;"
         user = [i[0] for i in cur.execute(l).fetchall()]
     except:
         print("Fehler beim Ausführen von:" + l)  
