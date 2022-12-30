@@ -1,5 +1,6 @@
 from flask import Flask, render_template, jsonify, request, session, redirect
 from picker import picker as pick
+from statistic import createChart
 import sqlite3
 import os
 import time
@@ -285,7 +286,6 @@ def _session(id):
             self.p_aktivitaet = akt
             self.p_user = usr
             self.p_punkte = pu
-
 
     gameda = gameData(game, aktivitaet, user, zeit)
     pointgameda = pointgameData(p_game, p_aktivitaet, p_user, p_punkte)
