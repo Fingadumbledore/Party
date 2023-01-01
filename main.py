@@ -615,6 +615,9 @@ def new():
 
     con.close()
 
+@app.route("/upload_file", methods=['POST'])
+def upload_file():
+    log_server("called /upload_file")
 
 @app.errorhandler(404)
 def page_not_found(e):
