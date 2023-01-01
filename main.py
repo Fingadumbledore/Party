@@ -618,6 +618,9 @@ def new():
 @app.route("/upload_file", methods=['POST'])
 def upload_file():
     log_server("called /upload_file")
+    file = request.files
+    print(f"{file=}")
+    return render_template(f'404.html')
 
 @app.errorhandler(404)
 def page_not_found(e):
