@@ -407,6 +407,18 @@ def logout():
     user_count = -1
     return render_template("logout.html")
 
+@app.route("/spiel")
+def spiel():
+    log_server("called /spiel")
+    user_count = -1
+    return render_template("spiel.html")
+
+@app.route("/get_spiel")
+def get_spiel():
+    log_server("called /get_spiel")
+    return render_template("spielt.html")
+
+
 
 @app.route("/signin")
 def signin():
