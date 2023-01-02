@@ -13,7 +13,7 @@
 
 <body>
 	<a href="/logout">
-		<button class="btn btn-primary btn-lg">Logout</button>
+		<button class="btn btn-primary btn-lg">	&#x1F44B;</button>
 	</a>
 	</div>
 	<label class="switch">
@@ -27,27 +27,39 @@
 		}
 	</script>
 	<center>
+		<a onclick="change_div('_home')">
+			<button class="btn btn-primary btn-lg">&#127968;</button>
+		</a>
 		<a onclick="change_div('_planer')">
-			<button class="btn btn-primary btn-lg">Planer</button>
+			<button class="btn btn-primary btn-lg">&#128197;</button>
 		</a>
 		<a onclick="change_div('_game')">
-			<button class="btn btn-primary btn-lg">Game</button>
+			<button class="btn btn-primary btn-lg">&#127918;</button>
 		</a>
 		<a onclick="change_div('_chat')">
-			<button class="btn btn-primary btn-lg">Chat</button>
+			<button class="btn btn-primary btn-lg">&#128172;</button>
+		</a>
+		<a onclick="change_div('_musik')">
+			<button class="btn btn-primary btn-lg">&#x1F3B5;</button>
 		</a>
 		<a onclick="change_div('_mate')">
-			<button class="btn btn-primary btn-lg">Mate</button>
+			<button class="btn btn-primary btn-lg">&#127865;</button>
 		</a>
 		<a onclick="change_div('_seession')">
 			<button class="btn btn-primary btn-lg">Session</button>
 		</a>
 		<a onclick="change_div('_controll')">
-			<button class="btn btn-primary btn-lg">Settings</button>
+			<button class="btn btn-primary btn-lg">&#x2699;&#xFE0F;</button>
 		</a>
 		<a onclick="change_div('_files')">
-			<button class="btn btn-primary btn-lg">Files</button>
+			<button class="btn btn-primary btn-lg">&#128193;</button>
 		</a>
+
+		
+		<div hidden class="tmplt_tab" id="_home">
+			<h1>Willkommen</h1>
+			<p>Party Controller</p>
+		</div>
 
 		<div hidden class="tmplt_tab" id="_planer">
 			{% block content %}
@@ -191,6 +203,9 @@
 				</div>
 
 			</form>
+		</div>
+		<div hidden class="tmplt_tab" id="_musik">
+			<h1>Musik</h1>
 		</div>
 		<div hidden class="tmplt_tab" id="_mate">
 			<p>folgende Mateflaschen sind auf Lager {{ mate }} </p>
