@@ -12,5 +12,6 @@ pkgs.mkShell {
     pkgs.vim
     pkgs.sqlite
     pkgs.tmux
+    pkgs.tree
   ];
 }
