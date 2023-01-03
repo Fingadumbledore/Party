@@ -1,6 +1,6 @@
 from flask import Flask, render_template, jsonify, request, session, redirect
 from picker import picker as pick
-from statistic import createChart
+from picker import createChart
 import sqlite3
 import os
 import time
