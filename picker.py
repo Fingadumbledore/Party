@@ -3,20 +3,43 @@ import matplotlib.pyplot as plt
 import sqlite3
 
 
-def dbcon():
+def dbcon(sqlstring):
     print ("test")
+    try:
+        con = sqlite3.connect("party.db")
+        cur = con.cursor()
+        cur.execute(sqlstring)
+    except:
+        return "error"
 
 def tmbr():
     print("tomb raider datei")
+    f = "sql"
+    dbcon(f)
 
 def nfsu2():
     print("nfsu2 datei")
+    e = "sql"
+    dbcon(e)
 
 def anno1602():
     print("Anno 1602 datei")
+    a = "sql"
+    dbcon(a)
 
 def picker(gamefile, sessionID, SpielerID):
     datei = open(gamefile, 'a')
+
+    if  check == "nfsu2":
+        nfsu2()
+    if check == "anno16":
+        anno1602()
+    if check == tmbr:
+        tmbr()
+    
+    if not os.path.exists(sessionID):
+        os.makedirs(sessionID)
+    shutil.move(gamefile, sessionID)
 
 
 def createChart(sessionID,Spielname):   
