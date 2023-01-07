@@ -94,8 +94,13 @@
 		</div>
 		<div hidden class="tmplt_tab" id="_game">
 
+			<a href="/spiel"  onclick="window.open('/spiel', 'newwindow', 'width=600,height=800'); return false;">
+				<button type="button" class="cancelbtn"> Add game</button>  </a>
+
 			<div class="wrapper">
 				<center>
+				<details>
+					<summary>Zeit-Spiele</summary>
 					<h1><time>00:00:00</time></h1>
 					<button id="strt">start</button>
 					<button id="stp">stop</button>
@@ -125,7 +130,28 @@
 							</br>
 						</div>
 					</form>
-					<hr>
+
+					<table>
+						<tr>
+							<th>Spieler</th>
+							<th>Game</th>
+							<th>Aktivität</th>
+							<th>Zeit</th>
+						</tr>
+						{% for i in range(gameda.user|length) %}
+						<tr>
+							<td>{{ gameda.user[i] }}</td>
+							<td>{{ gameda.game[i] }}</td>
+							<td>{{ gameda.aktivitaet[i] }}</td>
+							<td>{{ gameda.zeit[i] }}</td>
+						</tr>
+						{% endfor %}
+					</table>
+	
+				</div>
+			</details>
+			<details>
+				<summary>Punkte-Spiele</summary>
 					<form class="modal-content animate" action="/pointGame" method="POST">
 						<div class="container">
 							</br>
@@ -150,49 +176,29 @@
 							</br>
 						</div>
 					</form>
+					<table>
+						<tr>
+							<th>Spieler</th>
+							<th>Game</th>
+							<th>Aktivität</th>
+							<th>Punkte</th>
+						</tr>
+						{% for i in range(pointgameda.p_user|length) %}
+						<tr>
+							<td>{{ pointgameda.p_user[i] }}</td>
+							<td>{{ pointgameda.p_game[i] }}</td>
+							<td>{{ pointgameda.p_aktivitaet[i] }}</td>
+							<td>{{ pointgameda.p_zeit[i] }}</td>
+						</tr>
+						{% endfor %}
+					</table>
+			</details>
 				</center>
+
+
+				
 			</div>
-			<div id="statistik">
-
-				<table>
-					<tr>
-						<th>Spieler</th>
-						<th>Game</th>
-						<th>Aktivität</th>
-						<th>Zeit</th>
-					</tr>
-					{% for i in range(gameda.user|length) %}
-					<tr>
-						<td>{{ gameda.user[i] }}</td>
-						<td>{{ gameda.game[i] }}</td>
-						<td>{{ gameda.aktivitaet[i] }}</td>
-						<td>{{ gameda.zeit[i] }}</td>
-					</tr>
-					{% endfor %}
-				</table>
-
-			</div>
-		</br>
-			<div id="statistik2">
-
-				<table>
-					<tr>
-						<th>Spieler</th>
-						<th>Game</th>
-						<th>Aktivität</th>
-						<th>Punkte</th>
-					</tr>
-					{% for i in range(pointgameda.p_user|length) %}
-					<tr>
-						<td>{{ pointgameda.p_user[i] }}</td>
-						<td>{{ pointgameda.p_game[i] }}</td>
-						<td>{{ pointgameda.p_aktivitaet[i] }}</td>
-						<td>{{ pointgameda.p_zeit[i] }}</td>
-					</tr>
-					{% endfor %}
-				</table>
-
-			</div>
+			
 		</div>
 		<div hidden class="tmplt_tab" id="_chat">
 			<iframe id="ifr" src="/message" width="800" height="450" frameBorder="0"></iframe>
