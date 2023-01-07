@@ -42,11 +42,13 @@
 <h2>Bereits hinzugefügte Spiele</h2>
 <table>
     <tr>
-        <th>Spiel</th>
+        {% block content %}
+        <th>{{spiel}}</th>
         <th>Genre</th>
         <th>Erscheinungsjahr</th>
         <th>Gruppe</th>
         <th>Teil</th>
+        {% endblock %}
     </tr>
 
     <tr>

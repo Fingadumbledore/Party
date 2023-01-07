@@ -417,7 +417,8 @@ def server():
     def spiel():
         log_server("called /spiel")
         user_count = -1
-        return render_template("spiel.html")
+        spiel = "Tomb raider"
+        return render_template("spiel.html", spiel=spiel,)
 
     @app.route("/get_spiel")
     def get_spiel():

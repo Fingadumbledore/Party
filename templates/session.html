@@ -62,6 +62,7 @@
 		</div>
 
 		<div hidden class="tmplt_tab" id="_planer">
+			<center>
 			{% block content %}
 
 			<table>
@@ -91,14 +92,15 @@
 					<button type="submit">&#10133;</button>
 				</div>
 			</form>
+		</center>
 		</div>
 		<div hidden class="tmplt_tab" id="_game">
-
+			<center>
 			<a href="/spiel"  onclick="window.open('/spiel', 'newwindow', 'width=600,height=800'); return false;">
 				<button type="button" class="cancelbtn"> Add game</button>  </a>
 
 			<div class="wrapper">
-				<center>
+			
 				<details>
 					<summary>Zeit-Spiele</summary>
 					<h1><time>00:00:00</time></h1>
@@ -150,6 +152,7 @@
 	
 				</div>
 			</details>
+			<div class="wrapper">
 			<details>
 				<summary>Punkte-Spiele</summary>
 					<form class="modal-content animate" action="/pointGame" method="POST">
@@ -193,14 +196,16 @@
 						{% endfor %}
 					</table>
 			</details>
+		</div>
 				</center>
 
 
 				
 			</div>
-			
+		</center>
 		</div>
 		<div hidden class="tmplt_tab" id="_chat">
+			<center>
 			<iframe id="ifr" src="/message" width="800" height="450" frameBorder="0"></iframe>
 			<div id="userNameEntryDiv">
 				<input type="text" placeholder="Username..." id="userNameEntry">
@@ -215,11 +220,15 @@
 				</div>
 
 			</form>
+		</center>
 		</div>
 		<div hidden class="tmplt_tab" id="_musik">
+			<center>
 			<h1>Musik</h1>
+		</center>
 		</div>
 		<div hidden class="tmplt_tab" id="_mate">
+			<center>
 			<p>folgende Mateflaschen sind auf Lager {{ mate }} </p>
 			<p>Bitte Beachte: <b>Erhöhter Koffeingehalt. Für Kinder und schwangere oder stillende Frauen nicht empfolen</b>
 			</p>
@@ -271,8 +280,10 @@
 					</div>
 				</form>
 			</details>
+		</center>
 		</div>
 		<div hidden class="tmplt_tab" id="_seession">
+			<center>
 			<h1> Session Information</h1>
 			<img src="/static/img/user.png" width="60" height="60">
 			<p id="user"></p>
@@ -291,9 +302,10 @@
 
 				<img src="../static/img/qr.png">
 			</details>
+		</center>
 		</div>
 		<div hidden class="tmplt_tab" id="_controll">
-
+			<center>
 			<div id="LED">
 				<h3>Setze eine Fabe für die LEDs</h3>
 				<label for="colorpicker">Led Streifen:</label>
