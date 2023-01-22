@@ -575,6 +575,14 @@ def server():
         
             log_server("called /controll")
             return render_template("controll.html")
+
+    @app.route("/statistik", methods=['POST'])
+    def statistik():
+            sessionId = request.form['id']
+            game = request.form['game']
+            createChart(sessionId, game)
+            log_server("called /statistik")
+            return render_template("controll.html")
     
 
     @app.route("/game")

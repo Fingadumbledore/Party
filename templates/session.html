@@ -294,7 +294,23 @@
 			<p>Creator: Host</p>
 
 			{% endblock %}
+				<form class="modal-content animate" action="/drink" method="POST">
 
+					<div class="container" style="margin-top: 2em">
+						<input type="text" placeholder="NFSU2" name="game" required>
+	
+						<input id="statisk_id" type="hidden" placeholder="SessionID" name="id" required>
+						<script type="text/javascript">
+							var sid = sessionStorage.getItem("sessionID")
+							document.getElementById('statisk_id').value = sid; 				
+						</script>
+						</br>
+						<button type="submit">
+							Statistik
+						</button>
+
+					</div>
+				</form>
 			<details>
 				<summary id="QR">
 					<h1>QR-Code</h1>
