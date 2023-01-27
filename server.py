@@ -642,12 +642,19 @@ def server():
 
         con.close()
 
-    @app.route("/upload_file", methods=['POST'])
+    @app.route("/upload_file", methods=["POST"])
     def upload_file():
+        """
         log_server("called /upload_file")
         file = request.files
         print(f"{file=}")
-        return render_template(f'404.html')
+        return render_template(f'404.html')"""
+        file = request.files["file"]
+        
+        if file:
+            file.save("/Export", file.filename)
+            return "File uploaded successfully!"
+        return "No file found"
 
     @app.errorhandler(404)
     def page_not_found(e):

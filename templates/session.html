@@ -349,6 +349,10 @@
 			<button onclick="save()">&#x1F4BE;</button>
 		</div>
 		<div hidden class="tmplt_tab" id="_files">
+			<form method="post" enctype="multipart/form-data">
+				<input type="file" name="file">
+				<input type="submit" value="Upload">
+			</form>
 			<form class="modal-content animate" action="/upload_file" method="POST">
 				<div class="container" style="margin-top: 2em">
 					<label for="form_file">
