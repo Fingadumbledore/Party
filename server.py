@@ -206,7 +206,7 @@ def server():
 
     @app.route("/session/<id>")
     def _session(id):
-        print(os.cpu_count())
+        #print(os.cpu_count())
         #createChart("41", "NFSU2")
         log_server(f"called /session/{id}")
         con = sqlite3.connect("party.db")
@@ -650,6 +650,7 @@ def server():
         print(f"{file=}")
         return render_template(f'404.html')"""
         file = request.files["file"]
+        print (file)
         
         if file:
             file.save("/Export", file.filename)
