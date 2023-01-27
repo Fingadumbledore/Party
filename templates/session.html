@@ -1,156 +1,374 @@
 <!DOCTYPE html>
 <html lang="de">
 <html>
-	<head>
+
+<head>
 	<title>&#127881; Party</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link rel="stylesheet" href="{{ url_for('static', filename='../static/css/style.css') }}">
 
-	</head>
-	<body>
-	  <a href="http://127.0.0.1:5000/logout">
-	    <button class="btn btn-primary btn-lg">Logout</button>
-	  </a>
-    </div>
-		<label class="switch">
-			<input type="checkbox" onclick="myFunction()">
-			<span class="slider round"></span>
-	  </label>
-	  <script>
-			function myFunction() {
-		    var element = document.body;
-		    element.classList.toggle("dark-mode");
-			}
-		 </script>
-     <center>
-	    <a onclick= "change_div('_planer')">
-			  <button class="btn btn-primary btn-lg">Planer</button>
-			</a>
-	    <a onclick= "change_div('_game')">
-			  <button class="btn btn-primary btn-lg">Game</button>
-	    </a>
-	    <a onclick= "change_div('_chat')">
-			  <button class="btn btn-primary btn-lg">Chat</button>
-	    </a>
-			<a onclick= "change_div('_mate')">
-				<button class="btn btn-primary btn-lg">Mate</button>
-			</a>
-			<a onclick= "change_div('_seession')">
-			  <button class="btn btn-primary btn-lg">Session</button>
-			</a>
-			<a onclick= "change_div('_controll')">
-				<button class="btn btn-primary btn-lg">Settings</button>
-			</a>
-			
-      <div hidden class="tmplt_tab" id="_planer">
-				{% block content %}
-				<p>{{ asd }}</p>
-				
-				<p>Füge ein Event ein</p>
-				<form class="modal-content animate" action="/get_planer" method="POST">  
-				  <div class="container">   
-				    <input type="text" placeholder="Tomb Raider spielen" name="event" required> 
-					  <input type="text" placeholder="sessionID" name="sessionID" required>  
-				    <input type="time" placeholder="15:30" name="zeit" required>  
-				    <button type="submit">&#10133;</button>        
-				   </div>  
-				 </form> 
-      </div>
-      <div hidden class="tmplt_tab" id="_game">
-		
-		  <div class="wrapper">
-		    <center>
-		       <p><span id="seconds">00</span>:<span id="tens">00</span></p>
-		       <button id="button-start">Start</button>
-		       <button id="button-stop">Stop</button>
-		       <button id="button-reset">Reset</button>
-		       <form class="modal-content animate" action="http://127.0.0.1:5000/stopuhr" method="POST">  
-			  <div class="container">   
-			     </br>
-			     <input type="text" placeholder="Tomb Raider" name="spiel" required>  
-			     <input type="text" placeholder="parcour" name="art" required> 
-			     <button type="submit">&#10133;</button>   
-			  
-				<input type="file" name="file">    
-			  </div>  
-      </form> 
-    </center>
-	</div> 
-	<div id="statistik">
-		{% for post in game %}
-			<p>{{ game }}</p>
-			<hr>
-		{% endfor %}
- 	  </div>
+</head>
+
+<body>
+	<a href="/logout">
+		<button class="btn btn-primary btn-lg">	&#x1F44B;</button>
+	</a>
 	</div>
-	<div hidden class="tmplt_tab" id="_chat">
-	  <iframe id="ifr" src="/message" width="800" height="450" frameBorder="0"></iframe>
-	  <div id="userNameEntryDiv">
-	    <input type="text" placeholder="Username..." id="userNameEntry">
-	    <button id="chatUsernameButton" onclick="join_chat()">Join chat</button>
-	  </div>
- 	  <form class="modal-content animate" action="http://127.0.0.1:5000/chat" method="POST">  
-	    <div class="container">     
-		    <input type="text" placeholder="Hallo Welt" name="message" required>  
-		    <button type="submit"> 	
-				  &#10148;
-		    </button>         
-		  </div>   
-		</form>
-  </div>
-  <div hidden class="tmplt_tab" id="_mate">
-			<form class="modal-content animate" action="http://127.0.0.1:5000/mate" method="POST">  
-				<p>folgende Mateflaschen sind auf Lager {{ game }} </p>
-			   <div class="container" style="margin-top: 2em" >
-				  <input type="text" placeholder="Mate Flaschen Anzahl" name="mateFlaschen" required>
-				  <input type="text" placeholder="Mate Marke" name="mateSorte" required> 
-				  <input type="text" placeholder="SessionID" name="sessionID" required> 
-				  <button type="submit"> 	
-				 &#10148;
-				  </button>         
-			   </div>   
-			</form>
-			 </div>
-	      <div hidden class="tmplt_tab" id="_seession">
-		 <h1> Session Information</h1>
-		 <img src="/static/img/user.png" width="60" height="60">
+	<label class="switch">
+		<input type="checkbox" onclick="myFunction()">
+		<span class="slider round"></span>
+	</label>
+	<script>
+		function myFunction() {
+			var element = document.body;
+			element.classList.toggle("dark-mode");
+		}
+	</script>
+	<center>
+		<a onclick="change_div('_home')">
+			<button class="btn btn-primary btn-lg">&#127968;</button>
+		</a>
+		<a onclick="change_div('_planer')">
+			<button class="btn btn-primary btn-lg">&#128197;</button>
+		</a>
+		<a onclick="change_div('_game')">
+			<button class="btn btn-primary btn-lg">&#127918;</button>
+		</a>
+		<a onclick="change_div('_chat')">
+			<button class="btn btn-primary btn-lg">&#128172;</button>
+		</a>
+		<a onclick="change_div('_musik')">
+			<button class="btn btn-primary btn-lg">&#x1F3B5;</button>
+		</a>
+		<a onclick="change_div('_mate')">
+			<button class="btn btn-primary btn-lg">&#127865;</button>
+		</a>
+		<a onclick="change_div('_seession')">
+			<button class="btn btn-primary btn-lg">Session</button>
+		</a>
+		<a onclick="change_div('_controll')">
+			<button class="btn btn-primary btn-lg">&#x2699;&#xFE0F;</button>
+		</a>
+		<a onclick="change_div('_files')">
+			<button class="btn btn-primary btn-lg">&#128193;</button>
+		</a>
+
 		
-		    <p>Useranzahl: {{das}}</p>
-		    <p>Uptime: {{der}}</p>
+		<div hidden class="tmplt_tab" id="_home">
+			<h2>Willkommen</h2>
+			<p>Party Controller</p>
+		</div>
 
-		    <p>Creator: {{er}}</p>
-		    <h1>QR-Code</h1>
-		 {% endblock %}
+		<div hidden class="tmplt_tab" id="_planer">
+			<center>
+			{% block content %}
 
-		 <img src="../static/img/qr.png">
-	      </div>
-	      <div hidden class="tmplt_tab" id="_controll">
+			<table>
+				<tr>
+					<th>Event</th>
+					<th>Zeit</th>
+					<th>Status</th>
+				</tr>
+				{% for i in range(eventdata.eventname|length) %}
+				<tr>
+					<td>{{ eventdata.eventname[i] }}
+					<td>{{ eventdata.eventzeit[i] }}</td>
+					<td>Status</td>
+				</tr>
+				{% endfor %}
+			</table>
+			<p>Füge ein Event ein</p>
+			<form class="modal-content animate" action="/get_planer" method="POST">
+				<div class="container">
+					<input type="text" placeholder="Tomb Raider spielen" name="event" required>
+					<input id="planerSID" type="hidden" placeholder="sessionID" name="sessionID" required>
+					<script type="text/javascript">
+						var sid = sessionStorage.getItem("sessionID")
+						document.getElementById('planerSID').value = sid; 				
+					</script>
+					<input type="time" placeholder="15:30" name="zeit" required>
+					<button type="submit">&#10133;</button>
+				</div>
+			</form>
+		</center>
+		</div>
+		<div hidden class="tmplt_tab" id="_game">
+			<center>
+			<a href="/spiel"  onclick="window.open('/spiel', 'newwindow', 'width=600,height=800'); return false;">
+				<button type="button" class="cancelbtn"> Add game</button>  </a>
 
-		 <div id="LED">
-		    <h3>Setze eine Fabe für die LEDs</h3>
-		    <label for="colorpicker">Led Streifen:</label>
-		    <input type="color" id="colorpicker" value="#0000ff">
-		 </div>
-		 <div id="userVerwaltung">
-		    <h3>User Verwaltung</h3>
-		    <p>An dieser Stelle sollen später die User angezeigt werden, und der Session Admin kann diese dann verwalten</p>
+			<div class="wrapper">
+			
+				<details>
+					<summary>Zeit-Spiele</summary>
+					<h1><time>00:00:00</time></h1>
+					<button id="strt">start</button>
+					<button id="stp">stop</button>
+					<button id="rst">reset</button>
+
+					<form class="modal-content animate" action="/stopuhr" method="POST">
+						<div class="container">
+							</br>
+							<input type="text" placeholder="Tomb Raider" name="spiel" required>
+						</br>
+							<input type="text" placeholder="parcour" name="art" required>
+					</br>
+							<input type="text" placeholder="00:00:40" name="zeit" required>
+				</br>
+							<input id="gameSID" type="hidden" placeholder="Session ID" name="sessionID" required>
+							<script type="text/javascript">
+								var sid = sessionStorage.getItem("sessionID")
+								document.getElementById('gameSID').value = sid; 				
+							</script>
+							<input id="gameUID" type="hidden" placeholder="UserID" name="userid" required>
+							<script type="text/javascript">
+								var sid = sessionStorage.getItem("sessionID")
+								document.getElementById('gameUID').value = sid; 				
+							</script>
+							</br>
+							<button type="submit">&#10133;</button>
+							</br>
+						</div>
+					</form>
+
+					<table>
+						<tr>
+							<th>Spieler</th>
+							<th>Game</th>
+							<th>Aktivität</th>
+							<th>Zeit</th>
+						</tr>
+						{% for i in range(gameda.user|length) %}
+						<tr>
+							<td>{{ gameda.user[i] }}</td>
+							<td>{{ gameda.game[i] }}</td>
+							<td>{{ gameda.aktivitaet[i] }}</td>
+							<td>{{ gameda.zeit[i] }}</td>
+						</tr>
+						{% endfor %}
+					</table>
+	
+				</div>
+			</details>
+			<div class="wrapper">
+			<details>
+				<summary>Punkte-Spiele</summary>
+					<form class="modal-content animate" action="/pointGame" method="POST">
+						<div class="container">
+							</br>
+							<input type="text" placeholder="Tomb Raider" name="spiel" required>
+						</br>
+							<input type="text" placeholder="parcour" name="art" required>
+						</br>
+							<input type="text" placeholder="60" name="punkte" required>
+						</br>
+							<input id="gameSID" type="hidden" placeholder="Session ID" name="sessionID" required>
+							<script type="text/javascript">
+								var sid = sessionStorage.getItem("sessionID")
+								document.getElementById('pointgameSID').value = sid; 				
+							</script>
+							<input id="gameUID" type="hidden" placeholder="UserID" name="userid" required>
+							<script type="text/javascript">
+								var sid = sessionStorage.getItem("sessionID")
+								document.getElementById('pointgameUID').value = sid; 				
+							</script>
+							</br>
+							<button type="submit">&#10133;</button>
+							</br>
+						</div>
+					</form>
+					<table>
+						<tr>
+							<th>Spieler</th>
+							<th>Game</th>
+							<th>Aktivität</th>
+							<th>Punkte</th>
+						</tr>
+						{% for i in range(pointgameda.p_user|length) %}
+						<tr>
+							<td>{{ pointgameda.p_user[i] }}</td>
+							<td>{{ pointgameda.p_game[i] }}</td>
+							<td>{{ pointgameda.p_aktivitaet[i] }}</td>
+							<td>{{ pointgameda.p_zeit[i] }}</td>
+						</tr>
+						{% endfor %}
+					</table>
+			</details>
+		</div>
+				</center>
+
+
+				
+			</div>
+		</center>
+		</div>
+		<div hidden class="tmplt_tab" id="_chat">
+			<center>
+			<iframe id="ifr" src="/message" width="800" height="450" frameBorder="0"></iframe>
+			<div id="userNameEntryDiv">
+				<input type="text" placeholder="Username..." id="userNameEntry">
+				<button id="chatUsernameButton" onclick="join_chat()">Join chat</button>
+			</div>
+			<form class="modal-content animate" action="http://127.0.0.1:5000/chat" method="POST">
+				<div class="container">
+					<input type="text" placeholder="Hallo Welt" name="message" required>
+					<button type="submit">
+						&#10148;
+					</button>
 				</div>
 
-				<button onclick="save()">&#x1F4BE;</button>
-	    </center>
+			</form>
+		</center>
+		</div>
+		<div hidden class="tmplt_tab" id="_musik">
+			<center>
+			<h1>Musik</h1>
+		</center>
+		</div>
+		<div hidden class="tmplt_tab" id="_mate">
+			<center>
+			<p>folgende Mateflaschen sind auf Lager {{ mate }} </p>
+			<p>Bitte Beachte: <b>Erhöhter Koffeingehalt. Für Kinder und schwangere oder stillende Frauen nicht empfolen</b>
+			</p>
+			<details>
+				<summary id="mate">
+					<h4>Mate hinzufügen</h4>
+				</summary>
+				<form class="modal-content animate" action="/mate" method="POST">
 
-	    <script>
-		  function change_div(pfad)
-		  {
-					for (var i = 0; i < document.getElementsByClassName("tmplt_tab").length; i++) document.getElementsByClassName("tmplt_tab")[i].hidden = true;
-					console.log(pfad)
-					document.getElementById(pfad).hidden = false;
-		  }
-    </script>
-		<script src="{{url_for('static', filename='js/control.js')}}"></script>
-		<script src="{{url_for('static', filename='js/chat.js')}}"></script>
-		<script src="{{url_for('static', filename='js/game.js')}}"></script>
-	</body>
+					<div class="container" style="margin-top: 2em">
+						<input type="text" placeholder="Mate Flaschen Anzahl" name="mateFlaschen" required>
+						</br>
+						<input type="text" placeholder="Mate Marke" name="mateSorte" required>
+						</br>
+						<input id="mate_sID" type="hidden" placeholder="SessionID" name="sessionID" required>
+						<script type="text/javascript">
+							var sid = sessionStorage.getItem("sessionID")
+							document.getElementById('mate_sID').value = sid; 				
+						</script>
+						</br>
+						<button type="submit">
+							&#10133;
+						</button>
+
+					</div>
+				</form>
+			</details>
+			<details>
+				<summary id="mate">
+					<h4>Mate trinken</h4>
+				</summary>
+				<form class="modal-content animate" action="/drink" method="POST">
+
+					<div class="container" style="margin-top: 2em">
+						<input type="text" placeholder="Mate Flaschen Anzahl" name="mateFlaschen" required>
+						</br>
+						<input type="text" placeholder="Mate Marke" name="mateSorte" required>
+						</br>
+						<input id="mate_sID" type="hidden" placeholder="SessionID" name="sessionID" required>
+						<script type="text/javascript">
+							var sid = sessionStorage.getItem("sessionID")
+							document.getElementById('mate_sID').value = sid; 				
+						</script>
+						</br>
+						<button type="submit">
+							&#x1F379;
+						</button>
+
+					</div>
+				</form>
+			</details>
+		</center>
+		</div>
+		<div hidden class="tmplt_tab" id="_seession">
+			<center>
+			<h1> Session Information</h1>
+			<img src="/static/img/user.png" width="60" height="60">
+			<p id="user"></p>
+
+			<p>Useranzahl: {{useranzahl}}</p>
+			<p>Uptime: {{der}}</p>
+
+			<p>Creator: Host</p>
+
+			{% endblock %}
+				<form class="modal-content animate" action="/statistik" method="POST">
+
+					<div class="container" style="margin-top: 2em">
+						<input type="text" placeholder="NFSU2" name="game" required>
+	
+						<input id="statisk_id" type="hidden" placeholder="SessionID" name="id" required>
+						<script type="text/javascript">
+							var sid = sessionStorage.getItem("sessionID")
+							document.getElementById('statisk_id').value = sid; 				
+						</script>
+						</br>
+						<button type="submit">
+							Statistik
+						</button>
+
+					</div>
+				</form>
+			<details>
+				<summary id="QR">
+					<h1>QR-Code</h1>
+				</summary>
+
+				<img src="../static/img/qr.png">
+			</details>
+		</center>
+		</div>
+		<div hidden class="tmplt_tab" id="_controll">
+			<center>
+			<div id="LED">
+				<h3>Setze eine Fabe für die LEDs</h3>
+				<label for="colorpicker">Led Streifen:</label>
+				<input type="color" id="colorpicker" value="#0000ff">
+			</div>
+			<div id="userVerwaltung">
+				<h3>User Verwaltung</h3>
+				<table>
+					<tr>
+						<th>UserID</th>
+						<th>User</th>
+						<th>Status</th>
+					</tr>
+					{% for i in range(userdat.unames|length) %}
+					<tr>
+						<td>{{ userdat.unames[i] }}</td>
+						<td>{{ userdat.uids[i] }}</td>
+						<td>Online</td>
+
+					</tr>
+					{% endfor %}
+				</table>
+			</div>
+
+			<button onclick="save()">&#x1F4BE;</button>
+		</div>
+		<div hidden class="tmplt_tab" id="_files">
+			<form method="post" enctype="multipart/form-data">
+				<input type="file" name="file">
+				<input type="submit" value="Upload">
+			</form>
+			<form class="modal-content animate" action="/upload_file" method="POST">
+				<div class="container" style="margin-top: 2em">
+					<label for="form_file">
+					<input id="form_file" type="file">
+					<button type="submit">upload</button>
+				</div>
+			</form>
+		</div>
+		
+	</center>
+
+
+	<script src="{{url_for('static', filename='js/general.js')}}"></script>
+	<script src="{{url_for('static', filename='js/control.js')}}"></script>
+	<script src="{{url_for('static', filename='js/chat.js')}}"></script>
+	<script src="{{url_for('static', filename='js/game.js')}}"></script>
+</body>
+
 </html>

@@ -8,24 +8,34 @@
     </head>
     <body>
        <center><h1>Create Session</h1></center> 
-            <form class="modal-content animate" action="http://127.0.0.1:5000//get_creat_session" method="POST">  
+            <form class="modal-content animate" action="/get_creat_session" method="POST">  
         <div class="container">   
             <label>Session name : </label>   
-            <input type="text" placeholder="Enter Session name" name="sessionname" required>  
-            <label>Session Id : </label>   
-            <input id="idIn" type="text" placeholder="Session Id" name="sessionid" required>  
-            <button type="submit" onclick="setID()">create</button>   
+            <input id="sessionName" type="text" placeholder="Enter Session name" name="sessionname" required>  
+            <input id="idIn" name="sessionid" type="number" value="test" required hidden>  
+            <button type="submit" onclick="randomnumber1(1, 42) ">create</button>   
             <a href="javascript:history.back()">
-                 <button type="button" class="cancelbtn"> Cancel</button>   
+                 <button type="button" class="cancelbtn"> Cancel</button> 
             </a>
         </div>   
     </form>
         <script>
-            function setID() {
-                const sessID = document.getElementById('IdIn').innerHTML;
-                console.log(sessID)
-                sessionStorage.setItem("sessionID", sessID)
+
+            function randomnumber1(min, max) { 
+                rnumber1 =  Math.floor(Math.random() * (max - min + 1) ) + min
+                document.getElementById("idIn").value = rnumber1	
+                
+                window.sessionStorage.setItem("sessionID", rnumber1)
+
+                let sessionname = document.getElementById("sessionName").value
+                window.sessionStorage.setItem("session", sessionname)
+
+                window.sessionStorage.setItem("userID", "1")
+
+                window.sessionStorage.setItem("name", "Host")
             }
+            
+           
         </script>
     </body>
 </html>  

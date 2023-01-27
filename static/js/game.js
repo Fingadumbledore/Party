@@ -1,54 +1,41 @@
-var modal = document.getElementById('id01');
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick = (event) => 
-   event.target == modal ? 
-      modal.style.display = "none" : undefined;
+var h1 = document.getElementsByTagName('h1')[0];
+var start = document.getElementById('strt');
+var stop = document.getElementById('stp');
+var reset = document.getElementById('rst');
+var sec = 0;
+var min = 0;
+var hrs = 0;
+var t;
 
-  window.onload = function () {
-   var seconds = 00; 
-   var tens = 00; 
-   var appendTens = document.getElementById("tens")
-   var appendSeconds = document.getElementById("seconds")
-   var buttonStart = document.getElementById('button-start');
-   var buttonStop = document.getElementById('button-stop');
-   var buttonReset = document.getElementById('button-reset');
-   var Interval ;
-   var time = seconds + tens;
+function tick(){
+    sec++;
+    if (sec >= 60) {
+        sec = 0;
+        min++;
+        if (min >= 60) {
+            min = 0;
+            hrs++;
+        }
+    }
+}
+function add() {
+    tick();
+    h1.textContent = (hrs > 9 ? hrs : "0" + hrs) 
+        	 + ":" + (min > 9 ? min : "0" + min)
+       		 + ":" + (sec > 9 ? sec : "0" + sec);
+    timer();
+}
+function timer() {
+    t = setTimeout(add, 1000);
+}
 
-   function onclckfn() {
-      clearInterval(Interval);
-      Interval = setInterval(startTimer, 10);
-   }
-
-   buttonStop.onclick = () => 
-      clearInterval(Interval);
-
-   buttonReset.onclick = function() {
-      clearInterval(Interval);
-      tens = "00";
-      seconds = "00";
-      appendTens.innerHTML = tens;
-      appendSeconds.innerHTML = seconds;
-   }
-
-   function startTimer () {
-      tens++; 
-
-      if(tens <= 9)
-         appendTens.innerHTML = "0" + tens;
-
-      if (tens > 9)
-         appendTens.innerHTML = tens;
-
-      if (tens > 99) {
-         console.log("seconds");
-         seconds++;
-         appendSeconds.innerHTML = "0" + seconds;
-         tens = 0;
-         appendTens.innerHTML = "0" + 0;
-      }
-
-      if (seconds > 9)
-         appendSeconds.innerHTML = seconds;
-   }
+timer();
+start.onclick = timer;
+stop.onclick = function() {
+    clearTimeout(t);
+}
+reset.onclick = function() {
+    h1.textContent = "00:00:00";
+    seconds = 0; minutes = 0; hours = 0;
+    sec = 0; min = 0; hrs = 0;
 }

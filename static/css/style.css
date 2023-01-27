@@ -10,7 +10,7 @@ a {
   /* Set a style for all buttons */
   button {
     background-color: #6d4087;
-    color: white;
+    color: rgb(29, 24, 24);
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
@@ -85,15 +85,16 @@ a {
   }
   
   
-  input[type=text], input[type=password] input[type=time] input[type=date]{   
+  input[type=text], input[type=password] input[type=time]{   
           width: 30%;   
           margin: 8px 0;  
           padding: 12px 20px;   
           display: inline-block;   
-          border: 2px solid green;   
+          border: 2px solid rgb(58, 58, 58);   
           box-sizing: border-box;   
           border-radius: 12px;
-          color: #839c87;
+          color: #050705;
+          background-color: rgb(142, 142, 143);
       } 
 
 
@@ -162,3 +163,27 @@ a {
         background-image: linear-gradient(to right, rgb(5, 49, 16), rgb(63, 63, 236))
         
       }
+
+      summary::-webkit-details-marker,	
+            summary::marker {
+              content:  ""; /* Verwendung des "Pfeil"-Symbols anstelle des Dreiecks */
+              color: rgb(0, 0, 0);
+              font-size: 2em;
+              font-weight: bold;
+              transition: all 0.5s;  
+            }	
+
+
+            details[open] summary::-webkit-details-marker,
+            details[open] summary::marker {
+              content:  "  ";
+
+            }
+            table, th, td, caption {
+              border: thick solid #33363d;
+              border-collapse: collapse; 
+            }
+
+           
+            
+        

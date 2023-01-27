@@ -33,18 +33,18 @@
            <h4>Login</h4>
         </summary>
      
-        <form class="modal-content animate" action="http://127.0.0.1:5000/get_login" method="POST">  
+        <form class="modal-content animate" action="/get_login" method="POST">  
             <div class="container">   
                 <label>Username : </label>   
-                <input type="text" placeholder="Enter Username" name="username" required>  
+                <input id="name2" type="text" placeholder="Enter Username" name="username" required>  
             </br>
             <label>UserId : </label>   
-            <input type="text" placeholder="Session Id" name="userID" required>  
+            <input id="Uid" type="text" placeholder="UserID" name="userID" required>  
             </br>
                 <label>Session Id : </label>   
-                <input type="text" placeholder="Session Id" name="id" required>  
+                <input id="id1"type="text" placeholder="Session Id" name="sessionID" required>  
         </br>
-                <button type="submit">Login</button>     
+                <button type="submit" onclick="setUID() & setID1() & setname2()">Login</button>     
             </center>   
             </div>   
         </form>  
@@ -54,18 +54,18 @@
         <details>
             <summary id="test"><h4>User erstellen</h4></summary>
 
-            <form class="modal-content animate" action="http://127.0.0.1:5000/new" method="POST">  
+            <form class="modal-content animate" action="/new" method="POST">  
                 <div class="container">   
                     <label>Username : </label>   
-                    <input type="text" placeholder="Enter Username" name="username" required>  
+                    <input id="name3" type="text" placeholder="Enter Username" name="username" required>  
                 </br>
                     <label>UserId : </label>   
-                    <input type="text" placeholder="Session Id" name="userID" required>  
+                    <input id="Uid1" type="hidden" placeholder="UserID" name="userID" required>  
                 </br>
                     <label>Session Id : </label>   
-                    <input type="text" placeholder="Session Id" name="sessionID" required>  
+                    <input id="id2"type="text" placeholder="Session Id" name="sessionID" required>  
                 </br>
-                <button type="submit">Login</button>   
+                <button type="submit" onclick="setID2() & setname3() & setname2() & setname3() & randomnumber(1 , 42)">Create</button>   
                     </center>
                 </div>   
             </form>   
@@ -74,17 +74,37 @@
             <a href="javascript:history.back()">
             <button type="button" class="cancelbtn"> Cancel</button>  
         </center>
-
-        <div style="width: 500px" id="reader"></div>
-        <script src="html5-qrcode.min.js"></script>
         <script>
-            var html5QrcodeScanner = new Html5QrcodeScanner(
-                "reader", { fps: 10, qrbox: 250 });
-            function onScanSuccess(decodedText, decodedResult) {
-                console.log(`Scan result: ${decodedText}`, decodedResult);
-                html5QrcodeScanner.clear();
+            function setUID() {
+                let sessID = document.getElementById("Uid").value
+                window.sessionStorage.setItem("userID", sessID)
             }
-            html5QrcodeScanner.render(onScanSuccess);
+
+            function setID1() {
+                let sessID = document.getElementById("id1").value
+                window.sessionStorage.setItem("sessionID", sessID)
+            }
+
+            function setID2() {
+                let sessID = document.getElementById("id2").value
+                window.sessionStorage.setItem("sessionID", sessID)
+            }
+
+            function setname2() {
+                let sessID = document.getElementById("name2").value
+                window.sessionStorage.setItem("name", sessID)
+            }
+
+            function setname3() {
+                let sessID = document.getElementById("name3").value
+                window.sessionStorage.setItem("name", sessID)
+            }
+
+            function randomnumber(min, max) { 
+                    rnumber =  Math.floor(Math.random() * (max - min + 1) ) + min
+                    document.getElementById("Uid1").innerHTML = rnumber	
+                    window.sessionStorage.setItem("userID", rnumber)
+                }
         </script>
     </body>     
 </html>  
