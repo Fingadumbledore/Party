@@ -23,7 +23,7 @@ def enter_chat():
         pass
     elif request.method == "GET":
         # Handle GET request
-        pass
+         return render_template("enter_chat.html")
 
 
 
