@@ -1,0 +1,70 @@
+<!-- chat.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat</title>
+    <script>
+        // JavaScript-Code, um Nachrichten abzurufen und zu senden
+        // JavaScript-Code in chat.html
+
+// Globale Variablen
+let username;
+
+// Senden einer Nachricht
+function sendMessage() {
+    let message = document.getElementById("message").value;
+    fetch("/send_message", {
+        method: "POST",
+        body: JSON.stringify({
+            "username": username,
+            "message": message
+        }),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        document.getElementById("message").value = "";
+        getMessages();
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });
+}
+
+// Abrufen von Nachrichten
+function getMessages() {
+    fetch("/get_messages")
+    .then(response => response.json())
+    .then(data => {
+        let chatWindow = document.getElementById("chat-window");
+        chatWindow.innerHTML = "";
+        for (let message of data) {
+            chatWindow.innerHTML += `<p>${message.username}: ${message.message}</p>`;
+        }
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });
+}
+
+// Laden der Nachrichten beim Laden der Seite
+window.onload = function() {
+    username = document.getElementById("username").value;
+    getMessages();
+}
+
+    </script>
+</head>
+<body>
+    <div id="chat-window">
+        <!-- Nachrichten werden hier angezeigt -->
+    </div>
+    <form id="send-message-form">
+        <textarea id="message"></textarea>
+        <input type="button" value="Send" onclick="sendMessage()">
+    </form>
+</body>
+</html>
