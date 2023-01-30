@@ -1,5 +1,5 @@
 import argparse
-import ArgumentParser
+from argparse import ArgumentParser
 from server import server
 
 def main():
