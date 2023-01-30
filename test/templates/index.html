@@ -1,15 +1,83 @@
-<!-- index.html -->
-<!DOCTYPE html>
 <html>
-<head>
-    <title>Chat</title>
-</head>
-<body>
-    <form action="/enter_chat" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username">
-        <input type="submit" value="Enter Chat">
-    </form>
-
-</body>
+  <head>
+    <style>
+        body {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          font-family: Arial, sans-serif;
+          background-color: lightblue;
+        }
+        
+        #messages {
+          width: 50%;
+          height: 50%;
+          overflow-y: scroll;
+          border: 1px solid gray;
+          padding: 10px;
+          margin-bottom: 10px;
+          background-color: white;
+          border-radius: 10px;
+        }
+        
+        .message {
+          margin-bottom: 10px;
+        }
+        
+        .username {
+          font-weight: bold;
+          color: blue;
+        }
+        
+        .timestamp {
+          font-size: 12px;
+          color: gray;
+        }
+        
+        input[type="text"] {
+          width: 50%;
+          padding: 10px;
+          margin-bottom: 10px;
+          font-size: 16px;
+          border-radius: 10px;
+          border: none;
+        }
+        
+        button {
+          padding: 10px 20px;
+          font-size: 16px;
+          background-color: lightgray;
+          border: none;
+          border-radius: 10px;
+          cursor: pointer;
+        }
+      </style>
+      
+    <script>
+      function getMessages() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "/get");
+        xhr.onload = function() {
+          document.getElementById("messages").innerHTML = xhr.responseText;
+        };
+        xhr.send();
+      }
+      
+      function sendMessage() {
+        var message = document.getElementById("message").value;
+        var username = document.getElementById("username").value;
+        
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/send");
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send("message=" + message + "&username=" + username);
+      }
+    </script>
+  </head>
+  <body onload="getMessages(); setInterval(getMessages, 1000);">
+    <div id="messages"></div>
+    <input type="text" id="username" placeholder="Username">
+    <input type="text" id="message" placeholder="Message">
+    <button onclick="sendMessage();">Send</button>
+  </body>
 </html>
