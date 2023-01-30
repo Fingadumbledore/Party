@@ -15,7 +15,6 @@
   } 
 }*/
 
-<script>
 let unread = 0;
 
 function updateTitle() {
@@ -64,6 +63,8 @@ xhr.send();
 
 function sendMessage() {
 var message = document.getElementById("message").value;
+var uname = sessionStorage.getItem("name")
+document.getElementById('username').value = uname; 
 var username = document.getElementById("username").value;
 
 var xhr = new XMLHttpRequest();
@@ -71,4 +72,3 @@ xhr.open("POST", "/send");
 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 xhr.send("message=" + message + "&username=" + username);
 }
-</script>

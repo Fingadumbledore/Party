@@ -11,7 +11,7 @@
 
 </head>
 
-<body>
+<body onload="getMessages(); setInterval(getMessages, 1000);">
 	<a href="/logout">
 		<button class="btn btn-primary btn-lg">	&#x1F44B;</button>
 	</a>
@@ -207,7 +207,10 @@
 		<div hidden class="tmplt_tab" id="_chat">
 			<center>
 				
-				<iframe id="ifr" src="/chat" width="800" height="450" frameBorder="0"></iframe>
+				<div id="messages"></div>
+				<input type="hidden" id="username" placeholder="Username">
+				<input type="text" id="message" placeholder="Message">
+				<button onclick="sendMessage();">Send</button>
 		</center>
 		</div>
 		<div hidden class="tmplt_tab" id="_musik">
