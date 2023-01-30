@@ -688,6 +688,16 @@ def server():
         log_server("called /chat")
         return render_template("chat.html")
 
+    @app.route("/music/<int:id>")
+    def get_music(id):
+        conn = sqlite3.connect("music.db")
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM music WHERE id=?", (id,))
+        music = cursor.fetchone()
+        conn.close()
+        return send_file(music[1], attachment_filename=music[2], as_attachment=True)
+
+
     @app.errorhandler(404)
     def page_not_found(e):
         error_log("called non-existing page")
