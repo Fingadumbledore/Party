@@ -1,0 +1,66 @@
+<html>
+<head>
+  <script>
+   function uploadFile() {
+  const input = document.createElement('input');
+  input.type = 'file';
+
+  input.onchange = function() {
+    const file = this.files[0];
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    fetch('/upload', {
+      method: 'POST',
+      body: formData
+    })
+      .then(response => response.text())
+      .then(response => {
+        console.log(response);
+        alert('Datei hochgeladen');
+      })
+      .catch(error => {
+        console.error(error);
+        alert('Fehler beim Hochladen der Datei');
+      });
+  };
+
+  input.click();
+}
+
+function downloadFile(filename) {
+  fetch(`/download/${filename}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/octet-stream'
+    },
+    responseType: 'blob'
+  })
+    .then(response => response.blob())
+    .then(blob => {
+      const a = document.createElement('a');
+      a.style.display = 'none';
+      document.body.appendChild(a);
+
+      const url = window.URL.createObjectURL(blob);
+      a.href = url;
+      a.download = filename;
+      a.click();
+
+      window.URL.revokeObjectURL(url);
+    })
+    .catch(error => {
+      console.error(error);
+      alert('Fehler beim Herunterladen der Datei');
+    });
+}
+
+  </script>
+</head>
+<body>
+  <h1>Datei-Upload und -Download</h1>
+  <button onclick="uploadFile()">Datei hochladen</button>
+  <button onclick="downloadFile()">Datei herunterladen</button>
+</body>
+</html>
