@@ -217,3 +217,29 @@ a {
               font-size: 12px;
               color: gray;
             }
+
+
+            #player {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 100vh;
+            }
+            .controls {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+            .controls button {
+              margin: 0 10px;
+            }
+
+            #send {
+              width: 80px;
+              display: inline-block;
+            }
+
+            #input {
+              width: calc(100% - 80px);
+              display: inline-block;
+            }

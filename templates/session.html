@@ -216,6 +216,31 @@
 		<div hidden class="tmplt_tab" id="_musik">
 			<center>
 			<h1>Musik</h1>
+			<div id="player">
+				<div class="controls">
+				  <button id="prev">Prev</button>
+				  <button id="play">Play</button>
+				  <button id="next">Next</button>
+				</div>
+			  </div>
+			  <script>
+				const player = new Howl({
+				  src: [`/music/${id}`],
+				  format: ["mp3"],
+				  onend: function() {
+					// play next track
+				  }
+				});
+				document.getElementById("play").addEventListener("click", function() {
+				  player.play();
+				});
+				document.getElementById("prev").addEventListener("click", function() {
+				  // play previous track
+				});
+				document.getElementById("next").addEventListener("click", function() {
+				  // play next track
+				});
+			  </script>
 		</center>
 		</div>
 		<div hidden class="tmplt_tab" id="_mate">
@@ -360,6 +385,7 @@
 	<script src="{{url_for('static', filename='js/control.js')}}"></script>
 	<script src="{{url_for('static', filename='js/chat.js')}}"></script>
 	<script src="{{url_for('static', filename='js/game.js')}}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/howler@2.2.0/dist/howler.min.js"></script>
 </body>
 
 </html>

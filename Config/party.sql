@@ -12,3 +12,4 @@ CREATE TABLE spiel (spielname TEXT, Genre TEXT, Erscheinungsjahr TEXT, Gruppe TE
 CREATE TABLE dateien (dateiID INTEGER PRIMARY KEY NOT NULL, dateiname TEXT, sessionID INTEGER);
 CREATE TABLE musikMetaDaten (songID INTEGER PRIMARY KEY Not NULL, artist TEXT, band TEXT, album TEXT, title TEXT, track TEXT, genre TEXT, composer TEXT, copyright TEXT, comment TEXT, releasedate TEXT, mp3_url TEXT, sessionID INTEGER, bildname TEXT);
 CREATE TABLE queue (songID INTEGER, sessionID INTEGER)
+CREATE TABLE messages (username TEXT, message TEXT, timestamp TEXT)
