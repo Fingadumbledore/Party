@@ -1,24 +1,25 @@
-from flask import Flask, request, send_from_directory, render_template
+from flask import Flask, request, jsonify, send_from_directory
 import os
 
 app = Flask(__name__)
-UPLOAD_FOLDER = 'uploads'
 
+UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
 def index():
-  return render_template('index.html')
+
+    return send_from_directory('.', 'index.html')
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
-  file = request.files['file']
-  file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
-  return 'Datei hochgeladen'
+    file = request.files['file']
+    file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
+    return jsonify({'message': 'File uploaded successfully'})
 
-@app.route('/download/<filename>', methods=['GET'])
-def download_file(filename):
-  return send_from_directory(app.config['UPLOAD_FOLDER'], filename, as_attachment=True)
+@app.route('/download')
+def download_file():
+    return send_from_directory(app.config['UPLOAD_FOLDER'], 'download.txt', as_attachment=True)
 
 if __name__ == '__main__':
-  app.run()
+    app.run()
