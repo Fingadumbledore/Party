@@ -644,6 +644,7 @@ def server():
 
     @app.route("/upload_file", methods=["POST"])
     def upload_file():
+        log_server("called /upload_file with POST")
         """
         log_server("called /upload_file")
         file = request.files
@@ -659,6 +660,7 @@ def server():
 
     @app.route("/send", methods=["POST"])
     def send():
+        log_server("called /send with POST")
         message = request.form["message"]
         username = request.form["username"]
         
@@ -672,6 +674,7 @@ def server():
 
     @app.route("/get")
     def get():
+        log_server("called /get with GET")
         conn = sqlite3.connect("chat.db")
         c = conn.cursor()
         c.execute("SELECT username, message, timestamp FROM messages")
@@ -682,6 +685,7 @@ def server():
 
     @app.route("/chat")
     def chat():
+        log_server("called /chat")
         return render_template("chat.html")
 
     @app.errorhandler(404)
