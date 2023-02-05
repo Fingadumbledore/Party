@@ -172,7 +172,7 @@ def server():
         l = f"INSERT INTO planer VALUES(  \'{event}\', \'{zeit}\', \'{sessionID}\',\'{status}\');"
         log_server("neues Event", "INFO")
         try:
-          dbcon(l)
+            dbcon(l)
             log_server("event entered successfully /get_planer", "INFO")
         except Exception:
             log_server("unable to insert event", "ERROR")
