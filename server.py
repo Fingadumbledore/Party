@@ -172,12 +172,7 @@ def server():
         l = f"INSERT INTO planer VALUES(  \'{event}\', \'{zeit}\', \'{sessionID}\',\'{status}\');"
         log_server("neues Event", "INFO")
         try:
-            con = sqlite3.connect("party.db")
-            log_server("verbindung mit db wurde aufgenommen", "WARNING")
-            cur = con.cursor()
-            cur.execute(l)
-            con.commit()
-            con.close()
+          dbcon(l)
             log_server("event entered successfully /get_planer", "INFO")
         except Exception:
             log_server("unable to insert event", "ERROR")
@@ -335,12 +330,7 @@ def server():
 
             mateSql = f"INSERT INTO mate VALUES (\"{mateSorte}\", \'{mateFlaschen}\', \'{sessionId}\');"
             try:
-                con = sqlite3.connect("party.db")
-                log_server("Verbindung mit Datenbank wurde aufgenommen /mate", "WARNING")
-                cur = con.cursor()
-                cur.execute(mateSql)
-                con.commit()
-                con.close()
+                dbcon(mateSql)
 
                 mate_logik(mateSorte, mateFlaschen)
                 log_server("mate wurde in Datenbank eingefügt", "INFO")
@@ -352,10 +342,6 @@ def server():
     @app.route("/drink", methods=['POST'])
     def drink():
             log_server("called /drink", "INFO")
-
-            con = sqlite3.connect("party.db")
-            log_server("Verbindung mit Datenbank wurde aufgenommen /drink", "WARNING")
-            cur = con.cursor()
             mateFlaschen = request.form['mateFlaschen']
             sessionId = request.form['sessionID']
             mateSorte = request.form['mateSorte']
@@ -372,13 +358,7 @@ def server():
 
             mateSql = f"UPDATE mate SET mateanzahl = \'{k}\' WHERE sessionID = \'{sessionId}\' AND matename = \'{mateSorte}\');"
             try:
-                con = sqlite3.connect("party.db")
-                log_server("Verbindung mit Datenbank wurde aufgenommen /drink", "WARNING")
-                cur = con.cursor()
-                cur.execute(mateSql)
-                con.commit()
-                con.close()
-
+                dbcon(mateSql)
                 mate_logik(mateSorte, mateFlaschen)
                 log_server("mate wurde in Datenbank eingefügt", "ERROR")
             except sqlite3.Error as e:
@@ -450,25 +430,17 @@ def server():
         print(l1)
         log_server("neue Session", "INFO")
         
-        con = sqlite3.connect("party.db")
-        log_server("verbindung mit db wurde aufgenommen", "WARNING")
-        cur = con.cursor()
-        cur.execute(l1)
+        dbcon(l1)
         
         user_count = +1
         starttime = int(zeit)
         create_qr(GsessionID)
         try:
-                con = sqlite3.connect("party.db")
-                log_server("Verbindung mit db wurde aufgenommen", "WARNING")
-                cur = con.cursor()
                 username = "Host"
                 usertype = "admin"
                 userId = 1
                 l = f'INSERT INTO user (username, sessionID, info) VALUES (\'{username}\', {GsessionID}, \'{usertype}\');'
-                cur.execute(l)
-                con.commit()
-                con.close()
+                dbcon(l)
         except e:
                 log_server("User Admin konnte nicht angelegt werden", "WARNING")
         return redirect(f'/session/{GsessionID}')
@@ -478,12 +450,8 @@ def server():
     def charts():
         log_server("called /charts", "INFO")
         csessionID = request.form['sessionID']
-        con = sqlite3.connect("party.db")
-        log_server("Verbidung mit db wurde aufgenommen", "WARNING")
-        cur = con.cursor()
         k = f"SELCT COUNT(DISTINCT 'Spielname') FROM game WHERE sessionID = \'{csessionID}\';"
-        cur.execute(k)
-
+        dbcon(k)
         return redirect(f'/session/{csessionID}')  
 
     @app.route("/login")
@@ -535,12 +503,7 @@ def server():
             sessionId = request.form['sessionid']
             l = f"INSERT INTO game VALUES(  \'{event}\', \'{zeit}\', \'{sessionId}\');"
             try:
-                con = sqlite3.connect("party.db")
-                log_server("Verbindung mit db wurde aufgenommen", "WARNING")
-                cur = con.cursor()
-                cur.execute(l)
-                con.commit()
-                con.close()
+                dbcon(l)
                 log_server("event entered successfully /get_event", "INFO")
             except e:
                 log_server("unable to run sql /get_event", "ERROR")
@@ -584,12 +547,7 @@ def server():
         sessionId = request.form['sessionID']
         userid = request.form['userID']
         l = f"select * from user where userID = \'{userid}\' and username=\'{username}\' and sessionID=\'{sessionId}\';"
-        con = sqlite3.connect("party.db")
-        log_server("Verbindung mit db wurde aufgenommen", "WARNING")
-        cur = con.cursor()
-        cur.execute(l)
-        con.commit()
-        con.close()
+        dbcon(l)
         # session['username'] = account['username']
         log_server("loggedin successfully", "INFO")
         return redirect(f'/session/{sessionId}')
@@ -601,16 +559,10 @@ def server():
     def new():
         log_server("called /new with POST", "INFO")
         username = request.form['username']
-        sessionId = request.form['sessionID']
+        sessionId = 
         userId = request.form['sessionID']
-        info = "normal"
-        l = f"INSERT INTO user(username, sessionID, info) VALUES (\'{username}\',\'{sessionId}\',\'{info}\');"
-        con = sqlite3.connect("party.db")
-        log_server("Verbindung mit db wurde aufgenommen", "WARNING")
-        cur = con.cursor()
-        cur.execute(l)
-        con.commit()
-        con.close()
+        l = f"INSERT INTO user(username, sessionID, info) VALUES (\'{username}\',\'{sessionId}\',info);"
+        dbcon(l)
         account = True
 
         # session['username'] = account['username']
