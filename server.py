@@ -181,18 +181,21 @@ def server():
 
     @app.route("/session/<id>")
     def _session(id):
+        def values(l: str):
+            return [i[0] for i in return_dbcon(l)]
         #print(os.cpu_count())
         #createChart("41", "NFSU2")
         log_server(f"called /session/{id}", "INFO")
         con = sqlite3.connect("party.db")
         cur = con.cursor()
         l = f"SELECT eventname FROM planer WHERE sessionID = \'{id}\' ORDER BY eventzeit;"
-        eventname = [i[0] for i in return_dbcon(l)]
+        eventname = values(l)
 
         l = f"SELECT eventzeit FROM planer WHERE sessionID = \'{id}\' ORDER BY eventzeit;"
-        eventzeit = [i[0] for i in return_dbcon(l)]
+        eventzeit = values(l)
 
-        creator =  [i[0] for i in cur.execute("SELECT username FROM user WHERE info = 'Host'").fetchall()]
+        l =  "SELECT username FROM user WHERE info = 'Host'"
+        creator = values(l)
         con.commit()
 
         l = f"SELECT count(username) FROM user WHERE sessionID = \'{id}\';"
@@ -202,34 +205,34 @@ def server():
         mate = return_dbcon(l)
 
         l = f"SELECT  Spielname FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
-        game = [i[0] for i in return_dbcon(l)
+        game = values(l)
 
         l = f"SELECT userID FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
-        user = [i[0] for i in return_dbcon(l)
+        user = values(l)
 
         l = f"SELECT Spielaktivität FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
-        aktivitaet = [i[0] for i in return_dbcon(l)
+        aktivitaet = values(l)
 
         l = f"SELECT username FROM user WHERE sessionID = \'{id}\';"
-        unames =  [i[0] for i in return_dbcon(l)
+        unames = values(l) 
 
         l = f"SELECT userID FROM user WHERE sessionID = \'{id}\';"
-        uids =  [i[0] for i in return_dbcon(l)
+        uids = values(l)
 
         l = f"SELECT ZEIT FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
-        zeit =  [i[0] for i in return_dbcon(l)
+        zeit = values(l)
 
         l = f"SELECT Punkte FROM pointgame WHERE sessionID = \'{id}\' ORDER BY Punkte;"
-        p_punkte =  [i[0] for i in return_dbcon(l)
+        p_punkte = values(l)
 
         l = f"SELECT Spielname FROM pointgame WHERE sessionID = \'{id}\' ORDER BY Punkte;"
-        p_game =  [i[0] for i in return_dbcon(l)
+        p_game = values(l)
 
         l = f"SELECT Spielaktivität FROM pointgame WHERE sessionID = \'{id}\' ORDER BY Punkte;"
-        p_aktivitaet =  [i[0] for i in return_dbcon(l)
+        p_aktivitaet = values(l)
 
         l = f"SELECT userID FROM pointgame WHERE sessionID = \'{id}\'ORDER BY Punkte;"
-        p_user =  [i[0] for i in return_dbcon(l)
+        p_user = values(l)
         cur.close()
 
 
