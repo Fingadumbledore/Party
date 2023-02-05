@@ -1,12 +1,9 @@
-from flask import Flask, render_template, jsonify, request, session, redirect
-from picker import picker as pick, createChart
 import sqlite3
 import os
 import time
 import qrcode
-import shutil
-import re
-import numpy
+from flask import Flask, render_template, request, redirect
+from picker import picker as pick, createChart
 
 def server():
     starttime = 0
@@ -95,13 +92,6 @@ def server():
         log_server("mws wurde angefragt", "INFO")
         return mate
 
-
-    def sessionBeenden(sessionID):
-        con = sqlite3.connect("party.db")
-        log_server("verbindung mit db wurde aufgenommen", "WARNING")
-        cur = con.cursor()
-        os.makedirs(sessionID)
-        
 
     # Qr-code generator#
     def create_qr(id):
@@ -620,14 +610,7 @@ def server():
         return render_template('404.html'), 404
 
 
-    def create_app(config_filename):
-        app.register_error_handler(404, page_not_found)
-        log_server("created app", "INFO")
-        return app
-
-
     # Use this line to run it localy
-
     runip = ipfin()
     app.run(host=runip, port=80)
 

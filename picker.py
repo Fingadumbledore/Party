@@ -1,4 +1,6 @@
-import shutil, os
+""" game picker for party games """
+import shutil
+import os
 import matplotlib.pyplot as plt
 import sqlite3
 
@@ -30,19 +32,19 @@ def anno1602():
 def picker(gamefile, sessionID, SpielerID):
     datei = open(gamefile, 'a')
 
-    if  check == "nfsu2":
+    if check == "nfsu2":
         nfsu2()
     if check == "anno16":
         anno1602()
     if check == tmbr:
         tmbr()
-    
+
     if not os.path.exists(sessionID):
         os.makedirs(sessionID)
     shutil.move(gamefile, sessionID)
 
 
-def createChart(sessionID,Spielname):   
+def createChart(sessionID,Spielname):
     con = sqlite3.connect("party.db")
     cur = con.cursor()
     dateiname = sessionID + Spielname + ".png"
@@ -50,12 +52,14 @@ def createChart(sessionID,Spielname):
         l = f"SELECT 'username' FROM user INNER JOIN game ON game.userID = user.userID;"
         user = [i[0] for i in cur.execute(l).fetchall()]
     except:
-        print("Fehler beim Ausführen von:" + l)  
+        print("Fehler beim Ausführen von:" + l)
     try:
-        l = f"SELECT ZEIT FROM game WHERE sessionID = \'{sessionID}\' AND Spielname = \'{Spielname}\';"
+        l = f"""SELECT ZEIT
+                FROM game
+                WHERE sessionID = \'{sessionID}\' AND Spielname = \'{Spielname}\';"""
         zeit = [i[0] for i in cur.execute(l).fetchall()]
     except:
-        print("Fehler beim Ausführen von:" + l)  
+        print("Fehler beim Ausführen von:" + l)
 
     colors = ['green','blue','purple','brown','teal', 'yellow', 'black', 'orange']
     plt.bar(user, zeit, color=colors)
@@ -64,7 +68,7 @@ def createChart(sessionID,Spielname):
     plt.ylabel('Zeit in Sekunden', fontsize=14)
     plt.grid(False)
     plt.savefig(dateiname)
-    
+
 
 if __name__ == "__main__":
-	print("Use main.py to use program")
+    print("Use main.py to use program")
