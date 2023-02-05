@@ -1,6 +1,5 @@
 from flask import Flask, render_template, jsonify, request, session, redirect
-from picker import picker as pick
-from picker import createChart
+from picker import picker as pick, createChart
 import sqlite3
 import os
 import time
@@ -547,7 +546,7 @@ def server():
     def new():
         log_server("called /new with POST", "INFO")
         username = request.form['username']
-        sessionId = 
+        sessionId = request.form['sessionID']
         userId = request.form['sessionID']
         l = f"INSERT INTO user(username, sessionID, info) VALUES (\'{username}\',\'{sessionId}\',info);"
         dbcon(l)
@@ -570,7 +569,7 @@ def server():
         file = request.files["file"]
         print (file)
         
-        if file:
+        if file and file.filename:
             file.save("/Export", file.filename)
             return "File uploaded successfully!"
         return "No file found"
