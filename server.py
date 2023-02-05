@@ -187,64 +187,49 @@ def server():
         con = sqlite3.connect("party.db")
         cur = con.cursor()
         l = f"SELECT eventname FROM planer WHERE sessionID = \'{id}\' ORDER BY eventzeit;"
-        eventname = [i[0] for i in cur.execute(l).fetchall()]
-        con.commit()
+        eventname = [i[0] for i in return_dbcon(l)]
 
         l = f"SELECT eventzeit FROM planer WHERE sessionID = \'{id}\' ORDER BY eventzeit;"
-        eventzeit = [i[0] for i in cur.execute(l).fetchall()]
-        #eventtime = re.split(',', eventzeit)
-        con.commit()
+        eventzeit = [i[0] for i in return_dbcon(l)]
 
         creator =  [i[0] for i in cur.execute("SELECT username FROM user WHERE info = 'Host'").fetchall()]
         con.commit()
 
         l = f"SELECT count(username) FROM user WHERE sessionID = \'{id}\';"
-        useranzahl = cur.execute(l).fetchall()
+        useranzahl = return_dbcon(l)
 
         l = f"SELECT matename, mateanzahl FROM mate WHERE sessionID = \'{id}\' ORDER BY mateanzahl;"
-        mate = cur.execute(l).fetchall()
-        con.commit()
+        mate = return_dbcon(l)
 
         l = f"SELECT  Spielname FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
-        game = [i[0] for i in cur.execute(l).fetchall()]
-        con.commit()
+        game = [i[0] for i in return_dbcon(l)
 
         l = f"SELECT userID FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
-        user = [i[0] for i in cur.execute(l).fetchall()]
-        con.commit()
+        user = [i[0] for i in return_dbcon(l)
 
         l = f"SELECT Spielaktivität FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
-        aktivitaet = [i[0] for i in cur.execute(l).fetchall()]
-        con.commit()
+        aktivitaet = [i[0] for i in return_dbcon(l)
 
         l = f"SELECT username FROM user WHERE sessionID = \'{id}\';"
-        unames =  [i[0] for i in cur.execute(l).fetchall()]
-        con.commit()
+        unames =  [i[0] for i in return_dbcon(l)
 
         l = f"SELECT userID FROM user WHERE sessionID = \'{id}\';"
-        uids =  [i[0] for i in cur.execute(l).fetchall()]
-        con.commit()
+        uids =  [i[0] for i in return_dbcon(l)
 
         l = f"SELECT ZEIT FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
-        zeit =  [i[0] for i in cur.execute(l).fetchall()]
-        con.commit()
-
+        zeit =  [i[0] for i in return_dbcon(l)
 
         l = f"SELECT Punkte FROM pointgame WHERE sessionID = \'{id}\' ORDER BY Punkte;"
-        p_punkte =  [i[0] for i in cur.execute(l).fetchall()]
-        con.commit()
+        p_punkte =  [i[0] for i in return_dbcon(l)
 
         l = f"SELECT Spielname FROM pointgame WHERE sessionID = \'{id}\' ORDER BY Punkte;"
-        p_game =  [i[0] for i in cur.execute(l).fetchall()]
-        con.commit()
+        p_game =  [i[0] for i in return_dbcon(l)
 
         l = f"SELECT Spielaktivität FROM pointgame WHERE sessionID = \'{id}\' ORDER BY Punkte;"
-        p_aktivitaet =  [i[0] for i in cur.execute(l).fetchall()]
-        con.commit()
+        p_aktivitaet =  [i[0] for i in return_dbcon(l)
 
         l = f"SELECT userID FROM pointgame WHERE sessionID = \'{id}\'ORDER BY Punkte;"
-        p_user =  [i[0] for i in cur.execute(l).fetchall()]
-        con.commit()
+        p_user =  [i[0] for i in return_dbcon(l)
         cur.close()
 
 
