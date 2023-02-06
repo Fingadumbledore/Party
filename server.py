@@ -3,7 +3,8 @@ import os
 import time
 import qrcode
 from flask import Flask, render_template, request, redirect
-from picker import picker as pick, createChart
+from picker import picker as pick
+#from picker import createChart
 
 def server():
     starttime = 0
@@ -498,7 +499,7 @@ def server():
     def statistik():
             sessionId = request.form['id']
             game = request.form['game']
-            createChart(sessionId, game)
+           # createChart(sessionId, game)
             log_server("called /statistik", "INFO")
             return render_template("controll.html")
     
