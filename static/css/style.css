@@ -243,3 +243,30 @@ a {
               width: calc(100% - 80px);
               display: inline-block;
             }
+
+
+
+            table {
+              border-collapse: collapse;
+              width: 100%;
+            }
+            th, td {
+              border: 1px solid #ddd;
+              padding: 8px;
+              text-align: left;
+            }
+            th {
+              background-color: 
+            }
+            tr:nth-child(even) {
+            }
+            tr:hover {
+              background-color: #206926;
+            }
+            .rounded {
+              border-radius: 10px;
+            }
+            .expired {
+              background-color: #ff0000;
+              color: #ffffff;
+            }

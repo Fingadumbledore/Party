@@ -65,7 +65,7 @@
 			<center>
 			{% block content %}
 
-			<table>
+			<table id="event-table" class="rounded">
 				<tr>
 					<th>Event</th>
 					<th>Zeit</th>
@@ -79,6 +79,23 @@
 				</tr>
 				{% endfor %}
 			</table>
+			<script>
+			const table = document.getElementById("event-table");
+			const currentTime = new Date().getTime();
+		  
+			for (let i = 1; i < table.rows.length; i++) {
+			  const cells = table.rows[i].cells;
+			  const eventTime = cells[1].innerHTML;
+			  const eventStart = new Date(eventTime.split("-")[0]).getTime();
+			  const eventEnd = new Date(eventTime.split("-")[1]).getTime();
+			  
+			  if (currentTime > eventEnd) {
+				cells[2].innerHTML = "Vorbei";
+				table.rows[i].classList.add("expired");
+			  } else if (currentTime >= eventStart && currentTime <= eventEnd) {
+				alert("Aktuelles Event: " + cells[0].innerHTML);
+			  }
+			}</script>
 			<p>Füge ein Event ein</p>
 			<form class="modal-content animate" action="/get_planer" method="POST">
 				<div class="container">
