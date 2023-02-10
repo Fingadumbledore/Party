@@ -1,4 +1,2 @@
 matplotlib
-random
-time
 numpy
