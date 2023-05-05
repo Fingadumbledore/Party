@@ -41,7 +41,7 @@ body {
 }
 
 .wrapper {
-	width: 800px;
+	width: max-content;
 	margin: 30px auto;
 	color:$white;
 	text-align:center;
@@ -154,6 +154,37 @@ border-radius: 50%;
 .dark-mode {
 background-image: linear-gradient(to right, rgb(5, 49, 16), rgb(63, 63, 236))
 
+}
+
+/* */
+@media screen and (max-width: 950px) {
+  .nav_cont_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items:center
+  }
+
+  .nav_cont_wrapper .navigation {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 950px) {
+  .nav_cont_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
+  .nav_cont_wrapper .navigation {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 
 summary::-webkit-details-marker,	

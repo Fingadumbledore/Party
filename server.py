@@ -412,7 +412,6 @@ def server():
         
         user_count = +1
         starttime = int(zeit)
-       # create_qr(GsessionID)
         try:
                 username = "Host"
                 usertype = "admin"

@@ -26,7 +26,8 @@
 			element.classList.toggle("dark-mode");
 		}
 	</script>
-	<center>
+	<div class="nav_cont_wrapper">
+	<div class="navigation">
 		<a onclick="change_div('_home')">
 			<button class="btn btn-primary btn-lg">&#127968;</button>
 		</a>
@@ -54,8 +55,8 @@
 		<a onclick="change_div('_files')">
 			<button class="btn btn-primary btn-lg">&#128193;</button>
 		</a>
-
-		
+	</div>
+	<div class="content">
 		<div hidden class="tmplt_tab" id="_home">
 			<h2>Willkommen</h2>
 			<p>Party Controller</p>
@@ -394,8 +395,8 @@
 				</div>
 			</form>
 		</div>
-		
-	</center>
+	</div>
+	</div>
 
 
 	<script src="{{url_for('static', filename='js/general.js')}}"></script>
