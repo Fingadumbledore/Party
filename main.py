@@ -6,7 +6,7 @@ def main():
     """ entrypoint to program """
     parser = argparse.ArgumentParser(
                         prog = 'Party Controller',
-                        description = 'Manage Lan parties',
+                        description = 'Manage LAN Parties',
                         epilog = 'thanks for using')
 
     parser.add_argument('-s', '--start', action='store_true', help="startet Server")
