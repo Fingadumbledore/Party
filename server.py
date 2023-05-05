@@ -1,7 +1,7 @@
 import sqlite3
 import os
 import time
-import qrcode
+#import qrcode
 from flask import Flask, render_template, request, redirect
 from picker import picker as pick
 #from picker import createChart
@@ -95,14 +95,14 @@ def server():
 
 
     # Qr-code generator#
-    def create_qr(id):
-        if not os.path.exists("./static/img/qr.png"):
-            qip = ipfin()
-            img = qrcode.make(f'{qip}:80/session/{id}')
-            type(img)
-            img.save("./static/img/qr.png")
-        else:
-            log_server("QR-Code ist bereits vorhanden", "WARNING")
+    #def create_qr(id):
+       # if not os.path.exists("./static/img/qr.png"):
+        #    qip = ipfin()
+        #    img = qrcode.make(f'{qip}:80/session/{id}')
+       #     type(img)
+       #     img.save("./static/img/qr.png")
+     #   else:
+        #    log_server("QR-Code ist bereits vorhanden", "WARNING")
 
 
     # Hauptseite
@@ -412,7 +412,7 @@ def server():
         
         user_count = +1
         starttime = int(zeit)
-        create_qr(GsessionID)
+       # create_qr(GsessionID)
         try:
                 username = "Host"
                 usertype = "admin"
