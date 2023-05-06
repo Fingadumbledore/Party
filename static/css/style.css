@@ -322,7 +322,7 @@ summary::-webkit-details-marker,
       to { opacity: 1; transform: translate(-50%, -50%); }
     }
 
-    .container{
+    .info_button{
 
       position: absolute;
       right: 32px;
