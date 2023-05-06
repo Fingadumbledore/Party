@@ -12,20 +12,54 @@
 </head>
 
 <body onload="getMessages(); setInterval(getMessages, 1000);">
-	<a href="/logout">
-		<button class="btn btn-primary btn-lg">	&#x1F44B;</button>
-	</a>
-	</div>
-	<label class="switch">
-		<input type="checkbox" onclick="myFunction()">
-		<span class="slider round"></span>
-	</label>
-	<script>
-		function myFunction() {
-			var element = document.body;
-			element.classList.toggle("dark-mode");
-		}
-	</script>
+	
+	<div class="container"></div>
+		<a id="myButton" class="menu-link" ><img src="/static/img/user.png" width="50" height="50"></a>
+    </div>
+
+	<div id="myPopup">
+		<div id="popupContent">
+		  <h3>Information</h3>
+		  <p id="user"></p>
+		  {% block content %}
+			<p>Useranzahl: {{useranzahl}}</p>
+			<p>Uptime: {{der}}</p>
+
+			<p>Creator: Host</p>
+		  <img src="../static/img/qr.png">
+		  <button id="closeButton">Close</button>
+		  <a href="/logout">
+			<button class="btn btn-primary btn-lg">	&#x1F44B;</button>
+		</a>
+		</div>
+		<label class="switch">
+			<input type="checkbox" onclick="myFunction()">
+			<span class="slider round"></span>
+		</label>
+		<script>
+			function myFunction() {
+				var element = document.body;
+				element.classList.toggle("dark-mode");
+			}
+		</script>
+		
+	  </div>
+
+	  <script>
+		var myButton = document.getElementById("myButton");
+		var myPopup = document.getElementById("myPopup");
+		var closeButton = document.getElementById("closeButton");
+		
+		myButton.addEventListener("click", function() {
+		  myPopup.style.display = "block";
+		});
+		
+		closeButton.addEventListener("click", function() {
+		  myPopup.style.display = "none";
+		});
+		
+		</script>
+
 	<div class="nav_cont_wrapper">
 	<div class="navigation">
 		<a onclick="change_div('_home')">
@@ -64,7 +98,7 @@
 
 		<div hidden class="tmplt_tab" id="_planer">
 			<center>
-			{% block content %}
+			
 
 			<table id="event-table" class="rounded">
 				<tr>
