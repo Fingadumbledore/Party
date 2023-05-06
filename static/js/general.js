@@ -12,6 +12,13 @@ function change_div(pfad)
         console.log(pfad)
         document.getElementById(pfad).hidden = false;
 }
+// Magie um die Tabs anzuzeigen
+function change_game(pfad)
+{
+        for (var i = 0; i < document.getElementsByClassName("tmplt_tab1").length; i++) document.getElementsByClassName("tmplt_tab1")[i].hidden = true;
+        console.log(pfad)
+        document.getElementById(pfad).hidden = false;
+}
 
 // Benutzer anzeigen unter session
 let name = sessionStorage.getItem("name");
