@@ -28,6 +28,7 @@
 			<p>Creator: Host</p>
 		  <img src="../static/img/qr.png">
 		  <button id="closeButton">Close</button>
+		  <button class="btn btn-primary btn-lg">&#x2699;&#xFE0F;</button>
 		  <a href="/logout">
 			<button class="btn btn-primary btn-lg">	&#x1F44B;</button>
 		</a>
@@ -62,9 +63,6 @@
 
 	<div class="nav_cont_wrapper">
 	<div class="navigation">
-		<a onclick="change_div('_home')">
-			<button class="btn btn-primary btn-lg">&#127968;</button>
-		</a>
 		<a onclick="change_div('_planer')">
 			<button class="btn btn-primary btn-lg">&#128197;</button>
 		</a>
@@ -81,20 +79,13 @@
 			<button class="btn btn-primary btn-lg">&#127865;</button>
 		</a>
 		<a onclick="change_div('_seession')">
-			<button class="btn btn-primary btn-lg">&#x2139;</button>
-		</a>
-		<a onclick="change_div('_controll')">
-			<button class="btn btn-primary btn-lg">&#x2699;&#xFE0F;</button>
+			<button class="btn btn-primary btn-lg">&#x1f4c8;</button>
 		</a>
 		<a onclick="change_div('_files')">
 			<button class="btn btn-primary btn-lg">&#128193;</button>
 		</a>
 	</div>
 	<div class="content">
-		<div hidden class="tmplt_tab" id="_home">
-			<h2>Willkommen</h2>
-			<p>Party Controller</p>
-		</div>
 
 		<div hidden class="tmplt_tab" id="_planer">
 			<center>
@@ -352,69 +343,10 @@
 		</div>
 		<div hidden class="tmplt_tab" id="_seession">
 			<center>
-			<h1> Session Information</h1>
-			<img src="/static/img/user.png" width="60" height="60">
-			<p id="user"></p>
-
-			<p>Useranzahl: {{useranzahl}}</p>
-			<p>Uptime: {{der}}</p>
-
-			<p>Creator: Host</p>
-
+			<h1> Session Statistik</h1>
 			{% endblock %}
-				<form class="modal-content animate" action="/statistik" method="POST">
-
-					<div class="container" style="margin-top: 2em">
-						<input type="text" placeholder="NFSU2" name="game" required>
-	
-						<input id="statisk_id" type="hidden" placeholder="SessionID" name="id" required>
-						<script type="text/javascript">
-							var sid = sessionStorage.getItem("sessionID")
-							document.getElementById('statisk_id').value = sid; 				
-						</script>
-						</br>
-						<button type="submit">
-							Statistik
-						</button>
-
-					</div>
-				</form>
-			<details>
-				<summary id="QR">
-					<h1>QR-Code</h1>
-				</summary>
-
-				<img src="../static/img/qr.png">
-			</details>
+			
 		</center>
-		</div>
-		<div hidden class="tmplt_tab" id="_controll">
-			<center>
-			<div id="LED">
-				<h3>Setze eine Fabe für die LEDs</h3>
-				<label for="colorpicker">Led Streifen:</label>
-				<input type="color" id="colorpicker" value="#0000ff">
-			</div>
-			<div id="userVerwaltung">
-				<h3>User Verwaltung</h3>
-				<table>
-					<tr>
-						<th>UserID</th>
-						<th>User</th>
-						<th>Status</th>
-					</tr>
-					{% for i in range(userdat.unames|length) %}
-					<tr>
-						<td>{{ userdat.unames[i] }}</td>
-						<td>{{ userdat.uids[i] }}</td>
-						<td>Online</td>
-
-					</tr>
-					{% endfor %}
-				</table>
-			</div>
-
-			<button onclick="save()">&#x1F4BE;</button>
 		</div>
 		<div hidden class="tmplt_tab" id="_files">
 			<form method="post" enctype="multipart/form-data">
