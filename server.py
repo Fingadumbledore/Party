@@ -6,6 +6,7 @@ from flask import Flask, render_template, request, redirect
 from picker import picker as pick
 #from picker import createChart
 
+# Funktion um den Server zu machen
 def server():
     starttime = 0
     app = Flask(__name__, template_folder='templates/')
@@ -14,7 +15,7 @@ def server():
     app.config['SECRET_KEY'] = 'party'
     matekiste = 0
 
-
+    # Erstellt eine Verbindung zur Datenbank wird in database.py verschoben
     def dbcon(sql):
         try:
             con = sqlite3.connect("party.db")
@@ -25,11 +26,13 @@ def server():
         except:
             return "ERROR"
 
+    # hohlt die Ip-adresse aus einer Datei
     def ipfin():
         datei = open('ip.txt', 'r')
         print (datei.read())
         return datei.read()
 
+    # macht das selbe wie dbcon nur gibt diese Funktion etwas zurück. Wird auch verschoben
     def return_dbcon(sql):
         try:
             con = sqlite3.connect("party.db")
@@ -40,7 +43,7 @@ def server():
             return ergebnis
         except:
             return "Error"
-
+    # Soll die uptime berechnen, wird in javascript neu gemacht
     def uptime(): 
         return int(zeit) - starttime
 
@@ -115,7 +118,6 @@ def server():
     # Neue Nachrichten
     @app.route("/get_chat", methods=['POST'])
     def get_chat():
-        
             log_server("called /get_chat", "INFO")
             log_server("called /get_chat with POST", "INFO")
             userID = request.form['userid']
@@ -132,24 +134,24 @@ def server():
             # account = cursor.fetchone()
             return render_template("chat.html")
     
+    # Um in der Zukunft spiele dateien zu bekommen
     @app.route("/get_game_file", methods=['POST'])
     def get_game_file():
         log_server("called /get_game_file", "INFO")
         pick()
-
+    # Neue Nachrichten zu bekommen
     @app.route("/get_new_message")
     def get_new_message():
-
             log_server("called /get_new_message", "INFO")
             return render_template("chat.html")
-    
+   
+    # Macht message.html sichtbar
     @app.route("/message")
     def message():
-
             log_server("called /message", "INFO")
             return render_template("message.html")
 
-    # planer
+    # hier planer sachen in die Datenbank geschoben
     @app.route("/get_planer", methods=['POST'])
     def get_planer():
         log_server("called /get_planer", "INFO")
@@ -168,7 +170,7 @@ def server():
             log_server("unable to insert event", "ERROR")
         return redirect(f'/session/{sessionID}')
 
-
+    # Das Zeit die Session seite an. Außerdem werden hier daten mit Jinja ans Frontend geschickt
     @app.route("/session/<id>")
     def _session(id):
         def values(l: str):
@@ -271,12 +273,10 @@ def server():
                             unames=unames,
                             der=uptime())
 
-
+    # Dies fügt mate hinzu, und macht bei der richtigen Anzahl einen kasten daraus
     @app.route("/mate", methods=['POST'])
     def mate():
             log_server("called /mate", "INFO")
-
-    
             mateFlaschen = request.form['mateFlaschen']
             sessionId = request.form['sessionID']
             mateSorte = request.form['mateSorte']
@@ -316,7 +316,7 @@ def server():
                 log_server(f"error while executing sql: {e}", "WARNING")
             return redirect(f'/session/{sessionId}')
         
-
+    # Hier ist ein Teil der Matelogic, wenn eine Person eine Mate trinkt wird das in der Datenbank vermerkt, und es ist eine Flasche weniger da. Dies geht zum teil noch in die mate.py
     @app.route("/drink", methods=['POST'])
     def drink():
             log_server("called /drink", "INFO")
@@ -330,10 +330,7 @@ def server():
             substracted = list()
             for intem1, item2 in zip(manzahl, f):
                 substracted.append(intem1 - item2)
-
             k = substracted
-        
-
             mateSql = f"UPDATE mate SET mateanzahl = \'{k}\' WHERE sessionID = \'{sessionId}\' AND matename = \'{mateSorte}\');"
             try:
                 dbcon(mateSql)
@@ -343,14 +340,14 @@ def server():
                 log_server(f"error while executing sql: {e}", "ERROR")
             return redirect(f'/session/{sessionId}')
         
-
-
+    # Dies zeigt die Logout Seite
     @app.route("/logout")
     def logout():
         log_server("called /logout", "INFO")
         user_count = -1
         return render_template("logout.html")
 
+    # Das hier zeigt die Seite an auf der Spiele hinzugefügt werden können
     @app.route("/spiel")
     def spiel():
         log_server("called /spiel", "INFO")
@@ -358,43 +355,37 @@ def server():
         spiel = "Tomb raider"
         return render_template("spiel.html", spiel=spiel,)
 
+    # Hier werden die Spiele hinzugefügt
     @app.route("/get_spiel")
     def get_spiel():
         log_server("called /get_spiel", "INFO")
-        return render_template("spielt.html")
+        return render_template("spiel.html")
 
-
-
-    @app.route("/signin")
-    def signin():
-        log_server("called /signin", "INFO")
-        return render_template("signin.html")
-
-
+    # Dies kommt wenn man auf Passwort vergessen klickt
     @app.route("/password")
     def password():
         log_server("called /password", "INFO")
         return render_template("passwort_ver.html")
 
-
+    # Diese seite mahnt den User sich anzumelden um den Inhalt zu sehen
     @app.route("/passwd")
     def passwd():
         log_server("called /passwd", "INFO")
         return render_template("passwd.html")
 
-
+    # Hier ist eine Seite die zum wechseln einer Session dient
     @app.route("/change")
     def change():
         log_server("called /change", "INFO")
         return render_template("changeSession.html")
 
-
+    # Hier wird die Seite zum erstellen einer Session erstellt
     @app.route("/create_session")
     def create_session():
         log_server("called /create_session", "INFO")
         return render_template("createSession.html")
 
-
+    # Hier wird die Session erstellt
     @app.route("/get_creat_session", methods=['POST'])
     def get_creat_session():
         log_server("called /get_creat_session with POST", "INFO")
@@ -423,6 +414,7 @@ def server():
         return redirect(f'/session/{GsessionID}')
         log_server("session successfully started", "INFO")
 
+    # Hier soll später für Spiele Charts geschickt werden. Dafür gibt es in statistik.py sachen
     @app.route("/charts")
     def charts():
         log_server("called /charts", "INFO")
@@ -431,15 +423,15 @@ def server():
         dbcon(k)
         return redirect(f'/session/{csessionID}')  
 
+    # Hierdurch wird die Login/Join seite angezeit
     @app.route("/login")
     def login():
         log_server("called /login", "INFO")
         return render_template("login.html")
 
-
+    # Hier werden Spiele die nach Zeit gehen, in die Datenbank eingetragen
     @app.route("/stopuhr", methods=['POST'])
     def stopuhr():
-    
             log_server("called /stopuhr", "INFO")
             spielName = request.form['spiel']
             art = request.form['art']
@@ -455,7 +447,7 @@ def server():
                 log_server("unable to run sql /stopuhr", "ERROR")
             return redirect(f'/session/{sessionId}')
 
-
+    # Hier werden die Daten für Spiele die Nach Punkten gehe, in die Datenbank eingetragen
     @app.route("/pointGame", methods=['POST'])
     def pointgame():
             userId = request.form['userid']
@@ -470,7 +462,7 @@ def server():
             return redirect(f'/session/{sessionId}')
     
 
-
+    # Hier werden Events vom Planer hinzugefügt
     @app.route("/get_event", methods=['POST'])
     def get_event():
 
@@ -486,37 +478,13 @@ def server():
                 log_server("unable to run sql /get_event", "ERROR")
             return render_template("login.html")
         
-
-
-    @app.route("/controll")
-    def controll():
-        
-            log_server("called /controll", "INFO")
-            return render_template("controll.html")
-
-    @app.route("/statistik", methods=['POST'])
-    def statistik():
-            sessionId = request.form['id']
-            game = request.form['game']
-           # createChart(sessionId, game)
-            log_server("called /statistik", "INFO")
-            return render_template("controll.html")
-    
-
-    @app.route("/game")
-    def game():
-        
-            log_server("called /game", "INFO")
-            return render_template("game.html")
-
-
-
+    # Hier soll später der RGB Streifen angesteuert werden am Raspberry pi
     @app.route("/rgb")
     def rgb():
             log_server("called /rgb", "INFO")
             return render_template("404.html")
 
-
+    # Hier ist der Login in eine Session
     @app.route("/get_login", methods=['POST'])
     def get_login():
         log_server("called /get_login with POST", "INFO")
@@ -531,7 +499,7 @@ def server():
 
         con.close()
 
-
+    # Hier wird ein neuer User angelegt
     @app.route("/new", methods=['POST'])
     def new():
         log_server("called /new with POST", "INFO")
@@ -548,6 +516,7 @@ def server():
 
         con.close()
 
+    #  Hier soll es möglich sein, Dateien hochzuladen wie bei einem Nas
     @app.route("/upload_file", methods=["POST"])
     def upload_file():
         log_server("called /upload_file with POST", "INFO")
@@ -564,6 +533,7 @@ def server():
             return "File uploaded successfully!"
         return "No file found"
 
+    #Hier kommen die Chat Nachrichten an
     @app.route("/send", methods=["POST"])
     def send():
         log_server("called /send with POST", "INFO")
@@ -578,6 +548,7 @@ def server():
         
         return render_template("index.html")
 
+    # Hier werden die Chat Nachrichten Verschickt
     @app.route("/get")
     def get():
         log_server("called /get with GET", "INFO")
@@ -586,14 +557,15 @@ def server():
         c.execute("SELECT username, message, timestamp FROM messages")
         messages = c.fetchall()
         conn.close()
-        
         return render_template("messages.html", messages=messages)
 
+    # Hier ist die Chat seite
     @app.route("/chat")
     def chat():
         log_server("called /chat","INFO")
         return render_template("chat.html")
 
+    # Soll Musik Daten schicken
     @app.route("/music/<int:id>")
     def get_music(id):
         conn = sqlite3.connect("music.db")
@@ -603,7 +575,7 @@ def server():
         conn.close()
         return send_file(music[1], attachment_filename=music[2], as_attachment=True)
 
-
+    # Gibt die 404 Seite aus, wenn es Seite nicht gibt
     @app.errorhandler(404)
     def page_not_found(e):
         log_server("called non-existing page", "ERROR")
