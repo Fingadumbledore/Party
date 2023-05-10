@@ -248,32 +248,6 @@ def server():
             mateFlaschen = request.form['mateFlaschen']
             sessionId = request.form['sessionID']
             mateSorte = request.form['mateSorte']
-
-            if mateSorte == "Club Mate" and mateFlaschen == 20:
-                matekiste + 1
-                mws(matekiste)
-            if mateSorte == "Mio Mio" and mateFlaschen == 12:
-                matekiste + 1
-                mws(matekiste)
-            if mateSorte == "Flora Mate" and mateFlaschen == 20:
-                matekiste + 1
-                mws(matekiste)
-            if mateSorte == "Mate Mate" and mateFlaschen == 20:
-                martekiste + 1
-                mws(martekiste)
-            if mateSorte == "Buenos Mate" and mateFlaschen == 20:
-                matekiste + 1
-                mws(matekiste)
-            if mateSorte == "Charitea Mate" and mateFlaschen == 12:
-                matekiste + 1
-                mws(matekiste)
-            if mateSorte == "1337 Mate" and mateFlaschen == 20:
-                matekiste + 1
-                mws(matekiste)
-            if mateSorte == "Bionade Mate" and mateFlaschen == 20:
-                martekiste + 1
-                mws(martekiste)
-
             mateSql = f"INSERT INTO mate VALUES (\"{mateSorte}\", \'{mateFlaschen}\', \'{sessionId}\');"
             try:
                 dbcon(mateSql)
