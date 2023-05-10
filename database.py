@@ -18,20 +18,22 @@ def return_dbcon(sql):
             return "Error"
 
 def mate_erstellen():
-     # Daten aus JSON-Datei lesen
-    with open('./Config/mate.json') as f:
-        data = json.load(f)
+    try:
+        with open('./Config/mate.json') as f:
+            data = json.load(f)
 
-    con = sqlite3.connect('party.db')
-    cur = con.cursor()
+        con = sqlite3.connect('party.db')
+        cur = con.cursor()
 
-    for mate in data:
-        cur.execute('''INSERT INTO mate(mateid, matename, mateanzahl, kofein)
-                    VALUES(?, ?, ?, ?)''',
-                    (mate['id'], mate['name'], mate['anzahl'], mate['konfein']))
-    con.commit()
-    cur.close()
-    con.close()
+        for mate in data:
+            cur.execute('''INSERT INTO mate(mateid, matename, mateanzahl, kofein)
+                        VALUES(?, ?, ?, ?)''',
+                        (mate['id'], mate['name'], mate['anzahl'], mate['konfein']))
+        con.commit()
+        cur.close()
+        con.close()
+    except:
+        print("Fehler beim laden der Datei: mate.json")
 
 def create_db():
     conn = sqlite3.connect("chat.db")
