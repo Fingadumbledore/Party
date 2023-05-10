@@ -534,7 +534,7 @@ def server():
         message = request.form["message"]
         username = request.form["username"]
         
-        conn = sqlite3.connect("chat.db")
+        conn = sqlite3.connect("party.party.db")
         c = conn.cursor()
         c.execute("INSERT INTO messages (username, message) VALUES (?, ?)", (username, message))
         conn.commit()
@@ -546,7 +546,7 @@ def server():
     @app.route("/get")
     def get():
         log_server("called /get with GET", "INFO")
-        conn = sqlite3.connect("chat.db")
+        conn = sqlite3.connect("party.db")
         c = conn.cursor()
         c.execute("SELECT username, message, timestamp FROM messages")
         messages = c.fetchall()
