@@ -361,12 +361,6 @@ def server():
         log_server("called /get_spiel", "INFO")
         return render_template("spiel.html")
 
-    # Dies kommt wenn man auf Passwort vergessen klickt
-    @app.route("/password")
-    def password():
-        log_server("called /password", "INFO")
-        return render_template("passwort_ver.html")
-
     # Diese seite mahnt den User sich anzumelden um den Inhalt zu sehen
     @app.route("/passwd")
     def passwd():
