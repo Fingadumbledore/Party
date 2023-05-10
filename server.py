@@ -6,6 +6,7 @@ from flask import Flask, render_template, request, redirect
 from picker import picker as pick
 from database import dbcon, return_dbcon
 from mate import mate_logik, mws
+from log import log_server
 #from picker import createChart
 
 # Funktion um den Server zu machen
@@ -26,14 +27,6 @@ def server():
     # Soll die uptime berechnen, wird in javascript neu gemacht
     def uptime(): 
         return int(zeit) - starttime
-
-    # log system
-    def log_server(log, type):
-        log = date + ' [' + type + '] ' + log
-        datei = open('server.log', 'a')
-        datei.write('\n' + " " + log)
-        log = date
-        datei.close()
 
     # Qr-code generator#
     #def create_qr(id):
