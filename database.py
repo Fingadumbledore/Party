@@ -2,10 +2,13 @@ import sqlite3
 import json
 
 def dbcon(sql):
-    con = sqlite3.Connection("party.db")
-    cur = con.cursor()
-    cur.execute(sqlt)
-    con.commit()
+    try:
+        con = sqlite3.Connection("party.db")
+        cur = con.cursor()
+        cur.execute(sqlt)
+        con.commit()
+    except:
+        print("Fehler:")
 
 def return_dbcon(sql):
         try:

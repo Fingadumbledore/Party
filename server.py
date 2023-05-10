@@ -4,6 +4,8 @@ import time
 #import qrcode
 from flask import Flask, render_template, request, redirect
 from picker import picker as pick
+from database import dbcon, return_dbcon
+from mate import mate_logik, mws
 #from picker import createChart
 
 # Funktion um den Server zu machen
@@ -15,34 +17,12 @@ def server():
     app.config['SECRET_KEY'] = 'party'
     matekiste = 0
 
-    # Erstellt eine Verbindung zur Datenbank wird in database.py verschoben
-    def dbcon(sql):
-        try:
-            con = sqlite3.connect("party.db")
-            log_server("dbcon hat die Verbindung mit db aufgenommen", "WARNING")
-            cur = con.cursor()
-            cur.execute(sql)
-            con.commit()
-        except:
-            return "ERROR"
-
     # hohlt die Ip-adresse aus einer Datei
     def ipfin():
         datei = open('ip.txt', 'r')
         print (datei.read())
         return datei.read()
 
-    # macht das selbe wie dbcon nur gibt diese Funktion etwas zurück. Wird auch verschoben
-    def return_dbcon(sql):
-        try:
-            con = sqlite3.connect("party.db")
-            log_server("return_dbcon hat die Verbindung mit db aufgenommen", "WARNING")
-            cur = con.cursor()
-            ergebnis = cur.execute(sql).fetchall()
-            con.commit()
-            return ergebnis
-        except:
-            return "Error"
     # Soll die uptime berechnen, wird in javascript neu gemacht
     def uptime(): 
         return int(zeit) - starttime
@@ -55,16 +35,6 @@ def server():
         log = date
         datei.close()
 
-
-    # Materechner Logic
-    def mate_logik(sorte, anzahl):
-        print("im Ruhestand")
-
-    def mws(kisten):
-        log_server("mws wurde angefragt", "INFO")
-        return mate
-
-
     # Qr-code generator#
     #def create_qr(id):
        # if not os.path.exists("./static/img/qr.png"):
@@ -75,13 +45,11 @@ def server():
      #   else:
         #    log_server("QR-Code ist bereits vorhanden", "WARNING")
 
-
     # Hauptseite
     @app.route("/")
     def index():
         log_server("called /", "INFO")
         return render_template("index.html")
-
 
     # Neue Nachrichten
     @app.route("/get_chat", methods=['POST'])
@@ -515,7 +483,7 @@ def server():
 
     # Use this line to run it localy
     runip = ipfin()
-    app.run(host=runip, port=80)
+    app.run(host=runip, port=8080)
 
 if __name__ == "__main__":
 	print("Use main.py to use program")
