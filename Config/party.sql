@@ -52,7 +52,8 @@ eventstatus TEXT
 CREATE TABLE IF NOT EXISTS mate (
 mateid INTEGER PRIMARY KEY NOT NULL,
 matename TEXT,
-mateanzahl INTEGER
+mateanzahl INTEGER,
+kofein TEXT
 );
 
 CREATE TABLE IF NOT EXISTS mws (

@@ -1,0 +1,48 @@
+[  {   
+     "id": "1",
+     "name": "Mio Mio",
+     "anzahl": "12",
+     "konfein": "100"
+   },
+   {
+     "id": "2",
+     "name": "Club Mate",
+     "anzahl": "20",
+     "konfein": "100"
+   },
+   {
+     "id": "3",
+     "name": "Buenos Mate",
+     "anzahl": "20",
+     "konfein": "100"
+   },
+   { 
+     "id": "4",
+     "name": "Mate Mate",
+     "anzahl": "20",
+     "konfein": "90"
+   },
+   { 
+     "id": "5",
+     "name": "Flora Mate",
+     "anzahl": "20",
+     "konfein": "150"
+   },
+   {
+      "id": "6",
+      "name": "1337 Mate",
+      "anzahl": "20",
+      "konfein": "145" 
+   },
+   {
+      "id": "7",
+      "name": "Charitea Mate",
+      "anzahl": "20",  
+      "konfein": "150"  
+   },
+   {
+      "id": "8",
+      "name": "Bionade Mate",
+      "anzahl": "20",
+      "konfein": "100"  
+   }]

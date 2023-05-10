@@ -1,19 +1,37 @@
 import sqlite3
+import json
 
-def dbcon():
+def dbcon(sql):
     con = sqlite3.Connection("party.db")
     cur = con.cursor()
+    cur.execute(sqlt)
+    con.commit()
 
 def return_dbcon(sql):
         try:
             con = sqlite3.connect("party.db")
-            log_server("return_dbcon hat die Verbindung mit db aufgenommen", "WARNING")
             cur = con.cursor()
             ergebnis = cur.execute(sql).fetchall()
             con.commit()
             return ergebnis
         except:
             return "Error"
+
+def mate_erstellen():
+     # Daten aus JSON-Datei lesen
+    with open('./Config/mate.json') as f:
+        data = json.load(f)
+
+    con = sqlite3.connect('party.db')
+    cur = con.cursor()
+
+    for mate in data:
+        cur.execute('''INSERT INTO mate(mateid, matename, mateanzahl, kofein)
+                    VALUES(?, ?, ?, ?)''',
+                    (mate['id'], mate['name'], mate['anzahl'], mate['konfein']))
+    con.commit()
+    cur.close()
+    con.close()
 
 def create_db():
     conn = sqlite3.connect("chat.db")

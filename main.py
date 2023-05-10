@@ -1,6 +1,7 @@
 """ used for argument parsing and starting the server """
 import argparse
 from server import server
+from database import mate_erstellen
 
 def main():
     """ entrypoint to program """
@@ -16,6 +17,7 @@ def main():
     args = parser.parse_args()
 
     if args.start:
+        mate_erstellen()
         server()
 
     elif args.load:
