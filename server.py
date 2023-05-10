@@ -58,40 +58,8 @@ def server():
 
     # Materechner Logic
     def mate_logik(sorte, anzahl):
-        if sorte == "Club Mate":
-            koffeingehalt = 100
+        print("im Ruhestand")
 
-        if sorte == "Mio Mate":
-            koffeingehalt = 100
-
-        if sorte == "Flora Mate":
-            koffeingehalt = 90
-
-        if sorte == "Mate Mate":
-            koffeingehalt = 150
-
-        if sorte == "Buenos Mate":
-            koffeingehalt = 100
-
-        if sorte == "1337 Mate":
-            koffeingehalt = 145
-
-        if sorte == "Charitea Mate":
-            koffeingehalt = 15
-
-        if sorte == "Bionade Mate":
-            koffeingehalt = 20
-
-    
-        '''
-        anzahl = anzahl + 1
-        koffeingehalt = 0
-        match sorte:
-            case "Mio Mio":
-                koffeingehalt = '''
-
-
-    # mws = mate wirtschafts system
     def mws(kisten):
         log_server("mws wurde angefragt", "INFO")
         return mate
@@ -553,11 +521,6 @@ def server():
         conn.close()
         return render_template("messages.html", messages=messages)
 
-    # Hier ist die Chat seite
-    @app.route("/chat")
-    def chat():
-        log_server("called /chat","INFO")
-        return render_template("chat.html")
 
     # Soll Musik Daten schicken
     @app.route("/music/<int:id>")
