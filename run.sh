@@ -1,6 +1,13 @@
 #!/bin/sh
-cat ./Config/party.sql | sqlite3 party.db
+if [ ! -e party.db ]; then
+    cat ./Config/party.sql | sqlite3 party.db
+fi
 
 export FLASK_APP=main.py
 
-sudo python3 main.py $@
+if [ "$(id -u)" != "0" ]; then
+    echo "Dieses Skript muss mit sudo ausgeführt werden!"
+    exit 1
+fi
+
+python3 main.py $@
