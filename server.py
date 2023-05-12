@@ -6,7 +6,7 @@ from flask import Flask, render_template, request, redirect
 from picker import picker as pick
 from database import dbcon, return_dbcon
 from mate import mate_logik, mws
-from log import log_server
+from log import log_server, chat_log
 #from picker import createChart
 
 # Funktion um den Server zu machen
@@ -448,7 +448,7 @@ def server():
     # Hier werden die Chat Nachrichten Verschickt
     @app.route("/get")
     def get():
-        log_server("called /get with GET", "INFO")
+        chat_log("called /get with GET", "INFO")
         conn = sqlite3.connect("party.db")
         c = conn.cursor()
         c.execute("SELECT username, message, timestamp FROM messages")

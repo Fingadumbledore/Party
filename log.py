@@ -17,5 +17,13 @@ def log_server(log, type):
 
         
 
-def chat_log():
-    print("chat_log")
+def chat_log(log,type):
+    file_size = os.path.getsize('chat.log')
+    date = time.strftime("%d-%m-%Y %H:%M:%S", time.localtime(time.time()))
+    if file_size >= 1024*1024:
+        clear_log()
+    log = date + ' [' + type + '] ' + log
+    datei = open('chat.log', 'a')
+    datei.write('\n' + " " + log)
+    log = date
+    datei.close()
