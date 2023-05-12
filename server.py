@@ -28,51 +28,17 @@ def server():
     def uptime(): 
         return int(zeit) - starttime
 
-    # Qr-code generator#
-    #def create_qr(id):
-       # if not os.path.exists("./static/img/qr.png"):
-        #    qip = ipfin()
-        #    img = qrcode.make(f'{qip}:80/session/{id}')
-       #     type(img)
-       #     img.save("./static/img/qr.png")
-     #   else:
-        #    log_server("QR-Code ist bereits vorhanden", "WARNING")
-
     # Hauptseite
     @app.route("/")
     def index():
         log_server("called /", "INFO")
         return render_template("index.html")
-
-    # Neue Nachrichten
-    @app.route("/get_chat", methods=['POST'])
-    def get_chat():
-            log_server("called /get_chat", "INFO")
-            log_server("called /get_chat with POST", "INFO")
-            userID = request.form['userid']
-            sessionID = request.form['sessionid']
-            message = request.form['message']
-            zeit = date
-            l = f"INSERT INTO seession (sessionname, sesionstatus, seessiontyp) VALUES(  \'{sessionID}\', \'{userID}\',\'{message}\', \'{zeit}\');"
-            log_server("neue Nachricht", "INFO")
-            try:
-                dbcon(l)
-                log_server("message entered successfully", "INFO")
-            except Exception:
-                log_server("unable to get new Messages", "ERROR")
-            # account = cursor.fetchone()
-            return render_template("chat.html")
     
     # Um in der Zukunft spiele dateien zu bekommen
     @app.route("/get_game_file", methods=['POST'])
     def get_game_file():
         log_server("called /get_game_file", "INFO")
         pick()
-    # Neue Nachrichten zu bekommen
-    @app.route("/get_new_message")
-    def get_new_message():
-            log_server("called /get_new_message", "INFO")
-            return render_template("chat.html")
    
     # Macht message.html sichtbar
     @app.route("/message")
@@ -357,23 +323,6 @@ def server():
             except Exception:
                 log_server("unable to run sql /pointGame", "ERROR")
             return redirect(f'/session/{sessionId}')
-    
-
-    # Hier werden Events vom Planer hinzugefügt
-    @app.route("/get_event", methods=['POST'])
-    def get_event():
-
-            log_server("called /get_event", "INFO")
-            event = request.form['event']
-            zeit = request.form['zeit']
-            sessionId = request.form['sessionid']
-            l = f"INSERT INTO game VALUES(  \'{event}\', \'{zeit}\', \'{sessionId}\');"
-            try:
-                dbcon(l)
-                log_server("event entered successfully /get_event", "INFO")
-            except e:
-                log_server("unable to run sql /get_event", "ERROR")
-            return render_template("login.html")
         
     # Hier soll später der RGB Streifen angesteuert werden am Raspberry pi
     @app.route("/rgb")
