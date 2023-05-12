@@ -1,3 +1,4 @@
+""" statistic """
 import matplotlib.pyplot as plt
 
 def create_chart(session_id,spiel_name):

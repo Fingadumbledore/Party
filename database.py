@@ -1,7 +1,9 @@
+""" database stuff """
 import sqlite3
 import json
 
 def dbcon(sql):
+    """ connect to database """
     try:
         con = sqlite3.Connection("party.db")
         cur = con.cursor()
@@ -11,6 +13,7 @@ def dbcon(sql):
         print("Fehler:")
 
 def return_dbcon(sql):
+        """ connext to database and return stuff """
         try:
             con = sqlite3.connect("party.db")
             cur = con.cursor()
@@ -21,6 +24,7 @@ def return_dbcon(sql):
             return "Error"
 
 def mate_erstellen():
+    """ collect mate from json """
     try:
         with open('./Config/mate.json') as f:
             data = json.load(f)
@@ -39,6 +43,7 @@ def mate_erstellen():
         print("Fehler beim laden der Datei: mate.json")
 
 def create_db():
+    """ a little bit useless """
     conn = sqlite3.connect("chat.db")
     c = conn.cursor()
     c.execute("CREATE TABLE messages (username text, message text, timestamp text)")
