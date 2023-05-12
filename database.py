@@ -44,3 +44,6 @@ def create_db():
     c.execute("CREATE TABLE messages (username text, message text, timestamp text)")
     conn.commit()
     conn.close()
+
+if __name__ == "__main__":
+    print("Use main.py to use program")

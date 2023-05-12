@@ -25,3 +25,7 @@ def create_chart(session_id,spiel_name):
     plt.ylabel('Zeit in Sekunden', fontsize=14)
     plt.grid(False)
     plt.savefig(dateiname)
+
+
+if __name__ == "__main__":
+    print("Use main.py to use program")

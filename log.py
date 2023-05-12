@@ -27,3 +27,6 @@ def chat_log(log,type):
     datei.write('\n' + " " + log)
     log = date
     datei.close()
+
+if __name__ == "__main__":
+    print("Use main.py to use program")

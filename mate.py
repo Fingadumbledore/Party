@@ -8,3 +8,7 @@ def materechner():
 
 def mate_logik(sorte, anzahl):
     print("ich kann denken")
+
+
+if __name__ == "__main__":
+    print("Use main.py to use program")
