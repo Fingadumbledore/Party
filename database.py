@@ -35,7 +35,7 @@ def mate_erstellen():
         for mate in data:
             cur.execute('''INSERT INTO mate(mateid, matename, mateanzahl, kofein)
                         VALUES(?, ?, ?, ?)''',
-                        (mate['id'], mate['name'], mate['anzahl'], mate['koffein']))
+                        (mate['id'], mate['name'], mate['anzahl_pro_kasten'], mate['koffein']))
         con.commit()
         cur.close()
         con.close()
