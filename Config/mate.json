@@ -1,54 +1,54 @@
 [  {   
      "id": "1",
      "name": "Mio Mio",
-     "anzahl": "12",
+     "anzahl_pro_kasten": "12",
      "koffein": "100"
    },
    {
      "id": "2",
      "name": "Club Mate",
-     "anzahl": "20",
+     "anzahl_pro_kasten": "20",
      "koffein": "100"
    },
    {
      "id": "3",
      "name": "Buenos Mate",
-     "anzahl": "20",
+     "anzahl_pro_kasten": "20",
      "koffein": "100"
    },
    { 
      "id": "4",
      "name": "Mate Mate",
-     "anzahl": "20",
+     "anzahl_pro_kasten": "20",
      "koffein": "90"
    },
    { 
      "id": "5",
      "name": "Flora Mate",
-     "anzahl": "20",
+     "anzahl_pro_kasten": "20",
      "koffein": "150"
    },
    {
       "id": "6",
       "name": "1337 Mate",
-      "anzahl": "20",
+      "anzahl_pro_kasten": "20",
       "koffein": "145" 
    },
    {
       "id": "7",
       "name": "Charitea Mate",
-      "anzahl": "20",  
+      "anzahl_pro_kasten": "20",  
       "koffein": "150"  
    },
    {
       "id": "8",
       "name": "Bionade Mate",
-      "anzahl": "20",
+      "anzahl_pro_kasten": "20",
       "koffein": "100"  
    },
    {
       "id": "9",
       "name": "Robin Schulz x MY MATE",
-      "anzahl": "20",
+      "anzahl_pro_kasten": "20",
       "koffein": "72" 
    }]
