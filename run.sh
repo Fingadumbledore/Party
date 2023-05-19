@@ -10,6 +10,9 @@ fi
 if [ ! -e ./Config/log/chat.log ]; then
     touch ./Config/log/chat.log
 fi
+
+export RUN_WITH_SH=1
+
 export FLASK_APP=main.py
 
 
