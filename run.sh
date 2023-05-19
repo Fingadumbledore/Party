@@ -3,12 +3,19 @@ if [ ! -e party.db ]; then
     cat ./Config/party.sql | sqlite3 party.db
 fi
 
+if [ ! -e ./Config/log/server.log ]; then
+    touch ./Config/log/server.log
+fi
+
+if [ ! -e ./Config/log/chat.log ]; then
+    touch ./Config/log/chat.log
+fi
 export FLASK_APP=main.py
 
-if [ "$(id -u)" != "0" ]; then
-    echo "Dieses Skript muss mit sudo ausgeführt werden!"
-    exit 1
-fi
-touch ./Config/log/chat.log
-touch ./Config/log/server.log
+
+#if [ "$(id -u)" != "0" ]; then
+#    echo "Dieses Skript muss mit sudo ausgeführt werden!"
+#    exit 1
+#fi
+
 python3 main.py $@
