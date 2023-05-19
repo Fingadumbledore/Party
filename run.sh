@@ -11,8 +11,8 @@ if [ ! -e ./Config/log/chat.log ]; then
     touch ./Config/log/chat.log
 fi
 
+export IP_ADDR=127.0.0.1
 export RUN_WITH_SH=1
-
 export FLASK_APP=main.py
 
 

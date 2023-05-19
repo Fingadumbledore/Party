@@ -6,7 +6,7 @@ from flask import Flask, render_template, request, redirect
 from picker import picker as pick
 from database import dbcon, return_dbcon
 from mate import mate_logik, mws
-from log import log_server, chat_log
+from log import insert_log
 #from picker import createChart
 
 # Funktion um den Server zu machen
@@ -18,12 +18,6 @@ def server():
     app.config['SECRET_KEY'] = 'party'
     matekiste = 0
 
-    # hohlt die Ip-adresse aus einer Datei
-    def ipfin():
-        datei = open('ip.txt', 'r')
-        print (datei.read())
-        return datei.read()
-
     # Soll die uptime berechnen, wird in javascript neu gemacht
     def uptime(): 
         return int(zeit) - starttime
@@ -31,38 +25,38 @@ def server():
     # Hauptseite
     @app.route("/")
     def index():
-        log_server("called /", "INFO")
+        insert_log("server", "called /", "INFO")
         return render_template("index.html")
     
     # Um in der Zukunft spiele dateien zu bekommen
     @app.route("/get_game_file", methods=['POST'])
     def get_game_file():
-        log_server("called /get_game_file", "INFO")
+        insert_log("server", "called /get_game_file", "INFO")
         pick()
    
     # Macht message.html sichtbar
     @app.route("/message")
     def message():
-            log_server("called /message", "INFO")
+            insert_log("server", "called /message", "INFO")
             return render_template("message.html")
 
     # hier planer sachen in die Datenbank geschoben
     @app.route("/get_planer", methods=['POST'])
     def get_planer():
-        log_server("called /get_planer", "INFO")
-        log_server("called /get_planer with POST", "INFO")
+        insert_log("server", "called /get_planer", "INFO")
+        insert_log("server", "called /get_planer with POST", "INFO")
         event = request.form['event']
         sessionID = request.form['sessionID']
         zeit = request.form['zeit']
         pfad = "/session/" + sessionID
         status = "running"
         l = f"INSERT INTO planer VALUES(  \'{event}\', \'{zeit}\', \'{sessionID}\',\'{status}\');"
-        log_server("neues Event", "INFO")
+        insert_log("server", "neues Event", "INFO")
         try:
             dbcon(l)
-            log_server("event entered successfully /get_planer", "INFO")
+            insert_log("server", "event entered successfully /get_planer", "INFO")
         except Exception:
-            log_server("unable to insert event", "ERROR")
+            insert_log("server", "unable to insert event", "ERROR")
         return redirect(f'/session/{sessionID}')
 
     # Das Zeit die Session seite an. Außerdem werden hier daten mit Jinja ans Frontend geschickt
@@ -72,7 +66,7 @@ def server():
             return [i[0] for i in return_dbcon(l)]
         #print(os.cpu_count())
         #createChart("41", "NFSU2")
-        log_server(f"called /session/{id}", "INFO")
+        insert_log("server", f"called /session/{id}", "INFO")
         con = sqlite3.connect("party.db")
         cur = con.cursor()
         l = f"SELECT eventname FROM planer WHERE sessionID = \'{id}\' ORDER BY eventzeit;"
@@ -171,7 +165,7 @@ def server():
     # Dies fügt mate hinzu, und macht bei der richtigen Anzahl einen kasten daraus
     @app.route("/mate", methods=['POST'])
     def mate():
-            log_server("called /mate", "INFO")
+            insert_log("server", "called /mate", "INFO")
             mateFlaschen = request.form['mateFlaschen']
             sessionId = request.form['sessionID']
             mateSorte = request.form['mateSorte']
@@ -180,15 +174,15 @@ def server():
                 dbcon(mateSql)
 
                 mate_logik(mateSorte, mateFlaschen)
-                log_server("mate wurde in Datenbank eingefügt", "INFO")
+                insert_log("server", "mate wurde in Datenbank eingefügt", "INFO")
             except sqlite3.Error as e:
-                log_server(f"error while executing sql: {e}", "WARNING")
+                insert_log("server", f"error while executing sql: {e}", "WARNING")
             return redirect(f'/session/{sessionId}')
         
     # Hier ist ein Teil der Matelogic, wenn eine Person eine Mate trinkt wird das in der Datenbank vermerkt, und es ist eine Flasche weniger da. Dies geht zum teil noch in die mate.py
     @app.route("/drink", methods=['POST'])
     def drink():
-            log_server("called /drink", "INFO")
+            insert_log("server", "called /drink", "INFO")
             mateFlaschen = request.form['mateFlaschen']
             sessionId = request.form['sessionID']
             mateSorte = request.form['mateSorte']
@@ -204,22 +198,22 @@ def server():
             try:
                 dbcon(mateSql)
                 mate_logik(mateSorte, mateFlaschen)
-                log_server("mate wurde in Datenbank eingefügt", "ERROR")
+                insert_log("server", "mate wurde in Datenbank eingefügt", "ERROR")
             except sqlite3.Error as e:
-                log_server(f"error while executing sql: {e}", "ERROR")
+                insert_log("server", f"error while executing sql: {e}", "ERROR")
             return redirect(f'/session/{sessionId}')
         
     # Dies zeigt die Logout Seite
     @app.route("/logout")
     def logout():
-        log_server("called /logout", "INFO")
+        insert_log("server", "called /logout", "INFO")
         user_count = -1
         return render_template("logout.html")
 
     # Das hier zeigt die Seite an auf der Spiele hinzugefügt werden können
     @app.route("/spiel")
     def spiel():
-        log_server("called /spiel", "INFO")
+        insert_log("server", "called /spiel", "INFO")
         user_count = -1
         spiel = "Tomb raider"
         return render_template("spiel.html", spiel=spiel,)
@@ -227,31 +221,31 @@ def server():
     # Hier werden die Spiele hinzugefügt
     @app.route("/get_spiel")
     def get_spiel():
-        log_server("called /get_spiel", "INFO")
+        insert_log("server", "called /get_spiel", "INFO")
         return render_template("spiel.html")
 
     # Diese seite mahnt den User sich anzumelden um den Inhalt zu sehen
     @app.route("/passwd")
     def passwd():
-        log_server("called /passwd", "INFO")
+        insert_log("server", "called /passwd", "INFO")
         return render_template("passwd.html")
 
     # Hier ist eine Seite die zum wechseln einer Session dient
     @app.route("/change")
     def change():
-        log_server("called /change", "INFO")
+        insert_log("server", "called /change", "INFO")
         return render_template("changeSession.html")
 
     # Hier wird die Seite zum erstellen einer Session erstellt
     @app.route("/create_session")
     def create_session():
-        log_server("called /create_session", "INFO")
+        insert_log("server", "called /create_session", "INFO")
         return render_template("createSession.html")
 
     # Hier wird die Session erstellt
     @app.route("/get_creat_session", methods=['POST'])
     def get_creat_session():
-        log_server("called /get_creat_session with POST", "INFO")
+        insert_log("server", "called /get_creat_session with POST", "INFO")
         Gsessionname = request.form['sessionname']
         GsessionID = request.form['sessionid']
         Gusername = "Host"
@@ -260,7 +254,7 @@ def server():
         Gstatus = "online"
         l1 = f'INSERT INTO seession VALUES({GsessionID}, \'{Gsessionname}\', \'online\', \'public\');'
         print(l1)
-        log_server("neue Session", "INFO")
+        insert_log("server", "neue Session", "INFO")
         
         dbcon(l1)
         
@@ -273,14 +267,14 @@ def server():
                 l = f'INSERT INTO user (username, sessionID, info) VALUES (\'{username}\', {GsessionID}, \'{usertype}\');'
                 dbcon(l)
         except e:
-                log_server("User Admin konnte nicht angelegt werden", "WARNING")
+                insert_log("server", "User Admin konnte nicht angelegt werden", "WARNING")
         return redirect(f'/session/{GsessionID}')
-        log_server("session successfully started", "INFO")
+        insert_log("server", "session successfully started", "INFO")
 
     # Hier soll später für Spiele Charts geschickt werden. Dafür gibt es in statistik.py sachen
     @app.route("/charts")
     def charts():
-        log_server("called /charts", "INFO")
+        insert_log("server", "called /charts", "INFO")
         csessionID = request.form['sessionID']
         k = f"SELCT COUNT(DISTINCT 'Spielname') FROM game WHERE sessionID = \'{csessionID}\';"
         dbcon(k)
@@ -289,13 +283,13 @@ def server():
     # Hierdurch wird die Login/Join seite angezeit
     @app.route("/login")
     def login():
-        log_server("called /login", "INFO")
+        insert_log("server", "called /login", "INFO")
         return render_template("login.html")
 
     # Hier werden Spiele die nach Zeit gehen, in die Datenbank eingetragen
     @app.route("/stopuhr", methods=['POST'])
     def stopuhr():
-            log_server("called /stopuhr", "INFO")
+            insert_log("server", "called /stopuhr", "INFO")
             spielName = request.form['spiel']
             art = request.form['art']
             zeit = request.form['zeit']
@@ -303,11 +297,11 @@ def server():
             sessionId = request.form['sessionID']
             l = f"INSERT INTO game VALUES(  \'{sessionId}\', \'{userId}\',\'{spielName}\',\'{art}\', \'{zeit}\');"
             try:
-                log_server("Verbindung mit Datenbank wurde aufgenommen", "WARNING")
+                insert_log("server", "Verbindung mit Datenbank wurde aufgenommen", "WARNING")
                 dbcon(l)
-                log_server("time entered successfully /stopuhr", "INFO")
+                insert_log("server", "time entered successfully /stopuhr", "INFO")
             except Exception:
-                log_server("unable to run sql /stopuhr", "ERROR")
+                insert_log("server", "unable to run sql /stopuhr", "ERROR")
             return redirect(f'/session/{sessionId}')
 
     # Hier werden die Daten für Spiele die Nach Punkten gehe, in die Datenbank eingetragen
@@ -317,30 +311,30 @@ def server():
             sessionId = request.form['sessionID']
             l = f"INSERT INTO pointgame VALUES(  \'{sessionId}\', \'{userId}\',\'{spielName}\',\'{art}\', \'{punkte}\');"
             try:
-                log_server("Verbindung mit Datenbank wurde aufgenommen", "WARNING")
+                insert_log("server", "Verbindung mit Datenbank wurde aufgenommen", "WARNING")
                 dbcon(l)
-                log_server("time entered successfully /pointGame", "INFO")
+                insert_log("server", "time entered successfully /pointGame", "INFO")
             except Exception:
-                log_server("unable to run sql /pointGame", "ERROR")
+                insert_log("server", "unable to run sql /pointGame", "ERROR")
             return redirect(f'/session/{sessionId}')
         
     # Hier soll später der RGB Streifen angesteuert werden am Raspberry pi
     @app.route("/rgb")
     def rgb():
-            log_server("called /rgb", "INFO")
+            insert_log("server", "called /rgb", "INFO")
             return render_template("404.html")
 
     # Hier ist der Login in eine Session
     @app.route("/get_login", methods=['POST'])
     def get_login():
-        log_server("called /get_login with POST", "INFO")
+        insert_log("server", "called /get_login with POST", "INFO")
         username = request.form['username']
         sessionId = request.form['sessionID']
         userid = request.form['userID']
         l = f"select * from user where userID = \'{userid}\' and username=\'{username}\' and sessionID=\'{sessionId}\';"
         dbcon(l)
         # session['username'] = account['username']
-        log_server("loggedin successfully", "INFO")
+        insert_log("server", "loggedin successfully", "INFO")
         return redirect(f'/session/{sessionId}')
 
         con.close()
@@ -348,7 +342,7 @@ def server():
     # Hier wird ein neuer User angelegt
     @app.route("/new", methods=['POST'])
     def new():
-        log_server("called /new with POST", "INFO")
+        insert_log("server", "called /new with POST", "INFO")
         username = request.form['username']
         sessionId = request.form['sessionID']
         userId = request.form['sessionID']
@@ -357,7 +351,7 @@ def server():
         account = True
 
         # session['username'] = account['username']
-        log_server("created new user successfully", "INFO")
+        insert_log("server", "created new user successfully", "INFO")
         return redirect(f'/session/{sessionId}')
 
         con.close()
@@ -365,9 +359,9 @@ def server():
     #  Hier soll es möglich sein, Dateien hochzuladen wie bei einem Nas
     @app.route("/upload_file", methods=["POST"])
     def upload_file():
-        log_server("called /upload_file with POST", "INFO")
+        insert_log("server", "called /upload_file with POST", "INFO")
         """
-        log_server("called /upload_file")
+        insert_log("server", "called /upload_file")
         file = request.files
         print(f"{file=}")
         return render_template(f'404.html')"""
@@ -382,7 +376,7 @@ def server():
     #Hier kommen die Chat Nachrichten an
     @app.route("/send", methods=["POST"])
     def send():
-        log_server("called /send with POST", "INFO")
+        insert_log("server", "called /send with POST", "INFO")
         message = request.form["message"]
         username = request.form["username"]
         
@@ -419,12 +413,12 @@ def server():
     # Gibt die 404 Seite aus, wenn es Seite nicht gibt
     @app.errorhandler(404)
     def page_not_found(e):
-        log_server("called non-existing page", "ERROR")
+        insert_log("server", "called non-existing page", "ERROR")
         return render_template('404.html'), 404
 
 
     # Use this line to run it localy
-    runip = ipfin()
+    runip = os.getenv("IP_ADDR")
     app.run(host=runip, port=8080)
 
 if __name__ == "__main__":
