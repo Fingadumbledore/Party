@@ -249,9 +249,9 @@ def server():
         return render_template("createSession.html")
 
     # Hier wird die Session erstellt
-    @app.route("/get_creat_session", methods=['POST'])
-    def get_creat_session():
-        log_server("called /get_creat_session with POST", "INFO")
+    @app.route("/get_create_session", methods=['POST'])
+    def get_create_session():
+        log_server("called /get_create_session with POST", "INFO")
         Gsessionname = request.form['sessionname']
         GsessionID = request.form['sessionid']
         Gusername = "Host"

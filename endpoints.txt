@@ -15,7 +15,7 @@
 "/passwd"
 "/change"
 "/create_session"
-"/get_creat_session", methods=['POST']
+"/get_create_session", methods=['POST']
 "/charts"
 "/login"
 "/stopuhr", methods=['POST']
