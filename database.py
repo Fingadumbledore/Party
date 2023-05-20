@@ -1,4 +1,4 @@
-""" database stuff """
+"""  interactions with the database """
 import sqlite3
 import json
 from log import insert_log
@@ -22,8 +22,10 @@ def return_dbcon(sql):
             con.commit()
             return ergebnis
         except Exception as e:
+            print(f"Error: {e}")
             insert_log(file="server", data=f"Error: {e}", log_type="ERROR")
-            insert_log(file="server", data=f"Error: {e}", log_type="ERROR")
+            raise e
+
 
 
 def mate_erstellen():

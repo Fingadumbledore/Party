@@ -2,7 +2,8 @@ a {
     text-decoration: none;
 }
 
-body {font-family: Arial, Helvetica, sans-serif;
+body {
+	font-family: Arial, Helvetica, sans-serif;
 	background-image: linear-gradient(to right, rgb(38, 134, 62), rgb(89, 89, 175))
 }
 /* Set a style for all buttons */

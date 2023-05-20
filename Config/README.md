@@ -1,1 +1,1 @@
-Config Dateien
+Config & Log Dateien

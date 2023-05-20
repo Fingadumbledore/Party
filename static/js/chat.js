@@ -52,13 +52,19 @@ inputField.addEventListener("input", function() {
   }
 });
 
+const socket = new WebSocket("ws://" + location.host + "/ws");
+
+socket.addEventListener("message", function(event) {
+	document.getElementById("messages").innerHTML = event.data;
+});
+
 function getMessages() {
-var xhr = new XMLHttpRequest();
-xhr.open("GET", "/get");
-xhr.onload = function() {
-  document.getElementById("messages").innerHTML = xhr.responseText;
-};
-xhr.send();
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET", "/get");
+	xhr.onload = function() {
+	  document.getElementById("messages").innerHTML = xhr.responseText;
+	};
+	xhr.send();
 }
 
 function sendMessage() {

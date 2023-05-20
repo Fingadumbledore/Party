@@ -5,7 +5,7 @@ from server import server
 from database import mate_erstellen
 
 def main():
-    """ entrypoint to program """
+    """ wird halt aufgerufen ne was soll ich da sagen """
 
     # check if run with run.sh
     if os.getenv('RUN_WITH_SH') != '1':
@@ -35,7 +35,6 @@ def main():
 
     else:
         parser.print_help()
-
 
 if __name__ == "__main__":
     exit(main())
