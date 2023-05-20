@@ -1,16 +1,17 @@
 """ database stuff """
 import sqlite3
 import json
+from log import insert_log
 
-def dbcon(sql):
-    """ connect to database """
+def dbcon(sql: str):
+    """ Execute given SQL-Command """
     try:
         con = sqlite3.Connection("party.db")
         cur = con.cursor()
-        cur.execute(sqlt)
+        cur.execute(sql)
         con.commit()
-    except:
-        print("Fehler:")
+    except Exception as e:
+        print(f"Fehler: {e}")
 
 def return_dbcon(sql):
         """ connext to database and return stuff """
@@ -20,11 +21,13 @@ def return_dbcon(sql):
             ergebnis = cur.execute(sql).fetchall()
             con.commit()
             return ergebnis
-        except:
-            return "Error"
+        except Exception as e:
+            insert_log(file="server", data=f"Error: {e}", log_type="ERROR")
+            insert_log(file="server", data=f"Error: {e}", log_type="ERROR")
+
 
 def mate_erstellen():
-    """ collect mate from json """
+    """ collect mate data from json """
     try:
         with open('./Config/mate.json') as f:
             data = json.load(f)

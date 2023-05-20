@@ -2,7 +2,7 @@ import sqlite3
 import os
 import time
 #import qrcode
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, helpers
 from picker import picker as pick
 from database import dbcon, return_dbcon
 from mate import mate_logik, mws
@@ -50,10 +50,10 @@ def server():
         zeit = request.form['zeit']
         pfad = "/session/" + sessionID
         status = "running"
-        l = f"INSERT INTO planer VALUES(  \'{event}\', \'{zeit}\', \'{sessionID}\',\'{status}\');"
+        query = f"INSERT INTO planer VALUES(  \'{event}\', \'{zeit}\', \'{sessionID}\',\'{status}\');"
         insert_log("server", "neues Event", "INFO")
         try:
-            dbcon(l)
+            dbcon(query)
             insert_log("server", "event entered successfully /get_planer", "INFO")
         except Exception:
             insert_log("server", "unable to insert event", "ERROR")
@@ -408,14 +408,13 @@ def server():
         cursor.execute("SELECT * FROM music WHERE id=?", (id,))
         music = cursor.fetchone()
         conn.close()
-        return send_file(music[1], attachment_filename=music[2], as_attachment=True)
+        return helpers.send_file(music[1], attachmend_filename=music[2], as_attachment=True)
 
     # Gibt die 404 Seite aus, wenn es Seite nicht gibt
     @app.errorhandler(404)
     def page_not_found(e):
         insert_log("server", "called non-existing page", "ERROR")
         return render_template('404.html'), 404
-
 
     # Use this line to run it localy
     runip = os.getenv("IP_ADDR")
