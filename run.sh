@@ -5,10 +5,12 @@ fi
 
 if [ ! -e ./Config/log/server.log ]; then
     touch ./Config/log/server.log
+    chmod a+w ./Config/log/server.log
 fi
 
 if [ ! -e ./Config/log/chat.log ]; then
     touch ./Config/log/chat.log
+    chmod a+w ./Config/log/chat.log
 fi
 
 export IP_ADDR=127.0.0.1
