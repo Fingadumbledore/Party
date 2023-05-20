@@ -8,7 +8,6 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
 def index():
-
     return send_from_directory('.', 'index.html')
 
 @app.route('/upload', methods=['POST'])
