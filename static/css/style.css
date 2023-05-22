@@ -231,7 +231,6 @@ summary::-webkit-details-marker,
       background-color: #ff0000;
       color: #ffffff;
     }
-
     #myPopup {
       display: none;
       position: fixed;
@@ -239,7 +238,7 @@ summary::-webkit-details-marker,
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0,0,0,0.5);
+      background-color: rgba(0, 0, 0, 0.5);
       z-index: 1;
     }
     
@@ -257,29 +256,42 @@ summary::-webkit-details-marker,
       flex-direction: column;
     }
     
+    #popupContent h1 {
+      align-self: flex-start;
+    }
+    
     #popupContent p {
       margin-top: 10px;
     }
     
     #popupContent img {
       margin-top: 20px;
-    }
-    
-    #popupContent button {
-      margin-top: 10px;
+      align-self: flex-end;
+      width: auto;
+      max-width: 50%;
     }
     
     #popupContent .btn-group {
       display: flex;
-      justify-content: center;
-      width: 100%;
+      justify-content: space-between;
+      margin-top: 10px;
     }
     
+    #popupContent button {
+      flex: 1;
+    }
     
     @keyframes popupFadeIn {
-      from { opacity: 0; transform: translate(-50%, -60%); }
-      to { opacity: 1; transform: translate(-50%, -50%); }
+      from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
     }
+    
 
     .info_button{
 
