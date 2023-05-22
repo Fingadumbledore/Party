@@ -4,6 +4,7 @@
         <style>
             body {
                 font-family: Arial, sans-serif;
+                background-image: linear-gradient(to right, rgb(38, 134, 62), rgb(89, 89, 175))
             }
 
             h1 {
@@ -88,6 +89,14 @@
                 cursor: pointer;
             }
 
+            .buttons button:nth-child(1) {
+                background-color: red;
+            }
+
+            .buttons button:nth-child(2) {
+                background-color: green;
+            }
+
             @media only screen and (max-width: 600px) {
                 .container {
                     padding: 10px;
@@ -116,6 +125,7 @@
     </head>
     <body>
         <h1>Create Session</h1>
+        <form class="modal-content animate" action="/get_create_session" method="POST">  
         <div class="container">
             <div>
                 <label for="name">Sessionname:</label>
@@ -160,17 +170,32 @@
                 <input type="checkbox" id="checkbox3" name="checkbox3">
             </div>
             <div class="buttons">
-                <button type="button">Calcel</button>
-                <button type="button">create</button>
+                <button id="cancelButton" type="button">Cancel</button>
+                <button id="createButton" type="button">Create</button>
             </div>
         </div>
+        </form>
 
         <script>
             const checkbox = document.getElementById('checkbox');
             const numberInput = document.getElementById('number');
-        
+            const createButton = document.getElementById('createButton');
+
             checkbox.addEventListener('change', function() {
                 numberInput.disabled = !checkbox.checked;
+            });
+
+            createButton.addEventListener('click', function() {
+                const inputValue = document.getElementById('name').value;
+
+                if (inputValue !== '') {
+                    window.location.href = '/session'; 
+                } else {
+                    alert('Bitte füllen Sie das Input-Feld aus.'); 
+                }
+            });
+            cancelButton.addEventListener('click', function() {
+                window.location.href = '/';
             });
         </script>
     </body>
