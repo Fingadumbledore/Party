@@ -1,41 +1,177 @@
 <html>
     <head>
         <title>Create Session</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/style.css') }}">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+            }
+
+            h1 {
+                text-align: center;
+            }
+
+            .container {
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+
+            label {
+                display: block;
+                margin-bottom: 10px;
+            }
+
+            input[type="text"],
+            input[type="number"],
+            select {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 10px;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+            }
+
+            input[type="number"] {
+                width: calc(100% - 20px);
+            }
+
+            .checkbox-label {
+                display: inline-block;
+                margin-right: 10px;
+            }
+
+            .checkbox-label span {
+                margin-left: 5px;
+            }
+
+            .file-upload {
+                display: flex;
+                align-items: center;
+            }
+
+            .file-upload input[type="file"] {
+                display: none;
+            }
+
+            .file-upload label {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                background-color: #ccc;
+                border: none;
+                border-radius: 50%;
+                color: #fff;
+                font-size: 18px;
+                cursor: pointer;
+            }
+
+            .file-label {
+                margin-left: 10px;
+                font-size: 14px;
+            }
+
+            .buttons {
+                text-align: right;
+                margin-top: 20px;
+            }
+
+            .buttons button {
+                margin-left: 10px;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 6px;
+                background-color: #ccc;
+                color: #fff;
+                font-size: 14px;
+                cursor: pointer;
+            }
+
+            @media only screen and (max-width: 600px) {
+                .container {
+                    padding: 10px;
+                }
+
+                .buttons {
+                    text-align: center;
+                    margin-top: 10px;
+                }
+
+                .buttons button {
+                    margin: 5px;
+                }
+            }
+            .number-label {
+                display: inline-block;
+                margin-right: 10px;
+                color: #999;
+            }
+
+            input[type="number"][disabled] {
+                background-color: #f2f2f2;
+                cursor: not-allowed;
+            }
+        </style>
     </head>
     <body>
-       <center><h1>Create Session</h1></center> 
-            <form class="modal-content animate" action="/get_create_session" method="POST">  
-        <div class="container">   
-            <label>Session name : </label>   
-            <input id="sessionName" type="text" placeholder="Enter Session name" name="sessionname" required>  
-            <input id="idIn" name="sessionid" type="number" value="test" required hidden>  
-            <button type="submit" onclick="randomnumber1(1, 42) ">create</button>   
-            <a href="javascript:history.back()">
-                 <button type="button" class="cancelbtn"> Cancel</button> 
-            </a>
-        </div>   
-    </form>
+        <h1>Create Session</h1>
+        <div class="container">
+            <div>
+                <label for="name">Sessionname:</label>
+                <input type="text" id="name" name="name" maxlength="20">
+            </div>
+            <div>
+                <label>User Anzahl festlegen:</label>
+                <input type="checkbox" id="checkbox" name="checkbox">
+            </div>
+            <div>
+                <label for="number" class="number-label">Anzahl:</label>
+                <input type="number" id="number" name="number" min="0" max="999" pattern="\d{1,3}" disabled>
+            </div>
+            <p>Session Bild</p>
+            <div class="file-upload">
+                <label for="file1">
+                    <input type="file" id="file1" name="file1">
+                    <span>+</span>
+                </label>
+                <span class="file-label">No selected file</span>
+            </div>
+            <p>Session Config</p>
+            <div style="text-align: right;">
+                <div class="file-upload">
+                    <label for="file2">
+                        <input type="file" id="file2" name="file2">
+                        <span>+</span>
+                    </label>
+                    <span class="file-label">No selected file</span>
+                </div>
+            </div>
+            <div>
+                <label for="checkbox2" class="checkbox-label">Extra admin account anlegen</label>
+                <input type="checkbox" id="checkbox2" name="checkbox2">
+            </div>
+            <div>
+                <label for="input2">Username:</label>
+                <input type="text" id="input2" name="input2" maxlength="20">
+            </div>
+            <div style="text-align: right;">
+                <label for="checkbox3">Session in der Lobby anzeigen:</label>
+                <input type="checkbox" id="checkbox3" name="checkbox3">
+            </div>
+            <div class="buttons">
+                <button type="button">Calcel</button>
+                <button type="button">create</button>
+            </div>
+        </div>
+
         <script>
-
-            function randomnumber1(min, max) { 
-                rnumber1 =  Math.floor(Math.random() * (max - min + 1) ) + min
-                document.getElementById("idIn").value = rnumber1	
-                
-                window.sessionStorage.setItem("sessionID", rnumber1)
-
-                let sessionname = document.getElementById("sessionName").value
-                window.sessionStorage.setItem("session", sessionname)
-
-                window.sessionStorage.setItem("userID", "1")
-
-                window.sessionStorage.setItem("name", "Host")
-            }
-            
-           
+            const checkbox = document.getElementById('checkbox');
+            const numberInput = document.getElementById('number');
+        
+            checkbox.addEventListener('change', function() {
+                numberInput.disabled = !checkbox.checked;
+            });
         </script>
     </body>
-</html>  
+</html>
