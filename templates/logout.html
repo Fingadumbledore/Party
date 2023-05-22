@@ -10,11 +10,6 @@
         <center>
             <h1>Adios &#x1F44B;</h1>
             <p id="name"></p>
-
-            <script>
-                let session = sessionStorage.getItem("name");
-                document.getElementById("name").innerHTML = session;	
-            </script>
             <p>Wollen Sie die Session verlassen?</p>
             <a href="/">
                 <button class="btn btn-primary btn-lg">Home</button>
@@ -22,10 +17,6 @@
             <a href="javascript:history.back()">
                 <button type="button" class="cancelbtn"> zurück</button>  
         </center>
-
-        <script>
-
-                sessionStorage.clear();
-        </script>
+        <script src="{{url_for('static', filename='js/logout.js')}}"></script>
     </body>
 </html>
