@@ -5,24 +5,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/style.css') }}">
-
-        <style>
-            summary::-webkit-details-marker,	
-            summary::marker {
-              content:  ""; /* Verwendung des "Pfeil"-Symbols anstelle des Dreiecks */
-              color: rgb(0, 0, 0);
-              font-size: 2em;
-              font-weight: bold;
-              transition: all 0.5s;  
-            }	
-
-
-            details[open] summary::-webkit-details-marker,
-            details[open] summary::marker {
-              content:  "  ";
-
-            }
-        </style>
+        <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/login.css') }}">
     </head>
     <body>
         <center><h1>Join Session</h1></center> 
@@ -74,37 +57,6 @@
             <a href="javascript:history.back()">
             <button type="button" class="cancelbtn"> Cancel</button>  
         </center>
-        <script>
-            function setUID() {
-                let sessID = document.getElementById("Uid").value
-                window.sessionStorage.setItem("userID", sessID)
-            }
-
-            function setID1() {
-                let sessID = document.getElementById("id1").value
-                window.sessionStorage.setItem("sessionID", sessID)
-            }
-
-            function setID2() {
-                let sessID = document.getElementById("id2").value
-                window.sessionStorage.setItem("sessionID", sessID)
-            }
-
-            function setname2() {
-                let sessID = document.getElementById("name2").value
-                window.sessionStorage.setItem("name", sessID)
-            }
-
-            function setname3() {
-                let sessID = document.getElementById("name3").value
-                window.sessionStorage.setItem("name", sessID)
-            }
-
-            function randomnumber(min, max) { 
-                    rnumber =  Math.floor(Math.random() * (max - min + 1) ) + min
-                    document.getElementById("Uid1").innerHTML = rnumber	
-                    window.sessionStorage.setItem("userID", rnumber)
-                }
-        </script>
+        <script src="{{url_for('static', filename='js/login.js')}}"></script>
     </body>     
 </html>  
