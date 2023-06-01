@@ -5,7 +5,7 @@
     </head>
     <body>
         <h1>Create Session</h1>
-        <form class="modal-content animate" action="/get_create_session" method="POST">  
+        <form id="createSessionForm" class="modal-content animate" action="/get_create_session" method="POST">  
         <div class="container">
             <div>
                 <label for="name">Sessionname:</label>
@@ -51,10 +51,15 @@
             </div>
             <div class="buttons">
                 <button id="cancelButton" type="button">Cancel</button>
-                <button id="createButton" type="button">Create</button>
+                <button id="createButton" type="submit">Create</button>
             </div>
         </div>
         </form>
        <script src="{{url_for('static', filename='js/create_session.js')}}"></script>
+       <script>
+           document.getElementById("createButton").addEventListener("click", function() {
+               document.getElementById("createSessionForm").submit();
+           });
+       </script>
     </body>
 </html>
