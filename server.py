@@ -22,25 +22,25 @@ def server():
     def uptime(): 
         return int(zeit) - starttime
 
-    # Hauptseite
+    # Hauptseite Start Seite 
     @app.route("/")
     def index():
         insert_log("server", "called /", "INFO")
         return render_template("index.html")
     
-    # Um in der Zukunft spiele dateien zu bekommen
+    # Um in der Zukunft spiele dateien zu bekommen, savegame dateien etc. die dann vom picker auseinander genommen werden und in die Datenbank eingefügt werden
     @app.route("/get_game_file", methods=['POST'])
     def get_game_file():
         insert_log("server", "called /get_game_file", "INFO")
         pick()
    
-    # Macht message.html sichtbar
+    # Macht message.html sichtbar, dies ist im Moment noch der fall für das alte Chat system.
     @app.route("/message")
     def message():
             insert_log("server", "called /message", "INFO")
             return render_template("message.html")
 
-    # hier planer sachen in die Datenbank geschoben
+    # hier planer sachen in die Datenbank geschoben muss noch um die id der einzelnen Events erweitert werden, daher noch fehler
     @app.route("/get_planer", methods=['POST'])
     def get_planer():
         insert_log("server", "called /get_planer", "INFO")
@@ -59,64 +59,81 @@ def server():
             insert_log("server", "unable to insert event", "ERROR")
         return redirect(f'/session/{sessionID}')
 
-    # Das Zeit die Session seite an. Außerdem werden hier daten mit Jinja ans Frontend geschickt
+    # Das Zeigt die Session seite an. Außerdem werden hier daten mit Jinja ans Frontend geschickt, diese sind noch nicht alle Daten die benötigt werden
     @app.route("/session/<id>")
     def _session(id):
         def values(l: str):
             return [i[0] for i in return_dbcon(l)]
+        # Hier ist ein Versuch um Hardwareinformationen anzuzeigen weil es geht
         #print(os.cpu_count())
         #createChart("41", "NFSU2")
         insert_log("server", f"called /session/{id}", "INFO")
+
         con = sqlite3.connect("party.db")
         cur = con.cursor()
+        # hier ist der session name
         l = f"SELECT eventname FROM planer WHERE sessionID = \'{id}\' ORDER BY eventzeit;"
         eventname = values(l)
 
+        # Hier ist die Zeit wann eine Session angefangen hat
         l = f"SELECT eventzeit FROM planer WHERE sessionID = \'{id}\' ORDER BY eventzeit;"
         eventzeit = values(l)
 
+        # Hier ist der der Name von dem creator  im Moment noch Host soll sich aber mit dem neuen Create_Session ändern
         l =  "SELECT username FROM user WHERE info = 'Host'"
         creator = values(l)
         con.commit()
 
+        # Hier wird die Anzahl der user einer Session ermittelt
         l = f"SELECT count(username) FROM user WHERE sessionID = \'{id}\';"
         useranzahl = return_dbcon(l)
 
+        # Hier werden Informationen über Mate gehohlt, ändert sich noch ein wenig
         l = f"SELECT matename, mateanzahl FROM mate WHERE sessionID = \'{id}\' ORDER BY mateanzahl;"
         mate = return_dbcon(l)
 
+        # Hier wird ein Spielname geholt für die Tabelle bei Spielen
         l = f"SELECT  Spielname FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
         game = values(l)
 
+        # Hier wird die userid für die Spiel tabelle gehohlt
         l = f"SELECT userID FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
         user = values(l)
 
+        # Hier wird die Aktiität für die Spiele Tabelle geholt z.B. parcour
         l = f"SELECT Spielaktivität FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
         aktivitaet = values(l)
 
+        # Hier wird der username gehohlt  muss aber noch umgebaut werden, da dies auch im Sessionstorage liegt
         l = f"SELECT username FROM user WHERE sessionID = \'{id}\';"
         unames = values(l) 
 
+        # hier wird die userID gehohlt
         l = f"SELECT userID FROM user WHERE sessionID = \'{id}\';"
         uids = values(l)
 
+        # hier wird die Zeit für die Spieletabelle geholt
         l = f"SELECT ZEIT FROM game WHERE sessionID = \'{id}\' ORDER BY ZEIT;"
         zeit = values(l)
 
+        # hier werden die Punkte für die Punkte spieletabelle geholt
         l = f"SELECT Punkte FROM pointgame WHERE sessionID = \'{id}\' ORDER BY Punkte;"
         p_punkte = values(l)
 
+        # hier werden die Spielnamen für die punkte spieltabelle geholt
         l = f"SELECT Spielname FROM pointgame WHERE sessionID = \'{id}\' ORDER BY Punkte;"
         p_game = values(l)
 
+        # hier wird die Spieleaktivität für die Punkte spieltabelle geholt
         l = f"SELECT Spielaktivität FROM pointgame WHERE sessionID = \'{id}\' ORDER BY Punkte;"
         p_aktivitaet = values(l)
 
+        # hier wird die userid für die punkte spieltabelle geholt
         l = f"SELECT userID FROM pointgame WHERE sessionID = \'{id}\'ORDER BY Punkte;"
         p_user = values(l)
         cur.close()
 
-
+        # hier sind die klassen für die einzelnen daten
         class eventData:
             def __init__(self, evn, evz):
                 self.eventname = evn
@@ -145,7 +162,8 @@ def server():
         pointgameda = pointgameData(p_game, p_aktivitaet, p_user, p_punkte)
         eventdata = eventData(eventname, eventzeit)
         userdat = eventData(unames, uids)
-
+        
+        # hier werden für jinja die sachen an die seite geschickt
         return render_template("session.html",
                             zeit=zeit,
                             aktivitaet=aktivitaet,
