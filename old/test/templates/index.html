@@ -1,0 +1,76 @@
+<html>
+  <head>
+    <style>
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        border-radius: 5px;
+        padding: 10px 20px;
+        background-color: lightblue;
+        color: white;
+        text-align: center;
+        margin: 20px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Dateien hoch- und herunterladen</h1>
+      <form>
+        <input type="file" id="file" />
+        <br />
+        <button class="btn" id="upload-btn">Hochladen</button>
+        <br />
+        <button class="btn" id="download-btn">Herunterladen</button>
+      </form>
+    </div>
+
+    <script>
+      const fileInput = document.getElementById('file');
+      const uploadBtn = document.getElementById('upload-btn');
+      const downloadBtn = document.getElementById('download-btn');
+
+      uploadBtn.addEventListener('click', function() {
+        // Code hier, um die Datei hochzuladen
+        const file = fileInput.files[0];
+        const formData = new FormData();
+        formData.append('file', file);
+
+        fetch('/upload', {
+          method: 'POST',
+          body: formData
+        })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      });
+
+      downloadBtn.addEventListener('click', function() {
+        // Code hier, um die Datei herunterzuladen
+        fetch('/download')
+          .then(response => response.blob())
+          .then(blob => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = 'download.txt';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      });
+    </script>
+  </body>
+</html>

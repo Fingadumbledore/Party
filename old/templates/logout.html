@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>logout &#x1F44B;</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/style.css') }}">
+    </head>
+    <body>
+        <center>
+            <h1>Adios &#x1F44B;</h1>
+            <p id="name"></p>
+            <p>Wollen Sie die Session verlassen?</p>
+            <a href="/">
+                <button class="btn btn-primary btn-lg">Home</button>
+            </a>
+            <a href="javascript:history.back()">
+                <button type="button" class="cancelbtn"> zurück</button>  
+        </center>
+        <script src="{{url_for('static', filename='js/logout.js')}}"></script>
+    </body>
+</html>

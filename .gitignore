@@ -1,0 +1,9 @@
+__pycache__/
+__pycache__/*
+past_sessions/*
+*.db
+.idea/
+Sessions_Menu.ui
+*.log
+qr.png
+.sums

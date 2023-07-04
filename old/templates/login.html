@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <title>Join Session</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/login.css') }}">
+    </head>
+    <body>
+        <center><h1>Join Session</h1></center> 
+        <center>
+        <details>
+
+        <summary>
+           <h4>Login</h4>
+        </summary>
+     
+        <form class="modal-content animate" action="/get_login" method="POST">  
+            <div class="container">   
+                <label>Username : </label>   
+                <input id="name2" type="text" placeholder="Enter Username" name="username" required>  
+            </br>
+            <label>UserId : </label>   
+            <input id="Uid" type="text" placeholder="UserID" name="userID" required>  
+            </br>
+                <label>Session Id : </label>   
+                <input id="id1"type="text" placeholder="Session Id" name="sessionID" required>  
+        </br>
+                <button type="submit" onclick="setUID() & setID1() & setname2()">Login</button>     
+            </center>   
+            </div>   
+        </form>  
+        </details>   
+
+        <center>
+        <details>
+            <summary id="test"><h4>User erstellen</h4></summary>
+
+            <form class="modal-content animate" action="/new" method="POST">  
+                <div class="container">   
+                    <label>Username : </label>   
+                    <input id="name3" type="text" placeholder="Enter Username" name="username" required>  
+                </br>
+                    <label>UserId : </label>   
+                    <input id="Uid1" type="hidden" placeholder="UserID" name="userID" required>  
+                </br>
+                    <label>Session Id : </label>   
+                    <input id="id2"type="text" placeholder="Session Id" name="sessionID" required>  
+                </br>
+                <button type="submit" onclick="setID2() & setname3() & setname2() & setname3() & randomnumber(1 , 42)">Create</button>   
+                    </center>
+                </div>   
+            </form>   
+        </details>
+        <center>
+            <a href="javascript:history.back()">
+            <button type="button" class="cancelbtn"> Cancel</button>  
+        </center>
+        <script src="{{url_for('static', filename='js/login.js')}}"></script>
+    </body>     
+</html>  

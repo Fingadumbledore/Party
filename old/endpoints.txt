@@ -1,0 +1,34 @@
+"/"
+"/get_chat", methods=['POST']
+"/get_game_file", methods=['POST']
+"/get_new_message"
+"/message"
+"/get_planer", methods=['POST']
+"/session/<id>"
+"/mate", methods=['POST']
+"/drink", methods=['POST']
+"/logout"
+"/spiel"
+"/get_spiel"
+"/signin"
+"/password"
+"/passwd"
+"/change"
+"/create_session"
+"/get_create_session", methods=['POST']
+"/charts"
+"/login"
+"/stopuhr", methods=['POST']
+"/pointGame", methods=['POST']
+"/get_event", methods=['POST']
+"/controll"
+"/statistik", methods=['POST']
+"/game"
+"/rgb"
+"/get_login", methods=['POST']
+"/new", methods=['POST']
+"/upload_file", methods=["POST"]
+"/send", methods=["POST"]
+"/get"
+"/chat"
+"/music/<int:id>"

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/style.css') }}">
+    <title>Spiel</title>
+</head>
+<body>
+<center>
+    <h1>Spiel(e) hinzufügen</h1>
+    <form class="modal-content animate" action="/get_login" method="POST">  
+        <div class="container">   
+            <label>Spielename : </label>   
+            <input id="spielname" type="text" placeholder="Tomb Raider" name="username" required>  
+        </br>
+        <label>Genre : </label>   
+        <input id="genre" type="text" placeholder="Action-Adventure" name="userID">
+        </br>
+        <label>Erscheinungsjahr : </label>   
+        <input id="Erscheinungsjahr" type="text" placeholder="1995" name="userID">  
+        </br>
+        <label>Gruppe hinzufügen : </label>   
+        <input id="Gruppe" type="text" placeholder="Tomb Raider" name="userID">   
+    </br>
+        <label>Teil : </label>   
+        <input id="Teil" type="text" placeholder="3" name="userID">   
+        </br>  
+            <input id="id1"type="hidden" placeholder="Session Id" name="sessionID" required>  
+    </br>
+        <label for="spielBild">Bild hochladen</label>
+        <input id="spielBild" type="file">
+</br>
+            <button type="submit">&#10133;</button>      
+        </div>   
+    </form>  
+    <a href="/logout">
+        <button  onclick="window.open('', '_self', ''); window.close();">Close</button>   
+    </a>
+</br>
+<h2>Bereits hinzugefügte Spiele</h2>
+<table>
+    <tr>
+        {% block content %}
+        <th>{{spiel}}</th>
+        <th>Genre</th>
+        <th>Erscheinungsjahr</th>
+        <th>Gruppe</th>
+        <th>Teil</th>
+        {% endblock %}
+    </tr>
+
+    <tr>
+        <td>f</td>
+        <td>f</td>
+        <td>f</td>
+        <td>f</td>
+        <td>f</td>
+    </tr>
+
+</table>
+</center>
+</body>
+</html>

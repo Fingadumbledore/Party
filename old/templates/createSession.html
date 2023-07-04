@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <title>Create Session</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/create_session.css') }}">
+    </head>
+    <body>
+        <h1>Create Session</h1>
+        <form id="createSessionForm" class="modal-content animate" action="/get_create_session" method="POST">  
+        <div class="container">
+            <div>
+                <label for="name">Sessionname:</label>
+                <input type="text" id="name" name="name" maxlength="20">
+            </div>
+            <div>
+                <label>User Anzahl festlegen:</label>
+                <input type="checkbox" id="checkbox" name="checkbox">
+            </div>
+            <div>
+                <label for="number" class="number-label">Anzahl:</label>
+                <input type="number" id="number" name="number" min="0" max="999" pattern="\d{1,3}" disabled>
+            </div>
+            <p>Session Bild</p>
+            <div class="file-upload">
+                <label for="file1">
+                    <input type="file" id="file1" name="file1">
+                    <span>+</span>
+                </label>
+                <span class="file-label">No selected file</span>
+            </div>
+            <p>Session Config</p>
+            <div style="text-align: right;">
+                <div class="file-upload">
+                    <label for="file2">
+                        <input type="file" id="file2" name="file2">
+                        <span>+</span>
+                    </label>
+                    <span class="file-label">No selected file</span>
+                </div>
+            </div>
+            <div>
+                <label for="checkbox2" class="checkbox-label">Extra admin account anlegen</label>
+                <input type="checkbox" id="checkbox2" name="checkbox2">
+            </div>
+            <div>
+                <label for="input2">Username:</label>
+                <input type="text" id="input2" name="input2" maxlength="20">
+            </div>
+            <div style="text-align: right;">
+                <label for="checkbox3">Session in der Lobby anzeigen:</label>
+                <input type="checkbox" id="checkbox3" name="checkbox3">
+            </div>
+            <div class="buttons">
+                <button id="cancelButton" type="button">Cancel</button>
+                <button id="createButton" type="submit">Create</button>
+            </div>
+        </div>
+        </form>
+       <script src="{{url_for('static', filename='js/create_session.js')}}"></script>
+       <script>
+           document.getElementById("createButton").addEventListener("click", function() {
+               document.getElementById("createSessionForm").submit();
+           });
+       </script>
+    </body>
+</html>

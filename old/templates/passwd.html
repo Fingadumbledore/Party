@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/style.css') }}">
+        <title>Passwort</title>
+    </head>
+    <body>
+        <center>
+        <h1>Bitt Logge dich ein um diese Seite zu sehen, oder erstelle eine Session</h1>
+        <form action="/login">
+            <button type="submit">Login</button>
+          </form>
+          <form action="/create_session">
+            <button type="submit">Create</button>
+          </form>
+        </br>
+          <form action="/">
+            <button type="submit">Home</button>
+          </form>
+        </center> 
+    </body>
+</html>
