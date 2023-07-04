@@ -1,0 +1,38 @@
+{
+	"endpoints": [
+		"/api": [
+			{ 
+				"/mate": [ 
+					{
+						"endpoint": "/",
+						"method":"GET"
+					},
+					{
+						"endpoint": "/status",
+						"method":"GET"
+					},
+					{
+						"endpoint": "/trinken",
+						"method":"POST"
+					}
+				]
+			},
+			{
+				"/chat": [
+					{
+						"endpoint": "/",
+						"method":"GET"
+					},
+					{
+						"endpoint": "/messages:count",
+						"method": "GET"
+					},
+					{
+						"endpoint": "/new",
+						"method": "POST"
+					}
+				]
+			}
+		]
+	]
+}	
