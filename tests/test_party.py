@@ -1,4 +1,4 @@
-from test import client
+from tests import client
 
 def test_api(client):
     endpoints = [("/api", "GET"),
