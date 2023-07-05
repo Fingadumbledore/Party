@@ -14,3 +14,9 @@ class TestServer:
         response = client.get("/api")
         assert response.status_code == 200
 
+
+    """
+    def test_favicon(self, client):
+        response = client.get("/favicon.ico")
+        assert response.status_code == 200
+    """
