@@ -1,12 +1,14 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 
-app = Flask(__name__)
+app = Flask(__name__,
+            template_folder='templates',
+            static_folder='static',)
 
 @app.route('/', methods=['GET'])
 def index():
     response = jsonify(success=True)
     response.status_code = 200
-    return response
+    return render_template('index.html')
 
 @app.route('/api', methods=['GET'])
 def api():
@@ -79,3 +81,6 @@ def api_music_add_song():
     response = jsonify(success=True)
     response.status_code = 200
     return response
+
+if __name__ == '__main__':
+    app.run(debug=True, host='localhost', port=5000) #pragma: no cover
