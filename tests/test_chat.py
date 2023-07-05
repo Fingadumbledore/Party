@@ -27,10 +27,14 @@ class TestChat:
         assert len(messages) > 0
         assert type(messages) == list
         assert type(messages[0]) == dict
-        assert type(messages[0]['content']) == str
-        assert type(messages[0]['author']) == str
-        assert type(messages[0]['timestamp']) == str
-        assert type(messages[0]['id']) == int
+        assert b'content' in messages[0]
+        assert b'author' in messages[0]
+        assert b'timestamp' in messages[0]
+        assert b'id' in messages[0]
+        assert type(messages[0][b"content"]) == bytes
+        assert type(messages[0][b"author"]) == bytes
+        assert type(messages[0][b"timestamp"]) == bytes
+        assert messages[0][b"id"].isdigit()
 
     def test_convertToMessage(self, chat):
         message = chat.convertToMessage('test', 'test', 'test', 0)

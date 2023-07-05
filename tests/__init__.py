@@ -1,6 +1,7 @@
 import pytest
-from party import create_app, Database, chat as c
+from party import create_app, Database, chat as c, MateMarke
 from party import message as m
+from party.mate import MateKiste
 
 
 @pytest.fixture
@@ -28,3 +29,9 @@ def chat():
 def message():
     message = m.Message('author', 'content', 'timestamp', 0)
     yield message
+
+@pytest.fixture
+def mateKiste():
+    mateKiste = MateKiste(20, MateMarke.ClubMate)
+    yield mateKiste
+

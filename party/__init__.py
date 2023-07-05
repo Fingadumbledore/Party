@@ -10,6 +10,11 @@ class Database(Enum):
     Users = 1
     Games = 2
 
+class MateMarke(Enum):
+    ClubMate = "Club Mate"
+    FloraPower = "Flora Power"
+    MioMioMate = "MioMio Mate"
+
 messagesDB = redis.Redis(host='localhost', port=6379, db=Database.Messages.value)
 users = redis.Redis(host='localhost', port=6379, db=Database.Users.value)
 games = redis.Redis(host='localhost', port=6379, db=Database.Games.value)
