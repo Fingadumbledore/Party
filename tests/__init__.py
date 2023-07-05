@@ -1,8 +1,16 @@
 import pytest
-from party import app
+from party.main import create_app
 
 @pytest.fixture
-def client():
-    #app.config['TESTING'] = True
+def app():
+    app = create_app()
+    yield app
+
+@pytest.fixture
+def client(app):
     client = app.test_client()
     yield client
+
+@pytest.fixture
+def runner(app):
+    return app.test_cli_runner()

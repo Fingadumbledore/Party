@@ -1,12 +1,13 @@
 [tool.poetry]
 name = "party"
 version = "0.1.0"
-description = ""
-authors = ["hyperbel <hyperbel@users.noreply.github.com>"]
+description = "Software"
+authors = ["fingadumbledore <fingadumbledore@gmail.com>", "hyperbel <hyperbel@users.noreply.github.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
+flask = "^2.3.0"
 
 
 [build-system]

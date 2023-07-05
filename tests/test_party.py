@@ -1,23 +1,54 @@
-from tests import client
+from tests import client, app
 
-def test_api(client):
-    endpoints = [("/api", "GET"),
-        ("/api/mate", "GET"),
-        ("/api/mate/status", "GET"),
-        ("/api/mate/trinken", "POST"),
-        ("/api/chat/", "GET"),
-        ("/api/chat/messages/:count", "GET"),
-        ("/api/chat/new_message", "POST"),
-        ("/api/music", "GET"),
-        ("/api/music/skip", "POST"),
-        ("/api/music/queue", "GET"),
-        ("/api/music/add_song", "POST")
-    ]
-    response = client.get('/api')
+class TestServer:
+    def test_root(self, client):
+        response = client.get("/")
+        assert response.status_code == 200
 
-    for endpoint in endpoints:
-        if endpoint[1] == "GET":
-            response = client.get(endpoint[0])
-        elif endpoint[1] == "POST":
-            response = client.post(endpoint[0])
-    assert response.status_code == 200
+    def test_api(self, client):
+        response = client.get("/api")
+        assert response.status_code == 200
+
+    def test_api_mate(self, client):
+        response = client.get("/api/mate")
+        assert response.status_code == 200
+
+    def test_api_mate_status(self, client):
+        response = client.get("/api/mate/status")
+        assert response.status_code == 200
+
+    def test_api_mate_trinken(self, client):
+        response = client.post("/api/mate/trinken")
+        assert response.status_code == 200
+
+    def test_api_chat(self, client):
+        response = client.get("/api/chat/")
+        assert response.status_code == 200
+
+    def test_api_chat_messages_1(self, client):
+        response = client.get("/api/chat/messages/1")
+        assert response.status_code == 200
+
+    def test_api_chat_messages_2(self, client):
+        response = client.get("/api/chat/messages/1/1")
+        assert response.status_code == 200
+
+    def test_api_chat_new_message(self, client):
+        response = client.post("/api/chat/new_message")
+        assert response.status_code == 200
+
+    def test_api_music(self, client):
+        response = client.get("/api/music")
+        assert response.status_code == 200
+
+    def test_api_music_skip(self, client):
+        response = client.post("/api/music/skip")
+        assert response.status_code == 200
+
+    def test_api_music_queue(self, client):
+        response = client.get("/api/music/queue")
+        assert response.status_code == 200
+
+    def test_api_music_add_song(self, client):
+        response = client.post("/api/music/add_song")
+        assert response.status_code == 200
