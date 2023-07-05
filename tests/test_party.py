@@ -6,6 +6,8 @@ class TestServer:
         assert response.status_code == 200
         assert b"<title>Party Controller</title>" in response.data
         assert b"<h1>Party Controller</h1>" in response.data
+        assert b"/static/css/style.css" in response.data
+
 
 
     def test_api(self, client):
