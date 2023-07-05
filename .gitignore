@@ -7,3 +7,5 @@ Sessions_Menu.ui
 *.log
 qr.png
 .sums
+poetry.lock
+*.vim
