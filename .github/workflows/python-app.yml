@@ -35,4 +35,4 @@
         flake8 party --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        pytest -v --cov --cov-report term-missing
+        pytest --cov --cov-report term-missing -v
