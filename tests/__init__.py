@@ -12,8 +12,3 @@ def app():
 def client(app):
     client = app.test_client()
     yield client
-
-
-@pytest.fixture
-def runner(app):
-    return app.test_cli_runner()

@@ -5,8 +5,12 @@ class TestChat:
         response = client.get("/api/chat/")
         assert response.status_code == 200
 
-    def test_api_chat_messages_1(self, client):
+    def test_api_chat_messages_count(self, client):
         response = client.get("/api/chat/messages/1")
+        assert response.status_code == 200
+
+    def test_api_chat_messages_count_offset(self, client):
+        response = client.get("/api/chat/messages/1/1")
         assert response.status_code == 200
 
     def test_api_chat_new_message(self, client):
