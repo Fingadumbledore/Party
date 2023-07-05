@@ -1,5 +1,5 @@
 import pytest
-from party.main import create_app
+from party import create_app
 
 @pytest.fixture
 def app():
