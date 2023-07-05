@@ -1,10 +1,14 @@
-from tests import client, app
-from party import chat
+from tests import client, app, chat
 
 class TestChat:
     def test_api_chat(self, client):
         response = client.get("/api/chat/")
         assert response.status_code == 200
+
+    def test_insertMessage(self, chat):
+        messageId = chat.insertMessage('test', 'testAuthor', 'testTimestamp')
+        assert messageId > 0
+        messages = chat.getAllMessages()
 
     def test_api_chat_messages_count(self, client):
         response = client.get("/api/chat/messages/1")
@@ -28,7 +32,7 @@ class TestChat:
         assert type(messages[0]['timestamp']) == str
         assert type(messages[0]['id']) == int
 
-    def test_convertToMessage(self):
+    def test_convertToMessage(self, chat):
         message = chat.convertToMessage('test', 'test', 'test', 0)
         assert type(message) == dict
         assert type(message['content']) == str
@@ -36,6 +40,3 @@ class TestChat:
         assert type(message['timestamp']) == str
         assert type(message['id']) == int
 
-    def test_insertMessage(self):
-        messageId = chat.insertMessage('test', 'testAuthor', 'testTimestamp')
-        messages = chat.getAllMessages()

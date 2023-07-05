@@ -1,5 +1,6 @@
 import pytest
-from party import create_app, Database, chat
+from party import create_app, Database, chat as c
+from party import message as m
 
 
 @pytest.fixture
@@ -20,5 +21,10 @@ def message_redis():
 
 @pytest.fixture
 def chat():
-    chat = chat.Chat()
+    chat = c.Chat()
     yield chat
+
+@pytest.fixture
+def message():
+    message = m.Message('author', 'content', 'timestamp', 0)
+    yield message
