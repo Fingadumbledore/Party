@@ -16,3 +16,9 @@ class MateKiste:
 
     def getMarkeName(self) -> str:
         return self.marke.value
+
+    def toDict(self) -> dict:
+        return {
+            'flaschen_anzahl': self.flaschen_anzahl,
+            'marke': self.marke.value
+        }

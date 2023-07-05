@@ -26,3 +26,9 @@ class TestMate:
 
     def test_getMarkeName(self, mateKiste):
         assert mateKiste.getMarkeName() == "Club Mate"
+
+    def test_toDict(self, mateKiste):
+        assert mateKiste.toDict() == {
+            'flaschen_anzahl': 20,
+            'marke': 'Club Mate'
+        }
