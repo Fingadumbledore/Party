@@ -27,6 +27,9 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install flake8 pytest flask pytest-cov redis
+    -name: Start redis
+      run: |
+        redis-server &
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
