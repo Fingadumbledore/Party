@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Spiele</title>
+  <style>
+    body {
+      background-color: #333;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    
+    #game-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .game {
+      width: 400px;
+      height: 400px;
+      background-color: #fff;
+      border-radius: 10px;
+      margin: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .game:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .game img {
+      width: 100%;
+  
+      margin-bottom: 0px;
+    }
+
+    .game-details {
+      display: none;
+      text-align: center;
+      padding: 170px;
+    }
+
+    .show-details .game {
+      width: 400px;
+      height: 400px;
+      transition: transform 0.3s;
+    }
+
+    .show-details .game img {
+      width: 60%;
+    }
+
+    .show-details .game-details {
+      display: block;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 16px;
+      color: #333;
+      font-weight: bold;
+    }
+
+    p {
+      font-size: 14px;
+      color: #666;
+      margin: 5px 0;
+      white-space: pre-wrap;
+    }
+
+    #prev-button,
+    #next-button {
+      background-color: #757474;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 15px;
+      font-size: 14px;
+      cursor: pointer;
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1;
+    }
+
+    #prev-button {
+      left: 20px;
+    }
+
+    #next-button {
+      right: 20px;
+    }
+
+    .game-half {
+      width: 100px;
+      height: 120px;
+      background-color: #fff;
+      border-radius: 10px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: -1;
+    }
+
+    .game-half-left {
+      left: -60px;
+    }
+
+    .game-half-right {
+      right: -60px;
+    }
+  </style>
+</head>
+<body>
+  <div id="game-container">
+    <!-- Hier werden die Spiele hinzugefügt -->
+  </div>
+  <button id="prev-button">&#x2B05;&#xFE0F;</button>
+  <button id="next-button">&#x27A1;&#xFE0F;</button>
+
+  <script>
+    var games = [
+      {
+        "Name": "Tomb Raider",
+        "Teil": 3,
+        "Erscheinungsjahr": 1998,
+        "Genre": "Abenteuer",
+        "Publisher": "Core Design",
+        "Inhalt": "Tomb Raider III – Adventures of Lara Croft ist ein Videospiel aus der Reihe Tomb Raider. Es wurde von Core Design entwickelt und erschien im Winter 1998 für die PlayStation und den PC. Lara hat wieder einiges dazugelernt.",
+        "Bild": "./img/tombraider.png"
+      },
+      {
+        "Name": "Need For Speed Underground",
+        "Teil": 2,
+        "Erscheinungsjahr": 2004,
+        "Genre": "Autorennen",
+        "Publisher": "EA",
+        "Inhalt": "Need for Speed: Underground 2 ist der achte Teil der von Electronic Arts entwickelten Rennspielserie Need for Speed und erschien am 18. November 2004 für Windows, PS2, Xbox, GameCube, GBA und Nintendo DS. Die Version für PSP wurde je nach Veröffentlichungsregion zwischen Januar und September 2005 veröffentlicht.",
+        "Bild": "./img/nfsu2.jpg"
+      },
+      {
+        "Name": "Anno",
+        "Teil": "1602",
+        "Erscheinungsjahr": 1998,
+        "Genre": "Echtzeitstrategie",
+        "Publisher": "Sunflowers",
+        "Inhalt": "Anno 1602 ist das erste Computerspiel aus der Anno-Serie. Das Spiel entstand aus einem Gemeinschaftsprojekt des österreichischen Spieleentwicklers Max Design und der deutschen Sunflowers Interactive Entertainment Software GmbH.",
+        "Bild": "./img/anno.png"
+      },
+      {
+        "Name": "Empire Earth",
+        "Teil": 1,
+        "Erscheinungsjahr": 2001,
+        "Genre": "Echtzeitstrategie",
+        "Publisher": "Sierra Entertainment",
+        "Inhalt": "Empire Earth ist eine dreiteilige Echtzeit-Strategiespiel-Serie für Windows, in der der Spieler eine Zivilisation durch die gesamte Menschheitsgeschichte führen kann.",
+        "Bild": "./img/empire.jpg"
+      },
+      {
+        "Name": "Call Of Duty 4 Modern Warfare",
+        "Teil": 4,
+        "Erscheinungsjahr": 2007,
+        "Genre": "Shooter",
+        "Publisher": "Infinity Ward",
+        "Inhalt": "In der Call-of-Duty-Reihe wird erstmals eine zusammenhängende Handlung erzählt. Ein russischer Ultranationalist und ein Terrorist übernehmen die Kontrolle in einem arabischen Staat. Eine amerikanische und britische Einheit jagt sie, es kommt zu einem Atomangriff. Der russische Ultranationalist startet nukleare Raketen, die in letzter Sekunde zerstört werden. Am Ende tötet der Spieler den russischen Ultranationalisten und wird gerettet. Es gibt auch eine Bonusmission, in der ein Flugzeugabsturz verhindert wird.",
+        "Bild": "./img/cod.jpg"
+      }
+    ];
+
+    var currentIndex = 0;
+    var gameContainer = document.getElementById("game-container");
+    var prevButton = document.getElementById("prev-button");
+    var nextButton = document.getElementById("next-button");
+
+    function renderGame(index) {
+      gameContainer.innerHTML = "";
+
+      var game = games[index];
+
+      var gameDiv = document.createElement("div");
+      gameDiv.classList.add("game");
+
+      var img = document.createElement("img");
+      img.src = game.Bild;
+
+      var gameDetails = document.createElement("div");
+      gameDetails.classList.add("game-details");
+
+      var name = document.createElement("h2");
+      name.innerHTML = "<strong>Name:</strong> " + game.Name;
+
+      var releaseYear = document.createElement("p");
+      releaseYear.innerHTML = "<strong>Erscheinungsjahr:</strong> " + game.Erscheinungsjahr;
+
+      var genre = document.createElement("p");
+      genre.innerHTML = "<strong>Genre:</strong> " + game.Genre;
+
+      var publisher = document.createElement("p");
+      publisher.innerHTML = "<strong>Publisher:</strong> " + game.Publisher;
+
+      var content = document.createElement("p");
+      content.innerHTML = "<strong>Inhalt:</strong> " + game.Inhalt;
+
+      gameDetails.appendChild(name);
+      gameDetails.appendChild(releaseYear);
+      gameDetails.appendChild(genre);
+      gameDetails.appendChild(publisher);
+      gameDetails.appendChild(content);
+
+      gameDiv.appendChild(img);
+      gameDiv.appendChild(gameDetails);
+
+      gameDiv.addEventListener("click", function() {
+        gameDiv.classList.toggle("show-details");
+      });
+
+      gameContainer.appendChild(gameDiv);
+    }
+
+    function showPreviousGame() {
+      currentIndex--;
+      if (currentIndex < 0) {
+        currentIndex = games.length - 1;
+      }
+      renderGame(currentIndex);
+    }
+
+    function showNextGame() {
+      currentIndex++;
+      if (currentIndex >= games.length) {
+        currentIndex = 0;
+      }
+      renderGame(currentIndex);
+    }
+
+    prevButton.addEventListener("click", showPreviousGame);
+    nextButton.addEventListener("click", showNextGame);
+
+    renderGame(currentIndex);
+  </script>
+</body>
+</html>
+
