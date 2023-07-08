@@ -34,6 +34,5 @@ class Message:
 
     def setId(self, id: int) -> None:
         self.id = id
-
         def __eq__(self, other):
             return self.author == other.author and self.content == other.content and self.timestamp == other.timestamp and self.id == other.id
