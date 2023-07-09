@@ -2,64 +2,8 @@
 <html>
 <head>
     <title>Login</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #0d0d0c;
-            color: #635e5c;
-        }
-        h1 {
-            color: #635e5c;
-            text-align: center;
-            text-shadow: 2px 2px 4px #800000;
-            }
-        
-        .button-container {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 30px;
-        }
-        
-        .button{
-            width: 250px; 
-            height: 50px;
-            background-color: #333;
-            border-radius: 10px;
-            cursor: pointer;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: 60%;
-            border: none;
-            padding: 10px;
-            color: white;
-            font-size: 16px;
-        }
-        input[type="text"] {
-            width: 450px; 
-            height: 50px;
-            background-color: #333;
-            border-radius: 10px;
-            cursor: pointer;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: 60%;
-            border: none;
-            padding: 10px;
-            color: white;
-            font-size: 16px;
-        }
-        
-        input[type="text"] {
-            text-align: center;
-        }
-        
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/login.css') }}">
 </head>
 <body>
 <h1>Party Controller</h1>
