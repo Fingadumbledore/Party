@@ -1,0 +1,19 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #0d0d0c;
+    color: #635e5c;
+}
+h1 {
+    color: #635e5c;
+    text-align: center;
+    text-shadow: 2px 2px 4px #800000;
+    font-size: 60px;
+    }
+
+h2 {
+      color: #635e5c;
+      text-align: center;
+      text-shadow: 2px 2px 4px #800000;
+      font-size: 40px;
+    }
