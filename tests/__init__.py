@@ -1,5 +1,5 @@
 import pytest
-from party import create_app, Database, chat as c, MateMarke
+from party import create_app, chat as c, MateMarke
 from party import message as m
 from party.mate import MateKiste
 
@@ -17,7 +17,7 @@ def client(app):
 
 @pytest.fixture
 def message_redis():
-    messagesDB = redis.Redis(host='localhost', port=6379, db=Database.Messages.value)
+    # messagesDB = redis.Redis(host='localhost', port=6379, db=Database.Messages.value)
     yield messagesDB
 
 @pytest.fixture

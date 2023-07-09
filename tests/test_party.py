@@ -1,14 +1,12 @@
 from tests import client, app
+from flask import render_template
 
 class TestServer:
     def test_root(self, client):
         response = client.get("/")
-        assert response.status_code == 200
-        assert b"<title>Party Controller</title>" in response.data
-        assert b"<h1>Party Controller</h1>" in response.data
-        assert b"/static/css/style.css" in response.data
-
-
+        assert response.headers["Location"] == "/login"
+        # get if response html is same as template
+        assert response.data == render_template("login.html")
 
     def test_api(self, client):
         response = client.get("/api")

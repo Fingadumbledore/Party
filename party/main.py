@@ -1,20 +1,46 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, session, redirect
+from http import HTTPStatus
 
 app = Flask(__name__,
             template_folder='templates',
             static_folder='static',)
+app.secret_key = 'super secret key 1234 5678 9012 3456 '
 
 @app.route('/', methods=['GET'])
 def index():
     response = jsonify(success=True)
+    response.status_code = HTTPStatus.MOVED_PERMANENTLY
+    if session.get('logged_in'):
+        return redirect('/session')
+    else:
+        return redirect('/login')
+    raise NotImplementedError()
+
+@app.route('/login', methods=['GET'])
+def login():
+    response = jsonify(success=True)
     response.status_code = 200
-    return render_template('index.html')
+    return render_template('login.html')
+
+@app.route('/session', methods=['GET'])
+def session():
+    response = jsonify(success=True)
+    response.status_code = 200
+    return render_template('session.html')
 
 @app.route('/api', methods=['GET'])
 def api():
     response = jsonify(success=True)
     response.status_code = 200
     return response
+
+@app.route('/api/login', methods=['GET'])
+def api_login():
+    session['logged_in'] = True
+    response = jsonify(success=True)
+    response.status_code = HTTPStatus.MOVED_PERMANENTLY
+    return redirect('/session')
+
 
 @app.route('/api/mate', methods=['GET'])
 def api_mate():
@@ -84,3 +110,4 @@ def api_music_add_song():
 
 if __name__ == '__main__':
     app.run(debug=True, host='localhost', port=5000) #pragma: no cover
+
