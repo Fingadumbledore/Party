@@ -1,0 +1,39 @@
+[
+    {
+      "Name": "Tschunk",
+      "Zutaten": "Rum, Club Mate, Limetten, Rohrzucker, Crushed Ice",
+      "Zubereitung": "Limetten schneiden: Die Limetten werden in dekorative Würfel geschnitten - eine Form, die sich auch sehr gut zerdrücken lässt.\nRohrzucker zugeben: Wir verwenden einen gut gehäuften Esslöffel. Hier sollte sich jeder an seinem Geschmack orientieren.\nZerstampfen: Optimalerweise passiert das Zerstampfen mit einem dafür vorgesehen Stampfer aus Holz. Ein Löffel tut es aber auch.\nCrushed Ice zugeben: Merke: Eis von Hand zerbröseln ist laut und anstrengend. Ganze Eiswürfel sind eine willkommene Alternative.\nRum zugeben: Die genauen Verhältnisse muss man sich erarbeiten - jeder nach seinem Geschmack. Wir siedeln den Rum-Anteil bei gut 20% an.\nMit Club Mate aufgießen: Nicht ganz voll machen, die Mate schäumt manchmal beim Umrühren.",
+      "Bild": "./img/tschunk.png"
+    },
+    {
+      "Name": "Mate Mojito",
+      "Zutaten": "Rum, Club Mate, Limetten, Minze, Rohrzucker, Crushed Ice",
+      "Zubereitung": "Limetten und Minze in einem Glas zerstampfen, Rohrzucker hinzufügen. Crushed Ice zugeben und mit Rum und Club Mate auffüllen. Umrühren und genießen.",
+      "Bild": "./img/mojito.png"
+    },
+    {
+      "Name": "Rum Mate Fizz",
+      "Zutaten": "Rum, Club Mate, Limetten, Minze, Zuckersirup, Soda, Crushed Ice",
+      "Zubereitung": "Limetten und Minze zerstampfen, Zuckersirup hinzufügen. Crushed Ice zugeben, Rum und Club Mate dazugießen. Mit Soda auffüllen, umrühren und servieren.",
+      "Bild": "./img/fizz.png"
+    },
+    {
+      "Name": "Club Mate Daiquiri",
+      "Zutaten": "Rum, Club Mate, Limettensaft, Zuckersirup, Crushed Ice",
+      "Zubereitung": "Limettensaft, Zuckersirup und Rum in einem Glas vermischen. Crushed Ice hinzufügen und mit Club Mate auffüllen. Gut umrühren und sofort servieren.",
+      "Bild": "./img/daiquiri.png"
+    },
+    {
+      "Name": "Rum Mate Sour",
+      "Zutaten": "Rum, Club Mate, Limettensaft, Zitronensaft, Zuckersirup, Eiweiß, Crushed Ice",
+      "Zubereitung": "Limettensaft, Zitronensaft, Zuckersirup, Rum und Eiweiß in einem Shaker kräftig schütteln. Crushed Ice in ein Glas geben und die Mischung darüber gießen. Mit Club Mate auffüllen und vorsichtig umrühren.",
+      "Bild": "./img/sour.png"
+    },
+    {
+      "Name": "Mate Rum Punch",
+      "Zutaten": "Rum, Club Mate, Ananassaft, Orangensaft, Limettensaft, Grenadinesirup, Crushed Ice",
+      "Zubereitung": "Rum, Ananassaft, Orangensaft, Limettensaft und Grenadinesirup in einem Cocktail-Shaker kräftig schütteln. Crushed Ice in ein Glas geben und die Mischung darüber gießen. Mit Club Mate auffüllen und sanft umrühren.",
+      "Bild": "./img/punch.png"
+    }
+  ]
+  
