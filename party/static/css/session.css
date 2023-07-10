@@ -287,13 +287,14 @@ height: 80%; /* Hier die gewünschte Höhe eintragen */
 border-collapse: separate;
 border-spacing: 0;
 border-radius: 10px;
+border: 2px solid #555;
 overflow: hidden;
 background-color: #333;
 }
 
 td {
 padding: 10px;
-color: #fff;
+color: #ccc;
 border: 1px solid #555;
 }
 
