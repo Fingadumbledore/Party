@@ -333,3 +333,28 @@ width: 80%; /* Ändere die Breite entsprechend deinen Anforderungen */
 margin-left: auto;
 margin-right: auto;
 }
+
+#mate_container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
+#mate_kiste {
+    width: 50%;
+}
+
+#mate_kiste td {
+    position: relative;
+    padding: 0;
+}
+
+#mate_kiste td button {
+    width: 100%;
+    height: 100%;
+    background-color: #fcb900;
+    border: none;
+    cursor: pointer;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+}

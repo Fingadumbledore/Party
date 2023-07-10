@@ -54,8 +54,8 @@ def api_mate_status():
     response.status_code = 200
     return response
 
-@app.route('/api/mate/trinken', methods=['POST'])
-def api_mate_trinken():
+@app.route('/api/mate/trinken/<row>/<column>', methods=['POST'])
+def api_mate_trinken(row, column):
     response = jsonify(success=True)
     response.status_code = 200
     return response
