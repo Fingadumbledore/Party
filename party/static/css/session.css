@@ -297,9 +297,61 @@ color: #fff;
 border: 1px solid #555;
 }
 
+.submit_button{
+    position: fixed;
+    width: 250px; 
+    height: 50px;
+    background-color: #454443;
+    border-radius: 10px;
+    cursor: pointer;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 60%;
+    border: none;
+    padding: 10px;
+    color: white;
+    font-size: 16px;
+    bottom: 10%;
+    top: 90%;
+    right: 20%;
+
+}
 
 
-input[type="text"],
+.event_input{
+    position: fixed;
+    width: 20%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: #0d0d0c;
+    color: rgb(220, 220, 210);
+    border: 2px solid #555;
+    outline: none;
+    bottom: 20%;
+    bottom: 10%;
+    top: 90%;
+    right: 59%;
+    }
+
+.event_time{
+        position: fixed;
+        width: 5%;
+        height: 2%;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        background-color: #0d0d0c;
+        color: rgb(220, 220, 210);
+        border: 2px solid #555;
+        outline: none;
+        bottom: 20%;
+        bottom: 10%;
+        top: 90%;
+        right: 37%;
+        }
+    
+
 input[type="datetime-local"],
 input[type="number"],
 input[type="email"],
