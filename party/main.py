@@ -23,7 +23,7 @@ def login():
     return render_template('login.html')
 
 @app.route('/session', methods=['GET'])
-def session():
+def omg_i_hate_copilot_session():
     response = jsonify(success=True)
     response.status_code = 200
     return render_template('session.html')
