@@ -7,10 +7,10 @@
 </head>
 <body>
 <h1>Party Controller</h1>
-    <form action="/api/login">
+    <form id="loginForm" action="/api/login">
         <div class="button-container">
-            <input type="text" name="name" placeholder="Name" maxlength="20" minlength="1" required>
-            <button class="button" type="submit">Login</button>
+            <input id="nameInput" type="text" name="name" placeholder="Name" maxlength="20" minlength="1" required>
+            <button id="loginButton" class="button" type="submit">Login</button>
         </div>
     </form>
     
@@ -18,10 +18,19 @@
         <div>Partycontroller Version 0.1</div>
         <div>&copy; Lostkids</div>
     </footer>
-
+    
     <script>
-     
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Verhindert das normale Absenden des Formulars
+            
+            var nameInput = document.getElementById("nameInput");
+            var name = nameInput.value;
+            
+            sessionStorage.setItem("name", name);
+            
+            // Das Formular manuell absenden
+            this.submit();
+        });
     </script>
 </body>
 </html>
-

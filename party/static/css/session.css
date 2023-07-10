@@ -299,8 +299,8 @@ border: 1px solid #555;
 
 .submit_button{
     position: fixed;
-    width: 250px; 
-    height: 50px;
+    width: 10%; 
+    height: 5%;
     background-color: #454443;
     border-radius: 10px;
     cursor: pointer;

@@ -1,3 +1,11 @@
+window.addEventListener('DOMContentLoaded', function() {
+    var name = sessionStorage.getItem('name'); // Den Namen aus dem SessionStorage abrufen
+
+    if (name) {
+      document.getElementById('peter').textContent = name; // Den Namen bei dem Element mit der ID "peter" ausgeben
+    }
+  });
+
 // Array zum Speichern der Div-Elemente
 var divs = document.querySelectorAll('.hidden-div');
 // Aktuell ausgewählter Button-Index

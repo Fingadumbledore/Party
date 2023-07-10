@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/session.css') }}">
 </head>
 <body>
+    {% block content %}   
  <div class="top-bar"></div>
     
     <div class="content">
@@ -25,7 +26,7 @@
     
     <p class="eventinfo">Nächstes Event: </p>
     
-    <p class="peter" onclick="togglePopup()">Peter</p> <!-- Hinzugefügtes "onclick"-Attribut -->
+    <p id="peter" class="peter" onclick="togglePopup()">Peter</p> <!-- Hinzugefügtes "onclick"-Attribut -->
     
     <p class="songinfo">Song: </p> 
     <div class="topnext" onclick=""></div>
@@ -111,6 +112,7 @@
         <div>Partycontroller Version 0.1</div>
         <div>&copy; Lostkids</div>
     </footer>
+    {% endblock %}
     <script src="{{url_for('static', filename='js/session.js')}}"></script>
 </body>
 </html>
