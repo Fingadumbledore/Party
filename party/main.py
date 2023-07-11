@@ -6,6 +6,10 @@ app = Flask(__name__,
             static_folder='static',)
 app.secret_key = 'super secret key 1234 5678 9012 3456 '
 
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('404.html'), 404
+
 @app.route('/', methods=['GET'])
 def index():
     response = jsonify(success=True)
