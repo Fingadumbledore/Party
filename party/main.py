@@ -82,7 +82,13 @@ def handle_chat_message(data):
 def handle_chat_get_message(data):
     messages = Chat.getNextNMessages(data['count'], data['skip'])
     # dont fucking touch this
-    return { 'data': { 'messages': json_util.dumps(messages) } }
+    data = { 'messages': json_util.dumps(messages) }
+    return { 'data': data }
+
+@socketio.on('mate-status')
+def handle_mate_status():
+    FLASCHE_COUNT = 20
+    return { 'data': generate_kiste(FLASCHE_COUNT) }
 
 @socketio.on('connect')
 def handle_connect():

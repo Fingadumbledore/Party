@@ -80,54 +80,47 @@ function handleSwitchDiv(index) {
             });
             break;
         case 6: // Mate
-            fetch(`/api/mate/status`, {
-                method: 'GET',
-            }).then(response => {
-                if (!(response.status == 200)) {
-                    alert('Fehler beim Laden des Mate Status');
-                    return;
+            socket.emit('mate-status', (data) => {
+                let flaschen = data.data;
+
+                console.log(flaschen)
+                const ROWS = 4;
+                const COLUMNS = 5;
+
+                var mate_kiste = document.getElementById('mate_kiste');
+                var table = document.createElement('tbody');
+
+                let rows = [];
+
+                for (let rowNumber = 0; rowNumber < ROWS; rowNumber++) {
+                    const row = document.createElement('tr');
+                    rows.push(row);
                 }
-                response.json().then(data => {
-                    console.log(data);
-                    if (!data['kiste']) return;
-                    
-                    const ROWS = 4;
-                    const COLUMNS = 5;
 
-                    var mate_kiste = document.getElementById('mate_kiste');
-                    var table = document.createElement('tbody');
-    
-                    let rows = [];
+                for (let a = 0; a < flaschen.length; a++) {
+                    const [x, y] = flascheIndex(a, ROWS, COLUMNS);
+                    const flascheIstVoll = flaschen[a];
 
-                    for (let rowNumber = 0; rowNumber < ROWS; rowNumber++) {
-                        const row = document.createElement('tr');
-                        rows.push(row);
-                    }
+                    const cell = document.createElement('td');
+                    cell.classList = ['flasche', x, y, `voll-${flascheIstVoll}`];
 
-                    for (let a = 0; a < data['kiste'].length; a++) {
-                        const [x, y] = flascheIndex(a, ROWS, COLUMNS);
-                        const flascheIstVoll = data['kiste'][a];
+                    const flascheTrinkenButton = document.createElement('button');
+                    flascheTrinkenButton.classList.add('flasche-trinken-button');
+                    flascheTrinkenButton.disabled = !flascheIstVoll;
+                    if (!flascheIstVoll) flascheTrinkenButton.style.backgroundColor = 'red';
+                    flascheTrinkenButton.style.backgroundColor = flascheIstVoll ? '#c88a35' : '#333';
+                    flascheTrinkenButton.id = `flasche-trinken-button-${x}-${y}`; //TODO: remove and replace with class
+                    flascheTrinkenButton.onclick = () => flascheTrinken(x, y);
+                    cell.appendChild(flascheTrinkenButton);
 
-                        const cell = document.createElement('td');
-                        cell.classList = ['flasche', x, y, `voll-${flascheIstVoll}`];
+                    rows[x].appendChild(cell);
+                }
 
-                        const flascheTrinkenButton = document.createElement('button');
-                        flascheTrinkenButton.classList.add('flasche-trinken-button');
-                        flascheTrinkenButton.disabled = !flascheIstVoll;
-                        flascheTrinkenButton.id = `flasche-trinken-button-${x}-${y}`; //TODO: remove and replace with class
-                        flascheTrinkenButton.onclick = () => flascheTrinken(x, y);
-                        cell.appendChild(flascheTrinkenButton);
+                rows.forEach(row => table.appendChild(row));
 
-                        rows[x].appendChild(cell);
-                    }
-
-                    rows.forEach(row => table.appendChild(row));
-
-                    mate_kiste.appendChild(table);
-                });
+                mate_kiste.appendChild(table);
             });
     }
-
 }
 
 function chatMessage(content, author, timestap) {
