@@ -28,7 +28,7 @@ class MateKiste():
             self.FlaschenBreite = flaschenAnzahl[0]
             self.FlaschenHoehe = flaschenAnzahl[1]
 
-        flaschenAnzahl = self.FlaschenBreite * self.FlaschenHoehe
+        flaschenAnzahl = (self.FlaschenBreite * self.FlaschenHoehe)
 
         self.collection.insert_one({'mateKiste': True, 'status': generate_kiste(flaschenAnzahl)})
         self.initialized = True
@@ -39,5 +39,5 @@ class MateKiste():
 
     @classmethod
     def removeAt(self, x: int, y: int):
-        position = y * self.FlaschenBreite + x
-        self.collection.update_one({'mateKiste': True}, {'$set': {'status.' + str(position): False}})
+        position = x * self.FlaschenBreite + y # for whatever reason y and x are swapped here lamoooo dont touch this
+        self.collection.update_one({'mateKiste': True}, {'$set': {f'status.{str(position)}': False}})

@@ -29,9 +29,7 @@ function getMateStatus(socket) {
 
             const flascheTrinkenButton = document.createElement('button');
             flascheTrinkenButton.classList.add('flasche-trinken-button');
-            flascheTrinkenButton.disabled = !flascheIstVoll;
-            if (!flascheIstVoll) flascheTrinkenButton.style.backgroundColor = 'red';
-            flascheTrinkenButton.style.backgroundColor = flascheIstVoll ? '#c88a35' : '#333';
+            flascheTrinkenButton.style.backgroundColor = '#c88a35';
             flascheTrinkenButton.id = `flasche-trinken-button-${x}-${y}`; //TODO: remove and replace with class
             flascheTrinkenButton.onclick = () => { flascheTrinken(x, y) };
             cell.appendChild(flascheTrinkenButton);
