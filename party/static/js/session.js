@@ -60,6 +60,7 @@ function handleSwitchDiv(index) {
 
     switch (index) {
         case 4:
+            // get previous messages
             fetch(`/api/chat`, {
                 method: 'GET',
             }).then(response => {
@@ -68,7 +69,14 @@ function handleSwitchDiv(index) {
                     return;
                 }
                 response.json().then(data => {
-                    console.log(data.messages);
+                    data.messages = JSON.parse(data.messages);
+                    let messages = [];
+
+                    for (let message of data.messages) {
+                        messages.push(chatMessage(message.content, message.author, message.timestamp));
+                    }
+
+                    messages.forEach(message => document.getElementById('chatBox').appendChild(message));
                 });
             })
         break;
@@ -122,6 +130,38 @@ function handleSwitchDiv(index) {
     }
 
 }
+
+function chatMessage(content, author, timestap) {
+    console.log(content, author, timestap);
+    const message = document.createElement('div');
+    message.classList.add('chat-message');
+
+    const messageContent = document.createElement('div');
+    messageContent.classList.add('chat-message-content');
+    const content_field = document.createElement('p');
+    content_field.textContent = content;
+    messageContent.appendChild(content_field);
+
+    const messageAuthor = document.createElement('div');
+    messageAuthor.classList.add('chat-message-author');
+    const author_field = document.createElement('p');
+    author_field.textContent = author;
+    messageAuthor.appendChild(author_field);
+
+    const messageTimestamp = document.createElement('div');
+    messageTimestamp.classList.add('chat-message-timestamp');
+    const timestamp_field = document.createElement('p');
+    timestamp_field.textContent = timestap;
+    messageTimestamp.appendChild(timestamp_field);
+
+    message.appendChild(messageContent);
+    message.appendChild(messageAuthor);
+    message.appendChild(messageTimestamp);
+
+    return message;
+}
+
+
 
 // returns x and y
 function flascheIndex(index_1d, rows, columns) {

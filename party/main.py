@@ -1,13 +1,16 @@
 from flask import Flask, jsonify, render_template, session, redirect
+from flask_socketio import SocketIO, send, emit
 from http import HTTPStatus
 from mate import generate_kiste
 from chat import Chat
+import bson.json_util as json_util
 
 
 app = Flask(__name__,
             template_folder='templates',
             static_folder='static',)
 app.secret_key = 'super secret key 1234 5678 9012 3456 '
+socketio = SocketIO(app)
 
 @app.route('/', methods=['GET'])
 def index():
@@ -70,27 +73,13 @@ def api_chat():
         Chat.init()
     messages = Chat.getAllMessages()
     print(messages)
-    response = jsonify(success=True, messages=messages)
+    response = jsonify(success=True, messages=json_util.dumps(messages))
     response.status_code = 200
     return response
 
-@app.route('/api/chat/messages/<count>', methods=['GET'])
-def api_chat_messages_1(count):
-    response = jsonify(success=True)
-    response.status_code = 200
-    return response
-
-@app.route('/api/chat/messages/<count>/<offset>', methods=['GET'])
-def api_chat_messages_2(count, offset):
-    response = jsonify(success=True)
-    response.status_code = 200
-    return response
-
-@app.route('/api/chat/new_message', methods=['POST'])
-def api_chat_new_message():
-    response = jsonify(success=True)
-    response.status_code = 200
-    return response
+@socketio.on('chat-message')
+def handle_chat_message(data):
+    Chat.insertMessage(data['content'], data['author'], data['timestamp'])
 
 @app.route('/api/music', methods=['GET'])
 def api_music():
@@ -123,5 +112,5 @@ def page_not_found(error):
     return render_template('404.html'), response
 
 if __name__ == '__main__':
-    app.run(debug=True, host='localhost', port=5000) #pragma: no cover
+    socketio.run(app, debug=True, host='localhost', port=5000) #pragma: no cover
 
