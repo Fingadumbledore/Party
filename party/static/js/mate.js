@@ -70,3 +70,23 @@ socket.on('mate-genommen', (data) => {
     flasche.disabled = true;
     flasche.style.backgroundColor = '#333';
 });
+
+function resetKiste() {
+    socket.emit('mate-reset', () => {
+        console.log('kiste resettet');
+        let flaschen = document.getElementsByClassName('flasche-trinken-button');
+        for (let flasche of flaschen) {
+            flasche.disabled = false;
+            flasche.style.backgroundColor = '#c88a35';
+        }
+    });
+}
+
+socket.on('mate-resetten', () => {
+    console.log('kiste resettet');
+    let flaschen = document.getElementsByClassName('flasche-trinken-button');
+    for (let flasche of flaschen) {
+        flasche.disabled = false;
+        flasche.style.backgroundColor = '#c88a35';
+    }
+});

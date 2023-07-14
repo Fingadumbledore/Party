@@ -63,16 +63,6 @@ def api_mate_status():
     response.status_code = 200
     return response
 
-@app.route('/api/mate/trinken/<row>/<column>', methods=['POST'])
-def api_mate_trinken(row, column):
-    MateKiste.removeAt(int(row), int(column))
-    msg = '{ "mate-genommen": { "welche": [' + row + ', ' + column + '] } }'
-    socketio.emit(msg, broadcast=True)
-
-    response = jsonify(success=True)
-    response.status_code = 200
-    return response
-
 @app.route('/api/chat/', methods=['GET'])
 def api_chat():
     messages = Chat.getNextNMessages(100, 0) # 0 offset print(messages)
@@ -103,6 +93,11 @@ def handle_mate_nehmen(data):
     MateKiste.removeAt(data['row'], data['column'])
     # broadcast
     emit('mate-genommen', data, broadcast=True)
+
+@socketio.on('mate-reset')
+def handle_mate_reset():
+    MateKiste.reset()
+    emit('mate-resetten', broadcast=True)
 
 
 @socketio.on('connect')
