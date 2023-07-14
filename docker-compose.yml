@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_DATABASE: partyyy
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./scripts/init-mongo.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - ./db/:/data/db/
+    network_mode: "host"

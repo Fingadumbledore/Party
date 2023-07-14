@@ -9,3 +9,5 @@ qr.png
 .sums
 poetry.lock
 *.vim
+
+db/*
