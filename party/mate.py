@@ -4,7 +4,7 @@ import random
 
 
 def generate_kiste(count: int) -> list[bool]:
-    return [random.choice([True, False]) for _ in range(count)]
+    return [random.choice([True]) for _ in range(count)]
 
 
 class MateKiste():
@@ -39,4 +39,5 @@ class MateKiste():
 
     @classmethod
     def removeAt(self, x: int, y: int):
-        self.collection.update_one({'mateKiste': True}, {'$set': {f'status.{y * self.FlaschenBreite + x}': False}})
+        position = y * self.FlaschenBreite + x
+        self.collection.update_one({'mateKiste': True}, {'$set': {'status.' + str(position): False}})

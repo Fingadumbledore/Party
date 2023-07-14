@@ -12,6 +12,8 @@ app = Flask(__name__,
 app.secret_key = 'super secret key 1234 5678 9012 3456 '
 socketio = SocketIO(app)
 
+
+
 @app.route('/', methods=['GET'])
 def index():
     response = jsonify(success=True)
@@ -63,6 +65,7 @@ def api_mate_status():
 
 @app.route('/api/mate/trinken/<row>/<column>', methods=['POST'])
 def api_mate_trinken(row, column):
+    MateKiste.removeAt(int(row), int(column))
     response = jsonify(success=True)
     response.status_code = 200
     return response
