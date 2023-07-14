@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, render_template, session, redirect
 from flask_socketio import SocketIO, send, emit
 from http import HTTPStatus
-from mate import generate_kiste
+from mate import generate_kiste, MateKiste
 from chat import Chat
 import bson.json_util as json_util
 
@@ -57,7 +57,7 @@ def api_mate():
 @app.route('/api/mate/status', methods=['GET'])
 def api_mate_status():
     FLASCHE_COUNT = 20
-    response = jsonify(kiste=generate_kiste(FLASCHE_COUNT))
+    response = jsonify(kiste=MateKiste.getStatus())
     response.status_code = 200
     return response
 
@@ -87,8 +87,9 @@ def handle_chat_get_message(data):
 
 @socketio.on('mate-status')
 def handle_mate_status():
-    FLASCHE_COUNT = 20
-    return { 'data': generate_kiste(FLASCHE_COUNT) }
+    status = MateKiste.getStatus()
+    print(status)
+    return { 'data':  status }
 
 @socketio.on('connect')
 def handle_connect():
@@ -130,5 +131,5 @@ def page_not_found(error):
 
 if __name__ == '__main__':
     Chat.init()
+    MateKiste.init()
     socketio.run(app, debug=True, host='localhost', port=5000) #pragma: no cover
-
