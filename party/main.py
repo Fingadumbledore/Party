@@ -78,6 +78,14 @@ def api_chat():
 def handle_chat_message(data):
     Chat.insertMessage(data['content'], data['author'], data['timestamp'])
 
+@socketio.on('connect')
+def handle_connect():
+    print('Client connected')
+
+@socketio.on('disconnect')
+def handle_disconnect():
+    print('Client disconnected')
+
 @app.route('/api/music', methods=['GET'])
 def api_music():
     response = jsonify(success=True)

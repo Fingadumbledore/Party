@@ -76,9 +76,13 @@ function handleSwitchDiv(index) {
                         messages.push(chatMessage(message.content, message.author, message.timestamp));
                     }
 
-                    messages.forEach(message => document.getElementById('chatBox').appendChild(message));
+                    const chatBox = document.getElementById('chatBox');
+                    messages.forEach(message => chatBox.appendChild(message));
 
-                    document.getElementById('chatBox').style.overflow = 'scroll';
+                    chatBox.style.overflow = 'auto';
+                    chatBox.scrollTop = chatBox.scrollHeight;
+
+                    // join websocket
                 });
             })
         break;
