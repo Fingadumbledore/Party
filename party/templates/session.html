@@ -29,9 +29,9 @@
     <p id="peter" class="peter" onclick="togglePopup()">Peter</p> <!-- Hinzugefügtes "onclick"-Attribut -->
     
     <p class="songinfo">Song: </p> 
-    <div class="topnext" onclick=""></div>
-    <div class="topback" onclick=""></div>
-    <div class="toppause" onclick=""></div>
+    <div class="topnext" onclick="sendData('/api/music/skip-forward')"></div>
+    <div class="topback" onclick="sendData('/api/music/skip-back')"></div>
+    <div class="toppause" onclick="sendData('/api/music/play')"></div>
      
     <!-- ... (Dein vorhandener HTML-Code) ... -->
 
@@ -58,6 +58,7 @@
 	<td>Event</td>
 	<td>Zeit</td>
 	<td>Status</td>
+    <td>Verwalten</td>
 	</tr>
 	<tr>
 	<td>f</td>
