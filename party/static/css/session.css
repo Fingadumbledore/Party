@@ -270,7 +270,8 @@ top: 5%; /* Zielposition nach dem Einfahren */
     left: 50%;
     transform: translate(-50%, -50%);
     width: 80%; /* Hier die gewünschte Breite eintragen */
-height: 80%; /* Hier die gewünschte Höhe eintragen */
+    max-height: 80%; /* Hier die gewünschte Höhe eintragen */
+    height: 80%;
     padding: 20px;
     background-color: #333;
     color: #fff;
@@ -416,4 +417,14 @@ margin-right: auto;
 
 .voll-true {
     background-color: #00ff00;
+}
+
+#chat-container {
+    max-height: 80%;
+}
+
+#chatBox {
+    background-color: green;
+    max-height: 200px;
+    height: 70%;
 }

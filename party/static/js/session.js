@@ -77,6 +77,8 @@ function handleSwitchDiv(index) {
                     }
 
                     messages.forEach(message => document.getElementById('chatBox').appendChild(message));
+
+                    document.getElementById('chatBox').style.overflow = 'scroll';
                 });
             })
         break;
