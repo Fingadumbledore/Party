@@ -412,14 +412,6 @@ margin-right: auto;
     border-radius: 50%;
 }
 
-.voll-false {
-    color: #ff0000;
-}
-
-.voll-true {
-    background-color: #00ff00;
-}
-
 #chat-container {
     max-height: 80%;
 }

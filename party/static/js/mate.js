@@ -25,7 +25,10 @@ function getMateStatus(socket) {
                 rows[x].appendChild(cell);
                 continue;
             }
-            cell.classList = ['flasche', x, y, `voll-${flascheIstVoll}`];
+            cell.classList.add('flasche');
+            cell.classList.add(x);
+            cell.classList.add(y);
+            cell.classList.add(`voll-${flascheIstVoll}`);
 
             const flascheTrinkenButton = document.createElement('button');
             flascheTrinkenButton.classList.add('flasche-trinken-button');
@@ -51,16 +54,14 @@ function flascheIndex(index_1d, rows, columns) {
 //TODO: replace id lookup with class lookup
 function flascheTrinken(rowNumber, columnNumber) {
     console.log(`flasche trinken ${rowNumber} ${columnNumber}`);
-    fetch(`/api/mate/trinken/${rowNumber}/${columnNumber}`, {
-        method: 'POST',
-    }).then(response => {
-        if (response.status === 200) {
-            console.log('flasche getrunken');
-            let flasche = document.getElementById(`flasche-trinken-button-${rowNumber}-${columnNumber}`);
-            flasche.disabled = true;
-            flasche.style.backgroundColor = '#333';
-        } else {
-            alert('Fehler beim Trinken');
-        }
+    socket.emit('mate-nehmen', { 'row': rowNumber, 'column': columnNumber }, (data) => {
+        console.log('flasche getrunken');
+        let flasche = document.getElementById(`flasche-trinken-button-${rowNumber}-${columnNumber}`);
+        flasche.disabled = true;
+        flasche.style.backgroundColor = '#333';
     });
 }
+
+socket.on('mate-genommen', (data) => {
+    console.log(data)
+});

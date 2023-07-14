@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, render_template, session, redirect
-from flask_socketio import SocketIO, send, emit
+from flask_socketio import SocketIO, send, emit, join_room, leave_room
 from http import HTTPStatus
 from mate import generate_kiste, MateKiste
 from chat import Chat
@@ -12,7 +12,7 @@ app = Flask(__name__,
 app.secret_key = 'super secret key 1234 5678 9012 3456 '
 socketio = SocketIO(app)
 
-
+clients = []
 
 @app.route('/', methods=['GET'])
 def index():
@@ -66,6 +66,9 @@ def api_mate_status():
 @app.route('/api/mate/trinken/<row>/<column>', methods=['POST'])
 def api_mate_trinken(row, column):
     MateKiste.removeAt(int(row), int(column))
+    msg = '{ "mate-genommen": { "welche": [' + row + ', ' + column + '] } }'
+    socketio.emit(msg, broadcast=True)
+
     response = jsonify(success=True)
     response.status_code = 200
     return response
@@ -94,13 +97,23 @@ def handle_mate_status():
     print(status)
     return { 'data':  status }
 
+@socketio.on('mate-nehmen')
+def handle_mate_nehmen(data):
+    print(data)
+    MateKiste.removeAt(data['row'], data['column'])
+    # broadcast
+    emit('mate-genommen', data, broadcast=True)
+
+
 @socketio.on('connect')
 def handle_connect():
     print('Client connected')
+    join_room(0)
 
 @socketio.on('disconnect')
 def handle_disconnect():
     print('Client disconnected')
+    leave_room(0)
 
 @app.route('/api/music', methods=['GET'])
 def api_music():
