@@ -63,5 +63,10 @@ function flascheTrinken(rowNumber, columnNumber) {
 }
 
 socket.on('mate-genommen', (data) => {
-    console.log(data)
+    console.log('flasche getrunken');
+    let rowNumber = data.row;
+    let columnNumber = data.column;
+    let flasche = document.getElementById(`flasche-trinken-button-${rowNumber}-${columnNumber}`);
+    flasche.disabled = true;
+    flasche.style.backgroundColor = '#333';
 });
