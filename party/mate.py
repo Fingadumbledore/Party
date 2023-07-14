@@ -1,24 +1,10 @@
-from party import MateMarke as Marke
+from pymongo import MongoClient
+from enum import Enum
 
-class MateKiste:
-    def __init__(self, flaschen_anzahl: int, marke: Marke):
-        self.flaschen_anzahl = flaschen_anzahl
-        self.marke = marke
 
-    def eineTrinken(self):
-        self.flaschen_anzahl = self.flaschen_anzahl - 1
+def generate_kiste(count: int) -> list[bool]:
+    return [True] * count
 
-    def getFlaschenAnzahl(self) -> int:
-        return self.flaschen_anzahl
-
-    def getMarke(self) -> Marke:
-        return self.marke
-
-    def getMarkeName(self) -> str:
-        return self.marke.value
-
-    def toDict(self) -> dict:
-        return {
-            'flaschen_anzahl': self.flaschen_anzahl,
-            'marke': self.marke.value
-        }
+class MateKiste():
+    def __init__(self):
+        pass

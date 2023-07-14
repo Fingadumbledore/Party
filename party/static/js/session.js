@@ -53,32 +53,82 @@ window.addEventListener('DOMContentLoaded', function() {
 }
 
 function handleSwitchDiv(index) {
+    // reset divs
+    // 1. reset mate div
+    var mate_kiste = document.getElementById('mate_kiste');
+    mate_kiste.innerHTML = '';
+
     switch (index) {
-        case 6: // Mate
-            var mate_kiste = document.getElementById('mate_kiste');
-            var table = document.createElement('tbody');
-            
-            for (let rowNumber = 0; rowNumber < 4; rowNumber++) {
-                const row = document.createElement('tr');
-
-                for (let columnNumber = 0; columnNumber < 5; columnNumber++) {
-                    const cell = document.createElement('td');
-                    const flascheTrinkenButton = document.createElement('button');
-                    flascheTrinkenButton.onclick = () => flascheTrinken(rowNumber, columnNumber);
-
-                    flascheTrinkenButton.classList.add('flasche-trinken-button');
-                    flascheTrinkenButton.id = `flasche-trinken-button-${rowNumber}-${columnNumber}`;
-                    cell.appendChild(flascheTrinkenButton);
-
-                    row.appendChild(cell);
+        case 4:
+            fetch(`/api/chat`, {
+                method: 'GET',
+            }).then(response => {
+                if (!(response.status == 200)) {
+                    alert('Fehler beim Laden des Chats');
+                    return;
                 }
-                table.appendChild(row);            
-            }
-            mate_kiste.appendChild(table);
+                response.json().then(data => {
+                    console.log(data.messages);
+                });
+            })
+        break;
+        case 6: // Mate
+            fetch(`/api/mate/status`, {
+                method: 'GET',
+            }).then(response => {
+                if (!(response.status == 200)) {
+                    alert('Fehler beim Laden des Mate Status');
+                    return;
+                }
+                response.json().then(data => {
+                    console.log(data);
+                    if (!data['kiste']) return;
+                    
+                    const ROWS = 4;
+                    const COLUMNS = 5;
+
+                    var mate_kiste = document.getElementById('mate_kiste');
+                    var table = document.createElement('tbody');
+    
+                    let rows = [];
+
+                    for (let rowNumber = 0; rowNumber < ROWS; rowNumber++) {
+                        const row = document.createElement('tr');
+                        rows.push(row);
+                    }
+
+                    for (let a = 0; a < data['kiste'].length; a++) {
+                        const [x, y] = flascheIndex(a, ROWS, COLUMNS);
+                        const flascheIstVoll = data['kiste'][a];
+
+                        const cell = document.createElement('td');
+                        cell.classList = ['flasche', x, y, `voll-${flascheIstVoll}`];
+
+                        const flascheTrinkenButton = document.createElement('button');
+                        flascheTrinkenButton.classList.add('flasche-trinken-button');
+                        flascheTrinkenButton.disabled = !flascheIstVoll;
+                        flascheTrinkenButton.id = `flasche-trinken-button-${x}-${y}`; //TODO: remove and replace with class
+                        flascheTrinkenButton.onclick = () => flascheTrinken(x, y);
+                        cell.appendChild(flascheTrinkenButton);
+
+                        rows[x].appendChild(cell);
+                    }
+
+                    rows.forEach(row => table.appendChild(row));
+
+                    mate_kiste.appendChild(table);
+                });
+            });
     }
 
 }
 
+// returns x and y
+function flascheIndex(index_1d, rows, columns) {
+    return [Math.floor(index_1d / columns), index_1d % columns];
+}
+
+//TODO: replace id lookup with class lookup
 function flascheTrinken(rowNumber, columnNumber) {
     console.log(`flasche trinken ${rowNumber} ${columnNumber}`);
     fetch(`/api/mate/trinken/${rowNumber}/${columnNumber}`, {

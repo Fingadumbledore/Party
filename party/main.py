@@ -1,14 +1,13 @@
 from flask import Flask, jsonify, render_template, session, redirect
 from http import HTTPStatus
+from mate import generate_kiste
+from chat import Chat
+
 
 app = Flask(__name__,
             template_folder='templates',
             static_folder='static',)
 app.secret_key = 'super secret key 1234 5678 9012 3456 '
-
-@app.errorhandler(404)
-def page_not_found(error):
-    return render_template('404.html'), 404
 
 @app.route('/', methods=['GET'])
 def index():
@@ -54,7 +53,8 @@ def api_mate():
 
 @app.route('/api/mate/status', methods=['GET'])
 def api_mate_status():
-    response = jsonify(success=True)
+    FLASCHE_COUNT = 20
+    response = jsonify(kiste=generate_kiste(FLASCHE_COUNT))
     response.status_code = 200
     return response
 
@@ -66,7 +66,11 @@ def api_mate_trinken(row, column):
 
 @app.route('/api/chat/', methods=['GET'])
 def api_chat():
-    response = jsonify(success=True)
+    if not Chat.initialized:
+        Chat.init()
+    messages = Chat.getAllMessages()
+    print(messages)
+    response = jsonify(success=True, messages=messages)
     response.status_code = 200
     return response
 
@@ -111,6 +115,12 @@ def api_music_add_song():
     response = jsonify(success=True)
     response.status_code = 200
     return response
+
+@app.errorhandler(404)
+def page_not_found(error):
+    response = jsonify(success=False)
+    response.status_code = 404
+    return render_template('404.html'), response
 
 if __name__ == '__main__':
     app.run(debug=True, host='localhost', port=5000) #pragma: no cover

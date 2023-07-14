@@ -405,9 +405,15 @@ margin-right: auto;
 #mate_kiste td button {
     width: 100%;
     height: 100%;
-    background-color: #fcb900;
     border: none;
     cursor: pointer;
     aspect-ratio: 1/1;
     border-radius: 50%;
+}
+
+.voll-false {
+}
+
+.voll-true {
+    background-color: #00ff00;
 }

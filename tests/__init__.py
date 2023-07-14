@@ -1,7 +1,6 @@
 import pytest
-from party import create_app, chat as c, MateMarke
-from party import message as m
-from party.mate import MateKiste
+from party import create_app, chat as c
+from party.mate import MateKiste, MateMarke
 
 
 @pytest.fixture

@@ -1,39 +1,33 @@
-import json
-from party import message as m
+from pymongo import MongoClient
 
 class Chat:
-    def __init__(self):
-        pass
-    def getAllMessages(self) -> list[dict]:
-        pass 
-        """
-        messageCount = int(db.get('message count'))
-        messages = []
-        for i in range(messageCount):
-            message = db.hgetall(f'message {i}')
-            messages.append(message)
+    CONNECTION_STRING = None
+    client = None
+    collection = None
+    initialized = False
 
-        return messages
-        """
-
-    def insertMessage(self, content: str, author: str, timestamp: str) -> int:
-        #messageCount = int(db.get('message count'))
-        message = m.Message(author, content, timestamp, 0) #mock id
-
-        # db.hset(f'message {messageCount}', mapping=message.toJson())
-
-        messageCount = messageCount + 1
-        #db.set('message count', str(messageCount))
-
-        return messageCount
+    @classmethod
+    def init(self):
+        self.CONNECTION_STRING = "mongodb://localhost:27017/"
+        self.client = MongoClient(self.CONNECTION_STRING)['partyyy']
+        self.collection = self.client['messages']
+        self.initialized = True
 
 
-    def convertToMessage(self, content: str, author: str, timestamp: str, id: int) -> dict:
+    @classmethod
+    def getAllMessages(self)-> list[dict]:
+        return list(self.collection.find())
+
+    @classmethod
+    def insertMessage(self, content: str, author: str, timestamp: str):
+        self.collection.insert_one(self.convertToMessage(content, author, timestamp))
+
+    @classmethod
+    def convertToMessage(self, content: str, author: str, timestamp: str) -> dict:
         message = {
             'content': content,
             'author': author,
             'timestamp': timestamp,
-            'id': id
         }
 
         return message
