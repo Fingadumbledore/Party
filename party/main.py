@@ -69,12 +69,9 @@ def api_mate_trinken(row, column):
 
 @app.route('/api/chat/', methods=['GET'])
 def api_chat():
-    if not Chat.initialized:
-        Chat.init()
-    messages = Chat.getAllMessages()
-    print(messages)
-    response = jsonify(success=True, messages=json_util.dumps(messages))
-    response.status_code = 200
+    messages = Chat.getNext100Messages(0) # 0 offset print(messages)
+    response = jsonify(success=True, messages=json_util.dumps(messages)) 
+    response.status_code = 200 
     return response
 
 @socketio.on('chat-message')
@@ -112,5 +109,6 @@ def page_not_found(error):
     return render_template('404.html'), response
 
 if __name__ == '__main__':
+    Chat.init()
     socketio.run(app, debug=True, host='localhost', port=5000) #pragma: no cover
 

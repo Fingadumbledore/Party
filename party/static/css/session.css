@@ -425,6 +425,5 @@ margin-right: auto;
 
 #chatBox {
     background-color: green;
-    max-height: 200px;
-    height: 70%;
+    max-height: 600px;
 }

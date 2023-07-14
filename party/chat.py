@@ -23,6 +23,12 @@ class Chat:
         self.collection.insert_one(self.convertToMessage(content, author, timestamp))
 
     @classmethod
+    def getNext100Messages(self, skip: int) -> list[dict]:
+        return list(self.collection.find()
+                                   .skip(skip)
+                                   .limit(100))
+
+    @classmethod
     def convertToMessage(self, content: str, author: str, timestamp: str) -> dict:
         message = {
             'content': content,
