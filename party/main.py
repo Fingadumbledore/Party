@@ -69,7 +69,7 @@ def api_mate_trinken(row, column):
 
 @app.route('/api/chat/', methods=['GET'])
 def api_chat():
-    messages = Chat.getNext100Messages(0) # 0 offset print(messages)
+    messages = Chat.getNextNMessages(100, 0) # 0 offset print(messages)
     response = jsonify(success=True, messages=json_util.dumps(messages)) 
     response.status_code = 200 
     return response
@@ -77,6 +77,12 @@ def api_chat():
 @socketio.on('chat-message')
 def handle_chat_message(data):
     Chat.insertMessage(data['content'], data['author'], data['timestamp'])
+
+@socketio.on('chat-get-messages')
+def handle_chat_get_message(data):
+    messages = Chat.getNextNMessages(data['count'], data['skip'])
+    # dont fucking touch this
+    return { 'data': { 'messages': json_util.dumps(messages) } }
 
 @socketio.on('connect')
 def handle_connect():

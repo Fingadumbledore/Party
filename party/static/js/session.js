@@ -1,3 +1,4 @@
+const socket = io();
 window.addEventListener('DOMContentLoaded', function() {
     var name = sessionStorage.getItem('name'); // Den Namen aus dem SessionStorage abrufen
 
@@ -61,29 +62,23 @@ function handleSwitchDiv(index) {
     switch (index) {
         case 4:
             // get previous messages
-            fetch(`/api/chat`, {
-                method: 'GET',
-            }).then(response => {
-                if (!(response.status == 200)) {
-                    alert('Fehler beim Laden des Chats');
-                    return;
+            socket.emit('chat-get-messages', { count: 100, skip: 0 }, (data) => {
+                sessionStorage['alreadyLoadedMessages'] += 100;
+                let message_array = [];
+                // dont fucking touch this
+                data = JSON.parse(data.data.messages)
+
+                for (let message of data) {
+                    message_array.push(chatMessage(message.content, message.author, message.timestamp));
                 }
-                response.json().then(data => {
-                    data.messages = JSON.parse(data.messages);
-                    let messages = [];
 
-                    for (let message of data.messages) {
-                        messages.push(chatMessage(message.content, message.author, message.timestamp));
-                    }
+                const chatBox = document.getElementById('chatBox');
+                message_array.forEach(message => chatBox.appendChild(message));
 
-                    const chatBox = document.getElementById('chatBox');
-                    messages.forEach(message => chatBox.appendChild(message));
-
-                    chatBox.style.overflow = 'auto';
-                    chatBox.scrollTop = chatBox.scrollHeight;
-                });
-            })
-        break;
+                chatBox.style.overflow = 'auto';
+                chatBox.scrollTop = chatBox.scrollHeight;
+            });
+            break;
         case 6: // Mate
             fetch(`/api/mate/status`, {
                 method: 'GET',

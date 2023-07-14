@@ -18,15 +18,17 @@ class Chat:
     def getAllMessages(self)-> list[dict]:
         return list(self.collection.find())
 
+    
     @classmethod
     def insertMessage(self, content: str, author: str, timestamp: str):
         self.collection.insert_one(self.convertToMessage(content, author, timestamp))
 
+
     @classmethod
-    def getNext100Messages(self, skip: int) -> list[dict]:
+    def getNextNMessages(self, count: int, skip: int) -> list[dict]:
         return list(self.collection.find()
-                                   .skip(skip)
-                                   .limit(100))
+                    .skip(skip)
+                    .limit(count))
 
     @classmethod
     def convertToMessage(self, content: str, author: str, timestamp: str) -> dict:
