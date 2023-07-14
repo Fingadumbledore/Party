@@ -81,8 +81,6 @@ function handleSwitchDiv(index) {
 
                     chatBox.style.overflow = 'auto';
                     chatBox.scrollTop = chatBox.scrollHeight;
-
-                    // join websocket
                 });
             })
         break;
@@ -160,9 +158,13 @@ function chatMessage(content, author, timestap) {
     timestamp_field.textContent = timestap;
     messageTimestamp.appendChild(timestamp_field);
 
+    const messageDetails = document.createElement('div');
+    messageDetails.classList.add('chat-message-details');
+    messageDetails.appendChild(messageAuthor);
+    messageDetails.appendChild(messageTimestamp);
+
+    message.appendChild(messageDetails);
     message.appendChild(messageContent);
-    message.appendChild(messageAuthor);
-    message.appendChild(messageTimestamp);
 
     return message;
 }
