@@ -16,8 +16,9 @@ class Chat:
 
     @classmethod
     def getAllMessages(self)-> list[dict]:
-        return list(self.collection.find())
-
+        messages = self.collection.find()
+        print(messages)
+        return list(messages)
     
     @classmethod
     def insertMessage(self, content: str, author: str, timestamp: str):
@@ -37,5 +38,6 @@ class Chat:
             'author': author,
             'timestamp': timestamp,
         }
+        print(message)
 
         return message

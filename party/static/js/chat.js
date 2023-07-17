@@ -6,7 +6,8 @@ function getNChatMessages(socket, count, skip) {
                 data = JSON.parse(data.data.messages)
 
                 for (let message of data) {
-                    message_array.push(buildChatMessage(message.content, message.author, message.timestamp));
+                    console.log(message)
+                    message_array.push(buildChatMessage(message.sender, message.text, message.timestamp['$date']));
                 }
 
                 const chatBox = document.getElementById('chatBox');
@@ -17,8 +18,8 @@ function getNChatMessages(socket, count, skip) {
             });
 }
 
-function buildChatMessage(content, author, timestap) {
-    console.log(content, author, timestap);
+function buildChatMessage(author, content, timestap) {
+    //console.log(content, author, timestap);
     const message = document.createElement('div');
     message.classList.add('chat-message');
 
