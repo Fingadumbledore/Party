@@ -16,7 +16,7 @@ class Chat:
 
     @classmethod
     def getAllMessages(self)-> list[dict]:
-        messages = self.collection.find()
+        messages = self.collection.find().sort('timestamp', -1)
         print(messages)
         return list(messages)
     
@@ -29,7 +29,8 @@ class Chat:
     def getNextNMessages(self, count: int, skip: int) -> list[dict]:
         return list(self.collection.find()
                     .skip(skip)
-                    .limit(count))
+                    .limit(count)
+                    .sort('timestamp', -1))
 
     @classmethod
     def convertToMessage(self, content: str, author: str, timestamp: str) -> dict:
