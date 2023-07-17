@@ -11,17 +11,17 @@ function getNChatMessages(socket, count, skip) {
                 }
 
                 const chatBox = document.getElementById('chatBox');
-                message_array.forEach(message => chatBox.appendChild(message));
+                message_array.forEach(message => chatBox.appendChild(message))
 
                 chatBox.style.overflow = 'auto';
                 chatBox.scrollTop = chatBox.scrollHeight;
             });
 }
 
-function buildChatMessage(author, content, timestap) {
-    //console.log(content, author, timestap);
+function buildChatMessage(author, content, timestamp) {
     const message = document.createElement('div');
     message.classList.add('chat-message');
+
 
     const messageContent = document.createElement('div');
     messageContent.classList.add('chat-message-content');
@@ -38,7 +38,7 @@ function buildChatMessage(author, content, timestap) {
     const messageTimestamp = document.createElement('div');
     messageTimestamp.classList.add('chat-message-timestamp');
     const timestamp_field = document.createElement('p');
-    timestamp_field.textContent = timestap;
+    timestamp_field.textContent = timestamp;
     messageTimestamp.appendChild(timestamp_field);
 
     const messageDetails = document.createElement('div');
