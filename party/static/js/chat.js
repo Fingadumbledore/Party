@@ -51,3 +51,27 @@ function buildChatMessage(author, content, timestamp) {
 
     return message;
 }
+
+function sendMessage() {
+    const chatInput = document.getElementById('chatInputField');
+    if (chatInput.value.length < 0) return;
+
+    const userName = window.sessionStorage.getItem('name');
+
+    const messageDate = new Date();
+
+    const message = { sender: userName, text: chatInput.value, timestamp: messageDate };
+
+    console.log(message);
+
+    socket.emit('chat-message', message);
+    console.log('message sent');
+
+    chatInput.value = '';
+}
+
+socket.on('chat-message', (data) => {
+    const chatBox = document.getElementById('chatBox');
+    chatBox.appendChild(buildChatMessage(data.sender, data.text, data.timestamp['$date'])); // $date is mongodb date
+    chatBox.scrollTop = chatBox.scrollHeight;
+});

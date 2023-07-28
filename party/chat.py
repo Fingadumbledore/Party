@@ -9,21 +9,22 @@ class Chat:
     @classmethod
     def init(self):
         self.CONNECTION_STRING = "mongodb://localhost:27017/"
-        self.client = MongoClient(self.CONNECTION_STRING)['partyyy']
-        self.collection = self.client['messages']
+        self.client = MongoClient(self.CONNECTION_STRING)
+        self.collection = self.client['partyyy']['messages']
         self.initialized = True
 
 
     @classmethod
     def getAllMessages(self)-> list[dict]:
         messages = self.collection.find().sort('timestamp', -1)
-        print(messages)
         return list(messages)
     
     @classmethod
     def insertMessage(self, content: str, author: str, timestamp: str):
-        self.collection.insert_one(self.convertToMessage(content, author, timestamp))
-
+        message = self.convertToMessage(content, author, timestamp)
+        print(message)
+        self.collection.insert_one(message)
+        print('inserted message')
 
     @classmethod
     def getNextNMessages(self, count: int, skip: int) -> list[dict]:
@@ -36,9 +37,8 @@ class Chat:
     def convertToMessage(self, content: str, author: str, timestamp: str) -> dict:
         message = {
             'content': content,
-            'author': author,
+            'sender': author,
             'timestamp': timestamp,
         }
-        print(message)
 
         return message

@@ -65,14 +65,15 @@ def api_mate_status():
 
 @app.route('/api/chat/', methods=['GET'])
 def api_chat():
-    messages = Chat.getNextNMessages(100, 0) # 0 offset print(messages)
+    messages = Chat.getNextNMessages(100, 0) # 0 offset
     response = jsonify(success=True, messages=json_util.dumps(messages)) 
     response.status_code = 200 
     return response
 
 @socketio.on('chat-message')
 def handle_chat_message(data):
-    Chat.insertMessage(data['content'], data['author'], data['timestamp'])
+    print(data)
+    Chat.insertMessage(data['text'], data['sender'], data['timestamp'])
 
 @socketio.on('chat-get-messages')
 def handle_chat_get_message(data):
@@ -84,14 +85,11 @@ def handle_chat_get_message(data):
 @socketio.on('mate-status')
 def handle_mate_status():
     status = MateKiste.getStatus()
-    print(status)
     return { 'data':  status }
 
 @socketio.on('mate-nehmen')
 def handle_mate_nehmen(data):
-    print(data)
     MateKiste.removeAt(data['row'], data['column'])
-    # broadcast
     emit('mate-genommen', data, broadcast=True)
 
 @socketio.on('mate-reset')
@@ -102,12 +100,10 @@ def handle_mate_reset():
 
 @socketio.on('connect')
 def handle_connect():
-    print('Client connected')
     join_room(0)
 
 @socketio.on('disconnect')
 def handle_disconnect():
-    print('Client disconnected')
     leave_room(0)
 
 @app.route('/api/music', methods=['GET'])
