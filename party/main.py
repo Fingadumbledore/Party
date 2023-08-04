@@ -14,6 +14,8 @@ socketio = SocketIO(app)
 
 clients = []
 
+STANDARD_ROOM = 0
+
 @app.route('/', methods=['GET'])
 def index():
     response = jsonify(success=True)
@@ -100,11 +102,11 @@ def handle_mate_reset():
 
 @socketio.on('connect')
 def handle_connect():
-    join_room(0)
+    join_room(STANDARD_ROOM)
 
 @socketio.on('disconnect')
 def handle_disconnect():
-    leave_room(0)
+    leave_room(STANDARD_ROOM)
 
 @app.route('/api/music', methods=['GET'])
 def api_music():
