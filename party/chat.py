@@ -1,4 +1,5 @@
-from pymongo import MongoClient
+from pymongo import MongoClient, DESCENDING, ASCENDING 
+from datetime import datetime
 
 class Chat:
     CONNECTION_STRING = None
@@ -16,29 +17,42 @@ class Chat:
 
     @classmethod
     def getAllMessages(self)-> list[dict]:
-        messages = self.collection.find().sort('timestamp', -1)
+        messages = self.collection.find().sort('timestamp', DESCENDING)
         return list(messages)
     
     @classmethod
     def insertMessage(self, content: str, author: str, timestamp: str):
+        if not (self.initialized): self.init()
         message = self.convertToMessage(content, author, timestamp)
         print(message)
+        print(self.collection)
         self.collection.insert_one(message)
         print('inserted message')
 
     @classmethod
     def getNextNMessages(self, count: int, skip: int) -> list[dict]:
-        return list(self.collection.find()
+        messages = list(self.collection.find()
                     .skip(skip)
                     .limit(count)
-                    .sort('timestamp', -1))
+                    .sort('timestamp', DESCENDING))
+
+        return messages
+
+    @classmethod
+    def sortMessages(self, messages: list[dict], order: str) -> list[dict]:
+        if order == 'asc':
+            return sorted(messages, key=lambda message: message['timestamp'])
+        elif order == 'desc':
+            return sorted(messages, key=lambda message: message['timestamp'], reverse=True)
+        else:
+            return messages
 
     @classmethod
     def convertToMessage(self, content: str, author: str, timestamp: str) -> dict:
         message = {
-            'content': content,
+            'text': content,
             'sender': author,
-            'timestamp': timestamp,
+            'timestamp': str(datetime.strptime(timestamp, '%Y-%m-%d %H:%M:%S'))
         }
 
         return message

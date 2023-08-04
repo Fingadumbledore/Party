@@ -67,7 +67,7 @@ def api_mate_status():
 
 @app.route('/api/chat/', methods=['GET'])
 def api_chat():
-    messages = Chat.getNextNMessages(100, 0) # 0 offset
+    messages = Chat.getNextNMessages(160, 0) # 0 offset
     response = jsonify(success=True, messages=json_util.dumps(messages)) 
     response.status_code = 200 
     return response
@@ -76,6 +76,7 @@ def api_chat():
 def handle_chat_message(data):
     print(data)
     Chat.insertMessage(data['text'], data['sender'], data['timestamp'])
+    emit('chat-message', data, broadcast=True)
 
 @socketio.on('chat-get-messages')
 def handle_chat_get_message(data):

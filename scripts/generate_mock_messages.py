@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta
 from faker import Faker
 import pymongo
 
@@ -10,14 +11,19 @@ def get_connection():
 
 connection = get_connection()
 
-def generate_message():
+fmt = '%Y-%m-%d %H:%M:%S'
+now = datetime.now()
+
+def generate_message(i: int):
+    date = now - timedelta(days=i)
+    date = date.strftime(fmt)
     message = {
         'sender': fake.name(),
-        'text': fake.sentence() * 2,
-        'timestamp': fake.date_time_this_year()
+        'text': fake.sentence() + ' ' + fake.sentence(),
+        'timestamp': date
     }
     connection.insert_one(message)
 
-MESSAGE_COUNT = 1000
+MESSAGE_COUNT = 150
 for i in range(MESSAGE_COUNT):
-    generate_message()
+    generate_message(i)

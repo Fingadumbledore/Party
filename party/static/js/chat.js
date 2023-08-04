@@ -7,7 +7,7 @@ function getNChatMessages(socket, count, skip) {
 
                 for (let message of data) {
                     console.log(message)
-                    message_array.push(buildChatMessage(message.sender, message.text, message.timestamp['$date']));
+                    message_array.push(buildChatMessage(message.sender, message.text, message.timestamp));
                 }
 
                 const chatBox = document.getElementById('chatBox');
@@ -56,11 +56,17 @@ function sendMessage() {
     const chatInput = document.getElementById('chatInputField');
     if (chatInput.value.length < 0) return;
 
-    const userName = window.sessionStorage.getItem('name');
+    let userName = window.sessionStorage.getItem('name');
+    if (!userName) {
+        userName = 'Peter';
+    }
 
-    const messageDate = new Date();
+    const dt = new Date();
+    const padL = (nr, len = 2, chr = `0`) => `${nr}`.padStart(2, chr);
 
-    const message = { sender: userName, text: chatInput.value, timestamp: messageDate };
+    const dateStr = `${ dt.getFullYear()}-${ padL(dt.getMonth()+1)}-${ padL(dt.getDate())} ${ padL(dt.getHours())}:${ padL(dt.getMinutes())}:${ padL(dt.getSeconds())}`; // magic date formatter
+
+    const message = { sender: userName, text: chatInput.value, timestamp: dateStr };
 
     console.log(message);
 
@@ -72,6 +78,10 @@ function sendMessage() {
 
 socket.on('chat-message', (data) => {
     const chatBox = document.getElementById('chatBox');
-    chatBox.appendChild(buildChatMessage(data.sender, data.text, data.timestamp['$date'])); // $date is mongodb date
+    console.log(data);
+    // check if sender is given
+    let message = buildChatMessage(data.sender, data.text, data.timestamp); // $date is mongodb date
+    console.log(data.timestamp);
+    chatBox.appendChild(message);
     chatBox.scrollTop = chatBox.scrollHeight;
 });
