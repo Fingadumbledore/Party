@@ -1,4 +1,4 @@
-from pymongo import MongoClient, DESCENDING, ASCENDING 
+from pymongo import MongoClient
 from datetime import datetime
 
 class Chat:
@@ -17,7 +17,7 @@ class Chat:
 
     @classmethod
     def getAllMessages(self)-> list[dict]:
-        messages = self.collection.find().sort('timestamp', DESCENDING)
+        messages = self.collection.find().sort('timestamp', 1)
         return list(messages)
     
     @classmethod
@@ -34,18 +34,10 @@ class Chat:
         messages = list(self.collection.find()
                     .skip(skip)
                     .limit(count)
-                    .sort('timestamp', DESCENDING))
+                    .sort('timestamp', 1))
+        print(messages)
 
         return messages
-
-    @classmethod
-    def sortMessages(self, messages: list[dict], order: str) -> list[dict]:
-        if order == 'asc':
-            return sorted(messages, key=lambda message: message['timestamp'])
-        elif order == 'desc':
-            return sorted(messages, key=lambda message: message['timestamp'], reverse=True)
-        else:
-            return messages
 
     @classmethod
     def convertToMessage(self, content: str, author: str, timestamp: str) -> dict:

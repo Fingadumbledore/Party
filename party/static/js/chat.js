@@ -1,5 +1,5 @@
 function getNChatMessages(socket, count, skip) {
-            socket.emit('chat-get-messages', { count: 100, skip: 0 }, (data) => {
+            socket.emit('chat-get-messages', { count: 170, skip: 0 }, (data) => {
                 sessionStorage['alreadyLoadedMessages'] += 100;
                 let message_array = [];
                 // dont fucking touch this
