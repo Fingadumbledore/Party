@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template, session, redirect
+from flask import Flask, jsonify, render_template, session, redirect, request
 from flask_socketio import SocketIO, send, emit, join_room, leave_room
 from http import HTTPStatus
 from mate import generate_kiste, MateKiste
@@ -16,6 +16,7 @@ socketio = SocketIO(app)
 clients = []
 
 STANDARD_ROOM = 0
+
 
 @app.route('/', methods=['GET'])
 def index():
@@ -89,9 +90,9 @@ def handle_chat_get_message(data):
 @app.route('/api/planer', methods=['GET'])
 def api_planer():
     events = Planer.getNextEvents(10, 0)
-    resp = jsonify(succ=True, events=json_util.dumps(events))
-    resp.status_code = 200
-    return resp
+    response = jsonify(success=True, events=json_util.dumps(events))
+    response.status_code = 200
+    return response
 
 @socketio.on('planer-event')
 def handle_chat_event(data):
@@ -148,6 +149,15 @@ def api_music_queue():
 
 @app.route('/api/music/add_song', methods=['POST'])
 def api_music_add_song():
+    response = jsonify(success=True)
+    response.status_code = 200
+    return response
+
+@app.route('/api/event/new', methods=['POST'])
+def api_event_new():
+    name = request.form['Event']
+    time = request.form['meeting-time']
+    print(name, time)
     response = jsonify(success=True)
     response.status_code = 200
     return response

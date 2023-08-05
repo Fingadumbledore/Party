@@ -68,7 +68,8 @@
             </tbody>
         </table>
 
-	<form action="/api/get_events">
+    <iframe name='hiddenIFrame' id='hiddenIFrame' style='display:none;'></iframe>
+	<form action="/api/event/new" target='hiddenIFrame' method='post'>
 		<input class="event_input" typ="text" name="Event" placeholder="Essen" maxlength="20" minlength="1" required>
 		<input class="event_time" type="datetime-local" id="meeting-time"
 	       name="meeting-time" value="2023-12-31T12:00"
