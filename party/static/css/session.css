@@ -457,3 +457,34 @@ margin-right: auto;
   font-size: 10px;
   color: #888;
 }
+
+
+/* CSS für die Bearbeitungsbuttons beim planer */
+.button-wrapper {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    display: inline-block; 
+    position: relative; 
+    width: 20px; 
+    height: 20px; 
+  }
+  
+  .button-wrapper img {
+    width: 100%;
+    height: 100%;
+    background-color: transparent; 
+    vertical-align: middle; 
+  }
+  
+  .button-wrapper:first-child {
+    margin-right: 5%; 
+  }
+  
+  .button-wrapper:last-child {
+    margin-left: 5%;
+  }
+  
+  

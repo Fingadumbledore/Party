@@ -3,6 +3,7 @@ from flask_socketio import SocketIO, send, emit, join_room, leave_room
 from http import HTTPStatus
 from mate import generate_kiste, MateKiste
 from chat import Chat
+from planer import Planer
 import bson.json_util as json_util
 
 
@@ -84,6 +85,24 @@ def handle_chat_get_message(data):
     # dont fucking touch this
     data = { 'messages': json_util.dumps(messages) }
     return { 'data': data }
+
+@app.route('/api/planer', methods=['GET'])
+def api_planer():
+    events = Planer.getNextEvents(10, 0)
+    resp = jsonify(succ=True, events=json_util.dumps(events))
+    resp.status_code = 200
+    return resp
+
+@socketio.on('planer-event')
+def handle_chat_event(data):
+    Planer.insertNewEvent(data['name'], data['zeit'])
+    emit('planer-event', data, broadcast=True)
+
+@socketio.on('planer-get-events')
+def handle_planer_get_events(data):
+    events = Planer.getNextEvents(data['count'], data['skip'])
+    data = { 'evemts': json_util.dumps(events)}
+    return { 'data': data}
 
 @socketio.on('mate-status')
 def handle_mate_status():
