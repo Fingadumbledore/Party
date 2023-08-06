@@ -71,17 +71,6 @@ function handleSwitchDiv(index) {
     }
 }
 
-function sendData(endpoint) {
-    fetch(endpoint, {
-      method: 'POST',
-      body: JSON.stringify(true)
-    })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Fehler beim Senden der Daten.');
-        }
-      })
-      .catch(error => {
-        alert(error.message);
-      });
-  }
+function skipSong() {}
+function lastSong() {}
+function pausePlaySong() {}
