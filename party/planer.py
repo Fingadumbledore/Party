@@ -11,7 +11,7 @@ class Planer:
     def init(self):
         self.CONNECTION_STRING = "mongodb://localhost:27017/"
         self.client = MongoClient(self.CONNECTION_STRING)
-        self.collection = self.client['partyyy']['planer']
+        self.collection = self.client['partyyy']['events']
         self.initialized = True
 
     @classmethod
