@@ -26,14 +26,13 @@
     
     <p class="eventinfo">Nächstes Event: </p>
     
-    <p id="peter" class="peter" onclick="togglePopup()">Peter</p> <!-- Hinzugefügtes "onclick"-Attribut -->
+    <p id="peter" class="peter" onclick="togglePopup()">Peter</p> 
     
     <p class="songinfo">Song: </p> 
     <div class="topnext" onclick="skipSong()"></div>
     <div class="topback" onclick="lastSong()"></div>
     <div class="toppause" onclick="pausePlaySong()"></div>
      
-    <!-- ... (Dein vorhandener HTML-Code) ... -->
 
      <div class="button-container">
         <div class="seitenbutton" onclick="toggleDiv(1)"></div>
@@ -84,7 +83,67 @@
      <!-- Games -->
     <div class="hidden-div">
         <h1>Games</h1>
-        <p>Spiele</p>
+
+        <button onclick="">Punkte</button>
+        <button onclick="">Zeit</button>
+        <button onclick="">Team</button>
+
+        <div id="Team" hidden >
+            <p>Du bist in Team</p>
+            <table id="team_member">
+                <tbody>
+                    <tr>
+                        <td>Team</td>
+                        <td>Game</td>
+                        <td>Points</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>f</td>
+                        <td>f</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+      
+        <div id=" punkt" hidden>
+            <table id="point_game">
+                <tbody>
+                    <tr>
+                        <td>User</td>
+                        <td>Game</td>
+                        <td>Points</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>f</td>
+                        <td>f</td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="submit_button" type="submit">Add</button>
+        </div>
+       
+        <div id=" zeit" >
+            <center>
+            <table id="time_game">
+                <tbody>
+                    <tr>
+                        <td>User</td>
+                        <td>Game</td>
+                        <td>Time</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>f</td>
+                        <td>f</td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="submit_button" type="submit">Add</button>
+        </center>
+        </div>
+
     </div>
 
      <!-- Chat -->
@@ -95,7 +154,7 @@
             </div>
             <div id="chatInput">
                 <input id="chatInputField" type="text" placeholder="Nachricht">
-                <button id="chatInputButton" onclick="sendMessage()">Senden</button>
+                <button class="submit_button" id="chatInputButton" onclick="sendMessage()">Senden</button>
             </div>
         </div>
     </div>
