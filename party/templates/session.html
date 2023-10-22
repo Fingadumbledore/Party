@@ -24,6 +24,8 @@
     <p class="raminfo"> %</p>
     <p class="tempinfo"> C°</p>
     
+    <p class="uhrzeit"></p>
+
     <p class="eventinfo">Nächstes Event: </p>
     
     <p id="peter" class="peter" onclick="togglePopup()">Peter</p> 
@@ -84,11 +86,11 @@
     <div class="hidden-div">
         <h1>Games</h1>
 
-        <button onclick="">Punkte</button>
-        <button onclick="">Zeit</button>
-        <button onclick="">Team</button>
+        <button id="punkte_button" onclick="showDiv('team')">Punkte</button>
+        <button id="zeit_button"   onclick="showDiv('zeit')">Zeit</button>
+        <button id="team_button" onclick="showDiv('punkte')">Team</button>
 
-        <div id="Team" hidden >
+        <div id="team" class="hidden1" >
             <p>Du bist in Team</p>
             <table id="team_member">
                 <tbody>
@@ -106,7 +108,7 @@
             </table>
         </div>
       
-        <div id=" punkt" hidden>
+        <div id="punkt" class="hidden1">
             <table id="point_game">
                 <tbody>
                     <tr>
@@ -124,7 +126,7 @@
             <button class="submit_button" type="submit">Add</button>
         </div>
        
-        <div id=" zeit" >
+        <div id="zeit" class="hidden1" >
             <center>
             <table id="time_game">
                 <tbody>
@@ -162,7 +164,9 @@
      <!-- Musik -->
     <div class="hidden-div">
         <h1>Musik</h1>
-        <p>Musik lol</p>
+        <button id="back"></button>
+        <button id="play"></button>
+        <button id="next"></button>
     </div>
 
      <!-- Mate -->
@@ -171,14 +175,31 @@
             <h1>Mate</h1>
             <table id="mate_kiste">
             </table>
-            <button class="reset-kiste" onclick="resetKiste()">Reset</button>
+            <button id="mate_reset" class="reset-kiste" onclick="resetKiste()">Reset</button>
+            <button id="mate_hinzu">Kasten Hinzufügen</button>
         </div>
     </div>
 
      <!-- Einstellungen -->
     <div class="hidden-div">
         <h1>Einstellungen</h1>
-        <p>Einstellen</p>
+        <label for="position_select">Menü Position: </label>
+        <select id="position_select">
+            <option value="left">Links</option>
+            <option value="right">Rechts</option>
+            <option value="down">Unten</option>
+            <option value="top">Oben</option>
+        </select>
+    </br>
+        <label for="color_select">LED Streifen: </label>
+        <input id="color_select" type="color"></input>
+        <p>Uptime: </p>
+        <p>Administrator: </p>
+        <p>Anzahl User: </p>
+        <p>Uptime: </p>
+        <button id="save_settings">Speichern</button>
+        <button id="abort_settings">abbrechen</button>
+        <button id="reset_settings">reset</button>
     </div>
 
     <!-- ... (Dein vorhandener HTML-Code) ... -->

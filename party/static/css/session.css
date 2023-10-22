@@ -52,6 +52,14 @@ p {
 }
 
 
+.uhrzeit {
+    position: fixed;
+    top: 0;     
+    left: 15%;
+    color: rgb(220, 220, 210);
+    font-size: 100%;
+}
+
 /*Systeminformationen im Balken*/
  .cpuinfo {
     position: fixed;
@@ -486,5 +494,203 @@ margin-right: auto;
   .button-wrapper:last-child {
     margin-left: 5%;
   }
+
+
+  .hidden1 {
+    display: none;
+}
   
+
+#punkte_button{
+    background-color: #454443;
+    position: fixed;
+    width: 10%; 
+    height: 5%;
+    border-radius: 10px;
+    cursor: pointer;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 60%;
+    border: none;
+    padding: 10px;
+    color: white;
+    font-size: 16px;
+    bottom: 10%;
+    top: 15%;
+    right: 58%;
+}
+#zeit_button{
+    background-color: #454443;
+    position: fixed;
+    width: 10%; 
+    height: 5%;
+    border-radius: 10px;
+    cursor: pointer;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 60%;
+    border: none;
+    padding: 10px;
+    color: white;
+    font-size: 16px;
+    bottom: 10%;
+    top: 15%;
+    right: 45%;
+}
+#team_button{
+    background-color: #454443;
+    position: fixed;
+    width: 10%; 
+    height: 5%;
+    border-radius: 10px;
+    cursor: pointer;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 60%;
+    border: none;
+    padding: 10px;
+    color: white;
+    font-size: 16px;
+    bottom: 10%;
+    top: 15%;
+    right: 33%;
+}
+
+#next {
+    position: fixed;
+    top: 15%;
+    left: 55%;
+    width: 70px;
+    height: 30px;
+    padding: 30px;
+    background-color: #454443;
+    border-radius: 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 40%;
+    background-image: url('/static/icons/next.png');
+}
+  #back {
+    position: fixed;
+    top: 15%;
+    left: 35%;
+    width: 70px;
+    height: 30px;
+    padding: 30px;
+    background-color: #454443;
+    border-radius: 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 30%;
+    background-image: url('/static/icons/back.png');
+}
+  #play{
+    position: fixed;
+    top: 15%;
+    left: 45%;
+    width: 70px;
+    height: 30px;
+    padding: 30px;
+    background-color: #454443;
+    border-radius: 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 60%;
+    background-image: url('/static/icons/play.png');
+}
+
+#mate_reset{
+    background-color: #454443;
+    position: fixed;
+    width: 10%; 
+    height: 5%;
+    border-radius: 10px;
+    cursor: pointer;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 60%;
+    border: none;
+    padding: 10px;
+    color: white;
+    font-size: 16px;
+    bottom: 10%;
+    top: 15%;
+    right: 45%;
   
+}
+
+#mate_hinzu{
+    background-color: #454443;
+    position: fixed;
+    width: 20%; 
+    height: 5%;
+    border-radius: 10px;
+    cursor: pointer;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 60%;
+    border: none;
+    padding: 10px;
+    color: white;
+    font-size: 16px;
+    bottom: 10%;
+    top: 25%;
+    right: 41%;
+  
+}
+
+#save_settings{
+    position: fixed;
+    width: 10%; 
+    height: 5%;
+    background-color: #0f9225;
+    border-radius: 10px;
+    cursor: pointer;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 60%;
+    border: none;
+    padding: 10px;
+    color: white;
+    font-size: 16px;
+    bottom: 10%;
+    top: 90%;
+    right: 32%;
+}
+
+#abort_settings{
+    position: fixed;
+    width: 10%; 
+    height: 5%;
+    background-color: #af0a0a;
+    border-radius: 10px;
+    cursor: pointer;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 60%;
+    border: none;
+    padding: 10px;
+    color: white;
+    font-size: 16px;
+    bottom: 10%;
+    top: 90%;
+    right: 43%;
+}
+#reset_settings{
+    position: fixed;
+    width: 10%; 
+    height: 5%;
+    background-color: #454443;
+    border-radius: 10px;
+    cursor: pointer;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 60%;
+    border: none;
+    padding: 10px;
+    color: white;
+    font-size: 16px;
+    bottom: 10%;
+    top: 90%;
+    right: 54%;
+}
