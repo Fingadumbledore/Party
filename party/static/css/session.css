@@ -22,6 +22,34 @@ header ul {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    height: 100%;
+}
+
+#tempstat::before {
+    content: "";
+    background: url('/static/icons/temperatur.png') no-repeat 0 0;
+    background-size: auto 100%;
+    width: 30px;
+    height: 70%;
+    display: inline-block;
+}
+
+#ramstat::before {
+    content: "";
+    background: url('/static/icons/ram.png') no-repeat 0 0;
+    background-size: auto 100%;
+    width: 30px;
+    height: 70%;
+    display: inline-block;
+}
+
+#cpustat::before {
+    content: "";
+    background: url('/static/icons/cpu.png') no-repeat 0 0;
+    background-size: auto 100%;
+    width: 30px;
+    height: 70%;
+    display: inline-block;
 }
 
 main {
