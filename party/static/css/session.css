@@ -199,34 +199,6 @@ p {
 }
 
 /* Icons für die Buttons */
-.seitenbutton:nth-child(1) {
-    background-image: url('/static/icons/haus.png');
-}
-
-.seitenbutton:nth-child(2) {
-    background-image: url('/static/icons/calender.png');
-}
-
-.seitenbutton:nth-child(3) {
-    background-image: url('/static/icons/controller.png');
-}
-
-.seitenbutton:nth-child(4) {
-    background-image: url('/static/icons/chat.png');
-}
-
-.seitenbutton:nth-child(5) {
-    background-image: url('/static/icons/music.png');
-}
-
-.seitenbutton:nth-child(6) {
-    background-image: url('/static/icons/bottle.png');
-}
-
-.seitenbutton:nth-child(7) {
-    background-image: url('/static/icons/settings.png');
-}
-
 /* Neuer Stil für den ausfahrbaren Kasten */
 .popup {
 position: fixed;
@@ -698,3 +670,77 @@ margin-right: auto;
 select{
     background-color:#454443; ;
 }
+
+.nav_button + label {
+    cursor: pointer;
+    background-color: #333;
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+    border: white 1px solid;
+}
+
+.nav_button {
+    display: none;
+}
+
+#home_button:checked ~ #home {
+    display: block;
+}
+
+#planer_button:checked ~ #planer {
+    display: block;
+}
+
+#games_button:checked ~ #games {
+    display: block;
+}
+
+#chat_button:checked ~ #chat {
+    display: block;
+}
+
+#music_button:checked ~ #music {
+    display: block;
+}
+
+#mate_button:checked ~ #mate {
+    display: block;
+}
+
+#settings_button:checked ~ #settings {
+    display: block;
+}
+
+section {
+    display: none;
+}
+
+#home_button + label {
+    content: url('/static/icons/haus.png');
+}
+
+#planer_button + label {
+    content: url('/static/icons/calender.png');
+}
+
+#games_button + label {
+    content: url('/static/icons/controller.png');
+}
+
+#chat_button + label {
+    content: url('/static/icons/chat.png');
+}
+
+#music_button + label {
+    content: url('/static/icons/music.png');
+}
+
+#mate_button + label {
+    content: url('/static/icons/bottle.png');
+}
+
+#settings_button + label {
+    content: url('/static/icons/settings.png');
+}
+

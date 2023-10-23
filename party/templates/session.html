@@ -36,26 +36,31 @@
     <div class="toppause" onclick="pausePlaySong()"></div>
      
 
-     <div class="button-container">
-        <div class="seitenbutton" onclick="toggleDiv(1)"></div>
-        <div class="seitenbutton" onclick="toggleDiv(2)"></div>
-        <div class="seitenbutton" onclick="toggleDiv(3)"></div>
-        <div class="seitenbutton" onclick="toggleDiv(4)"></div>
-        <div class="seitenbutton" onclick="toggleDiv(5)"></div>
-        <div class="seitenbutton" onclick="toggleDiv(6)"></div>
-        <div class="seitenbutton" onclick="toggleDiv(7)"></div>
-    </div>
+    <input class="nav_button" type="radio" name="navigation" id="home_button" checked></input>
+    <label for="home_button"></label><br/>
+    <input class="nav_button" type="radio" name="navigation" id="planer_button" ></input>
+    <label for="planer_button"></label><br/>
+    <input class="nav_button" type="radio" name="navigation" id="games_button" ></input>
+    <label for="games_button"></label><br/>
+    <input class="nav_button" type="radio" name="navigation" id="chat_button" ></input>
+    <label for="chat_button"></label><br/>
+    <input class="nav_button" type="radio" name="navigation" id="music_button" ></input>
+    <label for="music_button"></label><br/>
+    <input class="nav_button" type="radio" name="navigation" id="mate_button" ></input>
+    <label for="mate_button"></label><br/>
+    <input class="nav_button" type="radio" name="navigation" id="settings_button" ></input>
+    <label for="settings_button"></label><br/>
     
     <!-- Div-Inhalte -->
      <!-- Home -->
-    <div class="hidden-div">
+    <section id="home">
         <h1>Home</h1>
         <p>
             Willkommen zur diesjährigen 24-stündigen LAN-Party! Wir haben ein spannendes Line-up mit Spiel 1, Spiel 2 und Spiel 3 vorbereitet. Lasst uns gemeinsam unvergessliche Gaming-Momente schaffen! Möge die Party beginnen, und möge die Beste Person gewinnen!</p>
-    </div>
+    </section>
     
      <!-- Planer -->
-    <div class="hidden-div">
+    <section id="planer">
         <h1>Planer</h1>
         <table id="events">
             <tbody>
@@ -81,10 +86,10 @@
 	       min="2023-12-31T00:00" max="2024-01-01T18:00" required>
           <button class="submit_button" type="submit">Hinzufügen</button>
 	</form>
-    </div>
+    </section>
 
      <!-- Games -->
-    <div class="hidden-div">
+    <section id="games">
         <h1>Games</h1>
 
         <button id="punkte_button" onclick="showDiv('team')">Punkte</button>
@@ -147,10 +152,10 @@
         </center>
         </div>
 
-    </div>
+    </section>
 
      <!-- Chat -->
-    <div class="hidden-div">
+    <section id="chat">
         <div id="chat-container">
             <h1>Chat</h1>
             <div id="chatBox">
@@ -160,18 +165,18 @@
                 <button class="submit_button" id="chatInputButton" onclick="sendMessage()">Senden</button>
             </div>
         </div>
-    </div>
+    </section>
 
      <!-- Musik -->
-    <div class="hidden-div">
+    <section id="music">
         <h1>Musik</h1>
         <button id="back"></button>
         <button id="play"></button>
         <button id="next"></button>
-    </div>
+    </section>
 
      <!-- Mate -->
-    <div class="hidden-div">
+    <section id="mate">
         <div id="mate-container">
             <h1>Mate</h1>
             <table id="mate_kiste">
@@ -179,10 +184,10 @@
             <button id="mate_reset" class="reset-kiste" onclick="resetKiste()">Reset</button>
             <button id="mate_hinzu">Kasten Hinzufügen</button>
         </div>
-    </div>
+    </section>
 
      <!-- Einstellungen -->
-    <div class="hidden-div">
+    <section id="settings">
         <h1>Einstellungen</h1>
         <label for="position_select">Menü Position: </label>
         <select id="position_select">
@@ -201,7 +206,7 @@
         <button id="save_settings">Speichern</button>
         <button id="abort_settings">abbrechen</button>
         <button id="reset_settings">reset</button>
-    </div>
+    </section>
 
     <!-- ... (Dein vorhandener HTML-Code) ... -->
      <!-- Hinzugefügter HTML-Code für den ausfahrbaren Kasten -->
