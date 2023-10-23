@@ -6,13 +6,26 @@ body {
 }
 
 /* Oberer Balken, der Infos anzeigt*/
-.top-bar {
+header {
     background-color: #333;
     height: 5%;
     width: 100%;
     position: fixed;
-    top: 0;
-    left: 0;
+}
+
+header ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+main {
+    top: 5%;
 }
 
 .content {
@@ -61,31 +74,25 @@ p {
 }
 
 /*Systeminformationen im Balken*/
- .cpuinfo {
+.stat {
     position: fixed;
     top: 0;
+    color: rgb(220, 220, 210);
+    font-size: 100%;
+    cursor: pointer; /* Hinzugefügter CSS-Stil für den Klick */
+
+}
+#cpu {
     right: 7%;
-    color: rgb(220, 220, 210);
-    font-size: 100%;
-    cursor: pointer; /* Hinzugefügter CSS-Stil für den Klick */
 }
-.raminfo {
-    position: fixed;
-    top: 0;
+#ram {
     right: 17%;
-    color: rgb(220, 220, 210);
-    font-size: 100%;
-    cursor: pointer; /* Hinzugefügter CSS-Stil für den Klick */
 }
-.tempinfo {
-    position: fixed;
-    top: 0;
+#temp {
     right: 27%;
-    color: rgb(220, 220, 210);
-    font-size: 100%;
-    cursor: pointer; /* Hinzugefügter CSS-Stil für den Klick */
 }
-   .musik {
+
+.musik {
     position: fixed;
     top: 0;
     right: 4%;
@@ -128,12 +135,9 @@ p {
 }
 
 /*Musik steuerung im Balken*/
- .topnext {
-    position: fixed;
-    top: 1%;
-    left: 40%;
+ #skip_song_button {
     width: 70px;
-    height: 30px;
+    height: 100%;
     background-color: #454443;
     border-radius: 10px;
     background-position: center;
@@ -141,32 +145,24 @@ p {
     background-size: 40%;
     background-image: url('/static/icons/next.png');
 }
-  .topback {
-    position: fixed;
-    top: 1%;
-    left: 30%;
+
+.song_button {
     width: 70px;
-    height: 30px;
+    height: 100%;
     background-color: #454443;
     border-radius: 10px;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 30%;
+    background-size: 40%;
+}
+#previous_song_button {
     background-image: url('/static/icons/back.png');
 }
-  .toppause {
-    position: fixed;
-    top: 1%;
-    left: 35%;
-    width: 70px;
-    height: 30px;
-    background-color: #454443;
-    border-radius: 10px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 60%;
+
+#toggle_play_button {
     background-image: url('/static/icons/play.png');
 }
+
 .songinfo {
     position: fixed;
     top: 0;
@@ -363,9 +359,10 @@ cursor: pointer;
 }
 
 #events {
-width: 80%; /* Ändere die Breite entsprechend deinen Anforderungen */
-margin-left: auto;
-margin-right: auto;
+    width: 80%;
+    height: 50%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #mate_container {
@@ -667,7 +664,7 @@ margin-right: auto;
     right: 54%;
 }
 
-select{
+select {
     background-color:#454443; ;
 }
 
@@ -680,40 +677,25 @@ select{
     border: white 1px solid;
 }
 
-.nav_button {
+input[type=radio] {
     display: none;
 }
 
-#home_button:checked ~ #home {
-    display: block;
-}
-
-#planer_button:checked ~ #planer {
-    display: block;
-}
-
-#games_button:checked ~ #games {
-    display: block;
-}
-
-#chat_button:checked ~ #chat {
-    display: block;
-}
-
-#music_button:checked ~ #music {
-    display: block;
-}
-
-#mate_button:checked ~ #mate {
-    display: block;
-}
-
+#home_button:checked ~ #home,
+#planer_button:checked ~ #planer,
+#games_button:checked ~ #games,
+#chat_button:checked ~ #chat,
+#music_button:checked ~ #music,
+#mate_button:checked ~ #mate,
 #settings_button:checked ~ #settings {
     display: block;
 }
 
 section {
     display: none;
+    position: fixed;
+    top: 10%;
+    left: 10%;
 }
 
 #home_button + label {
@@ -743,4 +725,3 @@ section {
 #settings_button + label {
     content: url('/static/icons/settings.png');
 }
-

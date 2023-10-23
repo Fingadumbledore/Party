@@ -6,36 +6,46 @@
     <link rel="stylesheet" href="/static/css/session.css">
 </head>
 <body>
+    <header>
+        <ul>
+            <li>
+                <img class="logo" src="/static/icons/icon.png" alt="Logo">
+            </li>
+            <li>
+                <p>Nächstes Event: </p>
+            </li>
+            <li>
+                <p>Song: </p> 
+            </li>
+            <li>
+                <button class="song_button" id="previous_song_button" onclick="previous_song()"></button>
+            </li>
+            <li>
+                <button class="song_button" id="toggle_play_button" onclick="toggle_play()"></button>
+            </li>
+            <li>
+                <button class="song_button" id="skip_song_button" onclick="skip_song()"></button>
+            </li>
+            <li>
+                <span id="tempstat"> </span>
+            </li>
+            <li>
+                <span id="ramstat"></span>
+            </li>
+            <li>
+                <span id="cpustat"> </span>
+            </li>
+            <li>
+                <span class="uhrzeit"></span>
+            </li>
+            <li>
+                <span id="username" onclick="togglePopup()">Peter</span>
+            </li>
+        </ul>
+        
+    </header>
+    <main>
     {% block content %}   
- <div class="top-bar"></div>
-    
-    <div class="content">
-        <h1>Huhu</h1>
-    </div>
-    
-    <img class="userlogo" src="/static/icons/user.png" alt="Logo">
-    <img class="logo" src="/static/icons/icon.png" alt="Logo">
-    
-    <!--System Informationen -->
-    <img class="cpulogo" src="/static/icons/cpu.png" alt="Logo">
-    <img class="ramlogo" src="/static/icons/ram.png" alt="Logo">
-    <img class="temperaturlogo" src="/static/icons/temperatur.png" alt="Logo">
-    <p class="cpuinfo"> %</p>
-    <p class="raminfo"> %</p>
-    <p class="tempinfo"> C°</p>
-    
-    <p class="uhrzeit"></p>
-
-    <p class="eventinfo">Nächstes Event: </p>
-    
-    <p id="peter" class="peter" onclick="togglePopup()">Peter</p> 
-    
-    <p class="songinfo">Song: </p> 
-    <div class="topnext" onclick="skipSong()"></div>
-    <div class="topback" onclick="lastSong()"></div>
-    <div class="toppause" onclick="pausePlaySong()"></div>
-     
-
     <input class="nav_button" type="radio" name="navigation" id="home_button" checked></input>
     <label for="home_button"></label><br/>
     <input class="nav_button" type="radio" name="navigation" id="planer_button" ></input>
@@ -92,9 +102,12 @@
     <section id="games">
         <h1>Games</h1>
 
-        <button id="punkte_button" onclick="showDiv('team')">Punkte</button>
-        <button id="zeit_button"   onclick="showDiv('zeit')">Zeit</button>
-        <button id="team_button" onclick="showDiv('punkte')">Team</button>
+        <input type="radio" name="game_info_select" id="punkte_button">
+        <label for="punkte_button">Punkte</label>
+        <input type="radio" name="game_info_select" id="zeit_button">
+        <label for="zeit_button">Zeit</label>
+        <input type="radio" name="game_info_select" id="team_button">
+        <label for="team_button">Team</label>
 
         <div id="team" class="hidden1" >
             <p>Du bist in Team</p>
@@ -216,6 +229,7 @@
             <p>Hier könntest du logout machen</p>
         </div>
     </div>
+    </main>
     
      <footer style="position: fixed; bottom: 0; width: 100%; background-color: #333; color: rgb(220, 220, 210); text-align: center; padding: 10px;">
         <div>Partycontroller Version 0.1</div>
