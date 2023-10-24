@@ -5,11 +5,6 @@ function updateEventsTable() {
             const events = JSON.parse(data.events);
             const tableBody = document.querySelector('#events tbody');
 
-            // macht platz
-            while (tableBody.firstChild) {
-                tableBody.removeChild(tableBody.firstChild);
-            }
-
             // macht die tabelle voll
             events.forEach(event => {
                 const row = document.createElement('tr');

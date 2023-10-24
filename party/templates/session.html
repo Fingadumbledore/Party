@@ -73,14 +73,17 @@
     <section id="planer">
         <h1>Planer</h1>
         <table id="events">
+            <thead>
+                <tr>
+                    <th>Event</th>
+                    <th>Zeit</th>
+                    <th>Status</th>
+                    <th>Verwalten</th>
+                </tr>
+            </thead>
             <tbody>
                 <tr>
-                    <td>Event</td>
-                    <td>Zeit</td>
-                    <td>Status</td>
-                    <td>Verwalten</td>
-                </tr>
-                <tr>
+                    <td>f</td>
                     <td>f</td>
                     <td>f</td>
                     <td>f</td>
@@ -88,14 +91,14 @@
             </tbody>
         </table>
 
-    <iframe name='hiddenIFrame' id='hiddenIFrame' style='display:none;'></iframe>
-	<form action="/api/event/new" target='hiddenIFrame' method='post'>
-		<input class="event_input" typ="text" name="Event" placeholder="Essen" maxlength="20" minlength="1" required>
-		<input class="event_time" type="datetime-local" id="meeting-time"
-	       name="meeting-time" value="2023-12-31T12:00"
-	       min="2023-12-31T00:00" max="2024-01-01T18:00" required>
+        <iframe name='hiddenIFrame' id='hiddenIFrame' hidden></iframe>
+        <form action="/api/event/new" target='hiddenIFrame' method='post'>
+            <input class="event_input" type="text" name="Event" placeholder="Event Name" maxlength="20" minlength="1" required>
+            <input class="event_time" type="datetime-local" id="meeting-time"
+               name="meeting-time" value="2023-12-31T12:00"
+               min="2023-12-31T00:00" max="2024-01-01T18:00" required>
           <button class="submit_button" type="submit">Hinzufügen</button>
-	</form>
+        </form>
     </section>
 
      <!-- Games -->
@@ -232,8 +235,8 @@
     </main>
     
     <footer>
-        <p>Partycontroller Version 0.1</p>
-        <p>&copy; Lostkids</p>
+        <p>Partycontroller Version 0.1<br/></p>
+        &copy; Lostkids</p>
     </footer>
     {% endblock %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.1/socket.io.js"></script>

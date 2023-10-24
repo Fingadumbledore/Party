@@ -251,17 +251,17 @@ font-weight: bold; /* Button hervorheben */
 }
 
 .close-button:hover {
-text-decoration: underline; /* Button hervorheben */
+    text-decoration: underline; /* Button hervorheben */
 }
 
 /* Neue Animation für das Popup */
 @keyframes slideIn {
-0% {
-top: -100%; /* Startposition oben */
-}
-100% {
-top: 5%; /* Zielposition nach dem Einfahren */
-}
+    0% {
+        top: -100%; /* Startposition oben */
+    }
+    100% {
+        top: 5%; /* Zielposition nach dem Einfahren */
+    }
 }
 
 
@@ -287,13 +287,13 @@ top: 5%; /* Zielposition nach dem Einfahren */
     box-shadow: 0 0 10px #fff;
 }
 
- table {
-border-collapse: separate;
-border-spacing: 0;
-border-radius: 10px;
-border: 2px solid #555;
-overflow: hidden;
-background-color: #333;
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 10px;
+    border: 2px solid #555;
+    overflow: hidden;
+    background-color: #333;
 }
 
 td {
@@ -760,5 +760,4 @@ footer {
     background-color: #333;
     color: rgb(220, 220, 210);
     text-align: center;
-    padding: 10px;
 }
