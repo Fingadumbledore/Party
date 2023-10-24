@@ -297,15 +297,36 @@ table {
 }
 
 td {
-padding: 10px;
-color: #ccc;
-border: 1px solid #555;
+    padding: 10px;
+    color: #ccc;
+    border: 1px solid #555;
 }
 
-.submit_button{
-    position: fixed;
-    width: 10%; 
-    height: 5%;
+#event_form {
+    border: 2px solid #555;
+}
+
+#event_input{
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    background-color: #0d0d0c;
+    color: rgb(220, 220, 210);
+    border: 2px solid #555;
+    outline: none;
+}
+
+#event_time{
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 10px;
+        background-color: #0d0d0c;
+        color: rgb(220, 220, 210);
+        border: 2px solid #555;
+        outline: none;
+}
+
+#submit_button{
     background-color: #454443;
     border-radius: 10px;
     cursor: pointer;
@@ -316,60 +337,22 @@ border: 1px solid #555;
     padding: 10px;
     color: white;
     font-size: 16px;
-    bottom: 10%;
-    top: 90%;
-    right: 43%;
 
 }
 
 
-.event_input{
-    position: fixed;
-    width: 20%;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 25px;
-    background-color: #0d0d0c;
-    color: rgb(220, 220, 210);
-    border: 2px solid #555;
-    outline: none;
-    bottom: 20%;
-    bottom: 10%;
-    top: 77%;
-    right: 37%;
-    }
-
-.event_time{
-        position: fixed;
-        width: 5%;
-        height: 2%;
-        padding: 10px;
-        font-size: 16px;
-        border-radius: 25px;
-        background-color: #0d0d0c;
-        color: rgb(220, 220, 210);
-        border: 2px solid #555;
-        outline: none;
-        bottom: 20%;
-        bottom: 10%;
-        top: 83%;
-        right: 37%;
-        }
-    
-
-input[type="datetime-local"],
 input[type="number"],
 input[type="email"],
 input[type="password"],
 textarea {
-width: 20%;
-padding: 10px;
-font-size: 16px;
-border-radius: 5px;
-background-color: #0d0d0c;
-color: rgb(220, 220, 210);
-border: 2px solid #555;
-outline: none;
+    width: 20%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: #0d0d0c;
+    color: rgb(220, 220, 210);
+    border: 2px solid #555;
+    outline: none;
 }
 
 input[type="submit"],
@@ -723,6 +706,7 @@ section {
     position: fixed;
     top: 10%;
     left: 10%;
+    width: 80%;
 }
 
 #home_button + label {
