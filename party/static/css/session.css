@@ -10,7 +10,6 @@ header {
     background-color: #333;
     height: 5%;
     width: 100%;
-    position: fixed;
 }
 
 header ul {
@@ -752,4 +751,14 @@ section {
 
 #settings_button + label {
     content: url('/static/icons/settings.png');
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: rgb(220, 220, 210);
+    text-align: center;
+    padding: 10px;
 }
