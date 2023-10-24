@@ -265,15 +265,15 @@ font-weight: bold; /* Button hervorheben */
 }
 
 
-/* Neuer Stil für die versteckten Div-Elemente */
+/* Neuer Stil für die versteckten Div-Elemente
  .hidden-div {
     display: none;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 80%; /* Hier die gewünschte Breite eintragen */
-    max-height: 80%; /* Hier die gewünschte Höhe eintragen */
+    width: 80%; /* Hier die gewünschte Breite eintragen 
+    max-height: 80%; /* Hier die gewünschte Höhe eintragen 
     height: 80%;
     padding: 20px;
     background-color: #333;
@@ -281,6 +281,7 @@ font-weight: bold; /* Button hervorheben */
     border-radius: 10px;
     text-align: center;
 }
+*/
 
 /* Stil für den aktiven Button */
 .active-button {
@@ -302,8 +303,12 @@ td {
     border: 1px solid #555;
 }
 
-#event_form {
-    border: 2px solid #555;
+/* Planer */
+
+#planer dialog {
+    background-color: black;
+    border-radius: 5px;
+    border: 1px solid white;
 }
 
 #event_input{
@@ -324,20 +329,21 @@ td {
         color: rgb(220, 220, 210);
         border: 2px solid #555;
         outline: none;
+        margin-top: 5px;
 }
 
-#submit_button{
+.dialog_control {
     background-color: #454443;
     border-radius: 10px;
-    cursor: pointer;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 60%;
     border: none;
     padding: 10px;
     color: white;
     font-size: 16px;
+    margin-top: 5px;
+}
 
+.dialog_control:hover {
+    background-color: #333;
 }
 
 
@@ -446,7 +452,7 @@ cursor: pointer;
 }
 
 
-/* CSS für die Bearbeitungsbuttons beim planer */
+/* Planer */
 .button-wrapper {
     background: none;
     border: none;
