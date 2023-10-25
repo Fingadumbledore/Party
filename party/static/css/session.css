@@ -150,30 +150,30 @@ p {
 /* Icons für die Buttons */
 /* Neuer Stil für den ausfahrbaren Kasten */
 .popup {
-position: fixed;
-top: -100%; /* Startposition oben */
-right: 4%; /* Rechts positionieren */
-width: 8%;
-background-color: #222; /* Dunkle Hintergrundfarbe */
-border-radius: 10px;
-padding: 10px;
-display: none; /* Der Kasten ist anfangs versteckt */
-z-index: 999; /* Damit der Kasten über anderen Elementen liegt */
-color: #fff; /* Textfarbe */
-animation: slideIn 0.5s forwards; /* Animation hinzufügen */
+    position: fixed;
+    top: -100%; /* Startposition oben */
+    right: 4%; /* Rechts positionieren */
+    width: 8%;
+    background-color: #222; /* Dunkle Hintergrundfarbe */
+    border-radius: 10px;
+    padding: 10px;
+    display: none; /* Der Kasten ist anfangs versteckt */
+    z-index: 999; /* Damit der Kasten über anderen Elementen liegt */
+    color: #fff; /* Textfarbe */
+    animation: slideIn 0.5s forwards; /* Animation hinzufügen */
 }
 
 .popup-content {
-display: flex;
-flex-direction: column;
-gap: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .close-button {
-align-self: flex-end;
-cursor: pointer;
-color: #fff; /* Button-Textfarbe */
-font-weight: bold; /* Button hervorheben */
+    align-self: flex-end;
+    cursor: pointer;
+    color: #fff; /* Button-Textfarbe */
+    font-weight: bold; /* Button hervorheben */
 }
 
 .close-button:hover {
@@ -188,30 +188,6 @@ font-weight: bold; /* Button hervorheben */
     100% {
         top: 5%; /* Zielposition nach dem Einfahren */
     }
-}
-
-
-/* Neuer Stil für die versteckten Div-Elemente
- .hidden-div {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%; /* Hier die gewünschte Breite eintragen 
-    max-height: 80%; /* Hier die gewünschte Höhe eintragen 
-    height: 80%;
-    padding: 20px;
-    background-color: #333;
-    color: #fff;
-    border-radius: 10px;
-    text-align: center;
-}
-*/
-
-/* Stil für den aktiven Button */
-.active-button {
-    box-shadow: 0 0 10px #fff;
 }
 
 table {
@@ -230,6 +206,10 @@ td {
 }
 
 /* Planer */
+
+#planer button {
+    margin-top: 1%;
+}
 
 #planer dialog {
     background-color: black;
@@ -272,6 +252,42 @@ td {
     background-color: #333;
 }
 
+/* Ende Planer */
+
+/* Games */
+
+#games table {
+    display: none;
+    margin-top: 1%;
+    border: none !important;
+}
+
+#games label {
+    text-decoration: underline;
+    font-size: 20px;
+}
+#games input[type=radio]:checked + label {
+    font-weight: bold;
+}
+
+#games input[type=radio]:checked + label::before {
+    content: "> ";
+}
+
+
+#punkte_button:checked ~ #punkte_table {
+    display: block;
+}
+
+#zeit_button:checked ~ #zeiten_table {
+    display: block;
+}
+
+#teams_button:checked ~ #teams_table {
+    display: block;
+}
+
+/* Ende Games */
 
 input[type="number"],
 input[type="email"],
@@ -406,67 +422,7 @@ cursor: pointer;
     margin-left: 5%;
   }
 
-
-  .hidden1 {
-    display: none;
 }
-  
-
-#punkte_button{
-    background-color: #454443;
-    position: fixed;
-    width: 10%; 
-    height: 5%;
-    border-radius: 10px;
-    cursor: pointer;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 60%;
-    border: none;
-    padding: 10px;
-    color: white;
-    font-size: 16px;
-    bottom: 10%;
-    top: 15%;
-    right: 58%;
-}
-#zeit_button{
-    background-color: #454443;
-    position: fixed;
-    width: 10%; 
-    height: 5%;
-    border-radius: 10px;
-    cursor: pointer;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 60%;
-    border: none;
-    padding: 10px;
-    color: white;
-    font-size: 16px;
-    bottom: 10%;
-    top: 15%;
-    right: 45%;
-}
-#team_button{
-    background-color: #454443;
-    position: fixed;
-    width: 10%; 
-    height: 5%;
-    border-radius: 10px;
-    cursor: pointer;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 60%;
-    border: none;
-    padding: 10px;
-    color: white;
-    font-size: 16px;
-    bottom: 10%;
-    top: 15%;
-    right: 33%;
-}
-
 #next {
     position: fixed;
     top: 15%;
@@ -510,7 +466,7 @@ cursor: pointer;
     background-image: url('/static/icons/play.png');
 }
 
-#mate_reset{
+#mate_reset {
     background-color: #454443;
     position: fixed;
     width: 10%; 
@@ -530,7 +486,7 @@ cursor: pointer;
   
 }
 
-#mate_hinzu{
+#mate_hinzu {
     background-color: #454443;
     position: fixed;
     width: 20%; 
@@ -550,7 +506,7 @@ cursor: pointer;
   
 }
 
-#save_settings{
+#save_settings {
     position: fixed;
     width: 10%; 
     height: 5%;
@@ -587,6 +543,7 @@ cursor: pointer;
     top: 90%;
     right: 43%;
 }
+
 #reset_settings{
     position: fixed;
     width: 10%; 
@@ -642,7 +599,7 @@ input[type=radio] {
     display: block;
 }
 
-section {
+article {
     display: none;
     position: fixed;
     top: 13%;

@@ -63,14 +63,14 @@
     
     <!-- Div-Inhalte -->
      <!-- Home -->
-    <section id="home">
+    <article id="home">
         <h1>Home</h1>
         <p>
             Willkommen zur diesjährigen 24-stündigen LAN-Party! Wir haben ein spannendes Line-up mit Spiel 1, Spiel 2 und Spiel 3 vorbereitet. Lasst uns gemeinsam unvergessliche Gaming-Momente schaffen! Möge die Party beginnen, und möge die Beste Person gewinnen!</p>
-    </section>
+    </article>
     
      <!-- Planer -->
-    <section id="planer">
+    <article id="planer">
         <h1>Planer</h1>
         <table id="events">
             <thead>
@@ -91,7 +91,9 @@
             </tbody>
         </table>
 
-        <button id="add_event_button" onclick="document.getElementById('new_event_form_dialog').open = true;">+</button>
+        <center>
+            <button onclick="document.getElementById('new_event_form_dialog').open = true;">+</button>
+        </center>
 
         <dialog id="new_event_form_dialog">
             <form id="event_form" action="/api/event/new" target='hiddenIFrame' method='post'>
@@ -106,79 +108,75 @@
         </dialog>
 
         <iframe name='hiddenIFrame' id='hiddenIFrame' hidden></iframe>
-    </section>
+    </article>
 
      <!-- Games -->
-    <section id="games">
+    <article id="games">
         <h1>Games</h1>
+        <center>
+            <p>Du bist in Team: <span>TODO</span></p>
 
-        <input type="radio" name="game_info_select" id="punkte_button">
-        <label for="punkte_button">Punkte</label>
-        <input type="radio" name="game_info_select" id="zeit_button">
-        <label for="zeit_button">Zeit</label>
-        <input type="radio" name="game_info_select" id="team_button">
-        <label for="team_button">Team</label>
+            <input type="radio" name="game_info_select" id="punkte_button">
+            <label for="punkte_button">Punkte</label><br/>
+            <input type="radio" name="game_info_select" id="zeit_button">
+            <label for="zeit_button">Zeit</label><br/>
+            <input type="radio" name="game_info_select" id="teams_button">
+            <label for="teams_button">Team</label><br/>
 
-        <div id="team" class="hidden1" >
-            <p>Du bist in Team</p>
-            <table id="team_member">
-                <tbody>
+            <table id="teams_table">
+                <thead>
                     <tr>
                         <td>Team</td>
                         <td>Game</td>
                         <td>Points</td>
                     </tr>
+                </thead>
+                <tbody>
                     <tr>
-                        <td></td>
+                        <td>f</td>
                         <td>f</td>
                         <td>f</td>
                     </tr>
                 </tbody>
             </table>
-        </div>
-      
-        <div id="punkt" class="hidden1">
-            <table id="point_game">
-                <tbody>
+            <table id="punkte_table">
+                <thead>
                     <tr>
                         <td>User</td>
                         <td>Game</td>
                         <td>Points</td>
                     </tr>
+                </thead>
+                <tbody>
                     <tr>
-                        <td></td>
+                        <td>f</td>
                         <td>f</td>
                         <td>f</td>
                     </tr>
                 </tbody>
             </table>
-            <button class="submit_button" type="submit">Add</button>
-        </div>
        
-        <div id="zeit" class="hidden1" >
-            <center>
-            <table id="time_game">
-                <tbody>
+            <table id="zeiten_table">
+                <thead>
                     <tr>
                         <td>User</td>
                         <td>Game</td>
                         <td>Time</td>
                     </tr>
+                </thead>
+                <tbody>
                     <tr>
-                        <td></td>
+                        <td>f</td>
                         <td>f</td>
                         <td>f</td>
                     </tr>
                 </tbody>
             </table>
-            <button class="submit_button" type="submit">Add</button>
         </center>
-        </div>
-
-    </section>
+    </article>
 
      <!-- Chat -->
-    <section id="chat">
+    <article id="chat">
         <div id="chat-container">
             <h1>Chat</h1>
             <div id="chatBox">
@@ -188,18 +186,18 @@
                 <button class="submit_button" id="chatInputButton" onclick="sendMessage()">Senden</button>
             </div>
         </div>
-    </section>
+    </article>
 
      <!-- Musik -->
-    <section id="music">
+    <article id="music">
         <h1>Musik</h1>
         <button id="back"></button>
         <button id="play"></button>
         <button id="next"></button>
-    </section>
+    </article>
 
      <!-- Mate -->
-    <section id="mate">
+    <article id="mate">
         <div id="mate-container">
             <h1>Mate</h1>
             <table id="mate_kiste">
@@ -207,10 +205,10 @@
             <button id="mate_reset" class="reset-kiste" onclick="resetKiste()">Reset</button>
             <button id="mate_hinzu">Kasten Hinzufügen</button>
         </div>
-    </section>
+    </article>
 
      <!-- Einstellungen -->
-    <section id="settings">
+    <article id="settings">
         <h1>Einstellungen</h1>
         <label for="position_select">Menü Position: </label>
         <select id="position_select">
@@ -229,7 +227,7 @@
         <button id="save_settings">Speichern</button>
         <button id="abort_settings">abbrechen</button>
         <button id="reset_settings">reset</button>
-    </section>
+    </article>
 
     <!-- ... (Dein vorhandener HTML-Code) ... -->
      <!-- Hinzugefügter HTML-Code für den ausfahrbaren Kasten -->
