@@ -71,58 +71,10 @@ p {
     color: #ccc;
 }
 
-/* Username in dem Balken*/
-.peter {
-    position: fixed;
-    top: 0;
-    right: 0.5%;
-    color: rgb(220, 220, 210);
-    font-size: 100%;
-    cursor: pointer; /* Hinzugefügter CSS-Stil für den Klick */
-}
-
-/*Event info im Balken*/
-.eventinfo {
-    position: fixed;
-    top: 0;
-    left: 10%;
-    color: rgb(220, 220, 210);
-    font-size: 100%;
-    cursor: pointer; /* Hinzugefügter CSS-Stil für den Klick */
-}
-
-
-.uhrzeit {
-    position: fixed;
-    top: 0;     
-    left: 15%;
-    color: rgb(220, 220, 210);
-    font-size: 100%;
-}
-
 /*Systeminformationen im Balken*/
 .stat {
     position: fixed;
     top: 0;
-    color: rgb(220, 220, 210);
-    font-size: 100%;
-    cursor: pointer; /* Hinzugefügter CSS-Stil für den Klick */
-
-}
-#cpu {
-    right: 7%;
-}
-#ram {
-    right: 17%;
-}
-#temp {
-    right: 27%;
-}
-
-.musik {
-    position: fixed;
-    top: 0;
-    right: 4%;
     color: rgb(220, 220, 210);
     font-size: 100%;
     cursor: pointer; /* Hinzugefügter CSS-Stil für den Klick */
@@ -133,32 +85,6 @@ p {
     top: 0;
     left: 0.5%;
     height: 5%;
-}
-
-.userlogo {
-    position: fixed;
-    top: 1%;
-    right: 2.5%;
-    height: 3%;
-}
-
- .cpulogo {
-    position: fixed;
-    top: 1%;
-    right: 10%;
-    height: 2.5%;
-}
- .ramlogo {
-    position: fixed;
-    top: 1%;
-    right: 20%;
-    height: 2.5%;
-}
- .temperaturlogo {
-    position: fixed;
-    top: 1%;
-    right: 30%;
-    height: 2.5%;
 }
 
 /*Musik steuerung im Balken*/
@@ -691,6 +617,14 @@ select {
     height: 70px;
     border-radius: 10px;
     border: white 1px solid;
+    margin-left: 1%;
+    margin-top: 1%;
+}
+
+input[type=radio]:checked + label {
+    background-color: #454443;
+    border: white 2px solid;
+    box-shadow: 0 0 10px #fff;
 }
 
 input[type=radio] {
@@ -713,6 +647,7 @@ section {
     top: 10%;
     left: 10%;
     width: 80%;
+    background-color: #333;
 }
 
 #home_button + label {
