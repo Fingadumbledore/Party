@@ -613,15 +613,16 @@ select {
 .nav_button + label {
     cursor: pointer;
     background-color: #333;
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
     border-radius: 10px;
     border: white 1px solid;
-    margin-left: 1%;
+    margin-left: 2%;
     margin-top: 1%;
+
 }
 
-input[type=radio]:checked + label {
+.nav_button:checked + label {
     background-color: #454443;
     border: white 2px solid;
     box-shadow: 0 0 10px #fff;
@@ -644,10 +645,12 @@ input[type=radio] {
 section {
     display: none;
     position: fixed;
-    top: 10%;
+    top: 13%;
     left: 10%;
     width: 80%;
     background-color: #333;
+    border-radius: 10px;
+    padding: 2%;
 }
 
 #home_button + label {
