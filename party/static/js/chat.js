@@ -13,7 +13,6 @@ function getNChatMessages(socket, count, skip) {
                 const chatBox = document.getElementById('chatBox');
                 message_array.forEach(message => chatBox.appendChild(message))
 
-                chatBox.style.overflow = 'auto';
                 chatBox.scrollTop = chatBox.scrollHeight;
             });
 }

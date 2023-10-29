@@ -349,11 +349,6 @@ cursor: pointer;
 
 /* Chat */
 
-#chatBox {
-    border-top: 
-    height: 200px;
-}
-
 .chat-message {
   margin-bottom: 10px;
   display: flex;
@@ -606,6 +601,7 @@ article {
     background-color: #333;
     border-radius: 10px;
     padding: 2%;
+    height: 60%;
 }
 
 #home_button + label {
