@@ -349,6 +349,15 @@ cursor: pointer;
 
 /* Chat */
 
+#chat-container {
+    height: 100%;
+}
+
+#chatBox {
+    height: 80%;
+    overflow: scroll;
+}
+
 .chat-message {
   margin-bottom: 10px;
   display: flex;
