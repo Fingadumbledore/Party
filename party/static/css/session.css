@@ -347,13 +347,11 @@ cursor: pointer;
     border-radius: 50%;
 }
 
-#chat-container {
-    max-height: 80%;
-}
+/* Chat */
 
 #chatBox {
-    max-height: 600px;
-    border: 1px solid white;
+    border-top: 
+    height: 200px;
 }
 
 .chat-message {

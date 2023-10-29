@@ -85,3 +85,8 @@ socket.on('chat-message', (data) => {
     chatBox.appendChild(message);
     chatBox.scrollTop = chatBox.scrollHeight;
 });
+
+
+window.addEventListener('load', () => {
+    getNChatMessages(socket, 100, 0);
+});
