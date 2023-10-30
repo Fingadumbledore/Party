@@ -553,24 +553,6 @@ select {
     background-color:#454443; ;
 }
 
-.nav_button + label {
-    cursor: pointer;
-    background-color: #333;
-    width: 80px;
-    height: 80px;
-    border-radius: 10px;
-    border: white 1px solid;
-    margin-left: 2%;
-    margin-top: 1%;
-
-}
-
-.nav_button:checked + label {
-    background-color: #454443;
-    border: white 2px solid;
-    box-shadow: 0 0 10px #fff;
-}
-
 input[type=radio] {
     display: none;
 }
@@ -597,32 +579,54 @@ article {
     height: 60%;
 }
 
+.nav_button + label {
+    display: inline-block;
+    cursor: pointer;
+    background-color: #333;
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    border: white 1px solid;
+    margin-left: 2%;
+    margin-top: 1%;
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.nav_button:checked + label {
+    background-color: #454443;
+    border: white 2px solid;
+    box-shadow: 0 0 10px #fff;
+}
+
+
 #home_button + label {
-    content: url('/static/icons/haus.png');
+    background-image: url('/static/icons/haus.png');
 }
 
 #planer_button + label {
-    content: url('/static/icons/calender.png');
+    background-image: url('/static/icons/calender.png');
 }
 
 #games_button + label {
-    content: url('/static/icons/controller.png');
+    background-image: url('/static/icons/controller.png');
 }
 
 #chat_button + label {
-    content: url('/static/icons/chat.png');
+    background-image: url('/static/icons/chat.png');
 }
 
 #music_button + label {
-    content: url('/static/icons/music.png');
+    background-image: url('/static/icons/music.png');
 }
 
 #mate_button + label {
-    content: url('/static/icons/bottle.png');
+    background-image: url('/static/icons/bottle.png');
 }
 
 #settings_button + label {
-    content: url('/static/icons/settings.png');
+    background-image: url('/static/icons/settings.png');
 }
 
 footer {
