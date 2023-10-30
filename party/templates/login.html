@@ -18,19 +18,6 @@
         <div>Partycontroller Version 0.1</div>
         <div>&copy; Lostkids</div>
     </footer>
-    
-    <script>
-        document.getElementById("loginForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // Verhindert das normale Absenden des Formulars
-            
-            var nameInput = document.getElementById("nameInput");
-            var name = nameInput.value;
-            
-            sessionStorage.setItem("name", name);
-            
-            // Das Formular manuell absenden
-            this.submit();
-        });
-    </script>
+    <script src="/static/js/login.js"></script>
 </body>
 </html>
