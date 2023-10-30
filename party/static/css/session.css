@@ -492,66 +492,43 @@ cursor: pointer;
   
 }
 
+/* Settings */
+
+.settings-control {
+    width: 10%; 
+    height: 10%;
+    border-radius: 10px;
+    cursor: pointer;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 60%;
+    border: none;
+    padding: 10px;
+    color: white;
+    font-size: 16px;
+
+}
+
 #save_settings {
-    position: fixed;
-    width: 10%; 
-    height: 5%;
     background-color: #0f9225;
-    border-radius: 10px;
-    cursor: pointer;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 60%;
-    border: none;
-    padding: 10px;
-    color: white;
-    font-size: 16px;
-    bottom: 10%;
-    top: 90%;
-    right: 32%;
 }
 
-#abort_settings{
-    position: fixed;
-    width: 10%; 
-    height: 5%;
+#abort_settings {
     background-color: #af0a0a;
-    border-radius: 10px;
-    cursor: pointer;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 60%;
-    border: none;
-    padding: 10px;
-    color: white;
-    font-size: 16px;
-    bottom: 10%;
-    top: 90%;
-    right: 43%;
 }
 
-#reset_settings{
-    position: fixed;
-    width: 10%; 
-    height: 5%;
+#reset_settings {
     background-color: #454443;
-    border-radius: 10px;
-    cursor: pointer;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 60%;
-    border: none;
-    padding: 10px;
-    color: white;
-    font-size: 16px;
-    bottom: 10%;
-    top: 90%;
-    right: 54%;
 }
+
 
 select {
     background-color:#454443; ;
 }
+
+/* Ende Settings */
+
+/* sidebar */
 
 input[type=radio] {
     display: none;
@@ -628,6 +605,8 @@ article {
 #settings_button + label {
     background-image: url('/static/icons/settings.png');
 }
+
+/* Ende sidebar */
 
 footer {
     position: fixed;
