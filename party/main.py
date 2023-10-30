@@ -74,6 +74,44 @@ def api_chat():
     response.status_code = 200 
     return response
 
+@app.route('/api/game/', methods=['GET'])
+def api_game():
+    response = jsonify(success=True)
+    response.status_code = 200
+    return response
+
+@app.route('/api/game/point', methods=['GET','POST'])
+def api_game_point():
+     if app.method == 'POST':
+        time = 3
+        return time
+
+@app.route('/api/game/time', methods=['GET', 'POST'])
+def api_game_time():
+    if app.method == 'POST':
+        point = 3
+        return point
+
+@app.route('/api/team/', methods=['GET'])
+def api_team():
+    response = jsonify(success=True)
+    response.status_code = 200
+    return response
+
+@app.route('/api/team/create', methods=['POST'])
+def api_team_create():
+     team_name = request.form['name']
+
+@app.route('/api/team/join', methods=['POST'])
+def api_team_join():
+     team_name = request.form['tname']
+     user_name = request.form['uname']
+
+@app.route('/api/team/delete', methods=['POST'])
+def api_team_delete():
+    team_name = request.form['name']
+
+
 @socketio.on('chat-message')
 def handle_chat_message(data):
     print(data)
