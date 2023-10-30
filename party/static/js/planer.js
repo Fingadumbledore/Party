@@ -43,7 +43,6 @@ function updateEventsTable() {
 }
 
 
-    
     socket.on('planer-event', (data) => {
         updateEventsTable();
     });

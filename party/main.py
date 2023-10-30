@@ -37,70 +37,12 @@ def omg_i_hate_copilot_session():
     response = jsonify(success=True, status_code = 200)
     return render_template('session.html')
 
-@app.route('/api', methods=['GET'])
-def api():
-    response = jsonify(success=True, status_code = 200)
-    return response
 
 @app.route('/api/login', methods=['GET'])
 def api_login():
     session['logged_in'] = True
     response = jsonify(success=True, status_code = HTTPStatus.MOVED_PERMANENTLY)
     return redirect('/session')
-
-
-@app.route('/api/mate', methods=['GET'])
-def api_mate():
-    response = jsonify(success=True, status_code = 200)
-    return response
-
-@app.route('/api/mate/status', methods=['GET'])
-def api_mate_status():
-    FLASCHE_COUNT = 20
-    response = jsonify(kiste=MateKiste.getStatus(), status_code = 200)
-    return response
-
-@app.route('/api/chat/', methods=['GET'])
-def api_chat():
-    messages = Chat.getNextNMessages(160, 0) # 0 offset
-    response = jsonify(success=True, messages=json_util.dumps(messages), status_code = 200)
-    return response
-
-@app.route('/api/game/', methods=['GET'])
-def api_game():
-    response = jsonify(success=True, status_code = 200)
-    return response
-
-@app.route('/api/game/point', methods=['GET','POST'])
-def api_game_point():
-     if app.method == 'POST':
-        time = 3
-        return time
-
-@app.route('/api/game/time', methods=['GET', 'POST'])
-def api_game_time():
-    if app.method == 'POST':
-        point = 3
-        return point
-
-@app.route('/api/team/', methods=['GET'])
-def api_team():
-    response = jsonify(success=True, status_code = 200)
-    return response
-
-@app.route('/api/team/create', methods=['POST'])
-def api_team_create():
-     team_name = request.form['name']
-
-@app.route('/api/team/join', methods=['POST'])
-def api_team_join():
-     team_name = request.form['tname']
-     user_name = request.form['uname']
-
-@app.route('/api/team/delete', methods=['POST'])
-def api_team_delete():
-    team_name = request.form['name']
-
 
 @socketio.on('chat-message')
 def handle_chat_message(data):
@@ -156,25 +98,6 @@ def handle_connect():
 def handle_disconnect():
     leave_room(STANDARD_ROOM)
 
-@app.route('/api/music', methods=['GET'])
-def api_music():
-    response = jsonify(success=True, status_code = 200)
-    return response
-
-@app.route('/api/music/skip', methods=['POST'])
-def api_music_skip():
-    response = jsonify(success=True, status_code = 200)
-    return response
-
-@app.route('/api/music/queue', methods=['GET'])
-def api_music_queue():
-    response = jsonify(success=True, status_code = 200)
-    return response
-
-@app.route('/api/music/add_song', methods=['POST'])
-def api_music_add_song():
-    response = jsonify(success=True, status_code = 200)
-    return response
 
 @app.route('/api/event/new', methods=['POST'])
 def api_event_new():

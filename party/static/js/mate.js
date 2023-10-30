@@ -70,7 +70,6 @@ socket.on('mate-genommen', (data) => {
     flasche.disabled = true;
     flasche.style.backgroundColor = '#333';
 });
-
 function resetKiste() {
     socket.emit('mate-reset', () => {
         console.log('kiste resettet');
@@ -90,7 +89,6 @@ socket.on('mate-resetten', () => {
         flasche.style.backgroundColor = '#c88a35';
     }
 });
-
 (function () {
     getMateStatus(socket);
 })();
