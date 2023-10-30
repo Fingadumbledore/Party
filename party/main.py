@@ -209,4 +209,7 @@ def page_not_found(error):
 if __name__ == '__main__':
     Chat.init()
     MateKiste.init()
+
+    import logging
+    logging.basicConfig(filename='error.log',level=logging.DEBUG)
     socketio.run(app, debug=True, host='localhost', port=5000) #pragma: no cover
