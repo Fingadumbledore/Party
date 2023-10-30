@@ -24,8 +24,6 @@ class Chat:
     def insertMessage(self, content: str, author: str, timestamp: str):
         if not (self.initialized): self.init()
         message = self.convertToMessage(content, author, timestamp)
-        print(message)
-        print(self.collection)
         self.collection.insert_one(message)
         print('inserted message')
 
@@ -35,7 +33,6 @@ class Chat:
                     .skip(skip)
                     .limit(count)
                     .sort('timestamp', 1))
-        print(messages)
 
         return messages
 

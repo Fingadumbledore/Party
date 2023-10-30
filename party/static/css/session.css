@@ -6,13 +6,53 @@ body {
 }
 
 /* Oberer Balken, der Infos anzeigt*/
-.top-bar {
+header {
     background-color: #333;
     height: 5%;
     width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
+}
+
+header ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100%;
+}
+
+#tempstat::before {
+    content: "";
+    background: url('/static/icons/temperatur.png') no-repeat 0 0;
+    background-size: auto 100%;
+    width: 30px;
+    height: 70%;
+    display: inline-block;
+}
+
+#ramstat::before {
+    content: "";
+    background: url('/static/icons/ram.png') no-repeat 0 0;
+    background-size: auto 100%;
+    width: 30px;
+    height: 70%;
+    display: inline-block;
+}
+
+#cpustat::before {
+    content: "";
+    background: url('/static/icons/cpu.png') no-repeat 0 0;
+    background-size: auto 100%;
+    width: 30px;
+    height: 70%;
+    display: inline-block;
+}
+
+main {
+    top: 5%;
 }
 
 .content {
@@ -31,64 +71,10 @@ p {
     color: #ccc;
 }
 
-/* Username in dem Balken*/
-.peter {
-    position: fixed;
-    top: 0;
-    right: 0.5%;
-    color: rgb(220, 220, 210);
-    font-size: 100%;
-    cursor: pointer; /* Hinzugefügter CSS-Stil für den Klick */
-}
-
-/*Event info im Balken*/
-.eventinfo {
-    position: fixed;
-    top: 0;
-    left: 10%;
-    color: rgb(220, 220, 210);
-    font-size: 100%;
-    cursor: pointer; /* Hinzugefügter CSS-Stil für den Klick */
-}
-
-
-.uhrzeit {
-    position: fixed;
-    top: 0;     
-    left: 15%;
-    color: rgb(220, 220, 210);
-    font-size: 100%;
-}
-
 /*Systeminformationen im Balken*/
- .cpuinfo {
+.stat {
     position: fixed;
     top: 0;
-    right: 7%;
-    color: rgb(220, 220, 210);
-    font-size: 100%;
-    cursor: pointer; /* Hinzugefügter CSS-Stil für den Klick */
-}
-.raminfo {
-    position: fixed;
-    top: 0;
-    right: 17%;
-    color: rgb(220, 220, 210);
-    font-size: 100%;
-    cursor: pointer; /* Hinzugefügter CSS-Stil für den Klick */
-}
-.tempinfo {
-    position: fixed;
-    top: 0;
-    right: 27%;
-    color: rgb(220, 220, 210);
-    font-size: 100%;
-    cursor: pointer; /* Hinzugefügter CSS-Stil für den Klick */
-}
-   .musik {
-    position: fixed;
-    top: 0;
-    right: 4%;
     color: rgb(220, 220, 210);
     font-size: 100%;
     cursor: pointer; /* Hinzugefügter CSS-Stil für den Klick */
@@ -101,39 +87,10 @@ p {
     height: 5%;
 }
 
-.userlogo {
-    position: fixed;
-    top: 1%;
-    right: 2.5%;
-    height: 3%;
-}
-
- .cpulogo {
-    position: fixed;
-    top: 1%;
-    right: 10%;
-    height: 2.5%;
-}
- .ramlogo {
-    position: fixed;
-    top: 1%;
-    right: 20%;
-    height: 2.5%;
-}
- .temperaturlogo {
-    position: fixed;
-    top: 1%;
-    right: 30%;
-    height: 2.5%;
-}
-
 /*Musik steuerung im Balken*/
- .topnext {
-    position: fixed;
-    top: 1%;
-    left: 40%;
+ #skip_song_button {
     width: 70px;
-    height: 30px;
+    height: 100%;
     background-color: #454443;
     border-radius: 10px;
     background-position: center;
@@ -141,32 +98,24 @@ p {
     background-size: 40%;
     background-image: url('/static/icons/next.png');
 }
-  .topback {
-    position: fixed;
-    top: 1%;
-    left: 30%;
+
+.song_button {
     width: 70px;
-    height: 30px;
+    height: 100%;
     background-color: #454443;
     border-radius: 10px;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 30%;
+    background-size: 40%;
+}
+#previous_song_button {
     background-image: url('/static/icons/back.png');
 }
-  .toppause {
-    position: fixed;
-    top: 1%;
-    left: 35%;
-    width: 70px;
-    height: 30px;
-    background-color: #454443;
-    border-radius: 10px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 60%;
+
+#toggle_play_button {
     background-image: url('/static/icons/play.png');
 }
+
 .songinfo {
     position: fixed;
     top: 0;
@@ -199,182 +148,159 @@ p {
 }
 
 /* Icons für die Buttons */
-.seitenbutton:nth-child(1) {
-    background-image: url('/static/icons/haus.png');
-}
-
-.seitenbutton:nth-child(2) {
-    background-image: url('/static/icons/calender.png');
-}
-
-.seitenbutton:nth-child(3) {
-    background-image: url('/static/icons/controller.png');
-}
-
-.seitenbutton:nth-child(4) {
-    background-image: url('/static/icons/chat.png');
-}
-
-.seitenbutton:nth-child(5) {
-    background-image: url('/static/icons/music.png');
-}
-
-.seitenbutton:nth-child(6) {
-    background-image: url('/static/icons/bottle.png');
-}
-
-.seitenbutton:nth-child(7) {
-    background-image: url('/static/icons/settings.png');
-}
-
 /* Neuer Stil für den ausfahrbaren Kasten */
 .popup {
-position: fixed;
-top: -100%; /* Startposition oben */
-right: 4%; /* Rechts positionieren */
-width: 8%;
-background-color: #222; /* Dunkle Hintergrundfarbe */
-border-radius: 10px;
-padding: 10px;
-display: none; /* Der Kasten ist anfangs versteckt */
-z-index: 999; /* Damit der Kasten über anderen Elementen liegt */
-color: #fff; /* Textfarbe */
-animation: slideIn 0.5s forwards; /* Animation hinzufügen */
+    position: fixed;
+    top: -100%; /* Startposition oben */
+    right: 4%; /* Rechts positionieren */
+    width: 8%;
+    background-color: #222; /* Dunkle Hintergrundfarbe */
+    border-radius: 10px;
+    padding: 10px;
+    display: none; /* Der Kasten ist anfangs versteckt */
+    z-index: 999; /* Damit der Kasten über anderen Elementen liegt */
+    color: #fff; /* Textfarbe */
+    animation: slideIn 0.5s forwards; /* Animation hinzufügen */
 }
 
 .popup-content {
-display: flex;
-flex-direction: column;
-gap: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .close-button {
-align-self: flex-end;
-cursor: pointer;
-color: #fff; /* Button-Textfarbe */
-font-weight: bold; /* Button hervorheben */
+    align-self: flex-end;
+    cursor: pointer;
+    color: #fff; /* Button-Textfarbe */
+    font-weight: bold; /* Button hervorheben */
 }
 
 .close-button:hover {
-text-decoration: underline; /* Button hervorheben */
+    text-decoration: underline; /* Button hervorheben */
 }
 
 /* Neue Animation für das Popup */
 @keyframes slideIn {
-0% {
-top: -100%; /* Startposition oben */
-}
-100% {
-top: 5%; /* Zielposition nach dem Einfahren */
-}
+    0% {
+        top: -100%; /* Startposition oben */
+    }
+    100% {
+        top: 5%; /* Zielposition nach dem Einfahren */
+    }
 }
 
-
-/* Neuer Stil für die versteckten Div-Elemente */
- .hidden-div {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%; /* Hier die gewünschte Breite eintragen */
-    max-height: 80%; /* Hier die gewünschte Höhe eintragen */
-    height: 80%;
-    padding: 20px;
-    background-color: #333;
-    color: #fff;
+table {
+    border-collapse: separate;
+    border-spacing: 0;
     border-radius: 10px;
-    text-align: center;
-}
-
-/* Stil für den aktiven Button */
-.active-button {
-    box-shadow: 0 0 10px #fff;
-}
-
- table {
-border-collapse: separate;
-border-spacing: 0;
-border-radius: 10px;
-border: 2px solid #555;
-overflow: hidden;
-background-color: #333;
+    border: 2px solid #555;
+    overflow: hidden;
+    background-color: #333;
 }
 
 td {
-padding: 10px;
-color: #ccc;
-border: 1px solid #555;
+    padding: 10px;
+    color: #ccc;
+    border: 1px solid #555;
 }
 
-.submit_button{
-    position: fixed;
-    width: 10%; 
-    height: 5%;
-    background-color: #454443;
+/* Planer */
+
+#planer button {
+    margin-top: 1%;
+}
+
+#planer dialog {
+    background-color: black;
+    border-radius: 5px;
+    border: 1px solid white;
+}
+
+#event_input{
+    padding: 10px;
+    font-size: 16px;
     border-radius: 10px;
-    cursor: pointer;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 60%;
-    border: none;
-    padding: 10px;
-    color: white;
-    font-size: 16px;
-    bottom: 10%;
-    top: 90%;
-    right: 43%;
-
-}
-
-
-.event_input{
-    position: fixed;
-    width: 20%;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 25px;
     background-color: #0d0d0c;
     color: rgb(220, 220, 210);
     border: 2px solid #555;
     outline: none;
-    bottom: 20%;
-    bottom: 10%;
-    top: 77%;
-    right: 37%;
-    }
+}
 
-.event_time{
-        position: fixed;
-        width: 5%;
-        height: 2%;
+#event_time{
         padding: 10px;
         font-size: 16px;
-        border-radius: 25px;
+        border-radius: 10px;
         background-color: #0d0d0c;
         color: rgb(220, 220, 210);
         border: 2px solid #555;
         outline: none;
-        bottom: 20%;
-        bottom: 10%;
-        top: 83%;
-        right: 37%;
-        }
-    
+        margin-top: 5px;
+}
 
-input[type="datetime-local"],
+.dialog_control {
+    background-color: #454443;
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    color: white;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.dialog_control:hover {
+    background-color: #333;
+}
+
+/* Ende Planer */
+
+/* Games */
+
+#games table {
+    display: none;
+    margin-top: 1%;
+    border: none !important;
+}
+
+#games label {
+    text-decoration: underline;
+    font-size: 20px;
+}
+#games input[type=radio]:checked + label {
+    font-weight: bold;
+}
+
+#games input[type=radio]:checked + label::before {
+    content: "> ";
+}
+
+
+#punkte_button:checked ~ #punkte_table {
+    display: block;
+}
+
+#zeit_button:checked ~ #zeiten_table {
+    display: block;
+}
+
+#teams_button:checked ~ #teams_table {
+    display: block;
+}
+
+/* Ende Games */
+
 input[type="number"],
 input[type="email"],
 input[type="password"],
 textarea {
-width: 20%;
-padding: 10px;
-font-size: 16px;
-border-radius: 5px;
-background-color: #0d0d0c;
-color: rgb(220, 220, 210);
-border: 2px solid #555;
-outline: none;
+    width: 20%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: #0d0d0c;
+    color: rgb(220, 220, 210);
+    border: 2px solid #555;
+    outline: none;
 }
 
 input[type="submit"],
@@ -391,9 +317,10 @@ cursor: pointer;
 }
 
 #events {
-width: 80%; /* Ändere die Breite entsprechend deinen Anforderungen */
-margin-left: auto;
-margin-right: auto;
+    width: 80%;
+    height: 50%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #mate_container {
@@ -420,13 +347,15 @@ margin-right: auto;
     border-radius: 50%;
 }
 
+/* Chat */
+
 #chat-container {
-    max-height: 80%;
+    height: 100%;
 }
 
 #chatBox {
-    max-height: 600px;
-    border: 1px solid white;
+    height: 80%;
+    overflow: scroll;
 }
 
 .chat-message {
@@ -467,7 +396,7 @@ margin-right: auto;
 }
 
 
-/* CSS für die Bearbeitungsbuttons beim planer */
+/* Planer */
 .button-wrapper {
     background: none;
     border: none;
@@ -478,88 +407,28 @@ margin-right: auto;
     position: relative; 
     width: 20px; 
     height: 20px; 
-  }
+}
   
-  .button-wrapper img {
+.button-wrapper img {
     width: 100%;
     height: 100%;
     background-color: transparent; 
     vertical-align: middle; 
-  }
+}
   
-  .button-wrapper:first-child {
+.button-wrapper:first-child {
     margin-right: 5%; 
-  }
+}
   
-  .button-wrapper:last-child {
+.button-wrapper:last-child {
     margin-left: 5%;
-  }
-
-
-  .hidden1 {
-    display: none;
-}
-  
-
-#punkte_button{
-    background-color: #454443;
-    position: fixed;
-    width: 10%; 
-    height: 5%;
-    border-radius: 10px;
-    cursor: pointer;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 60%;
-    border: none;
-    padding: 10px;
-    color: white;
-    font-size: 16px;
-    bottom: 10%;
-    top: 15%;
-    right: 58%;
-}
-#zeit_button{
-    background-color: #454443;
-    position: fixed;
-    width: 10%; 
-    height: 5%;
-    border-radius: 10px;
-    cursor: pointer;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 60%;
-    border: none;
-    padding: 10px;
-    color: white;
-    font-size: 16px;
-    bottom: 10%;
-    top: 15%;
-    right: 45%;
-}
-#team_button{
-    background-color: #454443;
-    position: fixed;
-    width: 10%; 
-    height: 5%;
-    border-radius: 10px;
-    cursor: pointer;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 60%;
-    border: none;
-    padding: 10px;
-    color: white;
-    font-size: 16px;
-    bottom: 10%;
-    top: 15%;
-    right: 33%;
 }
 
-#next {
-    position: fixed;
-    top: 15%;
-    left: 55%;
+/* Ende Chat */
+
+/* Musik */
+
+#music button {
     width: 70px;
     height: 30px;
     padding: 30px;
@@ -567,43 +436,55 @@ margin-right: auto;
     border-radius: 10px;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 40%;
+    background-size: 60%;
+}
+
+
+#music-next {
     background-image: url('/static/icons/next.png');
 }
-  #back {
-    position: fixed;
-    top: 15%;
-    left: 35%;
-    width: 70px;
-    height: 30px;
-    padding: 30px;
-    background-color: #454443;
-    border-radius: 10px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 30%;
+
+#music-back {
     background-image: url('/static/icons/back.png');
 }
-  #play{
-    position: fixed;
-    top: 15%;
-    left: 45%;
-    width: 70px;
-    height: 30px;
-    padding: 30px;
-    background-color: #454443;
-    border-radius: 10px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 60%;
+
+#music-play {
     background-image: url('/static/icons/play.png');
 }
 
-#mate_reset{
+/* Ende Musik */
+
+/* Mate */
+
+.mate-control {
     background-color: #454443;
-    position: fixed;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 60%;
+}
+
+#mate_reset {
     width: 10%; 
     height: 5%;
+}
+
+#mate_hinzu {
+    width: 15%; 
+    height: 5%;
+}
+
+/* Ende Mate */
+
+/* Settings */
+
+.settings-control {
+    width: 10%; 
+    height: 10%;
     border-radius: 10px;
     cursor: pointer;
     background-position: center;
@@ -613,88 +494,113 @@ margin-right: auto;
     padding: 10px;
     color: white;
     font-size: 16px;
-    bottom: 10%;
-    top: 15%;
-    right: 45%;
-  
+
 }
 
-#mate_hinzu{
-    background-color: #454443;
-    position: fixed;
-    width: 20%; 
-    height: 5%;
-    border-radius: 10px;
-    cursor: pointer;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 60%;
-    border: none;
-    padding: 10px;
-    color: white;
-    font-size: 16px;
-    bottom: 10%;
-    top: 25%;
-    right: 41%;
-  
-}
-
-#save_settings{
-    position: fixed;
-    width: 10%; 
-    height: 5%;
+#save_settings {
     background-color: #0f9225;
-    border-radius: 10px;
-    cursor: pointer;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 60%;
-    border: none;
-    padding: 10px;
-    color: white;
-    font-size: 16px;
-    bottom: 10%;
-    top: 90%;
-    right: 32%;
 }
 
-#abort_settings{
-    position: fixed;
-    width: 10%; 
-    height: 5%;
+#abort_settings {
     background-color: #af0a0a;
-    border-radius: 10px;
-    cursor: pointer;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 60%;
-    border: none;
-    padding: 10px;
-    color: white;
-    font-size: 16px;
-    bottom: 10%;
-    top: 90%;
-    right: 43%;
-}
-#reset_settings{
-    position: fixed;
-    width: 10%; 
-    height: 5%;
-    background-color: #454443;
-    border-radius: 10px;
-    cursor: pointer;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 60%;
-    border: none;
-    padding: 10px;
-    color: white;
-    font-size: 16px;
-    bottom: 10%;
-    top: 90%;
-    right: 54%;
 }
 
-select{
+#reset_settings {
+    background-color: #454443;
+}
+
+
+select {
     background-color:#454443; ;
+}
+
+/* Ende Settings */
+
+/* sidebar */
+
+input[type=radio] {
+    display: none;
+}
+
+#home_button:checked ~ #home,
+#planer_button:checked ~ #planer,
+#games_button:checked ~ #games,
+#chat_button:checked ~ #chat,
+#music_button:checked ~ #music,
+#mate_button:checked ~ #mate,
+#settings_button:checked ~ #settings {
+    display: block;
+}
+
+article {
+    display: none;
+    position: fixed;
+    top: 13%;
+    left: 10%;
+    width: 80%;
+    background-color: #333;
+    border-radius: 10px;
+    padding: 2%;
+    height: 60%;
+}
+
+.nav_button + label {
+    display: inline-block;
+    cursor: pointer;
+    background-color: #333;
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    border: white 1px solid;
+    margin-left: 2%;
+    margin-top: 1%;
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.nav_button:checked + label {
+    background-color: #454443;
+    border: white 2px solid;
+    box-shadow: 0 0 10px #fff;
+}
+
+
+#home_button + label {
+    background-image: url('/static/icons/haus.png');
+}
+
+#planer_button + label {
+    background-image: url('/static/icons/calender.png');
+}
+
+#games_button + label {
+    background-image: url('/static/icons/controller.png');
+}
+
+#chat_button + label {
+    background-image: url('/static/icons/chat.png');
+}
+
+#music_button + label {
+    background-image: url('/static/icons/music.png');
+}
+
+#mate_button + label {
+    background-image: url('/static/icons/bottle.png');
+}
+
+#settings_button + label {
+    background-image: url('/static/icons/settings.png');
+}
+
+/* Ende sidebar */
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: rgb(220, 220, 210);
+    text-align: center;
 }
