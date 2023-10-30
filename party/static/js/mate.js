@@ -90,3 +90,7 @@ socket.on('mate-resetten', () => {
         flasche.style.backgroundColor = '#c88a35';
     }
 });
+
+(function () {
+    getMateStatus(socket);
+})();

@@ -452,45 +452,33 @@ cursor: pointer;
     background-image: url('/static/icons/play.png');
 }
 
-#mate_reset {
+/* Ende Musik */
+
+/* Mate */
+
+.mate-control {
     background-color: #454443;
-    position: fixed;
-    width: 10%; 
-    height: 5%;
+    border: none;
+    padding: 10px;
     border-radius: 10px;
     cursor: pointer;
+    color: white;
     background-position: center;
     background-repeat: no-repeat;
     background-size: 60%;
-    border: none;
-    padding: 10px;
-    color: white;
-    font-size: 16px;
-    bottom: 10%;
-    top: 15%;
-    right: 45%;
-  
+}
+
+#mate_reset {
+    width: 10%; 
+    height: 5%;
 }
 
 #mate_hinzu {
-    background-color: #454443;
-    position: fixed;
-    width: 20%; 
+    width: 15%; 
     height: 5%;
-    border-radius: 10px;
-    cursor: pointer;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 60%;
-    border: none;
-    padding: 10px;
-    color: white;
-    font-size: 16px;
-    bottom: 10%;
-    top: 25%;
-    right: 41%;
-  
 }
+
+/* Ende Mate */
 
 /* Settings */
 
