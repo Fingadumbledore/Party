@@ -1,0 +1,7 @@
+flask
+pytest
+pylint
+pytest-cov
+pymongo
+flask_socketio
+faker
