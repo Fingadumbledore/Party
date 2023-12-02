@@ -7,7 +7,3 @@ services:
       - ./scripts/init-mongo.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
       - ./db/:/data/db/
     network_mode: "host"
-  party:
-    build: .
-    ports:
-      - "8000:5000"
