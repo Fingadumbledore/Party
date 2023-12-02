@@ -48,7 +48,7 @@ var games = [
     "Genre": "Autorennen",
     "Publisher": "EA",
     "Inhalt": "Need for Speed: Underground 2 ist der achte Teil der von Electronic Arts entwickelten Rennspielserie Need for Speed und erschien am 18. November 2004 für Windows, PS2, Xbox, GameCube, GBA und Nintendo DS. Die Version für PSP wurde je nach Veröffentlichungsregion zwischen Januar und September 2005 veröffentlicht.",
-    "Bild": "./static/img/nfsu2.png"
+    "Bild": "./static/img/nfsu2.jpg"
   },
   {
     "Name": "Anno",
@@ -66,7 +66,7 @@ var games = [
     "Genre": "Echtzeitstrategie",
     "Publisher": "Sierra Entertainment",
     "Inhalt": "Empire Earth ist eine dreiteilige Echtzeit-Strategiespiel-Serie für Windows, in der der Spieler eine Zivilisation durch die gesamte Menschheitsgeschichte führen kann.",
-    "Bild": "./static/img/empire.png"
+    "Bild": "./static/img/empire.jpg"
   },
   {
     "Name": "Call Of Duty 4 Modern Warfare",
@@ -75,7 +75,7 @@ var games = [
     "Genre": "Shooter",
     "Publisher": "Infinity Ward",
     "Inhalt": "In der Call-of-Duty-Reihe wird erstmals eine zusammenhängende Handlung erzählt. Ein russischer Ultranationalist und ein Terrorist übernehmen die Kontrolle in einem arabischen Staat. Eine amerikanische und britische Einheit jagt sie, es kommt zu einem Atomangriff. Der russische Ultranationalist startet nukleare Raketen, die in letzter Sekunde zerstört werden. Am Ende tötet der Spieler den russischen Ultranationalisten und wird gerettet. Es gibt auch eine Bonusmission, in der ein Flugzeugabsturz verhindert wird.",
-    "Bild": "./static/img/cod.png"
+    "Bild": "./static/img/cod.jpg"
   }
 ];
 
