@@ -464,7 +464,15 @@ cursor: pointer;
     border-radius: 10px;
     cursor: pointer;
     color: white;
+    background-position: center;  background-color: #454443;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
     background-position: center;
+    background-repeat: no-repeat;
+    background-size: 60%;
     background-repeat: no-repeat;
     background-size: 60%;
 }
@@ -637,4 +645,31 @@ footer {
       position: absolute;
       top: 10px;
       right: 10px;
+      width: 15%; 
+      height: 5%;
+    }
+
+    #overlay_prev{
+        background-color: #454443;
+        border: none;
+        padding: 10px;
+        border-radius: 10px;
+        cursor: pointer;
+        color: white;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 60%;
+
+    }
+    #overlay_next{
+        background-color: #454443;
+        border: none;
+        padding: 10px;
+        border-radius: 10px;
+        cursor: pointer;
+        color: white;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 60%;
+
     }
