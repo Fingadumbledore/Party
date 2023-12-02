@@ -117,6 +117,21 @@
     <article id="games">
         <h1>Games</h1>
         <center>
+            <div id="gamePopup" class="popup">
+                <span class="close-btn" onclick="closePopup()">&times;</span>
+                <img id="popupImage" src="" alt="Spielbild" style="max-width: 100%;">
+                <h2 id="popupTitle"></h2>
+                <p id="popupYear"></p>
+                <p id="popupGenre"></p>
+                <p id="popupPublisher"></p>
+                <p id="popupContent"></p>
+              
+                <button onclick="prevGame()">Vorheriges Spiel</button>
+                <button onclick="nextGame()">Nächstes Spiel</button>
+              </div>
+            
+            <div id="overlay" class="overlay" onclick="closePopup()"></div>
+
             <p>Du bist in Team: <span>TODO</span></p>
 
             <input type="radio" name="game_info_select" id="punkte_button">
@@ -178,7 +193,7 @@
                     </tr>
                 </tbody>
             </table>
-            <button>Spiele Zeigen</button>
+            <button onclick="openPopup()">Spiele Zeigen</button>
             <p>Aktuelles Spiel: </p>
 
         </center>

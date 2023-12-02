@@ -5,52 +5,53 @@ body {
     color: #635e5c;
 }
 
-/* Oberer Balken, der Infos anzeigt*/
-header {
-    background-color: #333;
-    height: 5%;
-    width: 100%;
-}
+    /* Oberer Balken, der Infos anzeigt*/
+    header {
+        background-color: #333;
+        height: 5%;
+        width: 100%;
+    }
 
-header ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    height: 100%;
-}
+    header ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 100%;
+    }
+    
+@media only screen and (min-width: 1920px) {
+    #tempstat::before {
+        content: "";
+        background: url('/static/icons/temperatur.png') no-repeat 0 0;
+        background-size: auto 100%;
+        width: 30px;
+        height: 70%;
+        display: inline-block;
+    }
 
-#tempstat::before {
-    content: "";
-    background: url('/static/icons/temperatur.png') no-repeat 0 0;
-    background-size: auto 100%;
-    width: 30px;
-    height: 70%;
-    display: inline-block;
-}
+    #ramstat::before {
+        content: "";
+        background: url('/static/icons/ram.png') no-repeat 0 0;
+        background-size: auto 100%;
+        width: 30px;
+        height: 70%;
+        display: inline-block;
+    }
 
-#ramstat::before {
-    content: "";
-    background: url('/static/icons/ram.png') no-repeat 0 0;
-    background-size: auto 100%;
-    width: 30px;
-    height: 70%;
-    display: inline-block;
+    #cpustat::before {
+        content: "";
+        background: url('/static/icons/cpu.png') no-repeat 0 0;
+        background-size: auto 100%;
+        width: 30px;
+        height: 70%;
+        display: inline-block;
+    }
 }
-
-#cpustat::before {
-    content: "";
-    background: url('/static/icons/cpu.png') no-repeat 0 0;
-    background-size: auto 100%;
-    width: 30px;
-    height: 70%;
-    display: inline-block;
-}
-
 main {
     top: 5%;
 }
@@ -604,3 +605,36 @@ footer {
     color: rgb(220, 220, 210);
     text-align: center;
 }
+
+  .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .close-btn {
+      cursor: pointer;
+      color: #333;
+      font-size: 20px;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
