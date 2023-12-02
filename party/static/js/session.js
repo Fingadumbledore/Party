@@ -111,3 +111,9 @@ function nextGame() {
   currentGameIndex = (currentGameIndex + 1) % games.length;
   showGameInfo(currentGameIndex);
 }
+
+if (sessionStorage.getItem('name')) {
+  document.getElementById('name').innerText = sessionStorage.getItem('name');
+} else {
+  document.getElementById('name').innerText = '?';
+}

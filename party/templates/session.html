@@ -4,46 +4,9 @@
     <title>Partycontroller</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/static/css/session.css">
+    <link rel="icon" type="image/png" href="./static/icons/icon.png">
 </head>
 <body>
-    <header>
-        <ul>
-            <li>
-                <img class="logo" src="/static/icons/icon.png" alt="Logo">
-            </li>
-            <li>
-                <p>Nächstes Event: </p>
-            </li>
-            <li>
-                <p>Song: </p> 
-            </li>
-            <li>
-                <button class="song_button" id="previous_song_button" onclick="previous_song()"></button>
-            </li>
-            <li>
-                <button class="song_button" id="toggle_play_button" onclick="toggle_play()"></button>
-            </li>
-            <li>
-                <button class="song_button" id="skip_song_button" onclick="skip_song()"></button>
-            </li>
-            <li>
-                <span id="tempstat"> temp</span>
-            </li>
-            <li>
-                <span id="ramstat">ram</span>
-            </li>
-            <li>
-                <span id="cpustat">cpu</span>
-            </li>
-            <li>
-                <span id="uhrzeit">zeit</span>
-            </li>
-            <li>
-                <span id="username" onclick="togglePopup()">Peter</span>
-            </li>
-        </ul>
-        
-    </header>
     <main>
     {% block content %}   
     <input class="nav_button" type="radio" name="navigation" id="home_button" checked></input>
@@ -65,11 +28,14 @@
      <!-- Home -->
     <article id="home">
         <h1>Home</h1>
-        <p>
-            Willkommen zur diesjährigen 24-stündigen LAN-Party! Wir haben ein spannendes Line-up mit Spiel 1, Spiel 2 und Spiel 3 vorbereitet. Lasst uns gemeinsam unvergessliche Gaming-Momente schaffen! Möge die Party beginnen, und möge die Beste Person gewinnen!</p>
-        <p>Aktuelles Spiel:<span></span></p>
-        <p>Verfügbare Mate:<span></span></p>
-        <p>Uptime:         <span></span></p>
+        <center>
+        <h2>Willkommen</h2>
+        <img id="user_icon" src="./static/icons/user.png">
+        <p id="name"></p>
+        <p>im Moment spielen wir:<span></span></p>
+        <p>Es gibt noch so viele Flaschen Mate:<span></span></p>         <span></span></p>
+      
+    </center>
     </article>
     
      <!-- Planer -->
@@ -95,7 +61,7 @@
         </table>
 
         <center>
-            <button onclick="document.getElementById('new_event_form_dialog').open = true;">+</button>
+            <button id="generell_button" onclick="document.getElementById('new_event_form_dialog').open = true;">+</button>
         </center>
 
         <dialog id="new_event_form_dialog">
@@ -148,9 +114,9 @@
                         <td>Game</td>
                         <td>Points</td>
                     </tr>
-                    <button>Team erstellen</button>
-                    <button>Team beitreten</button>
-                    <button>Team löschen</button>
+                    <button id="generell_button">Team erstellen</button>
+                    <button id="generell_button">Team beitreten</button>
+                    <button id="generell_button">Team löschen</button>
                 </thead>
                 <tbody>
                     <tr>
@@ -193,7 +159,7 @@
                     </tr>
                 </tbody>
             </table>
-            <button onclick="openPopup()">Spiele Zeigen</button>
+            <button id="generell_button" onclick="openPopup()">Spiele Zeigen</button>
             <p>Aktuelles Spiel: </p>
 
         </center>

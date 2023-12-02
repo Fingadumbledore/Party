@@ -53,7 +53,7 @@ body {
     }
 }
 main {
-    top: 5%;
+    top: 0%;
 }
 
 .content {
@@ -662,6 +662,24 @@ footer {
 
     }
     #overlay_next{
+        background-color: #454443;
+        border: none;
+        padding: 10px;
+        border-radius: 10px;
+        cursor: pointer;
+        color: white;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 60%;
+
+    }
+
+    #user_icon{
+        width: 5%;
+        height: 10%;
+    }
+
+    #generell_button{
         background-color: #454443;
         border: none;
         padding: 10px;

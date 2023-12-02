@@ -1,0 +1,38 @@
+<header>
+        <ul>
+            <li>
+                <img class="logo" src="/static/icons/icon.png" alt="Logo">
+            </li>
+            <li>
+                <p>Nächstes Event: </p>
+            </li>
+            <li>
+                <p>Song: </p> 
+            </li>
+            <li>
+                <button class="song_button" id="previous_song_button" onclick="previous_song()"></button>
+            </li>
+            <li>
+                <button class="song_button" id="toggle_play_button" onclick="toggle_play()"></button>
+            </li>
+            <li>
+                <button class="song_button" id="skip_song_button" onclick="skip_song()"></button>
+            </li>
+            <li>
+                <span id="tempstat"> temp</span>
+            </li>
+            <li>
+                <span id="ramstat">ram</span>
+            </li>
+            <li>
+                <span id="cpustat">cpu</span>
+            </li>
+            <li>
+                <span id="uhrzeit">zeit</span>
+            </li>
+            <li>
+                <span id="username" onclick="togglePopup()">Peter</span>
+            </li>
+        </ul>
+        
+    </header>
